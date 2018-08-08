@@ -1,0 +1,59 @@
+\begin{frame}[allowframebreaks]{Reg Lez}
+
+%\begin{verbatim}
+
+\begin{itemize}
+
+\item lezione: Introduzione generale al corso. Elementi di Probabilita'. Probabilita' frequentista. Probabilit\'a soggettiva. Assiomi di Kolgomorov. Definizioni e identita' di base.
+
+\item esercitazione: Esercizi su: probabilità, probabilit\'a condizionata, assiomi di Kolmogorov. Esempi specifici su $P(A \cap B)$ e eventi indipendenti.
+
+\item esercitazione: Esercizi su: dadi al casino, esempi pratici si $P(A \cap B)$, concetto di indipendenza nel caso di più di due classi di eventi. Esempi di marginalizzazione di una funzione di distribuzione.
+
+\item lezione: Definizioni e elementi base della Statistica. Statistiche, Valore di aspettazione, Osservabili, Indipendenza, Varianza e Covarianza. Distribuzioni di probabilita' discrete e continue, densita' di probabilita' (pdf), Cumulanti (cdf). Trasformazioni delle distribuzioni per cambiamento di variabile. Media campionaria e Legge dei Grandi Numeri.
+ 
+\item esercitazione: Correlazione vs indipendenza (caso $y=x^2$), uso della distribuzione cumulante. Cambiamento di variabile in una o più dimensioni. Calcolo delle densità di probabilità nel caso di somma, prodotto e rapporto di due variabili aleatorie ($z=x+y,z=xy,z=x/y$).
+
+\item lezione: Momenti di una Distribuzione. Approssimazione dei momenti di una statistica ("propagazione errori"). Funzione Generatrice dei Momenti. Esempi. Processi di Bernoulli. Distribuzione Binomiale. Distribuione di Poisson e distribuzione (Esponenziale) della distanza tra i suoi eventi. Funzione Caratteristica.
+
+\item esercitazione: Introduzione alla binominale e alla poissoniana, calcolo delle funzioni generatrici dei momenti, delle medie e delle varianze - Plot e tabelle di probabilità delle distribuzioni per alcuni casi specifici - Esempio (Binomiale): Calcolo di media e varianza per la variabile di asimmetria $A=U-D/U+D$ e per $eff=k/N$ - Esempio (Poisson) uso della poissoniana e calcolo della PDF per i conteggi in un contatore inefficiente. - Esercizio per casa: Calcolare la PDF per A e per $eff=k/N$ e negative binomial - Introduzione alla distribuzione esponenziale e Cauchy, per exp. calcolo della funzione caratteristica , della media e della varianza. - Esempio: Prescale stocastico e deterministico e fun. caratteristiche - Esercizio per casa: calcolo della fun. caratteristica per Cauchy
+
+\item lezione: Teorema del Limite Centrale e densita' di probabilita' Gaussiana. Definizione e proprieta' generali della Funzione di Likelihood. Esempi. Uso della Likelihood in inferenze di tipo Bayesiano: prior, posterior, betting odds, belief-updating ratio. Cenni su effetti di incertezza sistematica.
+
+\item esercitazione: esempi di inferenza bayesiana: problema della meningite, problema del fascio di particelle, problema delle casse di munizioni, problema del numero del taxi e della temperatura. Esempi e criticità dell'uso di una prior "impropria", come il caso della distribuzione di poisson con conteggio nullo.
+
+\item lezione: Concetto di "riduzione dei dati". Statistiche sufficienti, e statistiche sufficienti minimali. Esempi Uniforme, Esponenziale, Gaussiano. Teorema di Darmois.
+    
+\item lezione: Esempio e dimostrazione sufficienza per la statistica $max(x)$ della $U(0,m)$. Definizione di Matrice di Informazione di Fisher. Additivita', crescenza e linearita' dell'Informazione di Fisher. Esempi. Informazione da statistiche sufficienti. Perdita di Informazione in mancanza di statistiche sufficienti: esempi istogrammazione dei dati, accettanza finita (esponenziale troncato).
+
+\item esercitazione: - Informazione di Fisher per esponenziali troncate e informazioni sulle code dell’esponenziale; - Informazione e statistiche sufficienti (il caso della distribuzione uniforme); - Statistiche sufficienti (gaussiana) - Teorema di Darmois (gaussiana, poisson) - Informazione di Fisher (gaussiana, poisson e risultati per binomiale)
+
+\item lezione: Concetto di Stima Puntuale. Stimatori: consistenza, bias, varianza. Disuguaglianza di Cramer-Rao. Minimum Variance Bound e condizioni sotto le quali si raggiunge. Efficienza di uno Stimatore.
+
+\item lezione: Metodi generali per la costruzione di stimatori consistenti. Metodo dei momenti e sue applicazioni. Stimatore di Massima Likelihood (MLE) e sue propriet\'a. Esempio stima simultanea di media e varianza di Gaussiana. Metodi di correzione del bias.
+
+\item esercitazione: Stimatore di massima likelihood e sue proprietà (consistenza, calcolo del valore atteso e della varianza, bias e limiti asintotici) per misure di variabili aleatorie per distribuzioni binomiale, poissoniana, esponenziale, uniforme. Media pesata e sua varianza.
+
+\item lezione: MLE per istogrammi. Extended Likelihood vs. regular Likelihood. Casi particolari. Limiti ad alta statistica e formule semplificate di uso comune. Metodo dei Minimi Quadrati. Consistenza e unbiasedness. Caso lineare e Teorema di Gauss-Markov.
+
+\item lezione: Outliers. Concetto di Robustezza di uno stimatore. Stimatori di Location parameters. Stimatori da p-norme generalizzate. Stime di Moda, Mid-range, Mediana. Distribuzione e Proprieta' della Mediana. Esempio mediana di distr. Cauchy.
+
+\item lezione: Usi della Stima Puntuale e sue limitazioni. Esempi. Usi della Stima Intervallare. Introduzione alla Stima Intervallare. Principi di Stima Intervallare Bayesiana. Credibilita'. Costruzione di Regioni Credibili. Funzioni di ordinamento. Uso e vantaggi del Posterior Ordering. Esempi: Poisson, Uniforme.
+
+\item lezione: Introduzione ai concetti di Coverage e Confidence Level. Proprieta', similarita' e differenze con il concetto di Credibility. Costruzione di Neyman, bande di confidenza. Algoritmi di ordinamento, e proprieta' del Probability Ordering. Esempi: Poisson upper limits, Uniforme (N=1,2); confronto con corrispondenti risultati Bayesiani. Relazione tra Credibilita' media e Coverage media.
+
+\item  lezione: Regioni di Confidenza: problema del "flip-flopping". Possibilit\'a di regioni di confidenza vuote e discussione del suo significato. Uso del LIkelihood-Ratio come funzione di ordinamento e sue proprieta'. "Unified approach" di Feldman-Cousins. Concetto di "pivotal quantity". Il LR come pivot asintotico (Teorema di Wilks) e suo uso per la determinazione approssimata di Regioni di Confidenza. La distribuzione del Chi-quadro e sua interpretazione. 
+
+\item  lezione: Introduzione al concetto di Test di Ipotesi. Definizioni: Ipotesi Nulla, Ipotesi semplici e composte, regione critica, errori di tipo I e II. Problemi di Classificazione visti come Test di Ipotesi. Proprieta' dei tests: potenza, consistenza, unbiasedness, MP, UMP. Lemma di Neyman-Pearson, con dimostrazione. Esistenza di test UMP unilaterale per distribuzioni della famiglia esponenziale.
+
+\item esercitazione: Intervalli di confidenza con ordinamento di Feldman Cousin per l'esponenziale e per una distribuzione triangolare; Richiamo del caso asintotico, LLR per gaussiana, distribuzione del $\chi^2$ e principali propriet\'a, caso asintotico per la poissoniana, confronto con gli intervalli centrali, e copertura.
+
+\item esercitazione: Motivazioni per tests Locally Most Powerful. Test LMP generale unilaterale. Uso e proprieta' asintotiche del Likelihood-Ratio Test. Esempi di Tests ed esercizi svolti.
+
+\item lezione: Concetto di "Goodness of fit" e sua utilit\'a. Tests di GOF. Definizione di P-value e suo uso in GOF test. Formula per la combinazione di 2 o pi\'u P-values. GOF di un fit con errori gaussiani con il LR, e test del "chi-quadrato" di Pearson.
+
+\end{itemize}
+
+%\end{verbatim}
+
+\end{frame}
