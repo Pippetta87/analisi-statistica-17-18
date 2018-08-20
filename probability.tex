@@ -1,0 +1,68 @@
+\section{Probability}
+
+\begin{frame}{Assiomi probabilit\'a Kolmogorov}
+\begin{itemize}
+\item La probabilit\'a di un evento \'e un numero reale $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
+\item La probabilit\'a che almeno uno degli eventi del sample space occorra \'e 1.
+\item $\sigma$-additivit\'a: per ogni sequenza numerabile di insiemi disgiunti (eventi mutualmente esclusivi)
+\begin{equation*}
+\prob{(\cup_{i=1}^{\infty}E_i)}=\sum_{i=1}^{\infty}\prob{(E_i)}
+\end{equation*}
+\end{itemize}
+\begin{block}{Addition rule: probability that A or B will}
+\begin{equation*}
+\prob{(A\cup B)}=\prob{(A)}+\prob{(B)}-\prob{(A\cap B)}
+\end{equation*}
+\end{block}
+\begin{block}{Variabile casuale}
+Una variabile che assume uno specifico valore per ogni elemento dello spazio campionario S.
+\end{block}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+
+\begin{block}{Probabilit\'a condizionata}
+\begin{equation*}
+\prob{(B|A)}=\frac{\prob{(B\cap A)}}{\prob{(A)}}
+\end{equation*}
+\end{block}
+
+\end{column}
+
+\begin{column}{0.5\textwidth}
+
+\begin{block}{Teorema di Bayes}
+\begin{equation*}
+\prob{(A|B)}=\frac{\prob{(B|A)}\prob{(A)}}{\prob{(B)}}
+\end{equation*}
+\end{block}
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Interpretazioni di probabilit\'a}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+
+\begin{block}{Probabilit\'a frequentista}
+Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare:
+\begin{equation*}
+\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}
+\end{equation*}
+
+\end{block}
+
+\end{column}
+
+\begin{column}{0.5\textwidth}
+
+\begin{block}{Probabilit\'a bayesiana}
+
+
+
+\end{block}
+
+\end{column}
+
+\end{columns}
+\end{frame}
