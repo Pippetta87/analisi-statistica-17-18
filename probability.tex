@@ -2,8 +2,8 @@
 
 \begin{frame}{Assiomi probabilit\'a Kolmogorov}
 \begin{itemize}
-\item La probabilit\'a di un evento \'e un numero reale $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
-\item La probabilit\'a che almeno uno degli eventi del sample space occorra \'e 1.
+\item La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
+\item La probabilit\'a degli eventi del sample space \'e 1.
 \item $\sigma$-additivit\'a: per ogni sequenza numerabile di insiemi disgiunti (eventi mutualmente esclusivi)
 \begin{equation*}
 \prob{(\cup_{i=1}^{\infty}E_i)}=\sum_{i=1}^{\infty}\prob{(E_i)}
@@ -19,50 +19,90 @@ Una variabile che assume uno specifico valore per ogni elemento dello spazio cam
 \end{block}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-
 \begin{block}{Probabilit\'a condizionata}
 \begin{equation*}
 \prob{(B|A)}=\frac{\prob{(B\cap A)}}{\prob{(A)}}
 \end{equation*}
 \end{block}
-
 \end{column}
-
 \begin{column}{0.5\textwidth}
-
 \begin{block}{Teorema di Bayes}
 \begin{equation*}
 \prob{(A|B)}=\frac{\prob{(B|A)}\prob{(A)}}{\prob{(B)}}
 \end{equation*}
 \end{block}
-
 \end{column}
 \end{columns}
 \end{frame}
 
 \begin{frame}{Interpretazioni di probabilit\'a}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-
 \begin{block}{Probabilit\'a frequentista}
 Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare:
 \begin{equation*}
 \prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}
 \end{equation*}
-
 \end{block}
-
-\end{column}
-
-\begin{column}{0.5\textwidth}
-
-\begin{block}{Probabilit\'a bayesiana}
-
-
-
+\begin{block}{Probabilit\'a bayesiana }
+Gli elementi di A sono ipotesi o affermazioni:
+\begin{equation*}
+\prob{A}=\text{Degree of belief that A is true}
+\end{equation*}
+\begin{itemize}
+\item Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
+\item Subjective probability can be associated with value of unknown constants (mass of electron, etc): probability of $95\%$ that electron mass is in given interval.
+\end{itemize}
 \end{block}
+\end{frame}
 
+\section{Distribuzioni e variabili causuali}
+
+\begin{frame}{Distribuzione di probabilit\'a di un osservabile. Valore di aspettazione, varianza e momenti}
+Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n
+\begin{itemize}
+\item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)$: PDF of X $f(x)=\TDy{x}{F(x)}$.
+\item Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$: $g(a)=f(x(a))|\TDy{a}{x}|$
+\item $E[X]=\sum x_iP(X=x_i)$.
+\begin{align*}
+&E[H(X)]=\intsinf{}H(x)f(x)\,dx
+\end{align*}
+\item Varianza $\var{(x_n)}=E[(x_n-\mu)^2]=\mu_2=\sigma^2(X)$.
+\item momenti: $\mu_l=E[(X-\mu)^l]$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Stimatori}
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{block}{Media aritmetica}
+Sample mean from a group of observation is an estimate of sample $\mu$.
+\end{block}
 \end{column}
-
+\begin{column}{0.55\textwidth}
+\begin{block}{Gaussiana. T limite centrale.}
+$\bar{x}_N=\frac{\sum_Nx_i}{N}$:
+\begin{align*}
+&\var{(\nmean{X})}=E[(\nmean{X}-\mu)^2]\\
+&=E[(\frac{\sum x_i-\mu}{N})^2]=\frac{\sigma^2}{N}\\
+&\lim_{N\to\infty}\prob{(|\nmean{X}-\mu|>\epsilon)}=0\\
+&\nmean{Y}=\frac{\nmean{X}-\mu}{\sqrt{\var{\nmean{X}}}}=\frac{\sqrt{N}}{\sigma}(\nmean{X}-\mu)\\
+&\exv{\nmean{Y}}=0,\ \var{\nmean{Y}}=1
+\end{align*}
+\end{block}
+\end{column}
 \end{columns}
+\begin{block}{Covarianza di due variabili casuali}
+\begin{align*}
+&V_{xy}=E[(X-\mu_x)(Y-\mu_y)]=E[xy]-\mu_x\mu_y\\
+&=\intsinf{}\intsinf{}xyf(x,y)\,dx\,dy-\mu_x\mu_y
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Propagazione errori}
+\begin{align*}
+&Y(\vec{x})\approx+\sum_{i=1}^n[\PDy{x_i}{y}]|_{\vec{x}=\vec{\mu}}(x_i-\mu_i)\\
+&E[Y(\vec{x})]\approx Y(\vec{\mu})\\
+&E[Y^2(\vec{x})]\approx y^2(\vec{\mu})+\sum_{i,j=1}^n[\PDy{x_i}{y}\PDy{x_j}{y}]|_{\vec{x}=\vec{\mu}}V_{ij}\\
+&\sigma^2_y\approx\sum_{i,j=1}^n[\PDy{x_i}{y}\PDy{x_j}{y}]|_{\vec{x}=\vec{\mu}}V_{ij}
+\end{align*}
 \end{frame}
