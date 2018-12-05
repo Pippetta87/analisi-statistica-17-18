@@ -1,8 +1,5 @@
 \ProvidesPackage{beamersetup}
-
-%%%Usefull link
-%tikz-equations:
-%http://www.wekaleamstudios.co.uk/posts/creating-a-presentation-with-latex-beamer-equations-and-tikz/
+\renewcommand\addcontentsline[3]{\addtocontents{#1}{\protect\contentsline{#2}{#3}}}
 
 % There are many different themes available for Beamer. A comprehensive
 % list with examples is given here:
@@ -37,8 +34,6 @@
 %\usetheme{Szeged}
 %\usetheme{Warsaw}
 
-\hypersetup{pdfpagemode=FullScreen}
-
 \addtobeamertemplate{block begin}{%
   \setlength{\textwidth}{0.95\textwidth}%
   \setlength\abovedisplayskip{0pt}%
@@ -64,7 +59,7 @@
 %  University of Elsewhere}
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
-\date{\today}
+\date{Dicembre, \today}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
@@ -94,15 +89,19 @@
  \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
 \makeatother
 
+\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSubsection{\frame{\subsectionpage}}
 \makeatletter
 \AtBeginPart{%
+\frame{\partpage}
   \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
 }
+
 %% number, shortname, page.
 \providecommand\beamer@partintoc[3]{%
   \ifnum\c@tocdepth=-1\relax
     % requesting onlyparts.
-    \makebox[6em]{Part #1:} \parbox{0.8\textwidth}{#2}
+    \makebox[6em]{PART #1:} #2
     \par
   \fi
 }
@@ -139,5 +138,3 @@
     }
     \makeatother
 
-\AtBeginSection{\frame{\sectionpage}}
-\AtBeginPart{\frame{\partpage}}
