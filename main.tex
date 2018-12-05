@@ -1,4 +1,14 @@
+\makeatletter
+\let\@starttocorig\@starttoc
+\makeatother%%
+
 \documentclass[10pt,xcolor={usenames},fleqn,mathserif,serif]{beamer}
+
+%%%Usefull link
+%tikz-equations:
+%http://www.wekaleamstudios.co.uk/posts/creating-a-presentation-with-latex-beamer-equations-and-tikz/
+
+\hypersetup{pdfpagemode=FullScreen}
 
 %% colors
 \definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
@@ -32,6 +42,9 @@
 \usepackage{mathOp}
 \usepackage{beamersetup}
 
+%%% COUNTERS
+\newcounter{cherrylist}%[figure/sssection]
+
 \def\status{coazione}%ripetere
 \def\keeptrying{coazione}
 \usepackage{LocalF}
@@ -51,14 +64,17 @@
   \titlepage
 \end{frame}
 
+\begin{frame}{TOC}
+\tableofcontents[onlyparts]
+\end{frame}
 % Section and subsections will appear in the presentation overview
 % and table of contents.
 %\frame{\tableofcontents[onlyparts]}
 
-\part{Intro}
+\part{Intro}\linkdest{intro}
 \input{intro}
 
-\part{Succo}
+\part{Succo}\linkdest{succo}
 \input{succo}
 
 \part{Variabili stocastiche e probabilit\'a}\linkdest{statdistro}
