@@ -21,27 +21,32 @@
 \newenvironment{wordonframe}[1]{\comment}{\endcomment}
 \fi
 
+%%% COUNTERS
+\newcounter{cherrykey}%conta le keyword totali per auto ref
+\newcounter{cherrysublist}% conta le key prima di keywordlist
 \newcommand\headinginfo[1]{%
-  \addcontentsline{key-\thecherrylist}{heading}{{#1}}%
-  \addtocontents{key-\thecherrylist}{\vspace{5pt}}}
+  \addcontentsline{key-\thecherrysublist}{heading}{{#1}}%
+  \addtocontents{key-\thecherrysublist}{\vspace{5pt}}}
 %% expert approach to keywords
-\newcommand\keyword[2][target-1]{%
+\newcommand\keyword[2][target-\thecherrykey]{%
+\addtocounter{cherrykey}{1}
   \noindent%
   {#2}%
   \phantomsection% comment out if hyperref is not used
   \linkdest{#1}
  \makeatletter
-  \addcontentsline{key-\thecherrylist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2} \insertframenumber}
+  \addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2} \insertframenumber}
   \makeatother
 }
 \makeatletter
 \newcommand{\listofkeywordsbasic}{%
-  \@starttocorig{key-\thecherrylist}
+\addtocounter{cherrysublist}{1}
+  \@starttocorig{key-\thecherrysublist}
 }
 \makeatother
 \newcommand\listkeywordsname{KEYWORDS}
 \newcommand\listofkeywords{%
-  \subsubsection{\listkeywordsname}\listofkeywordsbasic\addtocounter{cherrylist}{1}
+  \subsubsection{\listkeywordsname}\listofkeywordsbasic
 }
 
 %\def\removespaces{\catcode`\ =9 t e}% Ignore all spaces`
