@@ -20,3 +20,29 @@
 \else
 \newenvironment{wordonframe}[1]{\comment}{\endcomment}
 \fi
+
+\newcommand\headinginfo[1]{%
+  \addcontentsline{key-\thecherrylist}{heading}{{#1}}%
+  \addtocontents{key-\thecherrylist}{\vspace{5pt}}}
+%% expert approach to keywords
+\newcommand\keyword[2][target-1]{%
+  \noindent%
+  {#2}%
+  \phantomsection% comment out if hyperref is not used
+  \linkdest{#1}
+ \makeatletter
+  \addcontentsline{key-\thecherrylist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2} \insertframenumber}
+  \makeatother
+}
+\makeatletter
+\newcommand{\listofkeywordsbasic}{%
+  \@starttocorig{key-\thecherrylist}
+}
+\makeatother
+\newcommand\listkeywordsname{KEYWORDS}
+\newcommand\listofkeywords{%
+  \subsubsection{\listkeywordsname}\listofkeywordsbasic\addtocounter{cherrylist}{1}
+}
+
+%\def\removespaces{\catcode`\ =9 t e}% Ignore all spaces`
+\def\trim#1{\ignorespaces#1\unskip}
