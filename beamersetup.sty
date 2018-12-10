@@ -35,9 +35,11 @@
 %\usetheme{Warsaw}
 
 \addtobeamertemplate{block begin}{%
+\setlength\abovedisplayskip{2pt}\setlength\belowdisplayskip{2pt}\setlength\abovedisplayshortskip{2pt}\setlength\belowdisplayshortskip{2pt}
   \setlength{\textwidth}{0.95\textwidth}%
   \setlength\abovedisplayskip{0pt}%
 }{}
+\addtobeamertemplate{block end}{}{\vspace*{-3pt}}
 
 
 \setbeamertemplate{caption}{\insertcaption}

@@ -28,10 +28,28 @@
 \definecolor{almond}{rgb}{0.94, 0.87, 0.8}
 \definecolor{bf}{RGB}{88, 86, 88}
 \definecolor{bb}{RGB}{177, 177, 177}
-
+\definecolor{keyword}{rgb}{0.25, 0.25, 0.28}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% importa pacchetti
 \usepackage{usepkg}
+%%
+\renewbibmacro*{cite}{%
+  \iffieldundef{shorthand}
+    {\ifnameundef{labelname}
+       {}
+       {\printnames{labelname}%
+        \setunit{\printdelim{nametitledelim}}}%
+     \usebibmacro{cite:title}}%
+    {\usebibmacro{cite:shorthand}}%
+  \usebibmacro{cite:url}}
+
+\newbibmacro{cite:url}{%
+  \ifentrytype{online}
+    {\setunit{\addspace}%
+     \printfield{url}}
+    {}}
+    
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Funzioni generali
 \usepackage{functions}
 %http://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include
@@ -51,11 +69,6 @@
 
 % Let's get started
 \begin{document}
-
-\addtobeamertemplate{block begin}{\setlength\abovedisplayskip{2pt}\setlength\belowdisplayskip{2pt}\setlength\abovedisplayshortskip{2pt}\setlength\belowdisplayshortskip{2pt}}
-
-\addtobeamertemplate{block begin}{\vspace*{-3pt}}{}
-\addtobeamertemplate{block end}{}{\vspace*{-3pt}}
 
 \begin{frame}
   \titlepage
@@ -78,7 +91,11 @@
 \part{Variabili stocastiche e probabilit\'a}\linkdest{statdistro}
 \input{probability}
 
+\part{Stimatori}\linkdest{stimatori}
+
 \part{Inferenza statistica}
 \input{inference}
+
+
 
 \end{document}

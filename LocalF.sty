@@ -28,16 +28,18 @@
   \addcontentsline{key-\thecherrysublist}{heading}{{#1}}%
   \addtocontents{key-\thecherrysublist}{\vspace{5pt}}}
 %% expert approach to keywords
+ \makeatletter
 \newcommand\keyword[2][target-\thecherrykey]{%
 \addtocounter{cherrykey}{1}
-  \noindent%
-  {#2}%
-  \phantomsection% comment out if hyperref is not used
-  \linkdest{#1}
- \makeatletter
-  \addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2} \insertframenumber}
-  \makeatother
+\noindent{%
+\color{keyword}{#2}%
 }
+\phantomsection% comment out if hyperref is not used
+  \linkdest{#1}
+\addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}
+}
+  \makeatother
+  
 \makeatletter
 \newcommand{\listofkeywordsbasic}{%
 \addtocounter{cherrysublist}{1}
@@ -51,3 +53,27 @@
 
 %\def\removespaces{\catcode`\ =9 t e}% Ignore all spaces`
 \def\trim#1{\ignorespaces#1\unskip}
+
+\newcommand{\sortedkeyword}[2][target-\thecherrykey]{%
+{2}\phantomsection\linkdest{#1}
+\DTLnewrow{adsottonove}% Create a new entry
+  \DTLnewdbentry{adsottonove}{description}{\hyperlink{#1}{#2}}% Add entry as description
+}
+
+\newenvironment{printsortedkeyword}{%
+\DTLifdbexists{adsottonove}{\DTLcleardb{adsottonove}}{\DTLnewdb{adsottonove}}% Create new/discard old list
+\noindent\rule{2cm}{0.4pt}
+
+}{%
+Keyword ADS 18/19:
+
+\DTLsort{description}{adsottonove}% Sort list
+%\begin{itemize}%
+    \DTLforeach*{adsottonove}{\theDesc=description}{%
+%\item
+\theDesc 
+%}% Print each item
+%\end{itemize}%  
+\noindent\rule{2cm}{0.4pt}
+}
+}

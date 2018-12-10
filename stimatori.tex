@@ -1,0 +1,36 @@
+\begin{frame}{Stimatori}
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+\begin{block}{Media aritmetica}
+Sample mean from a group of observation is an estimate of sample $\mu$.
+\end{block}
+\end{column}
+\begin{column}{0.55\textwidth}
+\begin{block}{Gaussiana. T limite centrale.}
+$\bar{x}_N=\frac{\sum_Nx_i}{N}$:
+\begin{align*}
+&\var{(\nmean{X})}=E[(\nmean{X}-\mu)^2]\\
+&=E[(\frac{\sum x_i-\mu}{N})^2]=\frac{\sigma^2}{N}\\
+&\lim_{N\to\infty}\prob{(|\nmean{X}-\mu|>\epsilon)}=0\\
+&\nmean{Y}=\frac{\nmean{X}-\mu}{\sqrt{\var{\nmean{X}}}}=\frac{\sqrt{N}}{\sigma}(\nmean{X}-\mu)\\
+&\exv{\nmean{Y}}=0,\ \var{\nmean{Y}}=1
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\begin{block}{Covarianza di due variabili casuali}
+\begin{align*}
+&V_{xy}=E[(X-\mu_x)(Y-\mu_y)]=E[xy]-\mu_x\mu_y\\
+&=\intsinf{}\intsinf{}xyf(x,y)\,dx\,dy-\mu_x\mu_y
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Propagazione errori}
+\begin{align*}
+&Y(\vec{x})\approx+\sum_{i=1}^n[\PDy{x_i}{y}]|_{\vec{x}=\vec{\mu}}(x_i-\mu_i)\\
+&E[Y(\vec{x})]\approx Y(\vec{\mu})\\
+&E[Y^2(\vec{x})]\approx y^2(\vec{\mu})+\sum_{i,j=1}^n[\PDy{x_i}{y}\PDy{x_j}{y}]|_{\vec{x}=\vec{\mu}}V_{ij}\\
+&\sigma^2_y\approx\sum_{i,j=1}^n[\PDy{x_i}{y}\PDy{x_j}{y}]|_{\vec{x}=\vec{\mu}}V_{ij}
+\end{align*}
+\end{frame}

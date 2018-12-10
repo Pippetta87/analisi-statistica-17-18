@@ -1,5 +1,7 @@
 \section{Probability}
 
+\subsection{Assiomi di probabilit\'a}
+
 \begin{frame}{Assiomi probabilit\'a Kolmogorov}
 \begin{itemize}
 \item La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
@@ -54,7 +56,7 @@ Gli elementi di A sono ipotesi o affermazioni:
 \end{block}
 \end{frame}
 
-\section{Distribuzioni e variabili causuali}
+\subsection{Distribuzioni e variabili casuali}
 
 \begin{frame}{Distribuzione di probabilit\'a di un osservabile. Valore di aspettazione, varianza e momenti}
 Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n
@@ -70,39 +72,58 @@ Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Stimatori}
-\begin{columns}[T]
-\begin{column}{0.45\textwidth}
-\begin{block}{Media aritmetica}
-Sample mean from a group of observation is an estimate of sample $\mu$.
+\subsection{Momenti di una distribuzione}
+
+\begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
+
+\end{frame}
+
+\begin{wordonframe}{PDF distanza stelle distribuite uniformemente in x,y,z}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{block}{Radial Fourier transform}
+\begin{align*}
+&\hat{f}(\vec{k})=\int\exp{-i\scap{k}{x}}f(\vec{x})d^nx\\
+&=s^{\frac{n-2}{2}}\hat{F}_n(s)\\
+&=(2\pi)^{\frac{n}{2}}\int_0^{+\infty}J_{\frac{n-2}{2}}(sr)r^{\frac{n-2}{2}}F(r)r\,dr
+\end{align*}
 \end{block}
 \end{column}
-\begin{column}{0.55\textwidth}
-\begin{block}{Gaussiana. T limite centrale.}
-$\bar{x}_N=\frac{\sum_Nx_i}{N}$:
+\begin{column}{0.5\textwidth}
+\begin{block}{MGF of sum of RV is product of their MGF}
 \begin{align*}
-&\var{(\nmean{X})}=E[(\nmean{X}-\mu)^2]\\
-&=E[(\frac{\sum x_i-\mu}{N})^2]=\frac{\sigma^2}{N}\\
-&\lim_{N\to\infty}\prob{(|\nmean{X}-\mu|>\epsilon)}=0\\
-&\nmean{Y}=\frac{\nmean{X}-\mu}{\sqrt{\var{\nmean{X}}}}=\frac{\sqrt{N}}{\sigma}(\nmean{X}-\mu)\\
-&\exv{\nmean{Y}}=0,\ \var{\nmean{Y}}=1
+&\MGF{x_i^2}=\E{[\exp{tx_i^2}]}\\
+&=\frac{\sqrt{\pi}[\Erfi{(b\sqrt{t})}-\Erfi{a\sqrt{t}}]}{2(b-a)\sqrt{t}}
 \end{align*}
 \end{block}
 \end{column}
 \end{columns}
-\begin{block}{Covarianza di due variabili casuali}
-\begin{align*}
-&V_{xy}=E[(X-\mu_x)(Y-\mu_y)]=E[xy]-\mu_x\mu_y\\
-&=\intsinf{}\intsinf{}xyf(x,y)\,dx\,dy-\mu_x\mu_y
-\end{align*}
-\end{block}
-\end{frame}
+\end{wordonframe}
 
-\begin{frame}{Propagazione errori}
+\begin{wordonframe}{Propriet\'a Trasformata di Fourier}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+
+\end{column}
+\begin{column}{0.5\textwidth}
 \begin{align*}
-&Y(\vec{x})\approx+\sum_{i=1}^n[\PDy{x_i}{y}]|_{\vec{x}=\vec{\mu}}(x_i-\mu_i)\\
-&E[Y(\vec{x})]\approx Y(\vec{\mu})\\
-&E[Y^2(\vec{x})]\approx y^2(\vec{\mu})+\sum_{i,j=1}^n[\PDy{x_i}{y}\PDy{x_j}{y}]|_{\vec{x}=\vec{\mu}}V_{ij}\\
-&\sigma^2_y\approx\sum_{i,j=1}^n[\PDy{x_i}{y}\PDy{x_j}{y}]|_{\vec{x}=\vec{\mu}}V_{ij}
+&h(x)=a*f(x)+bg(x)\\
+&\hat{h}(\nu)=a\hat{f}(\nu)+b\hat{g}(\nu)\\
+&h(x)=\exp{2\pi ix\nu_0}f(x)\\
+&\hat{h}(\nu)=\hat{f}(\nu-\nu_0)
 \end{align*}
-\end{frame}
+\end{column}
+\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Trasformata di Fourier notevoli}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+\F{(\frac{1}{x})}=-i\pi\sgn{(\nu)}(=-i\sqrt{\frac{\pi}{2}}\sgn{(\omega)})
+\end{align*}
+\end{column}
+\end{columns}
+\end{wordonframe}
