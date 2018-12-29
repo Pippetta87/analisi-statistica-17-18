@@ -61,11 +61,11 @@
 %  University of Elsewhere}
 % - Use the \inst command only if there are several affiliations.
 % - Keep it simple, no one is interested in your street address.
-\date{Dicembre, \today}
+\date{NOW, \today}
 % - Either use conference name or its abbreviation.
 % - Not really informative to the audience, more for people (including
 %   yourself) who are reading the slides online
-\subject{Analisi statistica}
+\subject{Analisi statistica dei dati}
 % This is only inserted into the PDF information catalog. Can be left
 % out. 
 % If you have a file called "university-logo-filename.xxx", where xxx
@@ -86,12 +86,21 @@
 %\addtolength\abovedisplayshortskip{-0.5\baselineskip}%
 %\addtolength\belowdisplayshortskip{-1\baselineskip}%
 %}
+\setbeamertemplate{section page}
+{
+    \begin{centering}
+    \begin{beamercolorbox}[sep=12pt,center]{part title}
+    \usebeamerfont{section title}\insertsection\par
+    \end{beamercolorbox}
+    \end{centering}
+}
 
 \makeatletter%%see https://tex.stackexchange.com/questions/411987/how-to-fix-hypertargets-directing-links-to-the-line-after-the-target-it-looks-l
  \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
 \makeatother
 
-\AtBeginSection{\frame{\sectionpage}}
+\AtBeginSection{\frame{\sectionpage}
+}
 \AtBeginSubsection{\frame{\subsectionpage}}
 \makeatletter
 \AtBeginPart{%
@@ -119,19 +128,27 @@
 {
     \leavevmode%
     \hbox{%Refintro
-        \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-            \hyperlink{intro}{I}:\hyperlink{kolmogorov}{K/SD}-\hyperlink{datareduction}{DR}-\hyperlink{stimatori}{S}-\hyperlink{confidence}{C}-\hyperlink{tests}{T}-\hyperlink{goodnessoffit}{GOF}
+        \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+            \hyperlink{intro}{i}:\hyperlink{rl18}{RLez}
         \end{beamercolorbox}%
 
+   \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+            \hyperlink{succo}{N!}:
+        \end{beamercolorbox}%
+        
  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 1
             \hyperlink{statdistro}{S}:
         \end{beamercolorbox}%
 
- \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 2
-            \hyperlink{inferenza}{A}
+ \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 2
+            \hyperlink{inferenza}{inf}
         \end{beamercolorbox}%
         
-        \begin{beamercolorbox}[wd=.35\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
+ \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 2
+            \hyperlink{test}{T}
+        \end{beamercolorbox}%
+        
+        \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%
             %   \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
             \insertframenumber{} \hspace*{2ex}  / \hspace*{2ex} \inserttotalframenumber
             \hspace*{2ex} 

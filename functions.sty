@@ -51,6 +51,10 @@
 
 \newcommand{\PDy}[2]{\frac{\partial #2}{\partial #1}} %%% derivative dy/dx
 \newcommand{\TDy}[2]{\frac{d #2}{d #1}}
+\newcommand{\PDyn}[3]{\frac{\partial^{#3} #2}{{\partial #1}^{#3}}} %%% derivative dy/dx
+\newcommand{\TDyn}[3]{\frac{d^{#3} #2}{{d #1}^{#3}}}
+\newcommand{\PDyat}[3]{\left.\frac{\partial #2}{\partial #1}\right|_{#3}} %%% derivative dy/dx
+\newcommand{\TDyat}[3]{\left.\frac{d #2}{d #1}\right|_{#3}}
 \newcommand{\PtwoDy}[2]{\frac{\partial^2 #2}{{\partial #1}^2}}
 \newcommand{\TtwoDy}[2]{\frac{d^2 #2}{{d #1}^2}}
 \newcommand{\PxDy}[3]{\frac{\partial^{#2} #3}{{\partial #1}^{#2}}}
