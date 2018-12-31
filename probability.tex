@@ -148,26 +148,6 @@ X,Y indipendenti: $\rho_{XY}=0$ ma non v.v.
 \end{block}
 \end{frame}
 
-\begin{frame}{Legge grandi numeri}\linkdest{LLN}
-Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n.
-    Media aritmetica di n variabili $X_i$: $\E{\overline{X}_n}=\mu$; Finite variance: $\var{X_i}=\sigma^2$: $\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}$
-    \begin{columns}
-    \begin{column}{0.5\textwidth}
-\begin{align*}
-&\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}\\
-&=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
-&\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}
-\end{align*}
-\keyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
-\keyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
-    \end{column}
-    \begin{column}{0.5\textwidth}
-Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
-$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$; Levy theorem: $\overline{X}_n\to\mu$.
-    \end{column}
-    \end{columns}
-\end{frame}
-
 \subsection{Funzione caratteristica}
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
@@ -245,6 +225,23 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 \end{block}
 \end{wordonframe}
 
+\begin{frame}{Teorema di Paul-Levy}
+    
+\begin{columns}[T]
+\begin{column}{0.3\textwidth}
+    Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{itemize}
+    \item $F_n$ successione di funzioni cumulanti
+    \item $\phi_n\to\phi$ per ogni $t\in I(0)$
+    \item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
+\end{itemize}
+quindi $F_n(x)\to F(x)$.
+\end{column}
+\end{columns}
+\end{frame}
+
 \begin{wordonframe}{Propriet\'a Trasformata di Fourier}
 \begin{columns}
 \begin{column}{0.5\textwidth}
@@ -313,5 +310,60 @@ Convoluzione e prodotto:
 &\exp{-\alpha x^2} & \frac{1}{\sqrt{2\alpha}}\exp{-\frac{\omega^2}{4\alpha}} & \sqrt{\frac{\pi}{\alpha}}\exp{-\frac{\nu^2}{4\alpha}}\\
 &\exp{-a|x|} & \sqrt{\frac{2}{\pi}}\frac{a}{a^2+\omega^2} & \frac{2a}{a^2+\nu^2}\exp{-\frac{a^2x^2}{2}}\\
 &\exp{-\frac{a^2x^2}{2}}H_n(ax) & \frac{(-i)^n}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\omega}{a}) & \frac{(-i)^n\sqrt{2\pi}}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\nu}{a})
+\end{align*}
+\end{wordonframe}
+
+\subsection{Legge grandi numeri}
+
+\begin{frame}{Legge grandi numeri}\linkdest{LLN}
+Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n.
+    Media aritmetica di n variabili $X_i$: $\E{\overline{X}_n}=\mu$; Finite variance: $\var{X_i}=\sigma^2$: $\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}$
+    \begin{columns}
+    \begin{column}{0.5\textwidth}
+\begin{align*}
+&\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}\\
+&=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
+&\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}
+\end{align*}
+\keyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
+\keyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
+    \end{column}
+    \begin{column}{0.5\textwidth}
+Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
+$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$; Levy theorem: $\overline{X}_n\to\mu$.
+    \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{LLN: asintoticamente gaussiana}
+Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$.
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}\\
+&=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
+&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2\\
+&\phi(t)=\phi_{X-\mu}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&y_N=\sqrt{\frac{N}{\sigma^2}}(\overline{x}-\mu)\\
+&\E{[y_N]}=0,\ \var{[y_N]}=1\\
+&\phi_N=[\phi(\frac{t}{\sigma\sqrt{N}})]^N
+\end{align*}
+\end{column}
+\end{columns}
+\begin{align*}
+&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\\
+&\log{\phi_N}\to-\frac{t^2}{2}\ \text{Per T Levy la pdf \'e:}\\
+&\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}d\,t=\frac{1\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
+\end{align*}
+\end{frame}
+
+\begin{wordonframe}{Espansioni di Taylor}
+\begin{align*}
+&\phi(t)=1+it\mu-\frac{\sigma^2t^2}{2}+o(t^2)\\
+&\log{(1+x)}\approx x-\frac{x^2}{2}+o(x^2)
 \end{align*}
 \end{wordonframe}
