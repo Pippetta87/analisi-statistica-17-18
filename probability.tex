@@ -1,4 +1,5 @@
 \section{Probability}
+
 \begin{frame}{List of keyword for ''probability''}
     \listofkeywords
 \end{frame}
@@ -53,7 +54,7 @@ RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili 
 \begin{block}{Probabilit\'a frequentista}
 Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
 \end{block}
-\begin{block}{Probabilit\'a bayesiana }
+\begin{block}{Probabilit\'a bayesiana}
 Gli elementi di A sono ipotesi o affermazioni: $\prob{A}$ = Degree of belief that A is true
 \begin{itemize}
 \item Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
@@ -63,7 +64,6 @@ Gli elementi di A sono ipotesi o affermazioni: $\prob{A}$ = Degree of belief tha
 \end{frame}
 
 \begin{frame}{Distribuzione di probabilit\'a di un osservabile: densit\'a di probabilit\'a, cumulante; osservabili multidimensionali.}
-
 \begin{itemize}
 \item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)$: PDF of X $f(x)=\TDy{x}{F(x)}$.
 \item Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$: $g(a)=f(x(a))|\TDy{a}{x}|$
@@ -71,9 +71,26 @@ Gli elementi di A sono ipotesi o affermazioni: $\prob{A}$ = Degree of belief tha
 \end{itemize}
 \end{frame}
 
+\begin{wordonframe}{Esempio importanza ensamble (spazio campionario)}
+Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia $p(t;\lambda)=\lambda\exp{-\lambda t}$
+\begin{block}{Tempo medio di attesa in quale ensamble?}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+Probabilit\'a arriva prima di t:
+\begin{align*}
+&F(t;\lambda)=\int_0^tp(t';\lambda)d\,t\\
+&=1-F(t)=1-\exp{-\lambda t}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+Tempo medio attesa, tempo medio ritardo e tempo medio attesa pi\'u ritardo sono uguali? A $\frac{\tau}{2}$?.
+\end{column}
+\end{columns}
+\end{block}
+\end{wordonframe}
+
 \begin{frame}{Momenti di una distribuzione e di una statistica}
 %Valore di aspettazione, varianza e momenti di di variabile casuale con data distribuzione di probabilit\'a, di campione (misure) estratto con data pdf e statistiche.
-
 \begin{block}{Valore di aspettazione}
 \begin{align*}
 &E[X]=(\sum x_iP(X=x_i))=\int f(x)x\,dx\\
@@ -146,6 +163,10 @@ Gli elementi di A sono ipotesi o affermazioni: $\prob{A}$ = Degree of belief tha
 \end{columns}
 X,Y indipendenti: $\rho_{XY}=0$ ma non v.v.
 \end{block}
+\end{frame}
+
+\begin{frame}{Generazione pdf da distribuzione uniforme}
+    
 \end{frame}
 
 \subsection{Funzione caratteristica}
@@ -367,3 +388,123 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 &\log{(1+x)}\approx x-\frac{x^2}{2}+o(x^2)
 \end{align*}
 \end{wordonframe}
+
+\subsection{Important pdf oltre gaussiana}
+
+\begin{wordonframe}{Combinations}
+$n!$: permutazioni - modi distinti di prendere n oggetti
+\end{wordonframe}
+
+\begin{frame}{Bernoulli, binomiale e Poisson}
+\begin{block}{Distribuzione binomiale: k eventi con probabilit\'a p in sequenza di n estrazioni. Somma n variabili Bernoulli.}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\[\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}\]
+Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
+\begin{align*}
+&\underbrace{[\frac{n}{n}\ldots\frac{n-k+1}{n}]}_{1}\frac{1}{k!}[\frac{\lambda T}{1-\frac{\lambda T}{n}}]^k(1-\frac{\lambda T}{n})^n\\
+&=\frac{(\lambda T)^k}{k!}\exp{-\lambda T}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+Momenti:
+\begin{align*}
+&\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
+&M_X(t)=\E{[\exp{tX}]}\\
+&=\sum_k\exp{tk}\binom{n}{k}p^k(1-p)^{n-k}=M_B^n(t)
+\end{align*}
+\end{column}
+\end{columns}
+\end{block}
+\begin{block}{Poisson}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\[\prob{(k;\mu)}=\frac{\mu^k}{k!}\exp{-\mu}\]
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&M_P(t)=\sum_k\exp{tk}\frac{\mu^k}{k!}\exp{-\mu}=\exp{\mu(\exp{t}-1)}
+\end{align*}
+\end{column}
+\end{columns}
+\keyword{Ex: media e varianza Poissoniana}
+\end{block}
+\end{frame}
+
+\begin{wordonframe}{Derivazione pdf Bernoulli}
+\begin{columns}[T]
+\begin{column}{0.3\textwidth}
+\begin{block}{Bernoulli}
+\begin{align*}
+&\underbrace{0110010}_{n:k(1)\leq n}0110\ldots\\
+&\prob{(1)}=\lim_{N\to\infty}\frac{\#(1's)}{N}\\
+&\prob{(0)}=1-\prob{(1)}\\
+\end{align*}
+\noindent\rule{0.9\textwidth}{0.4pt}
+\end{block}
+\end{column}
+\begin{column}{0.7\textwidth}
+\begin{block}{Binomiale}
+\begin{align*}
+&\prob{(k;n,p)}\ \text{Ensamble di N sottosequenze}\\
+&\prob{(1\ldots);n,p}=\lim_{N\to\infty}(\frac{\#\overbrace{(1\ldots)}^n}{N})=p\\
+&\prob{(11\ldots);n,p}=\lim_{N\to\infty}(\frac{\#\overbrace{(11\ldots)}^n}{N})\\
+&=\lim_{N\to\infty}\frac{n(1\ldots)}{N}\frac{n(11\ldots)}{n(1\ldots)}=p^2, \ldots
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\begin{align*}
+&\prob{(\overbrace{(1,\ldots,1}^k,\underbrace{0,\ldots,0})}_{n-k})=p^k(1-p)^{n-k}
+\end{align*}
+\begin{columns}[T]
+\begin{column}{0.2\textwidth}
+\begin{align*}
+&\binom{n}{k}=\frac{n!}{k!(n-k)!}
+\end{align*}
+\end{column}
+\begin{column}{0.8\textwidth}
+fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto che $k$ e $(n-k)$ sono identici.
+\end{column}
+\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Calcolo MGF per binomiale}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{block}{Somma di n Bernoulli}
+\begin{align*}
+&X=X_1+\ldots X_n\\
+&M_B(t)=E_B[\exp{tX}]\\
+&=(1-p)\exp{0}+\exp{t}p
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Explicit method}
+\begin{align*}
+&\sum_k^n\binom{n}{k}(\exp{t}p)^k(1-p)^{n-k}\\
+&(a+b)^n=\sum_k\binom{n}{k}a^kb^{n-k}
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+\begin{align*}
+&M_k=[(1-p)+p\exp{t}]^n
+\end{align*}
+\end{wordonframe}
+
+\begin{wordonframe}{Poissoniane!}
+
+\end{wordonframe}
+
+\begin{frame}{Irwin-Hall}
+    
+\end{frame}
+
+\begin{frame}{Esponenziale}
+\begin{align*}
+&p(t;\lambda)=\lambda\exp{-\lambda t}\\
+&M_e(x)=\lambda\intzi{}\exp{-(\lambda-t)x}=\frac{\lambda}{\lambda-t}
+\end{align*}
+\end{frame}

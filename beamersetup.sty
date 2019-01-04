@@ -34,6 +34,18 @@
 %\usetheme{Szeged}
 %\usetheme{Warsaw}
 
+\makeatletter
+\g@addto@macro\normalsize{%
+  \setlength\abovedisplayskip{-15pt}
+  \setlength\belowdisplayskip{0pt}
+  \setlength\abovedisplayshortskip{-15pt}
+  \setlength\belowdisplayshortskip{0pt}
+  \setlength{\parindent}{0em}
+\setlength{\parskip}{0em}
+\setlength{\jot}{1ex}
+}
+\makeatother
+
 \addtobeamertemplate{block begin}{%
 \setlength\abovedisplayskip{2pt}\setlength\belowdisplayskip{2pt}\setlength\abovedisplayshortskip{2pt}\setlength\belowdisplayshortskip{2pt}
   \setlength{\textwidth}{0.95\textwidth}%

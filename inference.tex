@@ -3,4 +3,69 @@ Introductory statistical inference with likelihood: basic statistical defs, stim
 likelihood: likelihood, likelihood ratio, sufficienza
 \end{frame}
 
-\section{Inferenza statistica}
+\section{Inferenza statistica: paradigmi}
+
+\subsection{Frequentista}
+
+\begin{frame}{Funzione di Likelihood}
+\begin{block}{Funzione di likelihood}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\[L_{x_0}(m)=p(x_0;m)\]
+x,y: eventi indipendenti:
+\[L_{(x_0,y_0)}(m)=L_{x_0}(m)L_{y_0}(m)\]
+\end{column}
+\begin{column}{0.5\textwidth}
+Definita a meno di costante moltiplicativa ($\log{L}$): invariante per cambiamento di osservabile (funzione solo dei dati)
+\[L_{f(t_0)}(m)=|J(t_0)|L_{t_0}(m)\]
+\end{column}
+\end{columns}
+\end{block}
+\begin{block}{Likelihood per distro uniforme}
+\pgfmathsetmacro{\unifM}{3}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[scale=0.5,domain=0:1.5*\unifM]
+\pgfmathsetmacro{\unifN}{(\unifM)^-1}
+\begin{axis}[ylabel={$p(x;m)$},extra x ticks={\unifM}, extra x tick labels={$m$},
+        extra x tick style={xticklabel style={yshift=-10}}]
+%\draw[->] (-0.2,0) -- (1.5*\unifM,0) node[right] {$x$};
+%\draw[->] (0,-0.2) -- (0,1.5*\unifM) node[above,red] {$p(x;m)$};
+%\draw[color=red] plot[domain=0:\unifM, id=unif] function{\unifN} node[right] {$\frac{1}{m}$};
+    \addplot[color=red] function [raw gnuplot, id=unifpdf, mark=none]{set xrange [0:\unifM]; plot \unifN};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{tikzpicture}[scale=0.5]
+\begin{axis}[ylabel={$\mathcal{L}_{x_0}(m)$},extra x ticks={\data},extra x tick labels={$x_0$},
+        extra x tick style={xticklabel style={yshift=-10}}]
+\pgfmathsetmacro{\data}{(rand+1)/2*\unifM}
+\pgfmathsetmacro{\unifN}{(\unifM)^-1}
+    \addplot[color=orange] function [raw gnuplot, id=unifL, mark=none]{set xrange [\data:*]; plot 1/x};
+\end{axis}
+\end{tikzpicture}
+\end{column}
+\end{columns}
+\end{block}
+\end{frame}
+
+\begin{frame}{Likelihood: bernoulli, ...}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+    \begin{block}{Likelihood per distro uniforme}
+\begin{align*}
+&L_0=1-p\\
+&L_1=p
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Principio di likelihood}
+    Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y.
+\end{frame}
