@@ -67,17 +67,16 @@
 \usepackage{LocalF}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\title{Analisi statistica dei dati: Dicembre 2018.}
+\title{Analisi statistica dei dati: Febbraio 2019.}
 
 % Let's get started
 \begin{document}
-
+%\let\mybibcat\noexpand\currfilebase
 \begin{frame}
   \titlepage
 \end{frame}
 
 \begin{frame}{TOC}
-
 \tableofcontents[onlyparts]
 \end{frame}
 % Section and subsections will appear in the presentation overview
@@ -93,10 +92,13 @@
 \part{Variabili stocastiche e probabilit\'a}\linkdest{statdistro}
 \input{probability}
 
-\part{Inferenza statistica}
+\part{Inferenza statistica}\linkdest{inference}
+\begin{refsection}
+\nocite{*}
 \input{inference}
+\end{refsection}
 
-\part{Test}\linkdest{test}
+%\input{test}\linkdest{test}
 
 
 \end{document}

@@ -46,6 +46,16 @@
 }
 \makeatother
 
+\defbibheading{beamer}{%
+Bib to learn}
+
+\makeatletter
+\setbeamertemplate{subsubsection in toc}
+{\leavevmode\normalsize\usebeamerfont{subsection in toc}\leftskip=3em%
+\usebeamerfont{subsubsection in toc}%
+\inserttocsubsubsection\par}
+\makeatother
+
 \addtobeamertemplate{block begin}{%
 \setlength\abovedisplayskip{2pt}\setlength\belowdisplayskip{2pt}\setlength\abovedisplayshortskip{2pt}\setlength\belowdisplayshortskip{2pt}
   \setlength{\textwidth}{0.95\textwidth}%
@@ -116,8 +126,10 @@
 \AtBeginSubsection{\frame{\subsectionpage}}
 \makeatletter
 \AtBeginPart{%
-\frame{\partpage}
-  \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+\begin{frame}[allowframebreaks]
+\partpage \tableofcontents[]
+\end{frame}
+\addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
 }
 
 %% number, shortname, page.
@@ -140,8 +152,8 @@
 {
     \leavevmode%
     \hbox{%Refintro
-        \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
-            \hyperlink{intro}{i}:\hyperlink{rl18}{RLez}
+        \begin{beamercolorbox}[wd=.25\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+            \hyperlink{intro}{i}:\hyperlink{rl18}{RLez}(\hyperlink{ottobre}{Ott}\hyperlink{novembre}{Nov}\hyperlink{dicembre}{Dic})
         \end{beamercolorbox}%
 
    \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
@@ -149,15 +161,11 @@
         \end{beamercolorbox}%
         
  \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 1
-            \hyperlink{statdistro}{S}:
+            \hyperlink{statdistro}{p}:\hyperlink{axioms}{ax}-\hyperlink{pdfs}{f}-\hyperlink{errors}{err}-\hyperlink{moments}{M}-\hyperlink{LLN}{LLN}
         \end{beamercolorbox}%
 
- \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 2
-            \hyperlink{inferenza}{inf}
-        \end{beamercolorbox}%
-        
- \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%refs Part 2
-            \hyperlink{test}{T}
+ \begin{beamercolorbox}[wd=.15\paperwidth,ht=4.25ex,dp=1ex,center]{author in head/foot}%refs Part 2
+            \hyperlink{inference}{inf}:\hyperlink{likelihood}{L}-\hyperlink{statistiche}{$S(X)$}-\hyperlink{points}{$\hat{\theta}$}-\hyperlink{informazione}{$I_X$}-\hyperlink{methodsestimators}{me}
         \end{beamercolorbox}%
         
         \begin{beamercolorbox}[wd=.15\paperwidth,ht=2.25ex,dp=1ex,right]{date in head/foot}%

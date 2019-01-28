@@ -9,6 +9,35 @@
 \newcommand{\FT}{\xrightarrow{\mathcal{F}}}
 \newcommand{\mss}{modello solare standard}
 
+\makeatletter
+\newcommand{\crossout}[1]{%
+  \begingroup
+  \settowidth{\dimen@}{#1}%
+  \setlength{\unitlength}{0.05\dimen@}%
+  \settoheight{\dimen@}{#1}%
+  \count@=\dimen@
+  \divide\count@ by \unitlength
+  \count0=20 \count4=\count@
+  \loop
+  \count2=\count0 % keep a copy
+  \divide\count2\count4 \multiply\count2\count4
+  \ifnum\count2<\count0
+    \advance\count0 -\count2 % the remainder
+    \count2=\count0
+    \count0=\count4
+    \count4=\count2
+  \repeat
+  \count0=20 \divide\count0\count4
+  \count2=\count@ \divide\count2\count4
+  \begin{picture}(0,0)
+  \put(0,0){\line(\count0,\count2){20}}
+  \put(0,\count@){\line(\count0,-\count2){20}}
+  \end{picture}%
+  #1%
+  \endgroup
+}
+\makeatother
+
 \newenvironment{errata}[1][ ]%%%% errata
 {\refstepcounter{erratac}\adderratacontent{#1}%
 \begingroup {\theerratac: #1}
@@ -29,16 +58,16 @@
   \addtocontents{key-\thecherrysublist}{\vspace{5pt}}}
 %% expert approach to keywords
  \makeatletter
-\newcommand\keyword[2][target-\thecherrykey]{%
+\newcommand\mykeyword[2][target-\thecherrykey]{%
 \addtocounter{cherrykey}{1}
 \noindent{%
 \color{keyword}{#2}%
-}
+}%
 \phantomsection% comment out if hyperref is not used
-  \linkdest{#1}
-\addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}
+  \linkdest{#1}%
+\addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}%
 }
-  \makeatother
+\makeatother
   
 \makeatletter
 \newcommand{\listofkeywordsbasic}{%
@@ -48,8 +77,10 @@
 \makeatother
 \newcommand\listkeywordsname{KEYWORDS}
 \newcommand\listofkeywords{%
-  \subsubsection{\listkeywordsname}\listofkeywordsbasic
-}
+\subsubsection{\listkeywordsname}\listofkeywordsbasic}
+\newcommand\frameintoc{%
+\subsubsection{\insertframetitle}}
+% \IfFileExists{key-\thecherrysublist}{false-branch}
 
 %\def\removespaces{\catcode`\ =9 t e}% Ignore all spaces`
 \def\trim#1{\ignorespaces#1\unskip}

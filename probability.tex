@@ -1,9 +1,14 @@
 \section{Probability}
 
-\begin{frame}{List of keyword for ''probability''}
-    \listofkeywords
+\begin{frame}[allowframebreaks]{List of keywords}
+\listofkeywords
 \end{frame}
-\subsection{Assiomi di probabilit\'a}
+
+%\begin{frame}{List of keyword for ''probability''}
+%\listofkeywords
+%\end{frame}
+
+\subsection{Assiomi di probabilit\'a}\linkdest{axioms}
 
 \begin{frame}{Assiomi probabilit\'a Kolmogorov}
 \begin{itemize}
@@ -45,11 +50,11 @@ Indipendence: $\prob{A\cap B}=\prob{A}\prob{B}$.
 Disjoint: $\prob{A\cap B}=0$.
 \end{wordonframe}
 
-\subsection{Variabili casuali (Osservabili), loro statistiche: distribuzioni di probabilit\'a.}
+\subsection{Variabili casuali (Osservabili), statistiche: distribuzioni di probabilit\'a.}\linkdest{pdfs}
 
 \begin{frame}{Interpretazioni di probabilit\'a}
 \begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
-RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili risultati di una misura/\keyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni)
+RV: \sout{Deterministic} Stochastic phenomena (\mykeyword{frequentista} Possibili risultati di una misura/\mykeyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni)
 \end{block}
 \begin{block}{Probabilit\'a frequentista}
 Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
@@ -98,8 +103,8 @@ Tempo medio di attesa in quale ensamble?
 \begin{align*}
 &\frac{\sum_i\sum_j\frac{T_{ij}}{n_i}}{N}\neq\frac{\sum_{ij}T_{ij}}{\sum_in_i}
 \end{align*}
-\keyword{Ex.: correlazione $x-T_i-n_i$?}
-Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.\keyword{Ex: distro tempi da autobus blu}
+\mykeyword{Ex.: correlazione $x-T_i-n_i$?}
+Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.\mykeyword{Ex: distro tempi da autobus blu}
 \end{column}
 \begin{column}{0.45\textwidth}
 \begin{align*}
@@ -114,7 +119,6 @@ n_j&&&\\
 \end{align*}
 \end{column}
 \end{columns}
-
 \end{wordonframe}
 
 \begin{frame}{Momenti di una distribuzione e di una statistica}
@@ -161,8 +165,8 @@ Non \'e detto che $f(\mu)=\E{[f]}$.
 \end{frame}
 
 \begin{wordonframe}{(contro)Esempi momenti}
-\begin{block}{pdf di \keyword{Cauchy}: non vale LLN}
-\keyword{Parametri larghezza e posizione}: $\prob{(x)}=\frac{1}{\pi\Gamma}\frac{1}{1+(\frac{x-m}{\Gamma})^2}$.
+\begin{block}{pdf di \mykeyword{Cauchy}: non vale LLN}
+\mykeyword{Parametri larghezza e posizione}: $\prob{(x)}=\frac{1}{\pi\Gamma}\frac{1}{1+(\frac{x-m}{\Gamma})^2}$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
@@ -245,7 +249,7 @@ pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$.
 \end{block}
 \end{wordonframe}
 
-\subsection{Propagazione errori vs cambio variabili}
+\subsection{Propagazione errori vs cambio variabili}\linkdest{errors}
 
 \begin{wordonframe}{Somma di 2 RV uniformi $U([0,1])$}
 \begin{columns}[T]
@@ -338,7 +342,7 @@ z\\
 &\prob{(z)}=\int\prob_x{(xy)}\prob_y{(y)}|y|\,dy\\
 &\prob{(z)}=\left\{\begin{matrix}\int_0^1y\,dy\ (z\leq1)\\\int_0^{1/z}y\,dy=\frac{1}{2z^2}\ (z\geq1)\\0\ (z<0)\end{matrix}\right.
 \end{align*}
-\keyword{EX: Rapporto RV uniformi}
+\mykeyword{EX: Rapporto RV uniformi}
 \end{column}
 \end{columns}
 \end{wordonframe}
@@ -364,7 +368,7 @@ $\prob{(z)}$ \'e proporzionale a Cauchy:
 &\E{(z^2n)}=\infty\\
 &\E{(z^{2n+1})}=Ind
 \end{align*}
-\begin{block}{\keyword{Somma di Cauchy}: $S=x+y$}
+\begin{block}{\mykeyword{Somma di Cauchy}: $S=x+y$}
 \[\prob{(S)}=\int_{-\infty}^{+\infty}\frac{1}{\pi}\frac{1}{1+x^2}\frac{1}{\pi}\frac{1}{1+(S-X)^2}\,dx\to\frac{1}{2\pi}\frac{1}{1+(\frac{S}{2})^2}\]
 \end{block}
 \end{wordonframe}
@@ -395,7 +399,7 @@ Probabilit\'a che particella rivelata in solo uno strato sia fotone:
 \begin{block}{Dadi Dungeons\& Dragons}
 Sei dadi $D_i$ con numero di facce $i=\{4,6,8,10,12,20\}$.
 \begin{align*}
-&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\intu{\keyword{T. probabilit\'a totale}}\\
+&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\intu{\mykeyword{T. probabilit\'a totale}}\\
 &\prob{(D_i|1)}=\frac{\prob{(1|D_i)\prob{(D_i)}}}{\prob{(1)}}=\frac{\frac{1}{i}\frac{1}{6}}{\frac{1}{6}\sum\frac{1}{i}}\\
 &\prob{(1|1)}=\sum_i\prob{(1|D_i,1)}\prob{(D_i|1)}&\intertext{(indipendenti: $\prob{(A|B)}=\prob{(A)}$)}
 &=\sum\frac{1}{i}\prob{(D_i|1)}=\sum\frac{1/i^2}{\sum1/i}\approx0.161\\
@@ -413,7 +417,7 @@ Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una 
 \end{block}
 \end{frame}
 
-\subsection{Funzione caratteristica}
+\subsection{Funzione caratteristica}\linkdest{moments}
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
 \begin{columns}[T]
@@ -584,9 +588,9 @@ Convoluzione e prodotto:
 \end{align*}
 \end{wordonframe}
 
-\subsection{Legge grandi numeri}
+\subsection{Legge grandi numeri}\linkdest{LLN}
 
-\begin{frame}{Legge grandi numeri}\linkdest{LLN}
+\begin{frame}{Legge grandi numeri}
 Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n.
     Media aritmetica di n variabili $X_i$: $\E{\overline{X}_n}=\mu$; Finite variance: $\var{X_i}=\sigma^2$: $\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}$
     \begin{columns}
@@ -596,8 +600,8 @@ Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n.
 &=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
 &\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}
 \end{align*}
-\keyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
-\keyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
+\mykeyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
+\mykeyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
     \end{column}
     \begin{column}{0.5\textwidth}
 Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
@@ -639,7 +643,7 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{align*}
 \end{wordonframe}
 
-\subsection{Important pdf oltre gaussiana}
+\subsection{Important pdf oltre gaussiana}\linkdest{pdfs}
 
 \begin{wordonframe}{Combinations}
 $n!$: permutazioni - modi distinti di prendere n oggetti
@@ -677,7 +681,7 @@ Momenti:
 \end{align*}
 \end{column}
 \end{columns}
-\keyword{Ex: media e varianza Poissoniana}
+\mykeyword{Ex: media e varianza Poissoniana}
 \end{block}
 \end{frame}
 
@@ -757,4 +761,27 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 &p(t;\lambda)=\lambda\exp{-\lambda t}\\
 &M_e(x)=\lambda\intzi{}\exp{-(\lambda-t)x}=\frac{\lambda}{\lambda-t}
 \end{align*}
+\end{frame}
+
+\begin{frame}{Distribuzione (pdf) di statistiche}
+\begin{block}{$x_M$ pdf uniforme}
+n estrazioni di RV distribuita come $U([0,m])$, $Y=\max{(X_1,\ldots,X_n)}$:
+\begin{align*}
+&F(x)=p(x_M<x)=\prod_i\prob{(X_i\leq x)}=x^n\\
+&f(Y;m)=n\frac{x^{n-1}}{m^n}
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Multivariate gaussian}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\prob{(x;\theta,\Sigma)}=\frac{1}{(2\pi)^{n/2}|\Sigma|^{1/2}}\exp{-\frac{1}{2}(\vec{x}-\mu)^T\Sigma\expy{-1}(\vec{x}-\mu)}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+Diagonal $\Sigma$ \'e equivalente a n gaussiane. Una gaussiana multivariata si ottiene da n gaussiane $N(0,1)$ tramite trasformazione $X=BZ+\mu$.
+\end{column}
+\end{columns}
 \end{frame}
