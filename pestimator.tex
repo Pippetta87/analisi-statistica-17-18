@@ -1,4 +1,5 @@
 \section{Statistiche sufficienti}
+
 \begin{frame}[allowframebreaks]{List of things}
 \printbibliography[keyword={inference},heading=beamer]
 %\printbibliography[keyword={\mybibcat},heading=beamer]
@@ -190,6 +191,26 @@ $\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di
 \end{align*}
 \end{block}
 \mykeyword{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
+\begin{block}{\mykeyword{Statistica $x_{min}$ per pdf uniforme}}
+pdf di $x_{min}$
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+Trasformazione di variabile
+\begin{align*}
+&x'\to m-x\\
+&f(x_m;m)=\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}I(x\leq m)
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\mykeyword{Ex: pdf $x_{min}$ (cumulanti)}
+\begin{align*}
+&F(x_0)=\prob{[x_m>x_0]}\\
+&\prob{(\{x_i\}>x_0)}=[\int_{x_0}^m\frac{dx}{m}]^N\\
+&=[1-\frac{x_0}{m}]^N
+\end{align*}
+\end{column}
+\end{columns}
+\end{block}
 \end{wordonframe}
 
 \subsection{Statistiche sufficienti: T di Darmois}
@@ -541,26 +562,6 @@ $I_s=I_k$ poich\'e $S$ \'e statistica sufficiente.
 \mykeyword{Ex: Pdf uniforme e minimum variance bound per $x_m$}
 \end{block}
 \framebreak
-\begin{block}{\mykeyword{Statistica $x_{min}$ per pdf uniforme}}
-pdf di $x_{min}$
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-Trasformazione di variabile
-\begin{align*}
-&x'\to m-x\\
-&f(x_m;m)=\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}I(x\leq m)
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\mykeyword{Ex: pdf $x_{min}$ (cumulanti)}
-\begin{align*}
-&F(x_0)=\prob{[x_m>x_0]}\\
-&\prob{(\{x_i\}>x_0)}=[\int_{x_0}^m\frac{dx}{m}]^N\\
-&=[1-\frac{x_0}{m}]^N
-\end{align*}
-\end{column}
-\end{columns}
-\end{block}
 \begin{block}{Statistica $x_m$ non \'e consistente}
 \begin{align*}
 &\E{[x_m]}=\int\,dx_mx_mf(x_m;m)=\int\,dx_mx_m\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}=\frac{m}{N+1}\\
@@ -578,7 +579,8 @@ $\hat{m}$ non \'e consistente: non converge in probabilit\'a al parametro.
 Perdita informazione
 \begin{itemize}
 \item istogramma
-\item dati troncati
+\item dati troncati, $r=\frac{1}{2}-\frac{n_r}{N}$.
+\item media windsorizzata
 \end{itemize}
 \end{frame}
 
@@ -619,7 +621,7 @@ Perdita informazione
 Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{\theta_0}\neq0$: almeno una soluzione dell'equazione $K_N(\vec{X},\hat{\theta})=0$ \'e stimatore consistente.
 \end{frame}
 
-\begin{frame}{Massima likelihood}\frameintoc
+\begin{frame}{Massima likelihood}\linkdest{MLE}\frameintoc
 \begin{block}{Derivazione metodo massima likelihood da stimatori impliciti. Score di Fisher}
 \begin{align*}
 &f(x,\theta)=\PDy{\theta}{\log{L}}:\ K_N=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
@@ -643,6 +645,11 @@ $\PDy{\theta}{\log{L_{tot}}}=0$.
 &0=\sum_i\frac{\PDy{\theta}{\log{(L(x_i))}}}{N}-I(\hat{\theta}-\theta_0)+(\var{[\hat{\theta}]})\\
 &\hat{\theta}-\theta_0\propto N(0,\frac{1}{NI})+\frac{\const{}}{N}: \lim_{N\to\infty}b(\hat{\theta})\propto\frac{1}{N}
 \end{align*}
+\end{block}
+\begin{block}{Pdf dello stimatore tende asintoticamente ad gaussiana}
+\end{block}
+\begin{block}{MLE per pdf esponenziale}
+Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] il metodo di massima likelihood determina lo stimatore efficiente e senza bias $\Hat{M}=\frac{1}{N}\sum_i\alpha(x_i)$ di $M(\theta)=-\frac{\TDy{\theta}{c(\theta)}}{\TDy{\theta}{a(\theta)}}$.
 \end{block}
 \cite{barlow1990extended}
 \end{frame}
@@ -670,11 +677,110 @@ N variabile: \mykeyword{Extended likelihood}, normalizzazione varia
 \end{column}
 \end{columns}
 \end{block}
+
 \begin{block}{Fit resolution of histogram (??)}
 $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 \end{block}\end{wordonframe}
 
-\begin{frame}{Massima likelihood: metodo minimi quadrati}\frameintoc
+\begin{wordonframe}{Esempi di stimatori di massima likelihood}
+\mykeyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
+\begin{align*}
+&\log{(L(\vec{k},p))}=\log{[\prod_i^N\binom{n}{k_i}p^{k_i}(1-p)^{n-k_i}]}\\
+&\max{(L)}:\ \TDof{p}\log{(L)}=\sum_i^N[\frac{k_i}{p}+(n-k_i)\frac{(-1)}{1-p}]=0\Rightarrow\sum^Nk_i=Nnp\\
+&\hat{p}_{MLE}=\sum\frac{k_i}{Nn}=\exv{k}\\
+&\E{[\hat{p}]}=\frac{1}{N}\frac{\sum\E{[k_i]}}{n}=\frac{\sum^Npn}{nN}=p\\
+&\var{[\hat{p}]}=\var{[\frac{1}{nN}\sum k_i]}=\frac{1}{n^2N^2}Nnp(1-p)\\
+&I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
+\end{align*}
+
+\mykeyword{Gaussiana}
+Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&G(x;\mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+&\log{L}=-N\log{\sigma}-\frac{1}{2\sigma^2}\sum_i^N(x_i-\mu)^2\\
+&\E{[\hat{\sigma^2}]}=\frac{1}{N}\sum_i\E{[x_i^2-2x_i\exv{x}+\exv{x}^2]}\\
+&\E{[x_i^2]}=\mu^2+\sigma^2\\
+&\E{[x_i\exv{x}]}=\frac{1}{N}\E{[x_i^2+\sum_{j\neq i}x_ix_j]}\\
+&\E{[\exv{x}^2]}=\E{\frac{\sum x_i\sum x_j}{N^2}}=\mu^2+\frac{\sigma^2}{N}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+Maximum of $\log{L}$ for $\mu, \sigma^2$
+\begin{align*}
+&\PDy{\mu}{\log{L}}=0\\
+&\hat{\mu}=\frac{\sum x_i}{N}\\
+&\PDy{\sigma}{\log{L}}=0\\
+&-\frac{N}{\sigma^2}+\frac{1}{\sigma^4}\sum^N(x_i-\exv{x}(\to\mu))=0\\
+&\hat{\sigma^2}=\frac{\sum(x_i-\exv{x})^2}{N}\intd{T darmois in 2D: stat. suff.:}
+&\sum x_i,\ \sum x_i^2
+\end{align*}
+\end{column}
+\end{columns}
+$\E{[\hat{\sigma^2}]}=\frac{N-1}{N}\sigma^2$ quindi definisco lo stimatore unbiassato $\hat{\sigma^2}'=\frac{\sum(x_i-\exv{x})^2}{N-1}$.
+
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\mykeyword{Esponenziale: cambio di parametro.} $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
+\end{column}
+\begin{column}{0.4\textwidth}
+likelihood \'e invariante per cambio di parametro
+\end{column}
+\end{columns}
+\begin{columns}[b]
+\begin{column}{0.4\textwidth}
+$\hat{\tau}_{MLE}=\frac{\sum_ix_i}{N}:\ \E{[\hat{\tau}]}=\tau,\ I_x(\tau)=\frac{1}{\var{\hat{\tau}}},\ \var{\hat{\tau}}=\frac{\tau^2}{N}$
+\end{column}
+\begin{column}{0.6\textwidth}
+$\log{L}=N\log{\lambda}-\lambda\sum_ix_i$, $\TDy{\lambda}{\log{\lambda}}=0$. $\hat{\lambda}=\frac{N}{\sum x_i}=\frac{1}{\hat{\tau}}$, $\E{[\hat{\lambda}]}=\frac{N}{N-1}\lambda$
+\end{column}
+\end{columns}
+\begin{align*}
+&\phi_x(k)=\E{[\exp{ikx}]}=\intzi\exp{ikx}\exp{-\lambda x}\lambda\,dx=\frac{1}{1-i\frac{k}{\lambda}}\\
+&\phi_{\sum x_i}\frac{1}{(1-\frac{ik}{\lambda})^N},\ z=\sum x_i\ \text{distribuzione di Erlang}\downarrow\\
+&\prob{(z)}=\frac{1}{2\pi}\intsinf{}\frac{\exp{-ikz}}{(1-\frac{ik}{\lambda})^N}\,dk=\frac{\lambda^N}{(N-1)!}z^{N-1}\exp{-\lambda z}
+\end{align*}
+\begin{columns}[T]
+\begin{column}{0.65\textwidth}
+\begin{align*}
+&\var{[\hat{\lambda}]}=\frac{N^2}{(N-1)^2(N-2)}\lambda^2\to\frac{\lambda^2}{N}\\
+&M(\lambda)=-\frac{\TDy{\lambda}{c(\lambda)}}{\TDy{\lambda}{a(\lambda)}}=-\frac{\frac{1}{\lambda}}{-1}=\frac{1}{\lambda}
+\end{align*}
+\end{column}
+\begin{column}{0.35\textwidth}
+\begin{align*}
+&\alpha(x)=x\\
+&a(\lambda)=\lambda\\
+&\beta(x)=0\\
+&c(\lambda)=\log{\lambda}
+\end{align*}
+\end{column}
+\end{columns}
+\mykeyword{Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''}
+\mykeyword{Ex: Cambiamento di variabile pdf Erlang}
+\begin{align*}
+&z\to\frac{z}{N}=\exv{x}=\hat{\tau}\\
+&\exv{x}\to\frac{1}{\exv{x}}=\hat{\lambda}
+\end{align*}
+
+\mykeyword{Ex: MLE per $x_{max}$ e $x_{min}$ per pdf uniforme}
+Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{min}\in[0,m]$,
+\begin{align*}
+&\log{L}=\log{N}-\log{m}+(N-1)\log{(1-\frac{x_{min}}{m})}\\
+&\TDy{m}{\log{L}}=-\frac{1}{m}+(N-1)\frac{1}{1-\frac{x_{min}}{m}}(\frac{-1}{m^2})=0\\
+&\hat{m}_{MLE}=Nx_{min}:\ \E{[\hat{m}]}=\frac{N}{N+1}m,\ \var{\hat{m}}=\frac{N^3}{(N+1)^2(N+2)}m^2
+\end{align*}
+lo stimatore non \'e consistente.
+
+\mykeyword{MLE per poissoniana}
+\begin{align*}
+&P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}\\
+&
+\end{align*}
+\end{wordonframe}
+
+\begin{frame}{Massima likelihood e metodo minimi quadrati}\linkdest{MLS}\frameintoc
 Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
 \begin{align*}
 &\prob{(k_i,\theta)}\propto\exp{-\frac{(k_i-\mu_i)^2}{2\sigma_i^2}}\intd{$\log{L}$ \'e massimizzato dalla funzione che minimizza}
@@ -693,17 +799,120 @@ Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V
 \begin{align*}
 &\chi^2=(\vec{y}-\vec{\lambda})^T\invers{V}(\vec{y}-\vec{\lambda})=(\vec{y}-A\vec{\theta})^T\invers{V}(\vec{y}-A\vec{\theta})\intd{e la condizione di minimo}
 &\nabla\chi^2=-2(A^T\invers{V}\vec{y}-A^T\invers{V}A\vec{\theta})=0\intd{che ha soluzione}
-&\hat{\vec{\theta}}=\invers{()}A^T\invers{V}\vec{y}=B\vec{y}\intd{e matrice di covarianza:}
+&\hat{\vec{\theta}}=\invers{(A^T\invers{V}A)}A^T\invers{V}\vec{y}=B\vec{y}\intd{e matrice di covarianza:}
 &U=BVB^T=\invers{(A^TVA)}=\cov{(\theta_i,\theta_j)},\ [\invers{U}]_{ij}=\frac{1}{2}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}
 \end{align*}
 \end{block}
-\begin{block}{Contours in parameter space}
+\mykeyword{Contours in parameter space}
 \begin{align*}
 &\chi^2(\theta)=\chi^2(\hat{\theta})+\frac{1}{2}\sum_{ij}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}(\theta_i-\hat{\theta}_i)(\theta_j-\hat{\theta}_j)
 \end{align*}
-contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$:
-\begin{align*}
-&\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1
-\end{align*}
+contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$: $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$.
+\end{frame}
+
+\subsection{Robustezza}
+
+\begin{frame}{Outliers. Incertezza sistematica.}
+I dati seguono una pdf a meno di $\epsilon$: $p_{tot}=(1-\epsilon)p_{th}+\epsilon q_{sys}()$
+All'aumentare del numero di eventi di un rivelatore di particelle l'incertezza statistica diminuisce quindi diventa rilevante incertezza sistematica: si considerano stimatori del tipo $\min\sum|x_i-\hat{m}_p|^p$
+\begin{block}{Costruzione stimatori robusti (distribution indipendent)}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\end{column}
+\begin{column}{0.5\textwidth}
+\end{column}
+\end{columns}
+Parametro di localizzazione: invariante per traslazione.
+\end{block}
+\begin{block}{Mediana campionaria}
+$\min\sum|x_i-\hat{m}_1|$: $P(x<\hat{m}_1)=\prob{(x>\hat{m}_1)}$. MLE per $p(x,m)=\exp{-|x-m|}$
+\end{block}
+\begin{block}{Stimatore di mid-range}
+$\lim_{p\to\infty}\min\sum|x_i-\hat{m}_{\infty}|^p=\frac{x_M-x_m}{2}$
+\end{block}
+\begin{block}{Moda}
+$\lim_{p\to-\infty}\min\sum|x_i-\hat{m}_{-\infty}|^p$ seleziona coppia di dati pi\'u vicini.
 \end{block}
 \end{frame}
+
+\begin{wordonframe}{\mykeyword{Ex: compito a risposta multipla}}
+Compito a risposta multipla con  5 opzioni
+\begin{itemize}
+    \item Studente a risponde a caso: $P_G=1/5$.
+    \item Studente B ipotizza distribuzione uniforme delle risposte attorno al valore giusto: sceglie la mediana. $P_B=5\frac{1}{5}\binom{4}{2}(\frac{1}{2})^2(1-\frac{1}{2}){4-2}=\frac{3}{8}$
+    \item \mykeyword{Ex: Studente usa MLE per pdf uniforme}
+\end{itemize}
+
+\end{wordonframe}
+
+\begin{wordonframe}{Confronto fra stimatori per pdf contaminata}
+Per gaussiana confronto $S_N=\frac{\sum(x_i-\exv{x})^2}{N}$, $d_N=\frac{\sum|x_i-\exv{x}|}{N}$ ($\lim_{N\to\infty}\E{[d_N]}=\sqrt{\frac{2}{\pi}}\sigma$): $r=\lim_{N\to\infty}\frac{\var{[S_N]}}{\var{[d_N']}}=0.876$.
+\end{wordonframe}
+
+\begin{wordonframe}{Distribuzione di probabilit\'a della mediana campionaria}
+Per $2N+1$ misure la probabilit\'a che la misura $N+1$-esima misura sia $m_1$ \'e \[\prob{(m_1)}=\prob_x{(m_1)}F_x(m_1)^N(1-F_x(m_1)^N(2N+1)\binom{2N}{N}\] cio\'e la "densit\'a di probabilit\'a" che una misura cada in $m_1$ moltiplicata per $(2N+1)$ estrazioni, per la probabilit\'a che N misure stiano sotto e N sopra tenendo conto delle $\binom{2N}{N}=\frac{(2N)!}{(2N-N)!N!}$ ways to choose N elements between 2N (che coincide con disposizioni con ripetizioni). Per estrazioni con pdf di Cauchy:
+\begin{align*}
+&\prob{(\hat{m}_1)}=\frac{1}{1+m^2}[\frac{1}{4}-\frac{\arctan{(m_1)}^2}{\pi^2}]^N\\
+&\var{\hat{m}_1}=\intsinf{}\frac{m^2}{m^{k+2}}\,dm
+\end{align*}
+Cambio di variabile: $y=F(\hat{m}_1)$, con $F(m_1)=\frac{1}{2}$ e $y\approx\frac{1}{2}+f(\hat{m}_1)(\hat{m}_1-m)$
+\begin{align*}
+&p(y)=\frac{(2n+1)!}{n!n!}y^n(1-y)^ndy,\ dy=f(m_1)dm_1\intd{usando le funzioni $\beta$ e $\Gamma$}
+&\Gamma=\intzi{}t^{x-1}\exp{-t}\,dt,\ \beta(x,y)=\int_0^1t^{x-1}(1-t)^{y-1},\ \Gamma(x)\Gamma(y)=\Gamma(x+y)\beta(x,y)\\
+&\prob{(y)}\propto\frac{x^{m-1}(1-y)^{n-1}}{\beta(m,n)}\\
+&\E{[x]}\propto\int_0^1\frac{x^m(1-x)^{n-1}}{B(m,n)}\,dx=\frac{m}{m+n},\ \E{[x^2]}=\frac{\beta(m+2,n)}{\beta(n,m)}\\
+&\var{[x]}=\frac{mn}{(n+m+1)(n+m)^2},\ \var{[y]}=\frac{1}{4(2m+1)}\\
+&\var{[\hat{m}_1]}\approx\frac{1}{4(N+2)}\frac{1}{f^2(m_1)}
+\end{align*}
+\end{wordonframe}
+
+\begin{wordonframe}{Come capire se la pdf \'e asintoticamente gaussiana?}
+La distribuzione \'e asintoticamente gaussiana?? $\sqrt{N}(y-\E{[y]})\to N(0,\var{y})$.
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&x_i\to z_i\to y=\frac{1}{N}\sum z_i\\
+&z_i=\left\{\begin{matrix}1\ x<\hat{m}_1\\0\ x>\hat{m}_1\\\end{matrix}\right.\\
+&\sqrt{N}(y-\var{(y)})\xrightarrow{\prob{}}N(0,\var{(y)})
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+z ha pdf binomiale w $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4n}$: utilizzando espansione di $y$ trovo espressione asintotica $\var{\hat{m}_1}=\frac{1}{4n^2}f^2(m_1)$, per $p\neq\frac{1}{2}$ $\var{(m_{\%})}=\frac{p(1-p)}{nf^2(\hat{m_{\%}})}$
+\end{column}
+\end{columns}
+
+\mykeyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.
+
+\mykeyword{Ex: Efficienza stimatori. Mediana vs MLE per pdf di Cauchy.}
+pdf $f(x)=\frac{1}{\pi\gamma[1+(\frac{x-x_0}{\gamma})^2]}$:
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+Mediana
+$\E{[\hat{m}_1]}=x_0, \var{(\hat{m}_1)}=\frac{\pi^2\gamma}{4n}$
+\end{column}
+\begin{column}{0.5\textwidth}
+MLE:
+\begin{align*}
+&\sum^N\frac{\gamma^2}{\gamma^2+(x_i-x_0)^2}-\frac{h}{2}=0\\
+&\var{(\hat{MLE})}=\frac{2}{N}\gamma^2:\ \epsilon=\frac{8}{\pi^2}\approx81\%
+\end{align*}
+\end{column}
+\end{columns}
+
+\mykeyword{Confronto Stimatori: $L_P(\alpha)=\sum^N|x_i-\alpha|^P$}
+\begin{tabular}{c|ccc}
+Unif & $\frac{1}{4N}$ & $\frac{1}{12N}$ & $\frac{1}{2(N^2+6N+4)}$\\
+Triang & & $\frac{1}{6N}$ & $4-\frac{\pi}{4N}$\\
+Norm & $\frac{\pi}{2N}$ & $\frac{1}{N}$ & $\frac{\pi^2}{12\ln{N}}$\\
+DE & $\frac{1}{2N}$ & $\frac{2}{N}$ & $\frac{\pi^2}{12}$\\
+Cauchy & $\frac{\pi^2}{4N}$ & & \\
+\end{tabular}\end{wordonframe}
+
+\begin{wordonframe}{Alcune propriet\'a dei parametri di localizzazione}
+\begin{block}{Relazioni tra media, mediana e moda}
+\begin{align*}
+&|\mu-m_1|=|\E{[x-\hat{m}_1]}|\leq\E{[|x-\hat{m}|]}\leq\sqrt{\E{[(x-\hat{m})^2]}}=\sigma\\
+&|m_1-m_{-\infty}|\leq\sqrt{3}\sigma
+\end{align*}
+\end{block}
+\end{wordonframe}

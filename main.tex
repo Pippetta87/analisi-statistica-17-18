@@ -2,7 +2,7 @@
 \let\@starttocorig\@starttoc
 \makeatother%%
 
-\documentclass[10pt,xcolor={usenames},fleqn,mathserif,serif]{beamer}
+\documentclass[t,10pt,xcolor={usenames},fleqn,mathserif,serif]{beamer}
 
 %%%Usefull link
 %tikz-equations:
@@ -72,6 +72,10 @@
 % Let's get started
 \begin{document}
 %\let\mybibcat\noexpand\currfilebase
+\tikzset{
+   name plot/.style={every path/.style={name path global=#1}}
+}
+
 \begin{frame}
   \titlepage
 \end{frame}
@@ -95,7 +99,11 @@
 \part{Inferenza statistica}\linkdest{inference}
 \begin{refsection}
 \nocite{*}
-\input{inference}
+\input{pestimator}
+\end{refsection}
+\begin{refsection}
+\nocite{*}
+\input{intervaltest}
 \end{refsection}
 
 %\input{test}\linkdest{test}
