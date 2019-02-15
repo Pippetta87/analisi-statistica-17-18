@@ -171,7 +171,7 @@ Probability ordering (Cosa vuol dire ordinamento?)
 \end{column}
 \end{columns}
 \begin{columns}[T]
-	\begin{column}{0.5\textwidth}
+	\begin{column}{0.3\textwidth}
 \begin{tikzpicture}[scale=0.3]
 \begin{axis}[
 ybar stacked,
@@ -205,7 +205,7 @@ xticklabels={$D_4$, $D_6$, $D_8$, $D_{10}$, $D_{12}$, $D_{20}$},cycle list name 
 \end{axis}
 \end{tikzpicture}
 \end{column}
-	\begin{column}{0.5\textwidth}
+	\begin{column}{0.7\textwidth}
 limiti di confidenza frequentisti: costruzione banda di confidenza prendendo ordinamento sulla pdf di X a parametro dato. Limite superiore ordinando da 20 per estrazione 1 si ha $n_f\leq8$ con $\cl{}\geq90\%$
 \end{column}
 \end{columns}
@@ -214,12 +214,77 @@ limiti di confidenza frequentisti: costruzione banda di confidenza prendendo ord
 
 \section{Test di ipotesi}
 
-Test: funzione dallo spaziodelle X allo spazio delle H. Due sottoinsiemi di X che individuano la regione critica e regione di accettazione (conferma $H_0$); probabilit\'a che x appartenga alla regione critica: uno dei parametri fondamentali \'e $\prob{x\in C|H_0}=\prob_0{x\in C}$ probabilit\'a di finire in C essendo vera $H_0$ - $\alpha$ errore di tipo I (falso positivo), scarto $H_0$ quando \'e vera (loss,size,taglia,livello di significativit\'a $1-\alpha$); probabilit\'a di accettare erroneamente $H_0$, probabilit\'a $x\in\overline{C}$ quando ipotesi alternative ad $H_0$, $\beta$ errore tipo II (falso negativo) (contaminazione), potenza del test $1-\beta$, capacit\'a di distinguere ipotesi diverse da $H_0$, il grafico del power in funzione dell'indice i che identifica le ipotesi (per $H_0$ fa $\beta=1-\alpha$ quindi il power \'e $\alpha$) allontanandosi da $H_0$ deve essere il pi\'u grande possibile. Spazio degli stati della natura diviso in partizioni; se l'ipotesi non \'e sufficienta a determinare distribuzione di probabilit\'a di X (osservabile in considerazione) (esistenza highs: H0 non esiste \'e semplice ma alternativa \'e composta da massa etc); $\alpha\to\sup_{\mu_i}\alpha$ per $\beta$ quasi analogo (la metrica non interviene mai). Propriet\'a di inferenza coi test: consistenza ($\lim_{n\to\infty}\int\power{(\lambda_1)}$ per ogni $i\neq0$: se prendo infiniti dati distinguo $H_1$ da $H_0$ non \'e detto che sia uniforme ma puntuale), unbiasedness (il $\power{}\geq\alpha, \forall i$), se T \'e consistente \'e asintoticamente unbiased, grafico $\prob_0(X)$ vs $\prob_1(X)$ con definizione di regione critica; ottimizzazione: vogliamo che il power sia maggiore possibile: se fisso ipotesi singola $i_0$ definisco l'MP test - come decido quale test \'e migliore? UMP test: power maggiore uguale a qualunque test per tutte le ipotesi: esiste? Com'\'e fatta regione critica del test: area C minore uguale $\alpha$, la soluzione \'e il lemma di Neyman-Pearson : il test \'e quello che mi da come regione critica gli x tali che $\frac{\prob_0{(x)}}{\prob_1{(x)}}<q(\alpha)$, $q$ \'e determinato da condizione $\prob{(C|H_0)}\leq\alpha$ (LR), questo \'e il test di massimo power.
-Posso espri,e un test in funzione di una statistica (statistica del test): $T(\vec{x})=T(t(\vec{x}))$ (nel caso del lemma NP la statistica \'e il LR). dimostro lemma NP: cio\'e per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\geq\beta_{NP}$ ($\power'\leq\power_{NP}$, probabilit\'a errore tipo II \'e maggiore), dimostro $\beta'-\beta\geq0$ cio\'e $\prob{(\overline{C}'|H_1)}-\prob{(\overline{C}|H_1)}$:
+\begin{frame}{Testing simple hypothesis}
+
+\begin{block}{Test: funzione dallo spazio delle osservabili in H.}
+Un'ipotesi \'e un'affermazione sui parametri che caratterizzano lo stato della natura; se l'ipotesi non \'e sufficienta a determinare distribuzione di probabilit\'a della nostra osservabile l'ipotesi \'e composta: esistenza highs: H0 non esiste \'e semplice ma alternativa \'e composta da massa, etc.
+\end{block}
+
+\begin{block}{Regione critica(C)/di accettazione($\overline{C}$) nello spazio delle X}
+Due sottoinsiemi di X individuano la regione critica e regione di accettazione (conferma $H_0$).
+\end{block}
+
+\end{frame}
+
+\begin{frame}{Propriet\'a dei test. MP test.}
+\begin{block}{errore tipo I/II}
+	\begin{itemize}
+		\item Errore di tipo I (falso positivo), scarto $H_0$ quando \'e vera (loss,size,taglia,livello di significativit\'a $1-\alpha$: $\alpha=\prob{(x\in C|H_0)}=\prob_0{(x\in C)}$.
+		\item Errore tipo II (falso negativo, contaminazione): probabilit\'a di accettare erroneamente $H_0$, $\prob{(x\in\overline{C}|\not{H_0})}=\beta$. Potenza del test $1-\beta$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
+	\end{itemize}
+\end{block}
+\begin{block}{Propriet\'a dei test}
+	\begin{itemize}
+		\item Consistenza: ($\lim_{n\to\infty}{(\pow{(i)})}=1$ per ogni $i\neq0$: se prendo infiniti dati distinguo $H_1$ da $H_0$, non \'e detto che sia uniforme.
+		\item unbiasedness $\pow{}\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased
+	\end{itemize}
+\end{block}
+ \begin{block}{Ottimizzazione: power maggiore possibile.}
+UMP test: power maggiore uguale a qualunque test per tutte le ipotesi: esiste?
+\end{block}
+\end{frame}
+
+\begin{frame}{Lemma di Neyman-Pearson}
+\begin{block}{Statistica di un test}
+Posso esprimere un test in funzione di una statistica: $T(\vec{x})=T(t(\vec{x}))$ (nel caso del lemma NP la statistica \'e il LR). 
+\end{block}
+Fisso ipotesi singola $i_0$ l'MP test \'e quello che mi da come regione critica gli x tali che $\frac{\prob_0{(x)}}{\prob_1{(x)}}<q(\alpha)$, $q$ \'e determinato da condizione $\prob{(C|H_0)}\leq\alpha$ (LR), questo \'e il test di massimo power.
+
+\end{frame}
+
+\begin{wordonframe}{Dimostrazione lemma Neyman-Pearson}
+Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\geq\beta_{NP}$ ($\pow'\leq\pow_{NP}$, probabilit\'a errore tipo II \'e maggiore), dimostro $\beta'-\beta\geq0$ cio\'e $\prob{(\overline{C}'|H_1)}-\prob{(\overline{C}|H_1)}$:
 \begin{align*}
 &\prob{(C|H_1)}-\prob{(C'|H_1)}=\prob{(C\cap|H_1)}+\prob{(C\cap\overline{C}'|H_1)}-\prob{(C\cap C'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}=\prob{(C\cap\overline{C}'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}\\
-&\prob{(C\cap C'|H_1)}=\int_{C\cap C'}\prob_1{x}\,dx\geq\int_{C\cap \overline{C}'}\frac{\prob_0{(x)}}{q}\,dx=\frac{1}{q}\prob{(C\cap\overline{C}'|H_0)}
+&\prob{(C\cap C'|H_1)}=\int_{C\cap C'}\prob_1{(x)}\,dx\geq\int_{C\cap \overline{C}'}\frac{\prob_0{(x)}}{q}\,dx=\frac{1}{q}\prob{(C\cap\overline{C}'|H_0)}
 \end{align*}
+\end{wordonframe}
+
+\begin{wordonframe}{Test examples}
+	il grafico del power in funzione dell'indice i che identifica le ipotesi (per $H_0$ fa $\beta=1-\alpha$ quindi il power \'e $\alpha$) allontanandosi da $H_0$ deve essere il pi\'u grande possibile. 
+	grafico $\prob_0{(X)}$ vs $\prob_1{(X)}$ con definizione di regione critica;
+\begin{block}{}
 Esiste UMP test per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$ - Esiste test UMP iff $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ monotona, il test \'e $A(x)\geq q(\alpha)$
 \[\frac{F(x)G^N(\overline{\mu})}{F(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\]
+\end{block}
+	\begin{picture}(100,130)
+	\put(20,20){
+		\begin{tikzpicture}[scale=0.4]
+		\begin{axis}[title={Regione critica/accettanza per $H_0$},name=testh0,samples=100,ymin=0,xmin=0,xmax=10,xlabel={$x$},ylabel={$\prob{(x)}$},y label style={rotate=-90, at={(-0.1,1.)}},extra x ticks={1.3},extra x tick style={% changes for extra x ticks
+			tick label style={yshift=-4mm}},
+		]
+		\addplot[id=h0] gnuplot {(sqrt(2*pi))^(-1)*exp(-(x-2)^2/(2))};
+		\addplot[id=h1] gnuplot {(2*sqrt(2*pi))^(-1)*exp(-(x-6)^2/(2*4))}; 
+		\end{axis}
+		\end{tikzpicture}
+	}
+	\end{picture}
+	
+\end{wordonframe}
 
+\begin{wordonframe}{Test unilaterali}
+MP test tra ipotesi semplici:
+Statistica di test $t(x)=\frac{p_0(x)}{p_1(x)}=\frac{L_x(H_0)}{L_x(H_1)}$, $T_{NP}: t>q_{\alpha}$ accettazione.
+Test unilaterale. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(\mu)\Exp{A(x_i)B(\mu)}$ famiglia esponenziale, B monotona quindi $t(x)=\frac{L(H_0)}{L(H_{\mu})}\frac{\prod F(x_i)}{\prod F(x_i)}[\frac{G(0)}{G(\mu)}]^N\Exp{\sumA(x_i)B(0)-A(x_i)B(\mu)}$, $G,F>0$ $\mu=0$ o $\mu>0$: $t(x)>t_h$ (UMP).
+(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0, $L(\mu)\approx L(0)+\PDy{\mu}{L}|_0\mu+\ldots$ $\log{L(\mu)}\approx \log{L}(0)+\PDy{\log{\mu}}{L}|_0\mu+\ldots$: $L(\mu)=L(0)\Exp{[\PDy{\mu}{\log{L}}\mu]}$
+\end{wordonframe}
