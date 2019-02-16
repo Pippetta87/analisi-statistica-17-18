@@ -233,6 +233,7 @@ Due sottoinsiemi di X individuano la regione critica e regione di accettazione (
 		\item Errore tipo II (falso negativo, contaminazione): probabilit\'a di accettare erroneamente $H_0$, $\prob{(x\in\overline{C}|\not{H_0})}=\beta$. Potenza del test $1-\beta$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
 	\end{itemize}
 \end{block}
+plot power(i) parte da $\alpha$ e va a 1 al crescere di i (separazione ipotesi) e pi\'u rapidamente al crescer di N
 \begin{block}{Propriet\'a dei test}
 	\begin{itemize}
 		\item Consistenza: ($\lim_{n\to\infty}{(\pow{(i)})}=1$ per ogni $i\neq0$: se prendo infiniti dati distinguo $H_1$ da $H_0$, non \'e detto che sia uniforme.
@@ -285,6 +286,15 @@ Esiste UMP test per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$ - Esiste 
 \begin{wordonframe}{Test unilaterali}
 MP test tra ipotesi semplici:
 Statistica di test $t(x)=\frac{p_0(x)}{p_1(x)}=\frac{L_x(H_0)}{L_x(H_1)}$, $T_{NP}: t>q_{\alpha}$ accettazione.
-Test unilaterale. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(\mu)\Exp{A(x_i)B(\mu)}$ famiglia esponenziale, B monotona quindi $t(x)=\frac{L(H_0)}{L(H_{\mu})}\frac{\prod F(x_i)}{\prod F(x_i)}[\frac{G(0)}{G(\mu)}]^N\Exp{\sumA(x_i)B(0)-A(x_i)B(\mu)}$, $G,F>0$ $\mu=0$ o $\mu>0$: $t(x)>t_h$ (UMP).
-(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0, $L(\mu)\approx L(0)+\PDy{\mu}{L}|_0\mu+\ldots$ $\log{L(\mu)}\approx \log{L}(0)+\PDy{\log{\mu}}{L}|_0\mu+\ldots$: $L(\mu)=L(0)\Exp{[\PDy{\mu}{\log{L}}\mu]}$
+Test unilaterale. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(\mu)\Exp{A(x_i)B(\mu)}$ famiglia esponenziale, B monotona quindi $t(x)=\frac{L(H_0)}{L(H_{\mu})}\frac{\prod F(x_i)}{\prod F(x_i)}[\frac{G(0)}{G(\mu)}]^N\Exp{\sum A(x_i)B(0)-A(x_i)B(\mu)}$, $G,F>0$ $\mu=0$ o $\mu>0$: $t(x)>t_h$ (UMP).
+(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0, $L(\mu)\approx L(0)+\PDy{\mu}{L}|_0\mu+\ldots$ $\log{L(\mu)}\approx \log{L}(0)+\PDy{\log{\mu}}{L}|_0\mu+\ldots$: $L(\mu)=L(0)\Exp{[\PDy{\mu}{\log{L}}\mu]}$ $(A(x)B(\mu))$: $t(x)=\PDy{\mu}{\log{L}}|_{\mu=0}=S(x)$ (Test a $n\sigma$ $q_{\alpha}=n\sqrt{I_{tot}}$).
+
+
+\end{wordonframe}
+
+\begin{wordonframe}{Max power test in intervallo}
+\begin{itemize}
+\item \'E possible espansione L in intervallo?
+\item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$.Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
+\end{itemize}
 \end{wordonframe}
