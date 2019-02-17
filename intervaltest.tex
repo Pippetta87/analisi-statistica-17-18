@@ -261,16 +261,21 @@ Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\ge
 \end{align*}
 \end{wordonframe}
 
+\begin{frame}{Test UMP unilaterale per famiglia esponenziale: Karlin-Rubin theorem.}
+	Esiste UMP test per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$ - Esiste test UMP iff $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ monotona, il test \'e $A(x)\geq q(\alpha)$
+	\[\frac{F(x)G^N(\overline{\mu})}{F(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\]
+
+	Statistica di test $t(x)=\frac{p_0(x)}{p_1(x)}=\frac{L_x(H_0)}{L_x(H_1)}$, $T_{NP}: t>q_{\alpha}$ accettazione.
+	Test unilaterale tra ipotesi semplici $H_0: \theta\leq\theta_0$, $H_1:\theta>\theta_0$. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(\mu)\Exp{A(x_i)B(\mu)}$ famiglia esponenziale, B monotona quindi $t(x)=\frac{L(H_0)}{L(H_{\mu})}\frac{\prod F(x_i)}{\prod F(x_i)}[\frac{G(0)}{G(\mu)}]^N\Exp{\sum A(x_i)B(0)-A(x_i)B(\mu)}$, $G,F>0$ $\mu=0$ o $\mu>0$: $t(x)>t_h$ (UMP).
+\end{frame}
+
 \begin{wordonframe}{Test examples}
 	il grafico del power in funzione dell'indice i che identifica le ipotesi (per $H_0$ fa $\beta=1-\alpha$ quindi il power \'e $\alpha$) allontanandosi da $H_0$ deve essere il pi\'u grande possibile. 
 	grafico $\prob_0{(X)}$ vs $\prob_1{(X)}$ con definizione di regione critica;
-\begin{block}{}
-Esiste UMP test per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$ - Esiste test UMP iff $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ monotona, il test \'e $A(x)\geq q(\alpha)$
-\[\frac{F(x)G^N(\overline{\mu})}{F(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\]
-\end{block}
+
 	\begin{picture}(100,130)
 	\put(20,20){
-		\begin{tikzpicture}[scale=0.4]
+		\begin{tikzpicture}[scale=0.9]
 		\begin{axis}[title={Regione critica/accettanza per $H_0$},name=testh0,samples=100,ymin=0,xmin=0,xmax=10,xlabel={$x$},ylabel={$\prob{(x)}$},y label style={rotate=-90, at={(-0.1,1.)}},extra x ticks={1.3},extra x tick style={% changes for extra x ticks
 			tick label style={yshift=-4mm}},
 		]
@@ -283,11 +288,9 @@ Esiste UMP test per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$ - Esiste 
 	
 \end{wordonframe}
 
-\begin{wordonframe}{Test unilaterali}
-MP test tra ipotesi semplici:
-Statistica di test $t(x)=\frac{p_0(x)}{p_1(x)}=\frac{L_x(H_0)}{L_x(H_1)}$, $T_{NP}: t>q_{\alpha}$ accettazione.
-Test unilaterale. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(\mu)\Exp{A(x_i)B(\mu)}$ famiglia esponenziale, B monotona quindi $t(x)=\frac{L(H_0)}{L(H_{\mu})}\frac{\prod F(x_i)}{\prod F(x_i)}[\frac{G(0)}{G(\mu)}]^N\Exp{\sum A(x_i)B(0)-A(x_i)B(\mu)}$, $G,F>0$ $\mu=0$ o $\mu>0$: $t(x)>t_h$ (UMP).
-(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0, $L(\mu)\approx L(0)+\PDy{\mu}{L}|_0\mu+\ldots$ $\log{L(\mu)}\approx \log{L}(0)+\PDy{\log{\mu}}{L}|_0\mu+\ldots$: $L(\mu)=L(0)\Exp{[\PDy{\mu}{\log{L}}\mu]}$ $(A(x)B(\mu))$: $t(x)=\PDy{\mu}{\log{L}}|_{\mu=0}=S(x)$ (Test a $n\sigma$ $q_{\alpha}=n\sqrt{I_{tot}}$).
+\begin{wordonframe}{LMP tests}
+
+(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0, $L(\mu)\approx L(0)+\PDy{\mu}{L}|_0\mu+\ldots$ $\log{L(\mu)}\approx \log{L}(0)+\PDy{\log{\mu}}{L}|_0\mu+\ldots$: $L(\mu)=L(0)\Exp{[\PDy{\mu}{\log{L}}\mu]}$ $(A(x)B(\mu))$: $t(x)=\PDy{\mu}{\log{L}}|_{\mu=0}=S(x)$ (lo score \'e asintoticamente normale Test a $n\sigma$ $q_{\alpha}=n\sqrt{I_{tot}}$).
 
 
 \end{wordonframe}
@@ -297,4 +300,8 @@ Test unilaterale. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(
 \item \'E possible espansione L in intervallo?
 \item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$.Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
 \end{itemize}
+\end{wordonframe}
+
+\begin{wordonframe}
+	contenu...
 \end{wordonframe}
