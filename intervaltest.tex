@@ -1,4 +1,4 @@
-\section{Stima intervallare}
+\section{Stima intervallare}\linkdest{interval}
 
 \subsection{Credibility intervall (bayesiano) e Confidence interval (frequentista)}
 
@@ -81,6 +81,45 @@ LR-ordering $R=\frac{\prob{(x;\mu)}}{\prob{(x;\mu_{best})}}$: values of x/n are 
 \end{column}
 \end{columns}
 \end{frame}
+
+\begin{wordonframe}{Intervalli di confidenza per $U([0,m])$}
+Una misura:
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+\def\myscale{0.4}
+\begin{tikzpicture}[myscalar]
+\begin{axis}[title={Banda di credenza per $U([0,m])$},name=uniformcredence,ymin=0,xmin=0,xmax=6,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
+	tick label style={yshift=-4mm}},
+extra x tick labels={$x\exp{1-\alpha}$},extra y ticks={0.5},extra y tick labels={measure $x_0$}]
+\addplot[name path global=om, no marks] gnuplot[id=upperbound,domain=0:6] {x};
+\addplot[name path global=op, no marks] gnuplot[id=lowerbound,domain=0:6] {x*exp(-1+0.05)};
+\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,samples=10,black,thin] gnuplot[domain=0:6] {0.5};
+\end{axis}
+\end{tikzpicture}
+
+\def\myscale{0.4}
+\begin{tikzpicture}[myscalar]
+\begin{axis}[title={Banda confidenza $U([0,m])$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
+	tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
+\addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};
+\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {(x)};
+\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,samples=10,black,thin] plot[domain=0:8] {0.3};
+\path[name intersections={of={bp and meas},name=i},name intersections={of={bm and meas},name=j}] (i-1) (j-1);
+\pgfplotsextra{\path (i-1)  \pgfextra{\markxof{i-1}\xdef\myfirsttick{\pgfmathresult}}(j-1) \pgfextra{\markxof{j-1}\xdef\mysecondtick{\pgfmathresult}};
+}
+\end{axis}
+\draw[ultra thin, draw=gray] (i-1 |- {rel axis cs:0,0}) node[fill=yellow,yshift=0ex]{\pgfmathprintnumber[fixed,precision=5]\myfirsttick} -- (i-1);
+\draw[ultra thin, draw=gray] (j-1 |- {rel axis cs:0,0}) node[fill=red]{\pgfmathprintnumber[fixed,precision=5]\mysecondtick} -- (j-1);
+\end{tikzpicture}
+\end{column}
+\begin{column}{0.5\textwidth}
+La banda di confidenza si costruisce integrando sulla distribuzione dell'osservabile su una regione tale che l'integrle sia il livello di confidenza $\cl=1-\alpha$.
+
+L'intervallo di credibilit\'a \'e definito dalla banda per cui 
+
+\end{column}
+\end{columns}
+\end{wordonframe}
 
 \subsection{Pivotal quantities}
 
@@ -212,12 +251,12 @@ limiti di confidenza frequentisti: costruzione banda di confidenza prendendo ord
 \mykeyword{Ex: Dadi D\&D CI frequentista con LR ordering}
 \end{wordonframe}
 
-\section{Test di ipotesi}
+\section{Test di ipotesi}\linkdest{test}
 
 \begin{frame}{Testing simple hypothesis}
 
 \begin{block}{Test: funzione dallo spazio delle osservabili in H.}
-Un'ipotesi \'e un'affermazione sui parametri che caratterizzano lo stato della natura; se l'ipotesi non \'e sufficienta a determinare distribuzione di probabilit\'a della nostra osservabile l'ipotesi \'e composta: esistenza highs: H0 non esiste \'e semplice ma alternativa \'e composta da massa, etc.
+Un'ipotesi \'e un'affermazione sui parametri che caratterizzano lo stato della natura; se l'ipotesi non \'e sufficienta a determinare distribuzione di probabilit\'a della nostra osservabile l'ipotesi \'e composta: se ipotesi da falsificare \'e non esistenza higgs ($m=0$) semplice, ma alternativa \'e composta da $m>0$
 \end{block}
 
 \begin{block}{Regione critica(C)/di accettazione($\overline{C}$) nello spazio delle X}
@@ -233,7 +272,7 @@ Due sottoinsiemi di X individuano la regione critica e regione di accettazione (
 		\item Errore tipo II (falso negativo, contaminazione): probabilit\'a di accettare erroneamente $H_0$, $\prob{(x\in\overline{C}|\not{H_0})}=\beta$. Potenza del test $1-\beta$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
 	\end{itemize}
 \end{block}
-plot power(i) parte da $\alpha$ e va a 1 al crescere di i (separazione ipotesi) e pi\'u rapidamente al crescer di N
+
 \begin{block}{Propriet\'a dei test}
 	\begin{itemize}
 		\item Consistenza: ($\lim_{n\to\infty}{(\pow{(i)})}=1$ per ogni $i\neq0$: se prendo infiniti dati distinguo $H_1$ da $H_0$, non \'e detto che sia uniforme.
@@ -262,46 +301,67 @@ Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\ge
 \end{wordonframe}
 
 \begin{frame}{Test UMP unilaterale per famiglia esponenziale: Karlin-Rubin theorem.}
-	Esiste UMP test per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$ - Esiste test UMP iff $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ monotona, il test \'e $A(x)\geq q(\alpha)$
-	\[\frac{F(x)G^N(\overline{\mu})}{F(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\]
-
-	Statistica di test $t(x)=\frac{p_0(x)}{p_1(x)}=\frac{L_x(H_0)}{L_x(H_1)}$, $T_{NP}: t>q_{\alpha}$ accettazione.
-	Test unilaterale tra ipotesi semplici $H_0: \theta\leq\theta_0$, $H_1:\theta>\theta_0$. $H_0=\mu=0$, $H_{\mu}=\mu\neq0$, ipotesi $p(x)=\prod_iF(x_i)G(\mu)\Exp{A(x_i)B(\mu)}$ famiglia esponenziale, B monotona quindi $t(x)=\frac{L(H_0)}{L(H_{\mu})}\frac{\prod F(x_i)}{\prod F(x_i)}[\frac{G(0)}{G(\mu)}]^N\Exp{\sum A(x_i)B(0)-A(x_i)B(\mu)}$, $G,F>0$ $\mu=0$ o $\mu>0$: $t(x)>t_h$ (UMP).
+	Esiste UMP test per distinguere $H_0: \mu\leq\mu_0$, $H_{\mu}: \mu>\mu_0$ - se il likelihood ratio \'e funzione monotona di una statistica $T(\vec{X})$ e scelgo $\alpha$ e $k_{\alpha}$ tali che $\prob{(T(x)\geq k_{\alpha})}=\alpha$  allora la regione critica per un test UMP unilaterale $H_0$ vs $H_1$ \'e $C=\{x:T(x)\geq q_{\alpha}\}$; per pdf della froma $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ crescente il rapporto di likelihood \'e monotono e la statistica del test \'e $\sum_iA(x_i)$
+\[\frac{F(x)G^N(\overline{\mu})}{F(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\]
+$F,G>0$.
+\cite[5]{lrtmptumpt}; \cite[445]{inferencemukhopadhyay2000}
 \end{frame}
 
 \begin{wordonframe}{Test examples}
-	il grafico del power in funzione dell'indice i che identifica le ipotesi (per $H_0$ fa $\beta=1-\alpha$ quindi il power \'e $\alpha$) allontanandosi da $H_0$ deve essere il pi\'u grande possibile. 
-	grafico $\prob_0{(X)}$ vs $\prob_1{(X)}$ con definizione di regione critica;
-
-	\begin{picture}(100,130)
-	\put(20,20){
-		\begin{tikzpicture}[scale=0.9]
-		\begin{axis}[title={Regione critica/accettanza per $H_0$},name=testh0,samples=100,ymin=0,xmin=0,xmax=10,xlabel={$x$},ylabel={$\prob{(x)}$},y label style={rotate=-90, at={(-0.1,1.)}},extra x ticks={1.3},extra x tick style={% changes for extra x ticks
-			tick label style={yshift=-4mm}},
-		]
-		\addplot[id=h0] gnuplot {(sqrt(2*pi))^(-1)*exp(-(x-2)^2/(2))};
-		\addplot[id=h1] gnuplot {(2*sqrt(2*pi))^(-1)*exp(-(x-6)^2/(2*4))}; 
-		\end{axis}
-		\end{tikzpicture}
-	}
-	\end{picture}
-	
+	\begin{block}{Power}
+plot power(i) parte da $\alpha$ e va a 1 al crescere di i (separazione ipotesi) e pi\'u rapidamente al crescer di N.
+	il grafico del power ($\prob{(\text{reject} H_0)| H_i}$) in funzione dell'indice i che identifica le ipotesi (per $H_0$ fa $\beta=1-\alpha$ quindi il power \'e $\alpha$) allontanandosi da $H_0$ deve essere il pi\'u grande possibile. 
+\end{block}
+\begin{block}{grafico $\prob_0{(X)}$ vs $\prob_1{(X)}$ con definizione di regione critica}
+\begin{picture}(100,130)
+\put(20,20){
+	\begin{tikzpicture}[scale=0.3]
+	\begin{axis}[title={Regione critica/accettanza per $H_0$},name=testh0,samples=100,ymin=0,xmin=0,xmax=10,xlabel={$x$},ylabel={$\prob{(x)}$},extra x ticks={1.3},extra x tick style={% changes for extra x ticks
+		tick label style={yshift=-4mm}},
+	]
+	\addplot[id=aa] gnuplot {(sqrt(2*pi))^(-1)*exp(-(x-2)^2/(2))};
+	\addplot[id=bb,domain=0:10] gnuplot {(2*sqrt(2*pi))^(-1)*exp(-(x-6)^2/(2*4))}; 
+	\end{axis}
+	\end{tikzpicture}
+}
+\end{picture}
+\end{block}
 \end{wordonframe}
 
-\begin{wordonframe}{LMP tests}
-
+\begin{wordonframe}{LMP tests. LRT.}
 (LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0, $L(\mu)\approx L(0)+\PDy{\mu}{L}|_0\mu+\ldots$ $\log{L(\mu)}\approx \log{L}(0)+\PDy{\log{\mu}}{L}|_0\mu+\ldots$: $L(\mu)=L(0)\Exp{[\PDy{\mu}{\log{L}}\mu]}$ $(A(x)B(\mu))$: $t(x)=\PDy{\mu}{\log{L}}|_{\mu=0}=S(x)$ (lo score \'e asintoticamente normale Test a $n\sigma$ $q_{\alpha}=n\sqrt{I_{tot}}$).
-
-
 \end{wordonframe}
 
 \begin{wordonframe}{Max power test in intervallo}
 \begin{itemize}
 \item \'E possible espansione L in intervallo?
-\item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$.Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
+\item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$. Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
 \end{itemize}
 \end{wordonframe}
 
-\begin{wordonframe}
-	contenu...
-\end{wordonframe}
+\begin{frame}{Propriet\'a $\chi^2$}
+La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^2)}$ \'e la distribuzione di probabilit\'a di $\sum_1^{\nu}x_i^2$ con $x_i\to N(0,1)$, $\chi^2$ non centrale $x_i\to N(\mu_i,1)$, parametro non centralit\'a $\lambda=\sum\mu_i^2$.
+\begin{columns}[T]
+\begin{column}{0.7\textwidth}
+Momenti:
+\begin{align*}
+&\phi_1(t)=\E_{\chi^2_1}{(\exp{it\chi^2})}\\
+&=\E_x{\exp{itx^2}}=2\frac{p(x)}{|\TDy{x}{y}|}=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx\\
+&=\frac{1}{\sqrt{1-2it}},\ \phi_{\chi^2_{\nu}}(t)=(1-2it)\expy{-\frac{\nu}{2}}\\
+&
+\end{align*}
+\end{column}
+\begin{column}{0.3\textwidth}
+\begin{align*}
+&\E{(\chi^2_{\nu})}=\nu\\
+&\var{[\chi_{\nu}^2]}=2\nu\\
+&\E{(\chi^{2,NC}_{\nu})}=\nu+\lambda
+\end{align*}
+\end{column}
+\end{columns}
+\begin{align*}
+&\prob{(x=\chi^2_{\nu})}=\frac{1}{2\expy{\nu/2}\Gamma(\frac{\nu}{2})}x\expy{\frac{\nu}{2}-1}\exp{-\frac{x^2}{2}}\\
+&\lim_{\nu\to\infty}N(\nu,2\nu)
+\end{align*}
+Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
+\end{frame}

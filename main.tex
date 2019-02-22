@@ -73,8 +73,17 @@
 % Let's get started
 \begin{document}
 %\let\mybibcat\noexpand\currfilebase
-\tikzset{
-   name plot/.style={every path/.style={name path global=#1}}
+
+\tikzset{myscalar/.style={%%scale plot even cs axis: \def\myscale{}
+		node distance=\myscale cm and \myscale cm,
+		every node/.style={scale=\myscale},
+		every axis/.style={
+			major tick length=0.15*\myscale cm,
+			minor tick length=0.1*\myscale cm,
+			mark options={scale=\myscale},
+			scale=\myscale
+		}
+	}
 }
 
 \begin{frame}

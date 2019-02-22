@@ -108,3 +108,43 @@ Keyword ADS 18/19:
 \noindent\rule{2cm}{0.4pt}
 }
 }
+
+\makeatletter
+
+\newcommand\transformxdimension[1]{
+	\pgfmathparse{((#1/\pgfplots@x@veclength)+\pgfplots@data@scale@trafo@SHIFT@x)/10^\pgfplots@data@scale@trafo@EXPONENT@x}
+}
+\newcommand\transformydimension[1]{
+	\pgfmathparse{((#1/\pgfplots@y@veclength)+\pgfplots@data@scale@trafo@SHIFT@y)/10^\pgfplots@data@scale@trafo@EXPONENT@y}
+}
+
+\newcommand\xcoord[2][center]{{%
+		\pgfpointanchor{#2}{#1}%
+		\pgfmathparse{\pgf@x/\pgf@xx}%
+		\pgfmathprintnumber{\pgfmathresult}%
+}}
+\newcommand\ycoord[2][center]{{%
+		\pgfpointanchor{#2}{#1}%
+		\pgfmathparse{\pgf@y/\pgf@yy}%
+		\pgfmathprintnumber{{\pgfmathresult}}%
+}}
+
+\newcommand\xcoordbis[2][center]{{%
+		% The actual point of interest
+		\pgfpointanchor{#2}{#1}%
+		\pgfgetlastxy{\ix}{\iy}%
+		% (0,0)
+		\pgfplotspointaxisxy{0}{0}%
+		\pgfgetlastxy{\ox}{\oy}
+		% (1,1)
+		\pgfplotspointaxisxy{1}{1}%
+		\pgfgetlastxy{\ux}{\uy}
+		\pgfmathparse{(\ix-\ox)/(\ux-\ox)}
+		\pgfmathprintnumber{\pgfmathresult}}
+}
+
+\def\markxof#1{
+	\pgf@process{#1}
+	\pgfmathparse{\pgf@x/\pgfplotsunitxlength +\pgfplots@data@scale@trafo@SHIFT@x)/10^\pgfplots@data@scale@trafo@EXPONENT@x}
+}
+\makeatother
