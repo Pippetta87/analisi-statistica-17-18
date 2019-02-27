@@ -71,6 +71,11 @@ Coverage: $\coverage{(\mu)}=\int_{x:\mu\in f(x)}\prob{(x:\mu)}\,dx$, $f(x)$ asso
 \end{columns}
 \end{frame}
 
+\begin{wordonframe}{Workout funzione di coverage}
+\mykeyword{Warn: coverage}
+Graphical Methods for Evaluating and ComparingConfidence-Interval Procedures
+\end{wordonframe}
+
 \begin{frame}{Feldman-Cousins unified approach.}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -82,44 +87,52 @@ LR-ordering $R=\frac{\prob{(x;\mu)}}{\prob{(x;\mu_{best})}}$: values of x/n are 
 \end{columns}
 \end{frame}
 
-\begin{wordonframe}{Intervalli di confidenza per $U([0,m])$}
-Una misura:
+\begin{frame}{Stima intervallare bayesiana/frequentista per $U([0,m])$ (una misura)}
+
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 \def\myscale{0.4}
 \begin{tikzpicture}[myscalar]
 \begin{axis}[title={Banda di credenza per $U([0,m])$},name=uniformcredence,ymin=0,xmin=0,xmax=6,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
-	tick label style={yshift=-4mm}},
-extra x tick labels={$x\exp{1-\alpha}$},extra y ticks={0.5},extra y tick labels={measure $x_0$}]
+tick label style={yshift=-4mm}},
+%extra x tick labels={$x\exp{1-\alpha}$},extra x tick labels={$x\exp{1-\alpha}$},
+extra y ticks={0.5},extra y tick labels={measure $x_0$}]
 \addplot[name path global=om, no marks] gnuplot[id=upperbound,domain=0:6] {x};
 \addplot[name path global=op, no marks] gnuplot[id=lowerbound,domain=0:6] {x*exp(-1+0.05)};
 \addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,samples=10,black,thin] gnuplot[domain=0:6] {0.5};
 \end{axis}
 \end{tikzpicture}
-
 \def\myscale{0.4}
 \begin{tikzpicture}[myscalar]
 \begin{axis}[title={Banda confidenza $U([0,m])$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
-	tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
+tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
 \addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};
-\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {(x)};
-\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,samples=10,black,thin] plot[domain=0:8] {0.3};
+\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {x};
+\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,black] gnuplot[domain=0:8] {0.3};
 \path[name intersections={of={bp and meas},name=i},name intersections={of={bm and meas},name=j}] (i-1) (j-1);
-\pgfplotsextra{\path (i-1)  \pgfextra{\markxof{i-1}\xdef\myfirsttick{\pgfmathresult}}(j-1) \pgfextra{\markxof{j-1}\xdef\mysecondtick{\pgfmathresult}};
+\pgfplotsextra{\path (i-1) \pgfextra{\markxof{i-1}\xdef\myfirsttick{\pgfmathresult}}(j-1); \pgfextra{\markxof{j-1}\xdef\mysecondtick{\pgfmathresult}};
 }
 \end{axis}
-\draw[ultra thin, draw=gray] (i-1 |- {rel axis cs:0,0}) node[fill=yellow,yshift=0ex]{\pgfmathprintnumber[fixed,precision=5]\myfirsttick} -- (i-1);
-\draw[ultra thin, draw=gray] (j-1 |- {rel axis cs:0,0}) node[fill=red]{\pgfmathprintnumber[fixed,precision=5]\mysecondtick} -- (j-1);
+\draw[ultra thin, draw=gray] (i-1 |- {rel axis cs:0,0}) node[fill=yellow,yshift=-1ex]{\pgfmathprintnumber[fixed,precision=5]\myfirsttick} -- (i-1);
+\draw[ultra thin, draw=gray] (j-1 |- {rel axis cs:0,0}) node[fill=red,below]{\pgfmathprintnumber[fixed,precision=5]\mysecondtick} -- (j-1);
 \end{tikzpicture}
 \end{column}
 \begin{column}{0.5\textwidth}
 La banda di confidenza si costruisce integrando sulla distribuzione dell'osservabile su una regione tale che l'integrle sia il livello di confidenza $\cl=1-\alpha$.
 
-L'intervallo di credibilit\'a \'e definito dalla banda per cui 
+L'intervallo di credibilit\'a \'e definito dalla banda per cui ''l'integrale della likelihood per dato valore dell'osservabile'' \'e $1-\alpha$.
 
 \end{column}
 \end{columns}
-\end{wordonframe}
+\end{frame}
+
+\begin{frame}{Stima intervallare bayesiana/frequentista per $U([0,m])$: statistica sufficiente}
+\begin{block}{Statistica sufficiente $x_M$}
+	\mykeyword{workout: pensare a relazione tra misura osservabile, bande di confidenza e statistiche sufficienti}: Nel caso uniforme ho una sola statistica sufficiente $x_{max}$ - posso ridurre la banda di confidenza per N misure a intervallo di confidenza utilizzando $x_{max}$.
+\end{block}
+
+La distribuzione di probabilit\'a della statistica sufficiente $x_M$ \'e $\prob{(x;m)}=\frac{N}{m}(\frac{x}{m})^{N-1}$
+\end{frame}
 
 \subsection{Pivotal quantities}
 

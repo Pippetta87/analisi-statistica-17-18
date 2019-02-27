@@ -2,7 +2,7 @@
 \let\@starttocorig\@starttoc
 \makeatother%%
 
-\documentclass[t,10pt,xcolor={usenames},fleqn,mathserif,serif]{beamer}
+\documentclass[t,10pt,xcolor={usenames},fleqn]{beamer}
 
 %%%Usefull link
 %tikz-equations:
@@ -73,7 +73,6 @@
 % Let's get started
 \begin{document}
 %\let\mybibcat\noexpand\currfilebase
-
 \tikzset{myscalar/.style={%%scale plot even cs axis: \def\myscale{}
 		node distance=\myscale cm and \myscale cm,
 		every node/.style={scale=\myscale},
@@ -85,7 +84,6 @@
 		}
 	}
 }
-
 \begin{frame}
   \titlepage
 \end{frame}
