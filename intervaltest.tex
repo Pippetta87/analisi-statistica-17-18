@@ -126,13 +126,51 @@ L'intervallo di credibilit\'a \'e definito dalla banda per cui ''l'integrale del
 \end{columns}
 \end{frame}
 
-\begin{frame}{Stima intervallare bayesiana/frequentista per $U([0,m])$: statistica sufficiente}
+\begin{wordonframe}{Stima intervallare bayesiana/frequentista per $U([0,m])$: statistica sufficiente}
 \begin{block}{Statistica sufficiente $x_M$}
 	\mykeyword{workout: pensare a relazione tra misura osservabile, bande di confidenza e statistiche sufficienti}: Nel caso uniforme ho una sola statistica sufficiente $x_{max}$ - posso ridurre la banda di confidenza per N misure a intervallo di confidenza utilizzando $x_{max}$.
 \end{block}
 
-La distribuzione di probabilit\'a della statistica sufficiente $x_M$ \'e $\prob{(x;m)}=\frac{N}{m}(\frac{x}{m})^{N-1}$
-\end{frame}
+La distribuzione di probabilit\'a della statistica sufficiente $x_M$ \'e $\prob{(x;m)}=\frac{N}{m}(\frac{x}{m})^{N-1}$:
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+''L'algoritmo di ordinamento'' su valori osservabile determina la forma dell'intervallo di confidenza
+\end{column}
+\begin{column}{0.5\textwidth}
+Ordinamento:
+$+x$ - upper limit - $m<\frac{x_M}{1-\cl}$, $-x$ - lower limit $m>\cl{}x_M$, probability ordering - no, central interval $m\in[\frac{2x_M}{1+\cl{}},\frac{2x_M}{1-\cl{}}]$
+\end{column}
+\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Ordinamento su LR per bande confidenza pdf uniforme}
+	LR: upper limit - $m<\frac{x_M}{1-\cl{}}$
+	\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+\begin{align*}
+&\lr{}=\frac{\prob{(x_M;m)}}{\sup_m{\prob{(x_M;m)}}}\\
+&=\frac{\frac{N}{m}(\frac{x}{m})^{N-1}}{N/m}=(\frac{x}{m})^N\\
+&\lambda=-2\log{\lr{}}=-2N\log{\frac{x}{m}}
+\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+likelihood decresce sempre con m (dove $\PDy{m}{L}=0$?). \mykeyword{Inconsistenza nella definizione di bande di confidenza con $o=\lr{}$?} (Likelihood funzione di m).
+
+	\end{column}
+\end{columns}
+Determino $\prob{(\lambda)}$: cambiamento variabile $\left\{\begin{array}{c}
+u=\frac{x}{m}\\
+v=\log{u}\\
+\lambda=-2Nv\\
+\end{array}\right.$
+\begin{align*}
+&\prob{(u;m)}=\frac{\prob{(x(u);m)}}{|\TDy{x}{u}|_{x(u)}}=Nu^{N-1}\\
+&\prob{(v;m)}=\frac{\prob_u{(u(v);m)}}{|\TDy{u}{v}|_{u(v)}}=N\exp{Nv}\\
+&\prob{(\lambda;m)}=\frac{1}{2}\exp{-\frac{\lambda}{2}}
+\end{align*}
+\end{wordonframe}
+
+%% banda di confidenza per distribuzione uniforme
 
 \subsection{Pivotal quantities}
 
