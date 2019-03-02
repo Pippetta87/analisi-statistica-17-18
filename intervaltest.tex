@@ -155,7 +155,7 @@ $+x$ - upper limit - $m<\frac{x_M}{1-\cl}$, $-x$ - lower limit $m>\cl{}x_M$, pro
 	\end{column}
 	\begin{column}{0.5\textwidth}
 likelihood decresce sempre con m (dove $\PDy{m}{L}=0$?). \mykeyword{Inconsistenza nella definizione di bande di confidenza con $o=\lr{}$?} (Likelihood funzione di m).
-
+La banda \'e identificata da $\lr\geq q_{\cl{}}$
 	\end{column}
 \end{columns}
 Determino $\prob{(\lambda)}$: cambiamento variabile $\left\{\begin{array}{c}
@@ -168,6 +168,16 @@ v=\log{u}\\
 &\prob{(v;m)}=\frac{\prob_u{(u(v);m)}}{|\TDy{u}{v}|_{u(v)}}=N\exp{Nv}\\
 &\prob{(\lambda;m)}=\frac{1}{2}\exp{-\frac{\lambda}{2}}
 \end{align*}
+Integrale di coverage:
+\begin{align*}
+&\cl=\int_{\lr>q_{\cl}}\prob{(x_M;m)}\,dx_M=\int_{\lambda<q_{\cl}'}\prob{(\lambda;m)}\,d\lambda\\
+&\Rightarrow \left\{\begin{array}{c}
+m\in[1,\frac{1}{\sqrt[N]{1-\cl}}]x_M (F)\\
+N>1:\ m\in[1,\frac{1}{\sqrt[N-1]{1-\cl}}]x_M (B)\\
+\end{array}
+\right.
+\end{align*}
+\mykeyword{Ex: Credibility LR-ordering $U$}
 \end{wordonframe}
 
 %% banda di confidenza per distribuzione uniforme
@@ -415,4 +425,28 @@ Momenti:
 &\lim_{\nu\to\infty}N(\nu,2\nu)
 \end{align*}
 Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
+\end{frame}
+
+\section{Goodness of fit}
+
+\begin{wordonframe}{GOF}
+	\cite{james2006statistical}: chap 11.
+	
+''How data well fit the model?
+Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}$, non conosco ipotesi alternative, no power.
+Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
+Costruire p-value per cui test unbiased (se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore)
+\end{wordonframe}
+
+\begin{frame}{p-value}
+\begin{tikzpicture}
+\begin{axis}
+[
+title={p-value},
+xmin=0,xmax=3,ymin=0,ymax=3,
+]
+\draw (0,1) -- (1,1);
+\draw[dashed] (0,2) .. controls (0.1,1.85).. (0.2,0.8) controls (0.2,0.8).. (1,0);
+\end{axis}
+\end{tikzpicture}
 \end{frame}
