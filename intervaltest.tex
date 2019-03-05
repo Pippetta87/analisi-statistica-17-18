@@ -429,24 +429,33 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 
 \section{Goodness of fit}
 
-\begin{wordonframe}{GOF}
-	\cite{james2006statistical}: chap 11.
+\begin{wordonframe}{GOF Refs}
+	\cite{james2006statistical}: chap 11. \cite{lehmann2006testing}: chap 14.
 	
-''How data well fit the model?
-Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}$, non conosco ipotesi alternative, no power.
-Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
-Costruire p-value per cui test unbiased (se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore)
 \end{wordonframe}
 
-\begin{frame}{p-value}
-\begin{tikzpicture}
-\begin{axis}
-[
-title={p-value},
-xmin=0,xmax=3,ymin=0,ymax=3,
-]
-\draw (0,1) -- (1,1);
-\draw[dashed] (0,2) .. controls (0.1,1.85).. (0.2,0.8) controls (0.2,0.8).. (1,0);
-\end{axis}
-\end{tikzpicture}
+\begin{frame}{How data well fit the model?}
+GOF: data una misura determino probabilit\'a di avere un risultato meno in accordo con ipotesi $H_0$, tecnica esclusivamente frequentista.
+Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}$, non specifico ipotesi alternative.
+\begin{itemize}
+\item Test statistic: function of data which measure ''distance'' between data and hypothesys
+\item Map statistic to P-value
+\end{itemize}
+\begin{block}{Unbiasedness}
+Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
+Costruire p-value per cui test unbiased (se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore)
+\end{block}
+\end{frame}
+
+\begin{frame}{p-value: probabilit\'a risultato meno in accordo con teoria di quello ottenuto}
+Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha significativit\'a $1-\alpha$. Considero una statistica con $\prob{(t(x))}=U([0,1])$ (per esempio una $F(X)$):
+\begin{block}{Combinazione di pi\'u p-value: algoritmo ordinamento prodotto}
+\begin{align*}
+&(p_1,p_2)\to\prob{(p=p_1p_2<q)}=q-q\log{q}&\intertext{cos\'i N non sono commutativi:}\\
+&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\intu{che ha pdf di Erlang, mentre asintoticamente:}
+&\prob{(\chi^2)}=\frac{1}{2\expy{N/2}\Gamma(N/2)}x\expy{k/2-1}\exp{-x/2}\to\frac{1}{2}\exp{-x/2}\\
+&\prob{(Q)}=\prob{(\chi^2_{2N})}
+\end{align*}
+
+\end{block}
 \end{frame}
