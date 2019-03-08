@@ -669,7 +669,8 @@ Momenti:
 \begin{align*}
 &\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
 &M_X(t)=\E{[\exp{tX}]}\\
-&=\sum_k\exp{tk}\binom{n}{k}p^k(1-p)^{n-k}=M_B^n(t)
+&=\sum_k\exp{tk}\binom{n}{k}p^k(1-p)^{n-k}\\
+&=M_B^n(t)
 \end{align*}
 \end{column}
 \end{columns}
@@ -677,7 +678,10 @@ Momenti:
 \begin{block}{Poisson}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\[\prob{(k;\mu)}=\frac{\mu^k}{k!}\exp{-\mu}\]
+\begin{align*}
+&\prob{(k;\mu)}=\frac{\mu^k}{k!}\exp{-\mu}\\
+&\prob{(r<N_0|\mu)}=1-\prob{(\chi^2_{2N_0+2}<2\mu)}
+\end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{align*}
@@ -760,11 +764,14 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
     
 \end{frame}
 
-\begin{frame}{Esponenziale}
+\begin{frame}{Esponenziale, iperesponenziale, Erlang}
 \begin{align*}
 &p(t;\lambda)=\lambda\exp{-\lambda t}\\
 &M_e(x)=\lambda\intzi{}\exp{-(\lambda-t)x}=\frac{\lambda}{\lambda-t}
 \end{align*}
+La probabilit\'a di fra due eventi di una pdf poissoniana \'e esponenziale: 
+Hyperexponential:
+Erlang
 \end{frame}
 
 \begin{frame}{Distribuzione (pdf) di statistiche}
