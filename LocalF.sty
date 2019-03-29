@@ -79,7 +79,10 @@
 \newcommand\listofkeywords{%
 \subsubsection{\listkeywordsname}\listofkeywordsbasic}
 \newcommand\frameintoc{%
-\subsubsection{\insertframetitle}}
+%\subsubsection{\insertframetitle}
+\addcontentsline{toc}{section}{\protect\makebox[2em][l]{\insertframenumber\hfill}\insertframetitle\par}%
+}
+
 % \IfFileExists{key-\thecherrysublist}{false-branch}
 
 %\def\removespaces{\catcode`\ =9 t e}% Ignore all spaces`
