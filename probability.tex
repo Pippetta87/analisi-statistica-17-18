@@ -800,3 +800,32 @@ Diagonal $\Sigma$ \'e equivalente a n gaussiane. Una gaussiana multivariata si o
 \end{column}
 \end{columns}
 \end{frame}
+
+\subsection{Chi quadro}\linkdest{chi2}
+
+\begin{frame}{Propriet\'a $\chi^2$}
+La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^2)}$ \'e la distribuzione di probabilit\'a di $\sum_1^{\nu}x_i^2$ con $x_i\to N(0,1)$, $\chi^2$ non centrale $x_i\to N(\mu_i,1)$, parametro non centralit\'a $\lambda=\sum\mu_i^2$.
+\begin{columns}[T]
+	\begin{column}{0.7\textwidth}
+		Momenti:
+		\begin{align*}
+		&\phi_1(t)=\E_{\chi^2_1}{(\exp{it\chi^2})}\\
+		&=\E_x{\exp{itx^2}}=2\frac{p(x)}{|\TDy{x}{y}|}=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx\\
+		&=\frac{1}{\sqrt{1-2it}},\ \phi_{\chi^2_{\nu}}(t)=(1-2it)\expy{-\frac{\nu}{2}}\\
+		&
+		\end{align*}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\begin{align*}
+		&\E{(\chi^2_{\nu})}=\nu\\
+		&\var{[\chi_{\nu}^2]}=2\nu\\
+		&\E{(\chi^{2,NC}_{\nu})}=\nu+\lambda
+		\end{align*}
+	\end{column}
+\end{columns}
+\begin{align*}
+&\prob{(x=\chi^2_{\nu})}=\frac{1}{2\expy{\nu/2}\Gamma(\frac{\nu}{2})}x\expy{\frac{\nu}{2}-1}\exp{-\frac{x^2}{2}}\\
+&\lim_{\nu\to\infty}N(\nu,2\nu)
+\end{align*}
+Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
+\end{frame}
