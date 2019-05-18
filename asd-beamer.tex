@@ -1,0 +1,120 @@
+\makeatletter
+\let\@starttocorig\@starttoc
+\makeatother%%
+
+\documentclass[t,10pt,xcolor={usenames},fleqn]{beamer}
+
+%%%Usefull link
+%tikz-equations:
+%http://www.wekaleamstudios.co.uk/posts/creating-a-presentation-with-latex-beamer-equations-and-tikz/
+
+\hypersetup{pdfpagemode=FullScreen}
+
+%% colors
+\definecolor{NOW}{rgb}{1.0, 0.75, 0.0}
+\definecolor{suspendend}{rgb}{0.76, 0.6, 0.42}
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+\definecolor{brilliantlavender}{rgb}{0.96, 0.73, 1.0}
+\definecolor{antiquefuchsia}{rgb}{0.57, 0.36, 0.51}
+\definecolor{violetw}{rgb}{0.93, 0.51, 0.93}
+\definecolor{Veronica}{rgb}{0.63, 0.36, 0.94}
+\definecolor{atomictangerine}{rgb}{1.0, 0.6, 0.4}
+\definecolor{darkgray}{rgb}{0.66, 0.66, 0.66}
+\definecolor{brightcerulean}{rgb}{0.11, 0.67, 0.84}
+\definecolor{cadmiumorange}{rgb}{0.93, 0.53, 0.18}
+\definecolor{ochre}{rgb}{0.8, 0.47, 0.13}
+\definecolor{midnightblue}{rgb}{0.1, 0.1, 0.44}
+\definecolor{lemon}{rgb}{1.0, 0.97, 0.0}
+\definecolor{grey}{rgb}{0.7, 0.75, 0.71}
+\definecolor{amber}{rgb}{1.0, 0.75, 0.0}
+\definecolor{almond}{rgb}{0.94, 0.87, 0.8}
+\definecolor{bf}{RGB}{88, 86, 88}
+\definecolor{bb}{RGB}{177, 177, 177}
+\definecolor{keyword}{rgb}{0.25, 0.25, 0.28}
+\definecolor{coolgrey}{rgb}{0.55, 0.57, 0.67}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% importa pacchetti
+\usepackage{usepkg}
+%%
+\renewbibmacro*{cite}{%
+  \iffieldundef{shorthand}
+    {\ifnameundef{labelname}
+       {}
+       {\printnames{labelname}%
+        \setunit{\printdelim{nametitledelim}}}%
+     \usebibmacro{cite:title}}%
+    {\usebibmacro{cite:shorthand}}%
+  \usebibmacro{cite:url}}
+
+\newbibmacro{cite:url}{%
+  \ifentrytype{online}
+    {\setunit{\addspace}%
+    \printfield{url}}
+    {}}
+    
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Funzioni generali
+\usepackage{functions}
+%http://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include
+\newcommand{\setmuskip}[2]{#1=#2\relax} %%problem usinig mu with calc (req by mathtools) loaded
+\usepackage{sources}
+%\usepackage{length}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Funzioni per questo file main
+\usepackage{mathOp}
+\usepackage{beamersetup}
+
+\def\status{coazione}%ripetere
+\def\keeptrying{coazione}
+\usepackage{LocalF}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{Analisi statistica dei dati: Maggio 2019.}
+
+% Let's get started
+\begin{document}
+%\let\mybibcat\noexpand\currfilebase
+\tikzset{myscalar/.style={%%scale plot even cs axis: \def\myscale{}
+		node distance=\myscale cm and \myscale cm,
+		every node/.style={scale=\myscale},
+		every axis/.style={
+			major tick length=0.15*\myscale cm,
+			minor tick length=0.1*\myscale cm,
+			mark options={scale=\myscale},
+			scale=\myscale
+		}
+	}
+}
+\begin{frame}
+  \titlepage
+\end{frame}
+
+\begin{frame}{TOC}
+\tableofcontents[onlyparts]
+\end{frame}
+% Section and subsections will appear in the presentation overview
+% and table of contents.
+%\frame{\tableofcontents[onlyparts]}
+
+\part{Intro}\linkdest{intro}
+\input{intro}
+
+\part{Succo}\linkdest{succo}
+\input{succo}
+
+\part{Variabili stocastiche e probabilit\'a}\linkdest{statdistro}
+\input{probability}
+
+\part{Inferenza statistica}\linkdest{inference}
+\begin{refsection}
+\nocite{*}
+\input{pestimator}
+\end{refsection}
+\begin{refsection}
+\nocite{*}
+\input{intervaltest}
+\end{refsection}
+
+%\input{test}\linkdest{test}
+
+
+\end{document}
