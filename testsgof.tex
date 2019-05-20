@@ -28,7 +28,7 @@
 \begin{frame}{Comparison of tests: power}
 Ipotesi semplici: $H_0: \theta=\theta_0$, $H_1: \theta=\theta_1$. Power $1-\beta=p(\theta_1)$.
 Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
-\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=\textwidth]{mostpower}\label{fig:mostpower}\end{figure}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{mostpower}\label{fig:mostpower}\end{figure}
 
 \begin{block}{Ottimizzazione: power maggiore possibile.}
 	UMP test: power maggiore uguale a qualunque test per tutte le ipotesi: esiste?
@@ -42,13 +42,13 @@ Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
 		\item unbiasedness $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
 	\end{itemize}
 \end{block}
-\begin{figure}[!ht] \begin{subfigure}[b]{0.47\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip, height=0.5\textheight]{powerconsistent} \label{fig:powerconsistent} \end{subfigure} ~ \begin{subfigure}[b]{0.47\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure} \end{figure} 
+\begin{figure}[!ht] \begin{subfigure}[b]{0.47\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{powerconsistent} \label{fig:powerconsistent} \end{subfigure} ~ \begin{subfigure}[b]{0.47\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure} \end{figure} 
 Test B can't distinguish between $\theta_0$, $\theta_1$.
 \end{frame}
 
 \begin{frame}{Symmetry between $\alpha$ and $\beta$}
 Unrealistic in experimental situation to keep $\alpha$ constant:$\alpha=p(\theta_0)$ $\beta=p(\theta_1)$ as function of $\alpha$, dotted line $\alpha=1-\beta$ below which tests are unbiased
-\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=\textwidth]{testabsym}\label{fig:testabsym}\end{figure}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{testabsym}\label{fig:testabsym}\end{figure}
 \end{frame}
 
 \begin{frame}{Lemma di Neyman-Pearson (Test di NP)}\frameintoc
@@ -78,6 +78,10 @@ Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\ge
 
 \subsection{Ipotesi composte}
 
+\begin{frame}{Ipotesi composte}
+One family pdf $f(\vec{X},\theta)$: $H_0$ per $\theta<\theta_0$, $H_1$ per $\theta>\theta_1$
+\end{frame}
+
 \begin{frame}{Test UMP unilaterale per famiglia esponenziale: Karlin-Rubin theorem.}
 $X_1,\ldots,X_N$ N iid: pdf della forma $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ (monotona):
 
@@ -95,6 +99,11 @@ Se il likelihood ratio \'e funzione monotona di una statistica $T(\vec{X})=\sum_
 \cite[269]{james2006statistical}\cite[sec 3.7]{lehmann2006testing}
 \end{frame}
 
+\begin{wordonframe}{One/two-sided test}
+%insert-fig 10.9: oneone2sides
+$1+$ \'e il power per UMP test per $\theta>\theta_0$, $1-$ \'e il power per UMP test per $\theta<\theta_0$: if the size of one sided tests is $\frac{\alpha}{2}$ that of two-sided (sum of the two one-sided) is $\alpha$
+\end{wordonframe}
+
 \begin{frame}{Local most powerfull (LMP) tests}
 (LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
 Applico NP a $H_0$ vs $H_1$:
@@ -106,9 +115,13 @@ Applico NP a $H_0$ vs $H_1$:
 score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{\alpha}\sqrt{NI}$.
 \end{frame}
 
-\begin{frame}{Likelihood ratio test (LRT)}
-
-
+\begin{frame}{Likelihood ratio test (LRT)}\frameintoc
+Sia $H_0: \vec{\theta}\in\nu$, $H_0: \vec{\theta}\in\overline{\nu}$; test statistic maximum likelihood ratio: $\lambda=\frac{\max_{\vec{\theta}\in\nu}L(\vec{X},\theta)}{\max_{\vec{\theta}\in\overline{\nu}}L(\vec{X},\theta)}$, critical region and significance level: $\alpha=\sup{\prob{(\lambda(\vec{X})\leq k;\theta\in\theta_0)}}$.
+\begin{block}{Espansione in $\hat{\theta}-\theta_0$ per $\theta=\theta_0$}
+Usually the critical region is determined via asymptotic pdf of LR:
+$l(\theta_0)=-\log{L}=l(\hat{\theta})+\frac{1}{2}l''(\hat{\theta})(\hat{\theta}-\theta_0)^2$ $L(\vec{X}|\vec{\theta})\propto\exp{-\frac{1}{2}\E{(\PtwoDy{\theta}{\ln{L}})}(\hat{\theta}-\theta)^2}=\exp{-\frac{1}{2}(\hat{\theta}-\theta)^TI(\hat{\theta}-\theta)}$ (pdf asintoticamente normale con matrice covarianza $\invers{I}$). Quindi $I(\theta_0)(\hat{\theta}-\theta)^2\xrightarrow{D}\chi_1^2$.
+Per $\Omega_0\subset\Omega_1\subset\real^p$: $\forall\theta\in\Omega_0$ $-2\log{\lambda}\to\chi^2_{q-r}$
+\end{block}
 \end{frame}
 
 \begin{wordonframe}{Max power test in intervallo}

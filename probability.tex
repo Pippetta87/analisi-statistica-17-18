@@ -1,4 +1,4 @@
-\section{Probability}
+\section{Variabili casuali e assiomi probabilit\'a}
 
 \begin{frame}[allowframebreaks]{List of keywords}
 \listofkeywords
@@ -50,7 +50,7 @@ Indipendence: $\prob{A\cap B}=\prob{A}\prob{B}$.
 Disjoint: $\prob{A\cap B}=0$.
 \end{wordonframe}
 
-\subsection{Variabili casuali (Osservabili), statistiche: distribuzioni di probabilit\'a.}\linkdest{pdfs}
+\subsection{Variabili casuali (Osservabili), statistiche: distribuzioni di probabilit\'a.}
 
 \begin{frame}{Interpretazioni di probabilit\'a}
 \begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
@@ -120,6 +120,8 @@ n_j&&&\\
 \end{column}
 \end{columns}
 \end{wordonframe}
+
+\subsection{Momenti}
 
 \begin{frame}{Momenti di una distribuzione e di una statistica}
 %Valore di aspettazione, varianza e momenti di di variabile casuale con data distribuzione di probabilit\'a, di campione (misure) estratto con data pdf e statistiche.
@@ -212,7 +214,7 @@ X,Y indipendenti: $\rho_{XY}=0$ ma non v.v.
 \begin{frame}{Funzioni di RV}
 \begin{figure}
     \centering
-    \includegraphics[width=0.9\textwidth,keepaspectratio]{RVfunc}
+    \includegraphics[width=0.8\textwidth,keepaspectratio]{RVfunc}
     \label{fig:RVfunc}
 \end{figure}
 \begin{align*}
@@ -249,8 +251,16 @@ pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$.
 \end{block}
 \end{wordonframe}
 
-\begin{frame}{Teorema del limite centrale}\frameintoc
-    
+\begin{frame}{Sequenze di RV}\frameintoc
+\begin{block}{Convergenza in distribuzione}
+$\{X_n\}, X$ RV e $\{F_n\}, F$ cumulanti: $F_n\to F$
+\end{block}
+\begin{block}{Convergenza in probabilit\'a}
+$\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
+\end{block}
+\begin{block}{Slutsky theorem}
+$\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}\xrightarrow{P}c$, quindi $\{X_n\}+\{Y_n\}\xrightarrow{D}X+c$, $\{X_nY_n\}\xrightarrow{D}c\{X_n\}$, $\{X_n/Y_n\}\xrightarrow{D}\{X_n/c\}$
+\end{block}
 \end{frame}
 
 \subsection{Propagazione errori vs cambio variabili}\linkdest{errors}
@@ -473,53 +483,29 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 \end{block}
 \end{wordonframe}
 
+\begin{frame}{Teorema di Paul-Levy}
+	\begin{columns}[T]
+		\begin{column}{0.3\textwidth}
+			Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
+		\end{column}
+		\begin{column}{0.7\textwidth}
+			\begin{itemize}
+				\item $F_n$ successione di funzioni cumulanti
+				\item $\phi_n\to\phi$ per ogni $t\in I(0)$
+				\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
+			\end{itemize}
+			quindi $F_n(x)\to F(x)$.
+		\end{column}
+	\end{columns}
+\end{frame}
+
 \begin{wordonframe}{Funzione caratteristica di Cauchy}
 
 \end{wordonframe}
 
-\begin{wordonframe}{PDF distanza stelle distribuite uniformemente in x,y,z}
-\begin{block}{Generazione pdf da distribuzione uniforme}
-    
-\end{block}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{block}{Radial Fourier transform}
-\begin{align*}
-&\hat{f}(\vec{k})=\int\exp{-i\scap{k}{x}}f(\vec{x})d^nx\\
-&=s^{\frac{n-2}{2}}\hat{F}_n(s)\\
-&=(2\pi)^{\frac{n}{2}}\int_0^{+\infty}J_{\frac{n-2}{2}}(sr)r^{\frac{n-2}{2}}F(r)r\,dr
-\end{align*}
-\end{block}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{block}{MGF of sum of RV is product of their MGF}
-\begin{align*}
-&\MGF{x_i^2}=\E{[\exp{tx_i^2}]}\\
-&=\frac{\sqrt{\pi}[\Erfi{(b\sqrt{t})}-\Erfi{a\sqrt{t}}]}{2(b-a)\sqrt{t}}
-\end{align*}
-\end{block}
-\end{column}
-\end{columns}
-\begin{block}{$(x,y,z)$ distribuite Unif.: $(r,\theta,\phi)$??}
 
-\end{block}
-\end{wordonframe}
 
-\begin{frame}{Teorema di Paul-Levy}
-\begin{columns}[T]
-\begin{column}{0.3\textwidth}
-    Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
-\end{column}
-\begin{column}{0.7\textwidth}
-\begin{itemize}
-    \item $F_n$ successione di funzioni cumulanti
-    \item $\phi_n\to\phi$ per ogni $t\in I(0)$
-    \item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
-\end{itemize}
-quindi $F_n(x)\to F(x)$.
-\end{column}
-\end{columns}
-\end{frame}
+\section{Math tools}
 
 \begin{wordonframe}{Propriet\'a Trasformata di Fourier}
 \begin{columns}
@@ -592,7 +578,7 @@ Convoluzione e prodotto:
 \end{align*}
 \end{wordonframe}
 
-\subsection{Legge grandi numeri}\linkdest{LLN}
+\section{Legge grandi numeri}\linkdest{LLN}
 
 \begin{frame}{Legge grandi numeri}
 Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n.
@@ -647,9 +633,9 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{align*}
 \end{wordonframe}
 
-\subsection{Important pdf oltre gaussiana}\linkdest{pdfs}
+\section{Important pdf oltre gaussiana}\linkdest{pdfs}
 
-\begin{frame}{Combinationi e permutazioni}
+\begin{frame}{Combinazioni e permutazioni}
 $n!$: permutazioni - modi distinti di prendere n oggetti
 \end{frame}
 
@@ -829,3 +815,33 @@ La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^
 \end{align*}
 Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 \end{frame}
+
+\section{come lo utilizzo}
+
+\begin{wordonframe}{PDF distanza stelle distribuite uniformemente in x,y,z}
+	\begin{block}{Generazione pdf da distribuzione uniforme}
+		
+	\end{block}
+	\begin{columns}
+		\begin{column}{0.5\textwidth}
+			\begin{block}{Radial Fourier transform}
+				\begin{align*}
+				&\hat{f}(\vec{k})=\int\exp{-i\scap{k}{x}}f(\vec{x})d^nx\\
+				&=s^{\frac{n-2}{2}}\hat{F}_n(s)\\
+				&=(2\pi)^{\frac{n}{2}}\int_0^{+\infty}J_{\frac{n-2}{2}}(sr)r^{\frac{n-2}{2}}F(r)r\,dr
+				\end{align*}
+			\end{block}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{block}{MGF of sum of RV is product of their MGF}
+				\begin{align*}
+				&\MGF{x_i^2}=\E{[\exp{tx_i^2}]}\\
+				&=\frac{\sqrt{\pi}[\Erfi{(b\sqrt{t})}-\Erfi{a\sqrt{t}}]}{2(b-a)\sqrt{t}}
+				\end{align*}
+			\end{block}
+		\end{column}
+	\end{columns}
+	\begin{block}{$(x,y,z)$ distribuite Unif.: $(r,\theta,\phi)$??}
+		
+	\end{block}
+\end{wordonframe}
