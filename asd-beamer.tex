@@ -95,18 +95,24 @@
 % and table of contents.
 %\frame{\tableofcontents[onlyparts]}
 
-\part{Intro}\linkdest{intro}
+\part{Intro}\label{part:intro}
 \input{intro}
 
-\part{Succo}\linkdest{succo}
+\part{Succo}\label{part:succo}
 \input{succo}
 
-\part{Variabili stocastiche e probabilit\'a}\linkdest{statdistro}
+\part{Variabili stocastiche e probabilit\'a}\label{part:statdistro}
 \input{probability}
 
+<<<<<<< HEAD
 \part{Inferenza statistica}\linkdest{inference}
 %\begin{refsection}
 %\nocite{*}
+=======
+\part{Inferenza statistica}\label{part:inference}
+\begin{refsection}
+\nocite{*}
+>>>>>>> 35aedd4110482c487012925e11bb5cd4fe845e26
 \input{estimators}
 %\end{refsection}
 %\begin{refsection}
