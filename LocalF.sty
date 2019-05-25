@@ -74,13 +74,18 @@
 \addtocounter{cherrysublist}{1}
   \@starttocorig{key-\thecherrysublist}
 }
+%%frameintoc
+\newcommand\listofframes{\@starttoc{lbf}}
+\newcommand\listofframesname{List of keywords}
 \makeatother
+
 \newcommand\listkeywordsname{KEYWORDS}
 \newcommand\listofkeywords{%
 \subsubsection{\listkeywordsname}\listofkeywordsbasic}
+%%frameintoc
 \newcommand\frameintoc{%
 %\subsubsection{\insertframetitle}
-\addcontentsline{toc}{section}{\protect\makebox[2em][l]{\insertframenumber\hfill}\insertframetitle\par}%
+\addcontentsline{lbf}{section}{\protect\makebox[2em][l]{\insertframenumber\hfill}\insertframetitle\par}%
 }
 
 % \IfFileExists{key-\thecherrysublist}{false-branch}

@@ -116,13 +116,71 @@ score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrles
 \end{frame}
 
 \begin{frame}{Likelihood ratio test (LRT)}\frameintoc
-Sia $H_0: \vec{\theta}\in\nu$, $H_0: \vec{\theta}\in\overline{\nu}$; test statistic maximum likelihood ratio: $\lambda=\frac{\max_{\vec{\theta}\in\nu}L(\vec{X},\theta)}{\max_{\vec{\theta}\in\overline{\nu}}L(\vec{X},\theta)}$, critical region and significance level: $\alpha=\sup{\prob{(\lambda(\vec{X})\leq k;\theta\in\theta_0)}}$.
-\begin{block}{Espansione in $\hat{\theta}-\theta_0$ per $\theta=\theta_0$}
-Usually the critical region is determined via asymptotic pdf of LR:
-$l(\theta_0)=-\log{L}=l(\hat{\theta})+\frac{1}{2}l''(\hat{\theta})(\hat{\theta}-\theta_0)^2$ $L(\vec{X}|\vec{\theta})\propto\exp{-\frac{1}{2}\E{(\PtwoDy{\theta}{\ln{L}})}(\hat{\theta}-\theta)^2}=\exp{-\frac{1}{2}(\hat{\theta}-\theta)^TI(\hat{\theta}-\theta)}$ (pdf asintoticamente normale con matrice covarianza $\invers{I}$). Quindi $I(\theta_0)(\hat{\theta}-\theta)^2\xrightarrow{D}\chi_1^2$.
-Per $\Omega_0\subset\Omega_1\subset\real^p$: $\forall\theta\in\Omega_0$ $-2\log{\lambda}\to\chi^2_{q-r}$
+Sia $H_0: \vec{\theta}\in\nu$, $H_0: \vec{\theta}\in\overline{\nu}$
+\begin{block}{test statistic maximum likelihood ratio}
+ $\lambda=\frac{\max_{\vec{\theta}\in\nu}L(\vec{X},\theta)}{\max_{\vec{\theta}\in\overline{\nu}}L(\vec{X},\theta)}$
 \end{block}
+\begin{block}{critical region, significance level and power for continuus families of Hypotheses}
+$\alpha=\sup{\prob{(\lambda(\vec{X})\leq k;\theta\in\theta_0)}}$.
+Se $H_0$ impone r vincoli sugli $r+s$ parametri di $H_0, H_1$: $\forall\theta\in H_0$ $-2\log{\lambda}\to\chi^2_{r}$, $\forall\theta\in H_1$ $-2\log{\lambda}\to\chi^2_{r}$ non centrale con parametro $K_1=(\vec{\theta}_r-\vec{\theta}_{r0})^TI_r(\vec{\theta}_r-\vec{\theta}_{r0})$.
+Regione critica: $-2\ln{\lambda}>\chi^2_{\alpha}(r)$, power:
+\begin{equation*}
+p=1-\beta=\int_{\chi_{\alpha}^2(r)}^{\infty}dF_1[\chi^2(r,K_1)]\approx\int_{(\frac{r+K_1}{r+2K_1})\chi^2_{\alpha}(r)}^{\infty}dF_2[\chi^2(r+\frac{K_1^2}{r+2K_1})]
+\end{equation*}
+\end{block}
+
 \end{frame}
+
+\begin{wordonframe}{LRT: }
+\begin{block}{Espansione in $\hat{\theta}-\theta_0$ per $\theta=\theta_0$}
+	Usually the critical region is determined via asymptotic pdf of LR:
+	$l(\theta_0)=-\log{L}=l(\hat{\theta})+\frac{1}{2}l''(\hat{\theta})(\hat{\theta}-\theta_0)^2$ $L(\vec{X}|\vec{\theta})\propto\exp{-\frac{1}{2}\E{(\PtwoDy{\theta}{\ln{L}})}(\hat{\theta}-\theta)^2}=\exp{-\frac{1}{2}(\hat{\theta}-\theta)^TI(\hat{\theta}-\theta)}$ (pdf asintoticamente normale con matrice covarianza $\invers{I}$). Quindi $I(\theta_0)(\hat{\theta}-\theta)^2\xrightarrow{D}\chi_1^2$.
+\end{block}
+\begin{block}{Asymptotic properties of MLE}
+
+\end{block}
+\end{wordonframe}
+
+\begin{wordonframe}{Test of some theories with different dof}
+%insert-fig 10.10
+Maximum likelihood ratio for A vs generale case: $\lambda_a=\frac{L(0)}{L(d)}$, if hypothesis A is true $-2\ln{\lambda_a}$ is distributed asymptotically as $\chi^2(2)$; to test B vs general case ml ratio is $-2\ln{\lambda_a}$, distributed asymptotically as $\chi^2(1)$.
+\end{wordonframe}
+
+\begin{wordonframe}{Is data normally distributed (unknown variance)}
+$X_1,,X_N$ iid $N(\mu,\sigma^2)$, $H_0: \mu=0,\sigma^2$, $H_1: \mu\neq0,\sigma^2$. Likelihood function is: 
+\begin{equation*}
+L(\mu,\sigma^2)=\frac{1}{(2\pi)\expy{N/2}\sigma^N}\exp{-\frac{1}{2}\sum^N\frac{(X_i-\mu)^2}{\sigma^2}}
+\end{equation*}
+Maximum likelihood estimators:
+\begin{align*}
+&H_0: \hat{\sigma}^2=\frac{1}{N}\sum_iX_i^2\\
+&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_iX_i/N)\expy{N/2}}\\
+&H_1: \hat{\mu}=\exv{X},\ S^2=\frac{1}{N}\sum^N(X_i-\exv{X})^2\\
+&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_i(X_i-\exv{X})^2/N)\expy{N/2}}\\
+\end{align*}
+Likelihood ratio:
+\begin{align*}
+&\lambda=(\frac{\sum^N(X_i-\exv{X})^2}{\sum_iX_i^2})\expy{N/2}\\
+&\lambda\expy{2/N}=\frac{1}{1+\frac{t^2}{N-1}}\\
+&t=\frac{\sqrt{N}\exv{X}}{\sqrt{\frac{1}{N-1}}\sum(X_i-\exv{X})^2}=\sqrt{N}\frac{\exv{X}}{s}
+\end{align*}
+Test based on $\lambda$ is equivalent to test based on two-sided t-test: the critical region correspond to small $\lambda$.
+\end{wordonframe}
+
+\begin{wordonframe}{Test whether Poissonian data have same mean}
+$X_1,,X_n$ iid RV poissonian with mean $\mu_i$. $H_0: \mu_1=\mu_2=\ldots=\mu$, $H_1: \mu_i$; MLE and likelihood ratio:
+\begin{align*}
+&L(\mu_1,\ldots,\mu_N)=\prod_i\exp{-\mu_i}\frac{\mu_i^{X_i}}{X_i!}\\
+&H_0: \hat{\mu}=\exv{X},\ \max_{\mu}L(\mu)=\frac{\exp{N\exv{X}}\exv{X}\expy{N\exv{X}}}{\prod_iX_i!}\\
+&H_1: \hat{\mu}_i=X_i,\ \max_{\mu_i}L(\mu_1,\ldots,\mu_N)=\exp{N\exv{X}}\exv{X}\expy{N\exv{X}}\prod_iX_i\expy{X_i}/X_i!\\
+&\lambda=\frac{\exv{X}\expy{N\exv{X}}}{\prod_iX_i\expy{X_i}}
+\end{align*}
+Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\chi^2(N-1)$) considerando $X_i=\exv{X}+\delta_i$:
+\begin{align*}
+&\ln{\lambda}=N\exv{X}\ln{\exv{X}}-\sum_i(\exv{X}+\delta_i)\ln{\exv{X}}-\sum_i(\exv{X}+\delta_i)(\frac{\delta_i}{\exv{X}}\\
+&-\frac{\delta_i^2}{2\exv{X}^2}+\ldots)
+\end{align*}
+\end{wordonframe}
 
 \begin{wordonframe}{Max power test in intervallo}
 	\begin{itemize}
