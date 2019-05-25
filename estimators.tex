@@ -47,7 +47,7 @@ Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
 \begin{block}{\mykeyword{Likelihood per distro uniforme}}
 \pgfmathsetmacro{\unifM}{3}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.4\textwidth}
 	\begin{tikzpicture}[scale=0.5,domain=0:1.5*\unifM]
 	\pgfmathsetmacro{\unifN}{(\unifM)^-1}
 	\begin{axis}[ylabel={$p(x;m)$},extra x ticks={\unifM}, extra x tick labels={$m$},
@@ -59,7 +59,7 @@ Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
 	\end{axis}
 	\end{tikzpicture}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.6\textwidth}
 	\begin{tikzpicture}[scale=0.5]
 	\begin{axis}[ylabel={$\mathcal{L}_{x_0}(m)$},extra x ticks={\data},extra x tick labels={$x_0$},
 	extra x tick style={xticklabel style={yshift=-10}}]
