@@ -270,7 +270,7 @@ Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}$, non specifico ip
 Distribution-free test: the distribution of the statistic t is known independently of $H_0$.
 \begin{block}{Unbiasedness}
 Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
-Costruire p-value per cui test unbiased (se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore)
+Costruire p-value per cui test unbiased: se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore.
 \end{block}
 \end{frame}
 
@@ -316,13 +316,25 @@ Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha sig
 \end{columns}
 \end{frame}
 
+\subsection{Binned GOF}\label{binnedgof}
+
 \begin{frame}{Pearson $\chi^2$ test for histograms with k bins}
+$H_0: p_i$
 La statistica $T=\frac{1}{N}\sum^k\frac{n_i^2}{p_i}-N$ ha pdf $\chi^2_{k-1}$
 \end{frame}
+
+\begin{wordonframe}{Pearson $\chi^2$ statistic}
+\begin{align*}
+&Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\xrightarrow{n\to\infty}\chi^2(k)
+\end{align*}
+If $c_{k,1-\alpha}$ is the $1-\alpha$ quantile of $\chi^2_k$ then test that rejects when $Q_n>c_{k,1-\alpha}$ is asymptotically level $\alpha$.
+\end{wordonframe}
 
 \begin{frame}{GOF for binned data with LR}
 
 \end{frame}
+
+\subsection{UnBinned GOF}\label{unbinnedgof}
 
 \begin{frame}{Smirnov-Cramer-von Mises test for unbinned data}
 $H_0$ \'e identificato da $f(X)$: la pdf di  $W^2=\int[S_N(X)-F(X)]^2f(X)\,dX$ \'e indipendente da distribuzione di $X$: $Y=F(X)$ si ha $W^2=\int_0^1[S_N(Y)-Y]^2\,dY$. Ordering statistics, $X_{(1)}, X_{(2)}, \ldots X_{(N)}$, $S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}$

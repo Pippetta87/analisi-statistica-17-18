@@ -438,28 +438,34 @@ Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una 
 \begin{column}{0.5\textwidth}
 \begin{align*}
 &M_X(t)=\E{[\exp{tX}]}\\
-&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)
+&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
+&\phi(0)=1,\ |\phi(t)|\leq1\\
+&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
 \end{align*}
 \begin{block}{Somma RV (indipendenti))}
 \begin{align*}
 &X=X_1+X_2\\
-&M_X(t)=M_{X_1}M_{X_2}
+&M_X(t)=M_{X_1}M_{X_2}\\
+&(f(Z=X+Y)=\intsinf{}f_X(Z-t)f_Y(t)\,dt)
 \end{align*}
 \end{block}
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{align*}
 &\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
-&\PDyn{it}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'
+&\PDyn{it}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'\\
+&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
+&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
 \end{align*}
-\begin{block}{scalare}
+\begin{block}{Trasf lineare}
 \begin{align*}
-&Y=\alpha X\\
-&M_{\alpha X}=M_X(\alpha t)
+&Y=\alpha X+b\\
+&M_Y=\exp{ibt}M_X(\alpha t)
 \end{align*}
 \end{block}
 \end{column}
 \end{columns}
+Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
 \end{frame}
 
 \begin{wordonframe}{FGM pdf uniforme}
@@ -795,10 +801,9 @@ La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^
 	\begin{column}{0.7\textwidth}
 		Momenti:
 		\begin{align*}
-		&\phi_1(t)=\E_{\chi^2_1}{(\exp{it\chi^2})}\\
-		&=\E_x{\exp{itx^2}}=2\frac{p(x)}{|\TDy{x}{y}|}=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx\\
-		&=\frac{1}{\sqrt{1-2it}},\ \phi_{\chi^2_{\nu}}(t)=(1-2it)\expy{-\frac{\nu}{2}}\\
-		&
+		&\phi_1(t)(=\E_x{(\exp{it\chi^2})})=\\
+		&=2\frac{p(x)}{|\TDy{x}{y}|}=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx=\frac{1}{\sqrt{1-2it}},\\
+		&\phi_{\chi^2_{\nu}}(t)=(1-2it)\expy{-\frac{\nu}{2}}
 		\end{align*}
 	\end{column}
 	\begin{column}{0.3\textwidth}
