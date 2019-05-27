@@ -262,6 +262,7 @@ Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}$, non specifico ip
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\]
+\[p(X)=\inf\{\alpha: X\in C_{\alpha}\}\]
 \end{column}
 \begin{column}{0.5\textwidth}
 
@@ -318,25 +319,24 @@ Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha sig
 
 \subsection{Binned GOF}\label{binnedgof}
 
-\begin{frame}{Pearson $\chi^2$ test for histograms with k bins}
-$H_0: p_i$
-La statistica $T=\frac{1}{N}\sum^k\frac{n_i^2}{p_i}-N$ ha pdf $\chi^2_{k-1}$.
+\begin{frame}{Pearson $\chi^2$ test for multinomial null hypothesis (histograms with k bins)}
+$k+1$ outcomes, n trials, $\sum_jp_j=1$: $\prob{(Y_1=y_1,\ldots,Y_{k+1}=y_{k+1})}=\frac{n!}{y_1!*\ldots*y_{k+1}!}p_1^{y_1}\ldots p_{k+1}^{y_{k+1}}$. Parameter space $\Omega=\{(p_1,\ldots,p_k\})\in \real{k}: p_i\geq0,\sum_{j=1}^kp_j\leq1$.
+$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$:
+statistica $Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\to\frac{1}{N}\sum^{k+1}\frac{n_i^2}{p_i}-N$ ha asintotic. pdf $\chi^2(k)$, quindi se $c_{k,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k)$ il test che rifiuta H quando $Q_n>c_{k,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
 \begin{block}{Power against local alternatives}
-Multinomial setup; 
-\begin{itemize}
-\item $H: p_j=\pi_j$, $j=1,\ldots,k+1$: $Q_n\xrightarrow{d}\chi^2(k)$
-\item Under alternative hypothesis $K: p_j^{(n)}=\pi_j+n\expy{-1/2}h_j$, $\sum_jh_j=0$: $Q_n\xrightarrow{d}\chi^{2,\lambda}(k)$ and NC parameter $\lambda=\sum_j^{k+1}\frac{h_j^2}{\pi_j}$
-\item Power of $\chi^2$ test based on $Q_n$ tends to a limit greater than critical value $\alpha$
-\end{itemize}
+	\begin{itemize}
+		\item $H: p_j=\pi_j$, $j=1,\ldots,k+1$: $Q_n\xrightarrow{d}\chi^2(k)$
+		\item Under alternative hypothesis $K: p_j^{(n)}=\pi_j+n\expy{-1/2}h_j$, $\sum_jh_j=0$: $Q_n\xrightarrow{d}\chi^{2,\lambda}(k)$ and NC parameter $\lambda=\sum_j^{k+1}\frac{h_j^2}{\pi_j}$
+		\item Power of $\chi^2$ test based on $Q_n$ tends to a limit greater than critical value $\alpha$
+	\end{itemize}
 \end{block}
 \end{frame}
 
-\begin{wordonframe}{Pearson $\chi^2$ statistic}
-\begin{align*}
-&Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\xrightarrow{n\to\infty}\chi^2(k)
-\end{align*}
-If $c_{k,1-\alpha}$ is the $1-\alpha$ quantile of $\chi^2_k$ then test that rejects when $Q_n>c_{k,1-\alpha}$ is asymptotically level $\alpha$.
-\end{wordonframe}
+\begin{frame}{$\chi^2$ Test of uniformity}
+$X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Divido l'intervallo $(0,1)$ in $k+1$ sotto-intervalli di lunghezza $\frac{1}{k+1}$: pdf di $(Y_1,\ldots,Y_{k+1})$ \'e multinomiale e il test che rifiuta H per grandi $\sum_j^{k+1}\frac{(Y_j-\frac{n}{k+1})}{\frac{n}{k+1}}$.
+\end{frame}
+
+
 
 \begin{frame}{GOF for binned data with LR}
 
@@ -361,5 +361,13 @@ $H_0$ \'e identificato da $f(X)$: la pdf di  $W^2=\int[S_N(X)-F(X)]^2f(X)\,dX$ \
 \end{frame}
 
 \begin{frame}{Test di Kolmogorov-Smirnov }
-Statistic: $D_N=\max{|S_N(X)-F(X)|}$, $\lim_{N\to\infty}\prob{(\sqrt{N}D_N>z)}=2\sum_{r=1}^{\infty}(-1)^{r-1}\exp{-2r^2z^2}$: $\prob{(D_N>d_{\alpha})}=\alpha$ define $d_{\alpha}$ as $\alpha$-point of $D_N$, $\prob{(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})}$
+Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$.
+\begin{block}{Limiting behaviour of KS test}
+\begin{itemize}
+\item Kolmogorov(33): comportamento asintotico del $1-\alpha$-quantile $s_{n,1-\alpha}$ \'e il quantile della distribuzione $\prob{(T_n>d)}\to2\sum_k^{\infty}(-1)\expy{k+1}\exp{-2k^2d^2}$ per $F_0$ continua.
+\item KS-test is pointwise consistent in power against any fixed $F\neq F_0$: $\lim_{n\to\infty}\prob_F{T_n>s_{n,1-\alpha}}\to1$.
+%\item $\lim_{N\to\infty}\prob{(\sqrt{N}D_N>z)}=2\sum_{r=1}^{\infty}(-1)^{r-1}\exp{-2r^2z^2}$: $\prob{(D_N>d_{\alpha})}=\alpha$ define $d_{\alpha}$ as $\alpha$-point of $D_N$, $\prob{(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})}$.
+\item Massey(50): KS-test is biased
+\end{itemize}
+\end{block}
 \end{frame}

@@ -1,5 +1,6 @@
 \ProvidesPackage{LocalF}
 
+\newcommand{\iidrv}[1][X]{$#1_1,\ldots,#1_{n}$}
 \newcounter{columneqc}
 \stepcounter{equation}
 \newcommand\Label[1]{&\refstepcounter{columneqc}\ (\theequation.\thecolumneqc)\ltx@label{#1}&}
