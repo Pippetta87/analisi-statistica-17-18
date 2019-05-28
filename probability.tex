@@ -50,7 +50,7 @@ Indipendence: $\prob{A\cap B}=\prob{A}\prob{B}$.
 Disjoint: $\prob{A\cap B}=0$.
 \end{wordonframe}
 
-\subsection{Variabili casuali (Osservabili), statistiche: distribuzioni di probabilit\'a.}
+\subsection{Variabili casuali (Osservabili), statistiche: distribuzioni di probabilit\'a.}\label{ssec:RV}
 
 \begin{frame}{Interpretazioni di probabilit\'a}
 \begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
@@ -73,8 +73,8 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 \item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$.
 \item $\alpha$-point, quantile of order $\alpha$: $F(x_{\alpha})=\alpha$.
 \item Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$: $g(a)=f(x(a))|\TDy{a}{x}|$.
-\item Probabilit\'a $x\in[x,x+dx],y$ (A): marginal pdf for x $\prob{(A)}=\intf(x,y)\,dxdy=f_x(x)\,dx$, $x,y\in[y,y+dy]$.
-$\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: T Bayes $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and law of total prob: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$.
+\item Probabilit\'a $([x,x+dx],y)=(A)$: marginal pdf for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$.
+$\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: T Bayes $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and law of total prob. $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$.
 \item Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
 \begin{align*}
 &\E_Y{[\E_{XY|Y}{XY|Y}]}=\E_Y{[Y\E_{X|Y}{[X]}]}\\
@@ -513,7 +513,7 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 
 
 
-\section{Math tools}
+\section{Math tools}\label{sec:math}
 
 \begin{wordonframe}{Propriet\'a Trasformata di Fourier}
 \begin{columns}
