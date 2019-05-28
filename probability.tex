@@ -123,7 +123,7 @@ n_j&&&\\
 \end{columns}
 \end{wordonframe}
 
-\subsection{Momenti}
+\subsection{Funzione caratteristica}\linkdest{moments}
 
 \begin{frame}{Momenti di una distribuzione e di una statistica}
 %Valore di aspettazione, varianza e momenti di di variabile casuale con data distribuzione di probabilit\'a, di campione (misure) estratto con data pdf e statistiche.
@@ -167,6 +167,82 @@ Non \'e detto che $f(\mu)=\E{[f]}$.
 \end{column}
 \end{columns}
 \end{frame}
+
+\begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&M_X(t)=\E{[\exp{tX}]}\\
+&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
+&\phi(0)=1,\ |\phi(t)|\leq1\\
+&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
+\end{align*}
+\begin{block}{Somma RV (indipendenti))}
+\begin{align*}
+&X=X_1+X_2\\
+&M_X(t)=M_{X_1}M_{X_2}\\
+&(f(Z=X+Y)=\intsinf{}f_X(Z-t)f_Y(t)\,dt)
+\end{align*}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
+&\PDyn{it}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'\\
+&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
+&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
+\end{align*}
+\begin{block}{Trasf lineare}
+\begin{align*}
+&Y=\alpha X+b\\
+&M_Y=\exp{ibt}M_X(\alpha t)
+\end{align*}
+\end{block}
+\end{column}
+\end{columns}
+Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
+\end{frame}
+
+\begin{wordonframe}{FGM pdf uniforme}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&p(x)=\frac{1}{m}\ 0<x<m\ (\int_0^mp(x)d\,x=1)\\
+&\E{[\exp{tx}]}=\int_0^m\frac{\exp{tx}}{m}d\,x=\frac{\exp{mt}-1}{mt}\\
+&=\frac{1}{m}[m+\frac{m^2t}{2}+\frac{m^3t^2}{6}+\frac{m^4t^3}{4!}+\ldots]
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\mu'_2=\frac{m^2}{3}=\sigma^2+\mu^2\\
+&\sigma^2=\mu_2'-(\frac{m^2}{2})^2=\frac{m^2}{12}
+\end{align*}
+\end{column}
+\end{columns}
+\begin{block}{Somma RV con pdf uniforme fra 0 e 1}
+$y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
+\end{block}
+\end{wordonframe}
+
+\begin{frame}{Teorema di Paul-Levy}
+	\begin{columns}[T]
+		\begin{column}{0.3\textwidth}
+			Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
+		\end{column}
+		\begin{column}{0.7\textwidth}
+			\begin{itemize}
+				\item $F_n$ successione di funzioni cumulanti
+				\item $\phi_n\to\phi$ per ogni $t\in I(0)$
+				\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
+			\end{itemize}
+			quindi $F_n(x)\to F(x)$.
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{wordonframe}{Funzione caratteristica di Cauchy}
+
+\end{wordonframe}
 
 \begin{wordonframe}{(contro)Esempi momenti}
 \begin{block}{pdf di \mykeyword{Cauchy}: non vale LLN}
@@ -432,86 +508,6 @@ Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una 
 \end{align*}
 \end{block}
 \end{frame}
-
-\subsection{Funzione caratteristica}\linkdest{moments}
-
-\begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&M_X(t)=\E{[\exp{tX}]}\\
-&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
-&\phi(0)=1,\ |\phi(t)|\leq1\\
-&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
-\end{align*}
-\begin{block}{Somma RV (indipendenti))}
-\begin{align*}
-&X=X_1+X_2\\
-&M_X(t)=M_{X_1}M_{X_2}\\
-&(f(Z=X+Y)=\intsinf{}f_X(Z-t)f_Y(t)\,dt)
-\end{align*}
-\end{block}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
-&\PDyn{it}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'\\
-&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
-&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
-\end{align*}
-\begin{block}{Trasf lineare}
-\begin{align*}
-&Y=\alpha X+b\\
-&M_Y=\exp{ibt}M_X(\alpha t)
-\end{align*}
-\end{block}
-\end{column}
-\end{columns}
-Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
-\end{frame}
-
-\begin{wordonframe}{FGM pdf uniforme}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&p(x)=\frac{1}{m}\ 0<x<m\ (\int_0^mp(x)d\,x=1)\\
-&\E{[\exp{tx}]}=\int_0^m\frac{\exp{tx}}{m}d\,x=\frac{\exp{mt}-1}{mt}\\
-&=\frac{1}{m}[m+\frac{m^2t}{2}+\frac{m^3t^2}{6}+\frac{m^4t^3}{4!}+\ldots]
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\mu'_2=\frac{m^2}{3}=\sigma^2+\mu^2\\
-&\sigma^2=\mu_2'-(\frac{m^2}{2})^2=\frac{m^2}{12}
-\end{align*}
-\end{column}
-\end{columns}
-\begin{block}{Somma RV con pdf uniforme fra 0 e 1}
-$y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
-\end{block}
-\end{wordonframe}
-
-\begin{frame}{Teorema di Paul-Levy}
-	\begin{columns}[T]
-		\begin{column}{0.3\textwidth}
-			Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
-		\end{column}
-		\begin{column}{0.7\textwidth}
-			\begin{itemize}
-				\item $F_n$ successione di funzioni cumulanti
-				\item $\phi_n\to\phi$ per ogni $t\in I(0)$
-				\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
-			\end{itemize}
-			quindi $F_n(x)\to F(x)$.
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{wordonframe}{Funzione caratteristica di Cauchy}
-
-\end{wordonframe}
-
-
 
 \section{Math tools}
 
