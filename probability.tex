@@ -70,9 +70,11 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 
 \begin{frame}{Distribuzione di probabilit\'a di un osservabile: densit\'a di probabilit\'a, cumulante; osservabili multidimensionali.}
 \begin{itemize}
-\item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)$: PDF of X $f(x)=\TDy{x}{F(x)}$.
+\item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$.
+\item $\alpha$-point, quantile of order $\alpha$: $F(x_{\alpha})=\alpha$.
 \item Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$: $g(a)=f(x(a))|\TDy{a}{x}|$.
-\item Probabilit\'a $x\in[x,x+dx]$ (A) e $y\in[y,y+dy]$ (B): $\prob{(A\cap B)}=f(x,y)\,dx\,dy$. Marginal pdf for x $f_x(x)=\int f(x,y)\,dy$: $\prob{(A|B)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$.
+\item Probabilit\'a $x\in[x,x+dx],y$ (A): marginal pdf for x $\prob{(A)}=\intf(x,y)\,dxdy=f_x(x)\,dx$, $x,y\in[y,y+dy]$.
+$\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: T Bayes $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and law of total prob: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$.
 \item Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
 \begin{align*}
 &\E_Y{[\E_{XY|Y}{XY|Y}]}=\E_Y{[Y\E_{X|Y}{[X]}]}\\
@@ -639,7 +641,7 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{align*}
 \end{wordonframe}
 
-\section{Important pdf oltre gaussiana}\linkdest{pdfs}
+\section{Important pdfs}\linkdest{pdfs}
 
 \begin{frame}{Combinazioni e permutazioni}
 $n!$: permutazioni - modi distinti di prendere n oggetti
@@ -657,6 +659,8 @@ Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
+$\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np$
+
 Momenti:
 \begin{align*}
 &\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
@@ -753,6 +757,8 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 \end{wordonframe}
 
 \begin{frame}{Irwin-Hall}
+$X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_k=0^n(-)^k\binom{n}{k}(x-k)\expy{n-1}\sgn{x-k}$.
+[6-8,9]
     
 \end{frame}
 
