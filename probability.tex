@@ -50,7 +50,7 @@ Indipendence: $\prob{A\cap B}=\prob{A}\prob{B}$.
 Disjoint: $\prob{A\cap B}=0$.
 \end{wordonframe}
 
-\subsection{Variabili casuali (Osservabili), statistiche: distribuzioni di probabilit\'a.}\label{ssec:RV}
+\subsection{Significato di probabilit\'a??}\linkdest{aximpl}
 
 \begin{frame}{Interpretazioni di probabilit\'a}
 \begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
@@ -68,6 +68,48 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 \end{block}
 \end{frame}
 
+\begin{wordonframe}{Esempio importanza ensamble (selection bias)}
+	\tikz{\draw[->] (-3.5,0) -- (3.5,0) node [below] {};
+		\foreach \x/\d in {-2/T,-1/2T,0/3T,1/4T,2/5T}
+		\draw (\x, 0.1) -- (\x, -0.1) node [below] {\shortstack{\d}};}
+	Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
+	\begin{columns}[T]
+		\begin{column}{0.4\textwidth}
+			Tempo medio attesa, tempo medio ritardo e tempo medio attesa pi\'u ritardo sono uguali? A $\frac{\tau}{2}$?
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			Probabilit\'a arriva prima di t:
+			\begin{align*}
+			&F(t;\lambda)=\int_0^Tp(t';\lambda)d\,t=1-F(T)=1-\exp{-\lambda T}
+			\end{align*}
+		\end{column}
+	\end{columns}
+	Tempo medio di attesa in quale ensamble?
+	\begin{columns}[T]
+		\begin{column}{0.55\textwidth}
+			\begin{align*}
+			&\frac{\sum_i\sum_j\frac{T_{ij}}{n_i}}{N}\neq\frac{\sum_{ij}T_{ij}}{\sum_in_i}
+			\end{align*}
+			\mykeyword{Ex.: correlazione $x-T_i-n_i$?}
+			Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.\mykeyword{Ex: distro tempi da autobus blu}
+		\end{column}
+		\begin{column}{0.45\textwidth}
+			\begin{align*}
+			&N\left\{\begin{array}{cccc}
+			n_1&T_1&\ldots&T_{n_1}\\
+			n_2&&&\\
+			\vdots&&&\\
+			n_j&&&\\
+			\vdots&&&\\
+			&\frac{T}{2}&\ldots&\frac{T}{2}\\
+			\end{array}\right.
+			\end{align*}
+		\end{column}
+	\end{columns}
+\end{wordonframe}
+
+\subsection{Variabili casuali: osservabili}\linkdest{RV}
+
 \begin{frame}{Distribuzione di probabilit\'a di un osservabile: densit\'a di probabilit\'a, cumulante; osservabili multidimensionali.}
 \begin{itemize}
 \item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$.
@@ -83,47 +125,275 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}
 \end{itemize}
 \end{frame}
 
-\begin{wordonframe}{Esempio importanza ensamble (selection bias)}
-  \tikz{\draw[->] (-3.5,0) -- (3.5,0) node [below] {};
-    \foreach \x/\d in {-2/T,-1/2T,0/3T,1/4T,2/5T}
-    \draw (\x, 0.1) -- (\x, -0.1) node [below] {\shortstack{\d}};}
-Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
-\begin{columns}[T]
-\begin{column}{0.4\textwidth}
-Tempo medio attesa, tempo medio ritardo e tempo medio attesa pi\'u ritardo sono uguali? A $\frac{\tau}{2}$?
-\end{column}
-\begin{column}{0.6\textwidth}
-Probabilit\'a arriva prima di t:
+\begin{frame}{Funzioni di RV}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.8\textwidth,keepaspectratio]{RVfunc}
+	\label{fig:RVfunc}
+\end{figure}
 \begin{align*}
-&F(t;\lambda)=\int_0^Tp(t';\lambda)d\,t=1-F(T)=1-\exp{-\lambda T}
+&g(a)=f(x(a))\left|\TDy{a}{x}\right|\\
+&g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
+&\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
 \end{align*}
-\end{column}
-\end{columns}
-Tempo medio di attesa in quale ensamble?
-\begin{columns}[T]
-\begin{column}{0.55\textwidth}
-\begin{align*}
-&\frac{\sum_i\sum_j\frac{T_{ij}}{n_i}}{N}\neq\frac{\sum_{ij}T_{ij}}{\sum_in_i}
-\end{align*}
-\mykeyword{Ex.: correlazione $x-T_i-n_i$?}
-Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.\mykeyword{Ex: distro tempi da autobus blu}
-\end{column}
-\begin{column}{0.45\textwidth}
-\begin{align*}
-&N\left\{\begin{array}{cccc}
-n_1&T_1&\ldots&T_{n_1}\\
-n_2&&&\\
-\vdots&&&\\
-n_j&&&\\
-\vdots&&&\\
-&\frac{T}{2}&\ldots&\frac{T}{2}\\
-\end{array}\right.
-\end{align*}
-\end{column}
-\end{columns}
+\end{frame}
+
+\begin{wordonframe}{Somma e prodotto di 2 RV}
+pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$.
+\begin{block}{Prodotto: $z=xy$}
+	\begin{columns}[T]
+		\begin{column}{0.3\textwidth}
+			\begin{figure}
+				\centering
+				\includegraphics[keepaspectratio,width=0.9\textwidth]{RVprod}
+				\label{fig:RVprod}
+			\end{figure}
+		\end{column}
+		\begin{column}{0.7\textwidth}
+			\begin{align*}
+			&f(z)d\,z=\int_{d\,S}g(x)h(y)d\,xd\,y\\
+			&=\intsinf{}g(x)d\,x\int_{\frac{z}{|x|}}^{\frac{z+d\,s}{|x|}}h(y)d\,y\\
+			&f(z)=\intsinf{}g(\frac{z}{y})h(y)\frac{d\,y}{|y|}
+			\end{align*}
+		\end{column}
+	\end{columns}
+\end{block}
+\begin{block}{Somma: $z=x+y$}
+	\begin{align*}
+	&f(z)=\intsinf{}g(x)h(z-x)d\,x=\intsinf{}g(z-y)h(y)d\,y
+	\end{align*}
+\end{block}
 \end{wordonframe}
 
+\begin{frame}{Sequenze di RV}\frameintoc
+\begin{block}{Convergenza in distribuzione}
+$\{X_n\}, X$ RV e $\{F_n\}, F$ cumulanti: $F_n\to F$
+\end{block}
+\begin{block}{Convergenza in probabilit\'a}
+$\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
+\end{block}
+\begin{block}{Teorema di Paul-Levy}
+\begin{columns}[T]
+	\begin{column}{0.3\textwidth}
+		Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
+	\end{column}
+	\begin{column}{0.7\textwidth}
+		\begin{itemize}
+			\item $F_n$ successione di funzioni cumulanti
+			\item $\phi_n\to\phi$ per ogni $t\in I(0)$
+			\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
+		\end{itemize}
+		quindi $F_n(x)\to F(x)$.
+	\end{column}
+\end{columns}
+\end{block}
+\begin{block}{Slutsky theorem}
+$\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}\xrightarrow{P}c$, quindi $\{X_n\}+\{Y_n\}\xrightarrow{D}X+c$, $\{X_nY_n\}\xrightarrow{D}c\{X_n\}$, $\{X_n/Y_n\}\xrightarrow{D}\{X_n/c\}$
+\end{block}
+\end{frame}
+
+\begin{wordonframe}{Somma di 2 RV uniformi $U([0,1])$}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&S=x+y\\
+			&\mu_1=\mu_2=\frac{1}{2}\\
+			&\E{[S]}=\mu_1+\mu_2=1\\
+			&\var{S}=\var{x}+\var{y}+2\cov{(x,y)}=\frac{1}{6}
+			\end{align*}
+			\noindent\rule{0.9\textwidth}{0.4pt}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&z=x+y,\ z_2=y\\
+			&J=\begin{pmatrix}
+			\PDy{y_1}{x_1}(=1)&\PDy{y_1}{x_2}(=1)\\
+			\PDy{y_2}{x_1}(=0)&\PDy{y_2}{x_2}(=1)\\
+			\end{pmatrix}\\
+			&\prob{(z,z_2)}=\frac{\prob_x{(z-z_2)}\prob_y{z_2}}{|\det{J}|}\\
+			&\prob{(z)}=\left\{\begin{array}{c}
+			\int_0^z\,dy\ (z<1)\\
+			\int_{z-1}^1\ (z>1)\\
+			0\ (z>2)\\
+			\end{array}\right.\\
+			&=\left\{\begin{array}{c}
+			z\\
+			2-z\\
+			0\\
+			\end{array}\right.\\
+			&\E{[z]}=1,\ \var{[z]}=\frac{1}{6}
+			\end{align*}
+		\end{column}
+	\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Prodotto di due RV $U([0,1])$}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&S=xy\\
+			&\E{[S]}=\mu_x\mu_y\\
+			&\var{[S]}=\mu_y^2\var{[x,x]}\\
+			&+\mu_x^2\var{[y,y]}+2\mu_x\mu_y\var{[x,y]}\\
+			&\E{[S]}=\frac{1}{4},\ \var{[S]}=\frac{1}{24}
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&z=xy,\ z_2=y,\ \det{J}=y\\
+			&\prob{(z)}=\int_z^1\frac{\prob_x{(\frac{z}{y})}\prob_y{(y)}}{|y|}\,dy,\ 0\leq\frac{z}{y}\leq1\\
+			&\prob{(z)}=\int_z^1\frac{1}{y}\,dy=\ln{\frac{1}{z}},\ (=0: z\notin[0,1])\\
+			&\E{[z]}=\frac{1}{4},\ \var{[z]}=\num{0.0486}
+			\end{align*}
+		\end{column}
+	\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Rapporto di due RV $U([0,1])$}
+	\begin{columns}[t]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&S=\frac{x}{y},\ \E{[S]}=\frac{\mu_x}{\mu_y}=1\\
+			&\var{(S)}=\frac{2}{3}\\
+			&((\frac{\mu_x}{\mu_y})^2[\frac{\var{(x,x)}}{\mu_x^2}+\frac{\var_{xy}}{\mu_y^2}-\frac{2\cov_{xy}}{\mu_x\mu_y}])
+			\end{align*}
+			
+			\noindent\rule{.9\textwidth}{0.1pt}\noindent
+			
+			\begin{picture}(100,130)
+			\put(20,20){
+				\begin{tikzpicture}[scale=0.55]
+				%baseline=(current bounding box.south)
+				\begin{axis}[ylabel={$y$},xlabel={$z$}]
+				\addplot[color=green,fill=green,name path=one] function [raw gnuplot, id=rappmargp1, mark=none]{set xrange [0:1]; plot 1} node[right] {$1$};
+				\addplot[color=green,name path=oneoverz] function [raw gnuplot, id=rapmargp2, mark=none]{set xrange [1:8]; plot 1/x} node[above right] {$\frac{1}{z}$};
+				\path[name path=axisone] (axis cs:0,0) -- (axis cs:1,0);
+				\path[name path=axistwo] (axis cs:1,0) -- (axis cs:8,0);
+				\addplot[thick,color=blue, fill=blue, fill opacity=0.15] fill between[of=one and axisone];
+				\addplot[thick,color=blue, fill=blue, fill opacity=0.15] fill between[of=oneoverz and axistwo];
+				\end{axis}
+				\end{tikzpicture}
+			}
+			\end{picture}
+		\end{column}
+		\begin{column}{0.4\textwidth}
+			\begin{align*}
+			&z=\frac{x}{y},\ z_2=y\\
+			&\prob{(z,z_2)}=\frac{\prob_x{(zz_2)}\prob_y{z_2}}{|1/z_2|}\\
+			&\prob{(z)}=\int\prob_x{(xy)}\prob_y{(y)}|y|\,dy\\
+			&\prob{(z)}=\left\{\begin{matrix}\int_0^1y\,dy\ (z\leq1)\\\int_0^{1/z}y\,dy=\frac{1}{2z^2}\ (z\geq1)\\0\ (z<0)\end{matrix}\right.
+			\end{align*}
+			\mykeyword{EX: Rapporto RV uniformi}
+		\end{column}
+	\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Rapporto di gaussiane}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&x=G{(0,1)},\ y=G{(0,1)},\ z=\frac{x}{y}\\
+			&\prob{(z)}=\frac{1}{2\pi}\intsinf{}dy\,\exp{-\frac{(zy)^2}{2}}|y|\\
+			&=\frac{1}{\pi}\intzi{}\,dy\exp{-\frac{y^2}{2}(1+z^2)}
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&u=y\sqrt{1+z^2}:\\
+			&\prob{(z)}=\frac{1}{\pi}\frac{1}{1+z^2}\intzi{}du\,u\exp{-\frac{u^2}{2}}
+			\end{align*}
+		\end{column}
+	\end{columns}
+	$\prob{(z)}$ \'e proporzionale a Cauchy:
+	\begin{align*}
+	&\E{(z^2n)}=\infty\\
+	&\E{(z^{2n+1})}=Ind
+	\end{align*}
+	\begin{block}{\mykeyword{Somma di Cauchy}: $S=x+y$}
+		\[\prob{(S)}=\int_{-\infty}^{+\infty}\frac{1}{\pi}\frac{1}{1+x^2}\frac{1}{\pi}\frac{1}{1+(S-X)^2}\,dx\to\frac{1}{2\pi}\frac{1}{1+(\frac{S}{2})^2}\]
+	\end{block}
+\end{wordonframe}
+
+\begin{frame}[allowframebreaks]{Esempi probabilit\'a condizionata: double layered detector, dadi Dungeons\& Dragon, ammo}
+\begin{block}{Double layered detector}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			Detector a due strati attraversato da fascio di particelle (\num{e-4} elettroni e il resto fotoni); la probabilit\'a di un segnale in zero, uno o entrambi gli strati \'e:
+			\begin{align*}
+			&\prob{(0|e)}=0.001,\ \prob{(0|\gamma)}=0.99899\\
+			&\prob{(1|e)}=0.01\ \prob{(0|\gamma)}=0.001\\
+			&\prob{(2|e)}=0.989\ \prob{(0|\gamma)}=\num{e-5}\\
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Probabilit\'a che particella rivelata in solo uno strato sia fotone:
+			\begin{align*}
+			&\prob{(\gamma|1)}=\frac{\prob{(1|\gamma)}\prob{(\gamma)}}{\prob{(1)}}\\
+			&=\frac{\num{e-3}(1-\num{e-4})}{\num{e-2}(1-\num{e-4})+\num{e-2}\num{e-4}}\\
+			&(\prob{(1)}=\prob{(1|e)}\prob{(e)}+\prob{(1|\gamma)}\prob{(\gamma)})\\
+			&\prob{(0)}\approx 1,\ \prob{(1)}\approx\num{e-3},\ \prob{(2)}\approx\num{e-4}
+			\end{align*}
+		\end{column}
+	\end{columns}
+\end{block}
+\framebreak
+\begin{block}{Dadi Dungeons\& Dragons}
+	Sei dadi $D_i$ con numero di facce $i=\{4,6,8,10,12,20\}$.
+	\begin{align*}
+	&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\intu{\mykeyword{T. probabilit\'a totale}}\\
+	&\prob{(D_i|1)}=\frac{\prob{(1|D_i)\prob{(D_i)}}}{\prob{(1)}}=\frac{\frac{1}{i}\frac{1}{6}}{\frac{1}{6}\sum\frac{1}{i}}\\
+	&\prob{(1|1)}=\sum_i\prob{(1|D_i,1)}\prob{(D_i|1)}&\intertext{(indipendenti: $\prob{(A|B)}=\prob{(A)}$)}
+	&=\sum\frac{1}{i}\prob{(D_i|1)}=\sum\frac{1/i^2}{\sum1/i}\approx0.161\\
+	&(\prob{(D_i|1)}=\frac{\prob{(1|D_i)}\prob{(D_i)}}{\prob{(1)}})
+	\end{align*}
+\end{block}
+\begin{block}{Casse di munizioni}
+	Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una frazione di proiettili danneggiati $f_D=0=q$, nel $10\%$ dei casi $f_D=0.05=q$ ($\prob{(q)}=0.9\delta(q)+0.1\delta(q-0.05)$). Quante munizioni devo testare per cassa e con quale $f_D$ per avere percentuale casse danneggiate minore del $5\%$?
+	\begin{align*}
+	&\prob{(q|k)}=\frac{\prob{(k|q)}\prob{q}}{\prob{k}}\\
+	&\prob{(k|q)}=\binom{n}{k}q^k(1-q)^{n-k}\\
+	&\prob{(q|k)}=\frac{\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}{\int\,dq\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}\\
+	&\prob{(q=0|k=0)}\geq0.96,\ n=20
+	\end{align*}
+\end{block}
+\end{frame}
+
 \subsection{Funzione caratteristica}\linkdest{moments}
+
+\begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		\begin{align*}
+		&M_X(t)=\E{[\exp{tX}]}\\
+		&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
+		&\phi(0)=1,\ |\phi(t)|\leq1\\
+		&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
+		\end{align*}
+		\begin{block}{Somma RV (indipendenti))}
+			\begin{align*}
+			&X=X_1+X_2\\
+			&M_X(t)=M_{X_1}M_{X_2}\\
+			&(f(Z=X+Y)=\intsinf{}f_X(Z-t)f_Y(t)\,dt)
+			\end{align*}
+		\end{block}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{align*}
+		&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
+		&\PDyn{(it)}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'\\
+		&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
+		&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
+		\end{align*}
+		\begin{block}{Trasf lineare}
+			\begin{align*}
+			&Y=\alpha X+b\\
+			&M_Y=\exp{ibt}M_X(\alpha t)
+			\end{align*}
+		\end{block}
+	\end{column}
+\end{columns}
+Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
+\end{frame}
 
 \begin{frame}{Momenti di una distribuzione e di una statistica}
 %Valore di aspettazione, varianza e momenti di di variabile casuale con data distribuzione di probabilit\'a, di campione (misure) estratto con data pdf e statistiche.
@@ -168,41 +438,6 @@ Non \'e detto che $f(\mu)=\E{[f]}$.
 \end{columns}
 \end{frame}
 
-\begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&M_X(t)=\E{[\exp{tX}]}\\
-&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
-&\phi(0)=1,\ |\phi(t)|\leq1\\
-&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
-\end{align*}
-\begin{block}{Somma RV (indipendenti))}
-\begin{align*}
-&X=X_1+X_2\\
-&M_X(t)=M_{X_1}M_{X_2}\\
-&(f(Z=X+Y)=\intsinf{}f_X(Z-t)f_Y(t)\,dt)
-\end{align*}
-\end{block}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
-&\PDyn{it}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'\\
-&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
-&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
-\end{align*}
-\begin{block}{Trasf lineare}
-\begin{align*}
-&Y=\alpha X+b\\
-&M_Y=\exp{ibt}M_X(\alpha t)
-\end{align*}
-\end{block}
-\end{column}
-\end{columns}
-Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
-\end{frame}
-
 \begin{wordonframe}{FGM pdf uniforme}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -223,22 +458,6 @@ Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\fr
 $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 \end{block}
 \end{wordonframe}
-
-\begin{frame}{Teorema di Paul-Levy}
-	\begin{columns}[T]
-		\begin{column}{0.3\textwidth}
-			Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
-		\end{column}
-		\begin{column}{0.7\textwidth}
-			\begin{itemize}
-				\item $F_n$ successione di funzioni cumulanti
-				\item $\phi_n\to\phi$ per ogni $t\in I(0)$
-				\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
-			\end{itemize}
-			quindi $F_n(x)\to F(x)$.
-		\end{column}
-	\end{columns}
-\end{frame}
 
 \begin{wordonframe}{Funzione caratteristica di Cauchy}
 
@@ -265,13 +484,13 @@ Per gaussiana: $\phi_{\overline{X}}(t)=\exp{-\frac{t^2}{4}}$, $\sigma^2\to\frac{
 \end{block}
 \end{wordonframe}
 
+\subsection{Propagazione errori}
+
 \begin{frame}{Propagazione errori}
-    \begin{block}{Propagazione errori}
 \begin{align*}
 &S(\vec{x})\approx y(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
 &\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_i}{y}{\vec{\mu}}\cov{x_ix_j}
 \end{align*}
-\end{block}
 \begin{block}{Covarianza e correlazione}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -289,227 +508,6 @@ X,Y indipendenti: $\rho_{XY}=0$ ma non v.v.
 \end{block}
 \end{frame}
 
-\begin{frame}{Funzioni di RV}
-\begin{figure}
-    \centering
-    \includegraphics[width=0.8\textwidth,keepaspectratio]{RVfunc}
-    \label{fig:RVfunc}
-\end{figure}
-\begin{align*}
-&g(a)=f(x(a))\left|\TDy{a}{x}\right|\\
-&g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
-&\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
-\end{align*}
-\end{frame}
-
-\begin{wordonframe}{Somma e prodotto di 2 RV}
-pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$.
-\begin{block}{Prodotto: $z=xy$}
-\begin{columns}[T]
-\begin{column}{0.3\textwidth}
-\begin{figure}
-\centering
-\includegraphics[keepaspectratio,width=0.9\textwidth]{RVprod}
-\label{fig:RVprod}
-\end{figure}
-\end{column}
-\begin{column}{0.7\textwidth}
-\begin{align*}
-&f(z)d\,z=\int_{d\,S}g(x)h(y)d\,xd\,y\\
-&=\intsinf{}g(x)d\,x\int_{\frac{z}{|x|}}^{\frac{z+d\,s}{|x|}}h(y)d\,y\\
-&f(z)=\intsinf{}g(\frac{z}{y})h(y)\frac{d\,y}{|y|}
-\end{align*}
-\end{column}
-\end{columns}
-\end{block}
-\begin{block}{Somma: $z=x+y$}
-\begin{align*}
-&f(z)=\intsinf{}g(x)h(z-x)d\,x=\intsinf{}g(z-y)h(y)d\,y
-\end{align*}
-\end{block}
-\end{wordonframe}
-
-\begin{frame}{Sequenze di RV}\frameintoc
-\begin{block}{Convergenza in distribuzione}
-$\{X_n\}, X$ RV e $\{F_n\}, F$ cumulanti: $F_n\to F$
-\end{block}
-\begin{block}{Convergenza in probabilit\'a}
-$\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
-\end{block}
-\begin{block}{Slutsky theorem}
-$\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}\xrightarrow{P}c$, quindi $\{X_n\}+\{Y_n\}\xrightarrow{D}X+c$, $\{X_nY_n\}\xrightarrow{D}c\{X_n\}$, $\{X_n/Y_n\}\xrightarrow{D}\{X_n/c\}$
-\end{block}
-\end{frame}
-
-\subsection{Propagazione errori vs cambio variabili}\linkdest{errors}
-
-\begin{wordonframe}{Somma di 2 RV uniformi $U([0,1])$}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&S=x+y\\
-&\mu_1=\mu_2=\frac{1}{2}\\
-&\E{[S]}=\mu_1+\mu_2=1\\
-&\var{S}=\var{x}+\var{y}+2\cov{(x,y)}=\frac{1}{6}
-\end{align*}
-\noindent\rule{0.9\textwidth}{0.4pt}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&z=x+y,\ z_2=y\\
-&J=\begin{pmatrix}
-\PDy{y_1}{x_1}(=1)&\PDy{y_1}{x_2}(=1)\\
-\PDy{y_2}{x_1}(=0)&\PDy{y_2}{x_2}(=1)\\
-\end{pmatrix}\\
-&\prob{(z,z_2)}=\frac{\prob_x{(z-z_2)}\prob_y{z_2}}{|\det{J}|}\\
-&\prob{(z)}=\left\{\begin{array}{c}
-\int_0^z\,dy\ (z<1)\\
-\int_{z-1}^1\ (z>1)\\
-0\ (z>2)\\
-\end{array}\right.\\
-&=\left\{\begin{array}{c}
-z\\
-2-z\\
-0\\
-\end{array}\right.\\
-&\E{[z]}=1,\ \var{[z]}=\frac{1}{6}
-\end{align*}
-\end{column}
-\end{columns}
-\end{wordonframe}
-
-\begin{wordonframe}{Prodotto di due RV $U([0,1])$}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&S=xy\\
-&\E{[S]}=\mu_x\mu_y\\
-&\var{[S]}=\mu_y^2\var{[x,x]}\\
-&+\mu_x^2\var{[y,y]}+2\mu_x\mu_y\var{[x,y]}\\
-&\E{[S]}=\frac{1}{4},\ \var{[S]}=\frac{1}{24}
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&z=xy,\ z_2=y,\ \det{J}=y\\
-&\prob{(z)}=\int_z^1\frac{\prob_x{(\frac{z}{y})}\prob_y{(y)}}{|y|}\,dy,\ 0\leq\frac{z}{y}\leq1\\
-&\prob{(z)}=\int_z^1\frac{1}{y}\,dy=\ln{\frac{1}{z}},\ (=0: z\notin[0,1])\\
-&\E{[z]}=\frac{1}{4},\ \var{[z]}=\num{0.0486}
-\end{align*}
-\end{column}
-\end{columns}
-\end{wordonframe}
-
-\begin{wordonframe}{Rapporto di due RV $U([0,1])$}
-\begin{columns}[t]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&S=\frac{x}{y},\ \E{[S]}=\frac{\mu_x}{\mu_y}=1\\
-&\var{(S)}=\frac{2}{3}\\
-&((\frac{\mu_x}{\mu_y})^2[\frac{\var{(x,x)}}{\mu_x^2}+\frac{\var_{xy}}{\mu_y^2}-\frac{2\cov_{xy}}{\mu_x\mu_y}])
-\end{align*}
-
-\noindent\rule{.9\textwidth}{0.1pt}\noindent
-
-\begin{picture}(100,130)
-\put(20,20){
-\begin{tikzpicture}[scale=0.55]
-%baseline=(current bounding box.south)
-\begin{axis}[ylabel={$y$},xlabel={$z$}]
-\addplot[color=green,fill=green,name path=one] function [raw gnuplot, id=rappmargp1, mark=none]{set xrange [0:1]; plot 1} node[right] {$1$};
-\addplot[color=green,name path=oneoverz] function [raw gnuplot, id=rapmargp2, mark=none]{set xrange [1:8]; plot 1/x} node[above right] {$\frac{1}{z}$};
-\path[name path=axisone] (axis cs:0,0) -- (axis cs:1,0);
-\path[name path=axistwo] (axis cs:1,0) -- (axis cs:8,0);
-\addplot[thick,color=blue, fill=blue, fill opacity=0.15] fill between[of=one and axisone];
-\addplot[thick,color=blue, fill=blue, fill opacity=0.15] fill between[of=oneoverz and axistwo];
-\end{axis}
-\end{tikzpicture}
-}
-\end{picture}
-\end{column}
-\begin{column}{0.4\textwidth}
-\begin{align*}
-&z=\frac{x}{y},\ z_2=y\\
-&\prob{(z,z_2)}=\frac{\prob_x{(zz_2)}\prob_y{z_2}}{|1/z_2|}\\
-&\prob{(z)}=\int\prob_x{(xy)}\prob_y{(y)}|y|\,dy\\
-&\prob{(z)}=\left\{\begin{matrix}\int_0^1y\,dy\ (z\leq1)\\\int_0^{1/z}y\,dy=\frac{1}{2z^2}\ (z\geq1)\\0\ (z<0)\end{matrix}\right.
-\end{align*}
-\mykeyword{EX: Rapporto RV uniformi}
-\end{column}
-\end{columns}
-\end{wordonframe}
-
-\begin{wordonframe}{Rapporto di gaussiane}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&x=G{(0,1)},\ y=G{(0,1)},\ z=\frac{x}{y}\\
-&\prob{(z)}=\frac{1}{2\pi}\intsinf{}dy\,\exp{-\frac{(zy)^2}{2}}|y|\\
-&=\frac{1}{\pi}\intzi{}\,dy\exp{-\frac{y^2}{2}(1+z^2)}
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&u=y\sqrt{1+z^2}:\\
-&\prob{(z)}=\frac{1}{\pi}\frac{1}{1+z^2}\intzi{}du\,u\exp{-\frac{u^2}{2}}
-\end{align*}
-\end{column}
-\end{columns}
-$\prob{(z)}$ \'e proporzionale a Cauchy:
-\begin{align*}
-&\E{(z^2n)}=\infty\\
-&\E{(z^{2n+1})}=Ind
-\end{align*}
-\begin{block}{\mykeyword{Somma di Cauchy}: $S=x+y$}
-\[\prob{(S)}=\int_{-\infty}^{+\infty}\frac{1}{\pi}\frac{1}{1+x^2}\frac{1}{\pi}\frac{1}{1+(S-X)^2}\,dx\to\frac{1}{2\pi}\frac{1}{1+(\frac{S}{2})^2}\]
-\end{block}
-\end{wordonframe}
-
-\begin{frame}[allowframebreaks]{Esempi probabilit\'a condizionata: double layered detector, dadi Dungeons\& Dragon, ammo}
-\begin{block}{Double layered detector}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-Detector a due strati attraversato da fascio di particelle (\num{e-4} elettroni e il resto fotoni); la probabilit\'a di un segnale in zero, uno o entrambi gli strati \'e:
-\begin{align*}
-&\prob{(0|e)}=0.001,\ \prob{(0|\gamma)}=0.99899\\
-&\prob{(1|e)}=0.01\ \prob{(0|\gamma)}=0.001\\
-&\prob{(2|e)}=0.989\ \prob{(0|\gamma)}=\num{e-5}\\
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-Probabilit\'a che particella rivelata in solo uno strato sia fotone:
-\begin{align*}
-&\prob{(\gamma|1)}=\frac{\prob{(1|\gamma)}\prob{(\gamma)}}{\prob{(1)}}\\
-&=\frac{\num{e-3}(1-\num{e-4})}{\num{e-2}(1-\num{e-4})+\num{e-2}\num{e-4}}\\
-&(\prob{(1)}=\prob{(1|e)}\prob{(e)}+\prob{(1|\gamma)}\prob{(\gamma)})\\
-&\prob{(0)}\approx 1,\ \prob{(1)}\approx\num{e-3},\ \prob{(2)}\approx\num{e-4}
-\end{align*}
-\end{column}
-\end{columns}
-\end{block}
-\framebreak
-\begin{block}{Dadi Dungeons\& Dragons}
-Sei dadi $D_i$ con numero di facce $i=\{4,6,8,10,12,20\}$.
-\begin{align*}
-&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\intu{\mykeyword{T. probabilit\'a totale}}\\
-&\prob{(D_i|1)}=\frac{\prob{(1|D_i)\prob{(D_i)}}}{\prob{(1)}}=\frac{\frac{1}{i}\frac{1}{6}}{\frac{1}{6}\sum\frac{1}{i}}\\
-&\prob{(1|1)}=\sum_i\prob{(1|D_i,1)}\prob{(D_i|1)}&\intertext{(indipendenti: $\prob{(A|B)}=\prob{(A)}$)}
-&=\sum\frac{1}{i}\prob{(D_i|1)}=\sum\frac{1/i^2}{\sum1/i}\approx0.161\\
-&(\prob{(D_i|1)}=\frac{\prob{(1|D_i)}\prob{(D_i)}}{\prob{(1)}})
-\end{align*}
-\end{block}
-\begin{block}{Casse di munizioni}
-Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una frazione di proiettili danneggiati $f_D=0=q$, nel $10\%$ dei casi $f_D=0.05=q$ ($\prob{(q)}=0.9\delta(q)+0.1\delta(q-0.05)$). Quante munizioni devo testare per cassa e con quale $f_D$ per avere percentuale casse danneggiate minore del $5\%$?
-\begin{align*}
-&\prob{(q|k)}=\frac{\prob{(k|q)}\prob{q}}{\prob{k}}\\
-&\prob{(k|q)}=\binom{n}{k}q^k(1-q)^{n-k}\\
-&\prob{(q|k)}=\frac{\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}{\int\,dq\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}\\
-&\prob{(q=0|k=0)}\geq0.96,\ n=20
-\end{align*}
-\end{block}
-\end{frame}
-
-<<<<<<< HEAD
 \subsection{Funzione caratteristica}\linkdest{moments}
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
@@ -588,9 +586,7 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 
 \end{wordonframe}
 
-
-
-\section{Math tools}\label{sec:math}
+\section{Math tools}\linkdest{math}
 
 \begin{wordonframe}{Propriet\'a Trasformata di Fourier}
 \begin{columns}
@@ -666,34 +662,34 @@ Convoluzione e prodotto:
 \section{Legge grandi numeri}\linkdest{LLN}
 
 \begin{frame}{Legge grandi numeri}
-Variabile casuale ($X$) campionata n volte ($x_i$) = Campione di dimensione n.
-    Media aritmetica di n variabili $X_i$: $\E{\overline{X}_n}=\mu$; Finite variance: $\var{X_i}=\sigma^2$: $\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}$
+$X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora \[\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}\]
     \begin{columns}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.4\textwidth}
 \begin{align*}
 &\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}\\
-&=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
+&=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}\\
+&=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
 &\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}
 \end{align*}
-\mykeyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
-\mykeyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
     \end{column}
-    \begin{column}{0.5\textwidth}
+    \begin{column}{0.6\textwidth}
 Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
 $\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$; Levy theorem: $\overline{X}_n\to\mu$.
+\mykeyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
+\mykeyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
     \end{column}
     \end{columns}
 \end{frame}
 
-\begin{frame}{LLN: asintoticamente gaussiana}
+\begin{frame}{LLN: asintoticamente gaussiana - Teorema limite centrale (CLT)}
 Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
 &\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}\\
 &=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
-&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2\\
-&\phi(t)=\phi_{X-\mu}
+&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
+%&\phi(t)=\phi_{X-\mu}
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -704,9 +700,11 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{align*}
 \end{column}
 \end{columns}
+\[\phi(t)=\sum_{m=0}^{\infty}\left.\frac{d^m\phi}{dt^m}\right|_{t=0}\frac{t^m}{m!}=\sum_{m=0}^{\infty}\frac{(it)^m}{m!}\E{(y^m)}\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots\]
 \begin{align*}
 &\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\\
-&\log{\phi_N}\to-\frac{t^2}{2}\ \text{Per T Levy la pdf \'e:}\\
+&\log{\phi_N}\to-\frac{t^2}{2}\\
+%\text{Per T Levy la pdf \'e:}\\
 &\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}d\,t=\frac{1\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
 \end{align*}
 \end{frame}
