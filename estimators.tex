@@ -1244,15 +1244,20 @@ n misure indipendenti
 \end{column}\begin{column}{0.6\textwidth}
 If experiment repeated many times one would obtain $\hat{\xi}$ distributed as $g(\hat{\xi};n,\xi)$
 \begin{align*}
-&\phi_x(t)=\int\exp{itx}f(x)\,dx\\
-&\intzinf{}\exp{itx}\frac{1}{\xi}\exp{-\frac{x}{\xi}}\,dx=\frac{1}{1-it\xi}\\
 &z=\sum^nx_i=n\hat{\xi}:\ \phi_x(t)=\frac{1}{(1-it\xi)^n}
 \end{align*}
 \end{column}\end{columns}
 \begin{align*}
-&g_z(z)=\frac{1}{2\pi}\intsinf{}\frac{\exp{-itx}}{(1-it\xi)^n}\,dt\xrightarrow{-i/\xi \text{ n-pole}}\frac{1}{(n-1)!}\frac{z\expy{n-1}}{\xi^n}\exp{-\frac{x}{\xi}}\\
 &g(\hat{\xi};n,\xi)=g_z(z)|\TDy{\hat{\xi}}{z}|=ng_z(n\hat{\xi})=\frac{n^n}{(n-1)!}\frac{\hat{\xi}\expy{n-1}}{\xi^n}\exp{-n\hat{\xi}/\xi}
 \end{align*}
 Special case of $\Gamma$ distribution
-
 \end{frame}
+
+\begin{wordonframe}{Funzione caratteristica pdf esponenziale: Ripasso cambio di variabili e integrali nel piano complesso}
+\begin{align*}
+&\phi_x(t)=\int\exp{itx}f(x)\,dx\\
+&\intzi{}\exp{itx}\frac{1}{\xi}\exp{-\frac{x}{\xi}}\,dx=\frac{1}{1-it\xi}\\
+&z=\sum^nx_i=n\hat{\xi}:\ \phi_x(t)=\frac{1}{(1-it\xi)^n}\\
+&g_z(z)=\frac{1}{2\pi}\intsinf{}\frac{\exp{-itx}}{(1-it\xi)^n}\,dt\xrightarrow{-i/\xi \text{ n-pole}}\frac{1}{(n-1)!}\frac{z\expy{n-1}}{\xi^n}\exp{-\frac{x}{\xi}}\\
+\end{align*}
+\end{wordonframe}
