@@ -725,50 +725,51 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 
 \section{Important pdfs}\linkdest{pdfs}
 
-\begin{frame}{Combinazioni e permutazioni}
+\begin{wordonframe}{Combinazioni e permutazioni}
 $n!$: permutazioni - modi distinti di prendere n oggetti
+\end{wordonframe}
+
+\begin{frame}{Bernoulli, binomiale, multinomiale}
+\begin{block}{Bernoulli: 2 possibili outcomes}
+	\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+	\begin{align*}
+	&\prob{(X=1)}=p=1-\prob{(X=0)}=1-q
+	\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+	\begin{align*}
+	&\E{X}=p,\ \var{X}=qp\\
+	&CF: q+p\exp{it}
+	\end{align*}
+	\end{column}
+	\end{columns}
+\end{block}
+\begin{block}{Distribuzione binomiale: k eventi con probabilit\'a p in sequenza di n estrazioni. Somma n variabili Bernoulli.}
+\begin{align*}
+&\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}
+\end{align*}
+\begin{align*}
+&\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np\\
+&\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
+&M_X(t)=\E{[\exp{tX}]}=\sum_k\exp{tk}\binom{n}{k}p^k(1-p)^{n-k}=M_B^n(t)
+\end{align*}
+\end{block}
 \end{frame}
 
-\begin{frame}{Bernoulli, binomiale e Poisson}
-\begin{block}{Distribuzione binomiale: k eventi con probabilit\'a p in sequenza di n estrazioni. Somma n variabili Bernoulli.}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\[\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}\]
-Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
-\begin{align*}
-&\underbrace{[\frac{n}{n}\ldots\frac{n-k+1}{n}]}_{1}\frac{1}{k!}[\frac{\lambda T}{1-\frac{\lambda T}{n}}]^k(1-\frac{\lambda T}{n})^n\\
-&=\frac{(\lambda T)^k}{k!}\exp{-\lambda T}
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-$\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np$
-
-Momenti:
-\begin{align*}
-&\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
-&M_X(t)=\E{[\exp{tX}]}\\
-&=\sum_k\exp{tk}\binom{n}{k}p^k(1-p)^{n-k}\\
-&=M_B^n(t)
-\end{align*}
-\end{column}
-\end{columns}
-\end{block}
-\begin{block}{Poisson}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\prob{(k;\mu)}=\frac{\mu^k}{k!}\exp{-\mu}\\
-&\prob{(r<N_0|\mu)}=1-\prob{(\chi^2_{2N_0+2}<2\mu)}
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&M_P(t)=\sum_k\exp{tk}\frac{\mu^k}{k!}\exp{-\mu}=\exp{\mu(\exp{t}-1)}
-\end{align*}
-\end{column}
-\end{columns}
-\mykeyword{Ex: media e varianza Poissoniana}
-\end{block}
+\begin{frame}{Multinomiale: n trials with one success between k categories}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}	
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&
+			\end{align*}
+		\end{column}
+	\end{columns}
 \end{frame}
 
 \begin{wordonframe}{Derivazione pdf Bernoulli}
@@ -834,9 +835,32 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 \end{align*}
 \end{wordonframe}
 
-\begin{wordonframe}{Poissoniane!}
-
-\end{wordonframe}
+\begin{frame}{Poissoniane!}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+\[\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}\]
+Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
+\begin{align*}
+&\underbrace{[\frac{n}{n}\ldots\frac{n-k+1}{n}]}_{1}\frac{1}{k!}[\frac{\lambda T}{1-\frac{\lambda T}{n}}]^k(1-\frac{\lambda T}{n})^n\\
+&\to\frac{(\lambda T)^k}{k!}\exp{-\lambda T}
+\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{align*}
+&\prob{(k;\mu)}=\frac{\mu^k}{k!}\exp{-\mu}\\
+&\prob{(r<N_0|\mu)}\\
+&=1-\prob{(\chi^2_{2N_0+2}<2\mu)}\\
+&\E{[k]}=\sum_{k=0}^{\infty}k\frac{\mu^k}{k!}\exp{-\mu}\\
+&\E{[k^2]}=\sum_{k=0}^{\infty}k^2\frac{\mu^k}{k!}\exp{-\mu}=\mu^2+\mu\\
+&\var[k]=\E{[k^2]}-(\E{[k]})^2=\mu
+\end{align*}
+	\end{column}
+\end{columns}
+\begin{align*}
+&M_P(t)=\sum_k\exp{tk}\frac{\mu^k}{k!}\exp{-\mu}=\Exp{\mu(\exp{t}-1)}
+\end{align*}
+\mykeyword{Ex: media e varianza Poissoniana}
+\end{frame}
 
 \begin{frame}{Irwin-Hall}
 $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_k=0^n(-)^k\binom{n}{k}(x-k)\expy{n-1}\sgn{x-k}$.

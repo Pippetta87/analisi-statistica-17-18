@@ -104,13 +104,10 @@ Distribuzione esponenziale in x: quale z?
 \subsection{Statistiche sufficienti: teorema di fattorizzazione}\linkdest{statistiche}
 
 \begin{frame}{Statistiche sufficienti per il parametro dato}
-\begin{block}{Statistica sufficiente $S$ per parametro $\Theta$}
-Pdf di X data $T(X)$ non dipende da parametro $\theta$:
-cio\'e pdf di $X$ dato $T(X)$ non dipende da $\theta$:
+Statistica sufficiente $S$ per parametro $\Theta$. Pdf di X data $T(X)$ non dipende da parametro $\theta$:
 \[\prob{(x;S,\theta)}=\prob{(x;S)}\]
-\end{block}
 \begin{block}{Teorema di fattorizzazione}
-Probabilit\'a di osservare $X$ dato $\theta$ \'e probabilit\'a di $T(x)$ dato $\theta$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(T(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$
+Probabilit\'a di osservare $X$ dato $\theta$ \'e probabilit\'a di $S(x)$ dato $\theta$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$
 \end{block}
 \begin{block}{Statistica sufficiente minimale}
 $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim({S})\leq\dim{(X)}$.
@@ -1273,7 +1270,7 @@ $\hat{\tau}=\frac{1}{n}\sum^nt_i$: ritrovo il valore di aspettazione
 \end{align*}
 \end{block}
 \begin{block}{Costante di decadimento}
-\keyword{MLE for function of parameter} is same function of MLE of parameter:
+\mykeyword{MLE for function of parameter} is same function of MLE of parameter:
 \begin{align*}
 &\hat{\lambda}=\frac{1}{\hat{\tau}}\\
 &h(\hat{\lambda};n,\lambda)=g(\hat{\tau};n,\tau)|\TDy{\hat{\lambda}}{\hat{\tau}}|=\frac{n^n}{(n-1)!}\frac{\lambda^n}{\hat{\lambda}\expy{n+1}}\exp{-n\lambda/\hat{\lambda}}\\
@@ -1284,10 +1281,16 @@ $\hat{\tau}=\frac{1}{n}\sum^nt_i$: ritrovo il valore di aspettazione
 
 \begin{frame}{Confidence interval for mean of exponential RV}
 n osservaqzioni di x per determinare lo stimatore $\hat{\xi}=\hat{\xi}_{obs}$ con pdf $g(\hat{\tau};n,\tau)=\frac{n^n}{(n-1)!}\frac{\hat{\xi}\expy{n-1}}{\xi^n}\exp{-n\hat{\xi}/\xi}$. Per determinare l'intervallo $[a,b]$ dati $x_1,\ldots,x_n$ devo risolvere
+\begin{columns}[T]\begin{column}{0.4\textwidth}
 \begin{align*}
 &\alpha=\int_{\hat{\xi}_{obs}}^{+\infty}g(\hat{\xi};a)\,d\hat{\xi}\\
 &\beta=\int_{-\infty}^{\hat{\xi}_{obs}}g(\hat{\xi};b)\,d\hat{\xi}
 \end{align*}
+\end{column}
+\begin{column}{0.6\textwidth}
 perfissati $\alpha,\beta$, indipendentemente dal vero $\xi$. Per $n\to\infty$ $g$ becomes gaussian (CLT) and $68.3\%$ central confidence interval approaches $[\hat{\xi}_{obs}-\hat{\sigma}_{\hat{\xi}},\hat{\xi}_{obs}+\hat{\sigma}_{\hat{\xi}}]$.
+\end{column}
+\end{columns}
 \begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.4\textheight]{intestclt}\label{fig:intestclt}\end{figure}
+
 \end{frame}
