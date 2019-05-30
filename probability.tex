@@ -729,7 +729,7 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 $n!$: permutazioni - modi distinti di prendere n oggetti
 \end{wordonframe}
 
-\begin{frame}{Bernoulli, binomiale, multinomiale}
+\begin{frame}{Bernoulli, binomiale}
 \begin{block}{Bernoulli: 2 possibili outcomes}
 	\begin{columns}[T]
 	\begin{column}{0.5\textwidth}
@@ -758,18 +758,11 @@ $n!$: permutazioni - modi distinti di prendere n oggetti
 \end{frame}
 
 \begin{frame}{Multinomiale: n trials with one success between k categories}
-	\begin{columns}[T]
-		\begin{column}{0.5\textwidth}
-			\begin{align*}
-			&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}	
-			\end{align*}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\begin{align*}
-			&
-			\end{align*}
-		\end{column}
-	\end{columns}
+	\begin{align*}
+	&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}:\ \E{[X_i]}=Np_i\\
+	&\var{[X_i]}=Np_i(1-p_i)\\
+	&CF: (\sum_j^kp_j\exp{it_j})^n
+	\end{align*}
 \end{frame}
 
 \begin{wordonframe}{Derivazione pdf Bernoulli}
@@ -842,7 +835,8 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
 \begin{align*}
 &\underbrace{[\frac{n}{n}\ldots\frac{n-k+1}{n}]}_{1}\frac{1}{k!}[\frac{\lambda T}{1-\frac{\lambda T}{n}}]^k(1-\frac{\lambda T}{n})^n\\
-&\to\frac{(\lambda T)^k}{k!}\exp{-\lambda T}
+&\to\frac{(\lambda T)^k}{k!}\exp{-\lambda T}\\
+&\prob{(x\leq k)}=\frac{\Gamma(\lfloor k+1\rfloor,\lambda)}{\lfloor k\rfloor}=\exp{-\lambda}\sum_{i=0}^k\frac{\lambda^i}{i!}
 \end{align*}
 	\end{column}
 	\begin{column}{0.5\textwidth}
@@ -863,7 +857,7 @@ Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
 \end{frame}
 
 \begin{frame}{Irwin-Hall}
-$X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_k=0^n(-)^k\binom{n}{k}(x-k)\expy{n-1}\sgn{x-k}$.
+$X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)^k\binom{n}{k}(x-k)\expy{n-1}\sgn{(x-k)}$.
 [6-8,9]
     
 \end{frame}
@@ -871,25 +865,49 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_k=0^n(-)^k
 \begin{frame}{Esponenziale, iperesponenziale, Erlang}
 \begin{align*}
 &p(t;\lambda)=\lambda\exp{-\lambda t}\\
-&M_e(x)=\lambda\intzi{}\exp{-(\lambda-t)x}=\frac{\lambda}{\lambda-t}
+&p(t;\xi)=\frac{1}{\xi}\exp{-\frac{t}{\xi}}\\
+&\phi_e(t)=\frac{1}{1-it\xi}
+&M_e(t)=\lambda\intzi{}\exp{-(\lambda-t)x}\,dx=\frac{\lambda}{\lambda-t}
 \end{align*}
 La probabilit\'a di fra due eventi di una pdf poissoniana \'e esponenziale: 
 Hyperexponential:
 Erlang
 \end{frame}
 
-\begin{frame}{Distribuzione (pdf) di statistiche}
-\begin{block}{$x_M$ pdf uniforme}
-n estrazioni di RV distribuita come $U([0,m])$, $Y=\max{(X_1,\ldots,X_n)}$:
+\begin{frame}{Uniforme}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+	\begin{align*}
+	&f(x;\alpha,\beta)=\left\{\begin{array}{c}\frac{1}{\beta-\alpha}\\0\\
+	\end{array}\right.\\
+	&\var{[x]}=\frac{1}{12}m^2\\
+	&\phi_U=\frac{\exp{i\beta t}-\exp{i\alpha t}}{(\beta-\alpha)it}
+	\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+	\begin{block}{\mykeyword{Distribuzione massimo n misure estratte da $U(0,m)$}: pdf di $x_M$}
+		n estrazioni di RV distribuita come $U([0,m])$, $Y=\max{(X_1,\ldots,X_n)}$:
+		\begin{align*}
+		&F(x)=p(x_M<x)=\prod_i\prob{(X_i\leq x)}\\
+		&=\int_0^x1_{[0,m]}\,dx=x_M^n\\
+		&f(Y;m)=n\frac{x^{n-1}}{m^n}
+		\end{align*}
+	\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Cauchy}
 \begin{align*}
-&F(x)=p(x_M<x)=\prod_i\prob{(X_i\leq x)}=x^n\\
-&f(Y;m)=n\frac{x^{n-1}}{m^n}
+&f(x)=\frac{1}{\pi}\frac{1}{1+x^2}\\
+&\phi_c(t)=\exp{-|t|}
 \end{align*}
-\end{block}
 \end{frame}
 
 \begin{frame}{Landau distribution}
-    
+pdf for energy loss $\Delta$ of charged particle when traversing given thickness of matter.
+
+(The model breaks down in the tails of distribution.)
 \end{frame}
 
 \begin{frame}{Multivariate gaussian}
