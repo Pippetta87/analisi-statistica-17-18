@@ -254,15 +254,14 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 
 \begin{frame}{How data well fit the model?}
 GOF: data una misura determino probabilit\'a di avere un risultato meno in accordo con ipotesi $H_0$, tecnica esclusivamente frequentista.
-Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}$, non specifico ipotesi alternative.
+Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}\prob{(T(x)\in C|H_0)}$, non specifico ipotesi alternative.
 \begin{itemize}
 \item Test statistic: function of data which measure ''distance'' between data and hypothesys
 \item Map statistic to P-value: suppose $\frac{p_1(X)}{p_0(X)}$ continuo, $\alpha<\alpha': S_{\alpha}\subset S_{\alpha'}$, p-value p is smallest significance level at which hypothesis would be rejected for the given observation.
 \end{itemize}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\]
-\[p(X)=\inf\{\alpha: X\in C_{\alpha}\}\]
+\[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in C_{\alpha}\}\]
 \end{column}
 \begin{column}{0.5\textwidth}
 
@@ -280,6 +279,7 @@ Costruire p-value per cui test unbiased: se considero $H_1$ alternativa la proba
 Observed counts: $N=12$
 \[P_{12}=\sum_{n: |n-\mu|\geq5.3}\frac{\exp{-\mu}\mu^n}{n!}=\sum_{n=1}^{12}+\sum_{23}^{\infty}\]
 $P_{12}=0.229$ is the probability to observe event at least as far as the observed.
+$0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \end{block}
 \end{wordonframe}
 

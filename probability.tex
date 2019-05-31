@@ -114,7 +114,6 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 \begin{itemize}
 \item Distribuzione di probabilit\'a cumulante: $F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$.
 \item $\alpha$-point, quantile of order $\alpha$: $F(x_{\alpha})=\alpha$.
-\item Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$: $g(a)=f(x(a))|\TDy{a}{x}|$.
 \item Probabilit\'a $([x,x+dx],y)=(A)$: marginal pdf for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$.
 $\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: T Bayes $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and law of total prob. $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$.
 \item Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
@@ -128,11 +127,14 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}
 \begin{frame}{Funzioni di RV}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.8\textwidth,keepaspectratio]{RVfunc}
+	\includegraphics[width=0.65\textwidth,keepaspectratio]{RVfunc}
 	\label{fig:RVfunc}
 \end{figure}
+%Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
 \begin{align*}
-&g(a)=f(x(a))\left|\TDy{a}{x}\right|\\
+%&g(a)=f(x(a))|\TDy{a}{x}|\tag*{g(a)\,da=f(x)\,dx}\\
+&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{x}{a}|da}f(x')\,dx'\\
+&\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|\\
 &g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
 &\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
 \end{align*}
@@ -926,7 +928,7 @@ Diagonal $\Sigma$ \'e equivalente a n gaussiane. Una gaussiana multivariata si o
 \subsection{Chi quadro}\linkdest{chi2}
 
 \begin{frame}{Propriet\'a $\chi^2$}
-La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^2)}$ \'e la distribuzione di probabilit\'a di $\sum_1^{\nu}x_i^2$ con $x_i\to N(0,1)$, $\chi^2$ non centrale $x_i\to N(\mu_i,1)$, parametro non centralit\'a $\lambda=\sum\mu_i^2$.
+La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^2)}$ \'e la distribuzione di probabilit\'a di $\sum_1^{\nu}x_i^2$ con $x_i\to N(0,1)$ ($\sum_{i=1}^N\frac{(x_i-\mu_i)^2}{\sigma_i^2}$), $\chi^2$ non centrale $x_i\to N(\mu_i,1)$, parametro non centralit\'a $\lambda=\sum\mu_i^2$.
 \begin{columns}[T]
 	\begin{column}{0.7\textwidth}
 		Momenti:
