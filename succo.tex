@@ -17,4 +17,31 @@ Esperimento: procedura definita
 
 \end{wordonframe}
 
+\section{Compiti}
 
+\begin{wordonframe}[]{Combinazione p-value per 10 osservabili indipendenti}
+Fit di massima likelihood per le 10 osservabili (binned) basandosi su teoria: istogrammi suff. popolati per GOF test di Pearson con 30 dof (31 bins?)
+\begin{table}[h!]
+\centering
+\begin{tabular}{||ccccccccccc||} 
+$\chi^2(/30?)&38.33&40.87&30.70&36.91&39.97&36.97&20.48&32.34&41.32&41.41$\\
+$P(\chi^2_{30}<x)$&0.859&0.911&0.570&0.820&0.894&0.822&0.096&0.648&0.918&0.920\\
+\end{tabular}
+\end{table}
+Impressione che ci siano troppi valori alti del $\chi^2$: come risolvere il dubbio in maniera rigorosa?
+\begin{enumerate}
+\item \mykeyword{additivit\'a del $\chi^2$}: somma quadrati di RV normali standard. 
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+Sommando $\chi^2$ in tab si ottiene RV con pdf $\chi^2_{300}$ approssimabile con gaussiana con $\sigma=\sqrt{2N}\approx24.5$.
+$\sum\chi^2_i=359.3$, siamo a $1.21\sigma$
+\end{column}\begin{column}{0.5\textwidth}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=\textwidth]{}\caption{}\label{fig:}\end{figure}
+\end{column}\end{columns}
+\item KS test: campione di 10 valori in accordo con pdf $\chi^2_{30}$ (cumulante $\prob{(\chi^2_{30}<x)}$ in tabella). Calcolo $F_n(x_{k-1})-F_n(x_k)$ e $F_n(x_k)-F_n(x_k)$:  $|0-0.096|$, $|0.1-0.57|$, $|0.2-0.648|$, $|0.3-0.82|$, $|0.4-0.822|$, $|0.5-0.859|$, $|0.6-0.894|$, $|0.7-0.914|$, $|0.8-0.918|$, $|0.9-0.926|$; $\Delta=0.52$??
+\item Combinazione diretta p-values: $p_i=1-\prob{(\chi^2_{30}<x)}$, \mykeyword{pdf somma log p-values} $-2\log{(\prod^Np_i)}$ ha pdf $\chi^2_{2N}$
+\item Test binned: hist of p-values (3-4) e considero LR con pdf uniforme (\mykeyword{pdf p-value}) e quindi usarlo per test basato su pdf asintotica (esatta, calcolandola)
+\item Considerare max(min) dei p-values e usare pdf $x_M$ per test
+\item Test della mediana
+\item Test basato su propriet\'a pdf $\chi^2_{30}$: test varianza $2N$; test secondo momento attorno a media nominale 30.
+\end{enumerate}
+\end{wordonframe}
