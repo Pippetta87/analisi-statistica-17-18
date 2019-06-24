@@ -912,6 +912,23 @@ pdf for energy loss $\Delta$ of charged particle when traversing given thickness
 (The model breaks down in the tails of distribution.)
 \end{frame}
 
+\begin{frame}{Rayleigh}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+x,y RV $N(0,\sigma^2)$
+\begin{align*}
+&z=\sqrt{x^2+y^2}\\
+&f(z)=\frac{z}{\sigma^2}\exp{-\frac{z^2}{2\sigma^2}}\\
+&F(z)=1-\exp{-\frac{z^2}{2\sigma^2}}\\
+&\mu=\sigma\sqrt{\frac{\pi}{2}},\ \var=(2-\pi/2)\sigma^2
+\end{align*}
+\end{column}\begin{column}{0.5\textwidth}
+\begin{align*}
+&f(z)=\int_{x^2+y^2=z^2}\phi(x)\phi(y)\,dx\,dy\\
+&=2\pi z\frac{1}{2\pi\sigma^2}\exp{-\frac{z^2}{2\sigma^2}}
+\end{align*}
+\end{column}\end{columns}
+\end{frame}
+
 \begin{frame}{Multivariate gaussian}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
