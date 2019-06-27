@@ -75,10 +75,42 @@ Determinazione $p(\mu=x_2)$ dove $\mu$ pu\'o essere vista come seconda misura pi
 \begin{block}{\mykeyword{Stima bayesiana di m}}
 Assumo prior uniforme in $\log{m}$: $\prob{(m)}\propto\frac{1}{m}$, \mykeyword{posterior} $\pi(m)\propto L(\mu|m)\prob{(m)}=\frac{6\mu}{m^3}-\frac{6\mu^2}{m^4}$ ($\prob{(H)}=\frac{\prob{(E|H)\prob{(H)}}}{\prob{(E)}}$): la posterior va normalizzata tra $[\mu,+\infty]$ (likelihood nulla  in $[0,\mu]$), $\pi(m)=\frac{3\mu^2}{m^3}-\frac{3\mu^3}{m^4}$, il massimo fornisci una stima bayesiana di m: $\hat{m}=\frac{4}{3}\mu$.
 \end{block}
-
 \end{column}\end{columns}
 \begin{block}{Limite superiore/bilaterale}
 \mykeyword{Limite superiore per m di $U(0,m)$ da mediana campionaria}: $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=\cl=0.9$, con $y=\frac{\mu}{m}$ si risolve $F(\mu)=y^2(3-2y)=1-\cl$ ha soluzione $y=0.1958$ quindi $m<\frac{\mu}{0.1958}$.
 \mykeyword{Limite bilaterali simmetrici per m da mediana campionaria}: $F(\mu)=y^2(3-2y)=(1-\cl)/2$ $y_+=0.13535$, $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=(1-\cl)/2$ quindi $F(\mu)=y^2(3-2y)=(1+\cl)/2$ e $y_-=0.8647$: Limiti bilaterali con $\cl=0.9$ sono $\frac{\mu}{0.8647}<m<\frac{\mu}{0.13535}$
 \end{block}
+\begin{block}{Limiti credibilit\'a Bayesiana}
+prior uniform, $\cr=90\%$. La posterior \'e $\pi(m)=\frac{2\mu}{m^2}-\frac{2\mu^2}{m^3}$ diversa da zero in $[\mu,\+infty]$ e la cumulante $F(m)=\int_{\mu}^m\pi(\tilde{m})\,d\tilde{m}=1+\mu(\frac{\mu}{m^2}-\frac{2}{m})$:
+\begin{align*}
+&F(m_{min})=\frac{1-\cl}{2}\\
+&F(m_{max})=\frac{1+\cl}{2}\\
+&\frac{\mu}{1-\sqrt{(1-\cl)/2}}<m<\frac{\mu}{1-\sqrt{(1+\cl)/2}}
+\end{align*}
+dove ho scelto le soluzioni maggiori di $\mu$, per il limite superiore si ha $m<66.26$.
+\end{block}
+\begin{block}{Limiti confidenza al $90\%\cl$ a la FC}
+Imponiamo il LR-ordering e coverage $90\%$
+\begin{equation*}
+\lambda\propto\mu\prob{(\mu;m)}=6\frac{\mu^2}{m^2}(1-\frac{\mu}{m})
+\end{equation*}
+LR \'e unimodale: un intervallo con $\lambda(m_1)=\lambda(m_2)$, mentre il coverage richiede $\int_{m_1}^{m_2}\prob{(\mu;m)}\,d\mu=\cl$ da cui si ottiene il sistema di equazioni
+\begin{align*}
+&y_2^3-y_1^3=\cl\\
+&y_2^2-y_1^2=\cl\\
+&y_1=\frac{m_1}{m},\ y_1=\frac{m_1}{m}\\
+&\frac{\mu}{0.96804}<m<\frac{\mu}{0.192606}
+\end{align*}
+\end{block}
+\end{wordonframe}
+
+\begin{wordonframe}{math }
+\begin{block}{Soluzione equazione di secondo grado}
+\begin{align*}
+&4a(ax^2+bx+c)=0\\
+&4a^2x^2+4abx+4ac+b^2-b^2=0\\
+&(2ax+b)^2=b^2-4ac
+\end{align*}
+\end{block}
+
 \end{wordonframe}
