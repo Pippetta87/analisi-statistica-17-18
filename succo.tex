@@ -17,7 +17,7 @@ Esperimento: procedura definita
 
 \end{wordonframe}
 
-\section{Compiti}
+\section{Compiti}\linkdest{compiti}
 
 \begin{wordonframe}{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}
 Fit di massima likelihood per le 10 osservabili (binned) basandosi su teoria: istogrammi suff. popolati per GOF test di Pearson con 30 dof (31 bins?)
@@ -46,10 +46,39 @@ $\sum\chi^2_i=359.3$, siamo a $1.21\sigma$
 \end{enumerate}
 \end{wordonframe}
 
-\begin{wordonframe}{Stimatori da mediana, confidence interval (16/07/18)}
+\begin{wordonframe}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
 \begin{columns}[T]\begin{column}{0.5\textwidth}
-
+x RV $U(0,m)$; $2k+1=3$ misura la mediana $x_2=3.4$
+\begin{block}{MLE estimator, bias, incertezza statistica}
+\begin{align*}
+&\prob{(\mu=x_2)}=6\frac{\mu}{m^2}(1-\frac{\mu}{m})\\
+&\hat{\mu}_{MLE}=3/2\mu\\
+&\E{[\hat{m}]}=\frac{3}{2}\E{[\mu]}\frac{3}{2}\int_0^{m}\mu\prob{(\mu)}\,d\mu=\frac{3}{4}m\\
+&\hat{m}'=\frac{4}{3}\hat{m}=2\mu\\
+&\var{[\hat{m}]}=\sigma^2_{\hat{m}}=\frac{9}{4}\var{\mu}=\frac{9}{4}\sigma_{\mu}^2\\
+&\var{[\hat{m}']}=\sigma^2_{\hat{m}'}=4\var{\mu}=4\sigma_{\mu}^2\\
+&\sigma^2_{\mu}=\exv{\mu^2}-\exv{\mu}^2=\frac{m^2}{20}
+\end{align*}
+Le varianze sono funzione del valore di m: le stimo usando $\hat{m}$
+\end{block}
 \end{column}\begin{column}{0.5\textwidth}
+Likelihood pdf uniforme: \begin{equation*}L_x(m)=\left\{\begin{array}{c}
+0\ m<x\\
+1/m\ m\geq x\\
+\end{array}
+\end{equation*}
+Determinazione $p(\mu=x_2)$ dove $\mu$ pu\'o essere vista come seconda misura pi\'u grande o mediana; per $2k+1$ misure:
+\begin{align*}
+&\prob{(\mu;m)}=\prob{(\mu)}F(\mu)^k[1-F(\mu)]^k(2k+1)\binom{2k}{k}\\
+&\prob{(\mu;m)}=\frac{1}{m}(\frac{\mu}{m})^k(1-\frac{\mu}{m})^k\frac{(2k+1)!}{k!k!1!}
+\end{align*}
+\begin{block}{\mykeyword{Stima bayesiana di m}}
+Assumo prior uniforme in $\log{m}$: $\prob{(m)}\propto\frac{1}{m}$, \mykeyword{posterior} $\pi(m)\propto L(\mu|m)\prob{(m)}=\frac{6\mu}{m^3}-\frac{6\mu^2}{m^4}$ ($\prob{(H)}=\frac{\prob{(E|H)\prob{(H)}}}{\prob{(E)}}$): la posterior va normalizzata tra $[\mu,+\infty]$ (likelihood nulla  in $[0,\mu]$), $\pi(m)=\frac{3\mu^2}{m^3}-\frac{3\mu^3}{m^4}$, il massimo fornisci una stima bayesiana di m: $\hat{m}=\frac{4}{3}\mu$.
+\end{block}
 
 \end{column}\end{columns}
+\begin{block}{Limite superiore/bilaterale}
+\mykeyword{Limite superiore per m di $U(0,m)$ da mediana campionaria}: $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=\cl=0.9$, con $y=\frac{\mu}{m}$ si risolve $F(\mu)=y^2(3-2y)=1-\cl$ ha soluzione $y=0.1958$ quindi $m<\frac{\mu}{0.1958}$.
+\mykeyword{Limite bilaterali simmetrici per m da mediana campionaria}: $F(\mu)=y^2(3-2y)=(1-\cl)/2$ $y_+=0.13535$, $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=(1-\cl)/2$ quindi $F(\mu)=y^2(3-2y)=(1+\cl)/2$ e $y_-=0.8647$: Limiti bilaterali con $\cl=0.9$ sono $\frac{\mu}{0.8647}<m<\frac{\mu}{0.13535}$
+\end{block}
 \end{wordonframe}
