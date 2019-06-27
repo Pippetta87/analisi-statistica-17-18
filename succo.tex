@@ -102,9 +102,38 @@ LR \'e unimodale: un intervallo con $\lambda(m_1)=\lambda(m_2)$, mentre il cover
 &\frac{\mu}{0.96804}<m<\frac{\mu}{0.192606}
 \end{align*}
 \end{block}
+\begin{block}{$2k+1$ misure: propriet\'a statistica mediana per costruzione estimatori}
+pdf per mediana campionaria
+\begin{equation*}
+\prob{(\mu;m)}=\frac{1}{m}(\frac{\mu}{m})^k(1-\frac{\mu}{m})^k\frac{(2k+1)!}{k!k!1!}
+\end{equation*}
+\mykeyword{stimatore massima likelihood}:
+\begin{align*}
+&\log{L(m)}=\log{\frac{1}{m}}+k\log{\frac{\tilde{m}}{m}}+k\log{(1-\frac{\tilde{m}}{m})}+\const{}\\
+&\TDy{m}{\log{L}}=0 \Rightarrow \hat{m}=\frac{2k+1}{k+1}\tilde{m}
+\end{align*}
+Bias estimatore:
+\begin{align*}
+&\E{[\hat{m}]}=\frac{2k+1}{k+1}\E{[\tilde{m}]}\\
+&\E{[\tilde{m}]}=\int_0^m\tilde{m}\prob{(\tilde{m};m)}\,d\tilde{m}\\
+&=\frac{(2k+1)!}{k!k!1!}m\int_0^1x^{k+1}(1-x)^k\,dx\ (x=\frac{\tilde{m}}{m})\\
+&\E{[\tilde{m}]}=\frac{(2k+1)!}{k!k!1!}m\frac{\Gamma(k+1)\Gamma(k+2)}{\Gamma(2k+3)}=\frac{m}{2}\ (\Gamma(k+1)=k!)\\
+&\E{[\hat{m}]}=\frac{2k+1}{2(k+1)}m\\
+&b=m-\frac{2k+1}{2(k+1)}=\frac{1}{2(k+1)}m\to0
+\end{align*}
+Varianza
+\begin{align*}
+&\E{[\tilde{m}^2]}=\frac{(2k+1)!}{k!k!1!}m^2\int_0^1x^{k+2}(1-x)^k\,dx\\
+&=\frac{(2k+1)!}{k!k!1!}m^2\frac{\Gamma(k+1)\Gamma(k+3)}{\Gamma(2k+4)}\\
+&=\frac{(k+1)(k+1)}{(2k+3)(2k+2)}m^2\\
+&\var{[\tilde{m}]}=\E{[\tilde{m}^2]}-\E{[\tilde{m}]}^2=m^2\frac{1}{4(2k+3)}\\
+&\var{[\hat{m}]}=(\frac{2k+1}{k+1})^2\var{[\tilde{m}]}\to0
+\end{align*}
+\mykeyword{Efficienza estimatore mediana campionaria per pdf uniforme}: non si pu\'o usare MVB come riferimento assoluto dato che per pdf uniforme $I_F$ non \'e proporzionale al numero di misure; efficienza relativa rispetto a stimatore ricavato da statistica suff. $x_M$ $\var{[x_M]}=frac{m^2}{k^2}$: il MLE ricavato da mediana \'e meno efficiente ed efficienza relativa va a 0.
+\end{block}
 \end{wordonframe}
 
-\begin{wordonframe}{math }
+\begin{wordonframe}{math basic}
 \begin{block}{Soluzione equazione di secondo grado}
 \begin{align*}
 &4a(ax^2+bx+c)=0\\
