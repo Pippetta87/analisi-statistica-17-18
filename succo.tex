@@ -193,10 +193,20 @@ Calcolare MLE massimizzando likelihood combinata:
 &2(N-1)m^2+(x_2'+x_2'')(2N-1)m-2N(x_2'x_2'')=0\\
 &\hat{m}_{\pm}=\frac{(x_2'+x_2'')(2N-1)\pm\sqrt{(x_2'+x_2'')^2(2N-1)^2-16N(N-1)x_2'x_2''}}{4(N-1)}
 \end{align*}
-quale soluzione \'e nella regione in cui la likelihood \'e diversa da zero? Asintoticamente $\hat{m}=\max{(x_2',x_2'')}$
+quale soluzione \'e nella regione in cui la likelihood \'e diversa da zero? Asintoticamente $\hat{m}=\max{(x_2',x_2'')}$ (Assumo $x_2''>x_2'$)
 \end{block}
 \begin{block}{\keyword{Test bilaterale di ipotesi composte: dati da pdf uniforme con $m_1\neq m_2$?}}
-
+Likelihood ratio test:
+\begin{equation*}
+&\lambda(x_1',x_2'')=-2\log{\frac{\sup_m{p(x_2',x_2'';m)}}{\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}}\\
+\end{equation*}
+\keyword{chiarire cosa significa massimizzare likleihood combinata per pi\'u parametri o uno!}
+\begin{align*}
+&\hat{m}=f(N)x_2\Rightarrow p(x_2',\hat{m})=G(N)/x_2',\ p(x_2'',\hat{m})=G(N)/x_2''\\
+&\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}\propto\frac{1}{x_2'x_2''},\ p(x_2',x_2'';m)\propto(m-x_2')(m-x_2'')(x_2'x_2'')\expy{N-2}\\
+&??\sup_{m}p(x_2',x_2'';m)\propto x_2''(x_2''-x_2')(x_2'x_2'')\expy{N-2}
+\end{align*}
+\keyword{Likelihood ratio monotona (asintoticamente): statistica $t(x_2',x_2'')=x_2''/x_2'$}: il test LR \'e della forma $x_2''/x_2'>q_{\alpha}$
 \end{block}
 \end{wordonframe}
 
