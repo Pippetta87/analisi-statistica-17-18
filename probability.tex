@@ -72,7 +72,7 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 	\tikz{\draw[->] (-3.5,0) -- (3.5,0) node [below] {};
 		\foreach \x/\d in {-2/T,-1/2T,0/3T,1/4T,2/5T}
 		\draw (\x, 0.1) -- (\x, -0.1) node [below] {\shortstack{\d}};}
-	Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
+	Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia \mykeyword{pdf esponenziale} $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
 	\begin{columns}[T]
 		\begin{column}{0.4\textwidth}
 			Tempo medio attesa, tempo medio ritardo e tempo medio attesa pi\'u ritardo sono uguali? A $\frac{\tau}{2}$?
@@ -84,14 +84,14 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 			\end{align*}
 		\end{column}
 	\end{columns}
-	Tempo medio di attesa in quale ensamble?
+	\mykeyword{Tempo medio di attesa in quale ensamble?}
 	\begin{columns}[T]
 		\begin{column}{0.55\textwidth}
 			\begin{align*}
 			&\frac{\sum_i\sum_j\frac{T_{ij}}{n_i}}{N}\neq\frac{\sum_{ij}T_{ij}}{\sum_in_i}
 			\end{align*}
 			\mykeyword{Ex.: correlazione $x-T_i-n_i$?}
-			Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.\mykeyword{Ex: distro tempi da autobus blu}
+			Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.
 		\end{column}
 		\begin{column}{0.45\textwidth}
 			\begin{align*}
@@ -124,6 +124,8 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}
 \end{itemize}
 \end{frame}
 
+\subsection{Trasformazione pdf per cambio RV}\linkdest{pdfRVchange}
+
 \begin{frame}{Funzioni di RV}
 \begin{figure}
 	\centering
@@ -133,7 +135,7 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$; $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}
 %Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
 \begin{align*}
 %&g(a)=f(x(a))|\TDy{a}{x}|\tag*{g(a)\,da=f(x)\,dx}\\
-&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{x}{a}|da}f(x')\,dx'\\
+&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\\
 &\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|\\
 &g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
 &\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
@@ -360,6 +362,30 @@ $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}
 \end{block}
 \end{frame}
 
+\subsection{Propagazione errori}
+
+\begin{frame}{Propagazione errori}
+\begin{align*}
+&S(\vec{x})\approx y(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
+&\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_i}{y}{\vec{\mu}}\cov{x_ix_j}
+\end{align*}
+\begin{block}{Covarianza e correlazione}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+    \cov{x_ix_j}=\E{[(x-\mu_x)(y-\mu_y)]}=\E{[xy]}-\mu_x\mu_y
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+\rho_{xy}=\frac{\cov{x_ix_j}}{\sigma_i\sigma_j}
+\end{align*}
+\end{column}
+\end{columns}
+X,Y indipendenti: $\rho_{XY}=0$ ma non v.v.
+\end{block}
+\end{frame}
+
 \subsection{Funzione caratteristica}\linkdest{moments}
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
@@ -486,31 +512,7 @@ Per gaussiana: $\phi_{\overline{X}}(t)=\exp{-\frac{t^2}{4}}$, $\sigma^2\to\frac{
 \end{block}
 \end{wordonframe}
 
-\subsection{Propagazione errori}
-
-\begin{frame}{Propagazione errori}
-\begin{align*}
-&S(\vec{x})\approx y(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
-&\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_i}{y}{\vec{\mu}}\cov{x_ix_j}
-\end{align*}
-\begin{block}{Covarianza e correlazione}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-    \cov{x_ix_j}=\E{[(x-\mu_x)(y-\mu_y)]}=\E{[xy]}-\mu_x\mu_y
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-\rho_{xy}=\frac{\cov{x_ix_j}}{\sigma_i\sigma_j}
-\end{align*}
-\end{column}
-\end{columns}
-X,Y indipendenti: $\rho_{XY}=0$ ma non v.v.
-\end{block}
-\end{frame}
-
-\subsection{Funzione caratteristica}\linkdest{moments}
+%\subsection{Funzione caratteristica}\linkdest{moments}
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
 \begin{columns}[T]
@@ -871,7 +873,7 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)
 &\phi_e(t)=\frac{1}{1-it\xi}
 &M_e(t)=\lambda\intzi{}\exp{-(\lambda-t)x}\,dx=\frac{\lambda}{\lambda-t}
 \end{align*}
-La probabilit\'a di fra due eventi di una pdf poissoniana \'e esponenziale: 
+La \keyword{pdf del tempo fra due eventi di una pdf poissoniana \'e esponenziale}: 
 Hyperexponential:
 Erlang
 \end{frame}

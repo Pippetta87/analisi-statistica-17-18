@@ -9,13 +9,36 @@ Esperimento: procedura definita
 
 \end{block}
 
-
-
 \end{frame}
 
 \begin{wordonframe}{Descrizione}
 
 \end{wordonframe}
+
+\begin{frame}{Trasformazione pdf per cambio variabile}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.65\textwidth,keepaspectratio]{RVfunc}
+	\label{fig:RVfunc}
+\end{figure}
+%Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
+\begin{align*}
+%&g(a)=f(x(a))|\TDy{a}{x}|\tag*{g(a)\,da=f(x)\,dx}\\
+&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\\
+&\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|\\
+&g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
+&\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
+\end{align*}
+\end{frame}
+
+\section{Data analysis}
+
+\begin{frame}{Propagazione errori}
+\begin{align*}
+&S(\vec{x})\approx y(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
+&\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_i}{y}{\vec{\mu}}\cov{x_ix_j}
+\end{align*}
+\end{frame}
 
 \section{Compiti}\linkdest{compiti}
 
@@ -207,7 +230,64 @@ Likelihood ratio test:
 &??\sup_{m}p(x_2',x_2'';m)\propto x_2''(x_2''-x_2')(x_2'x_2'')\expy{N-2}
 \end{align*}
 \keyword{Likelihood ratio monotona (asintoticamente): statistica $t(x_2',x_2'')=x_2''/x_2'$}: il test LR \'e della forma $x_2''/x_2'>q_{\alpha}$
+\keyword{Monotone LR in statistic $T(x)$} and \mykeyword{Karlin-Rubin theorem}
 \end{block}
+\end{wordonframe}
+
+\begin{wordonframe}{Stima di tempo medio tra eventi di onde gravitazionali}
+Conteggi generati da eventi casuali statisticamente indipendenti: distribuzione del tempo tra due eventi (Poissoniana con $n\approx1$) esponenziale $\prob{(t;\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}$. Il massimo della likelihood ci fornisce stimatore $\hat{t}=t_m=\SI{39}{\day}$ quindi ha la stessa distribuzione esponenziale dei tempi t: $\E{[\hat{\tau}]}=\tau$, $\var{[\tau]}=\tau^2$ quindi $\hat{\tau}=\SI{0.107+-107}{\year}$.
+Il \mykeyword{MLE trasforma in modo banale sotto cambio di variabile}: $\hat{\lambda}=\hat{\frac{1}{\tau}}=\SI{9.3}{\counts\per\year}$; usando formula per propagazione errori si ha
+\begin{equation*}
+\sigma(\lambda)=\sqrt{\var{[\hat{\lambda}]}}\approx\frac{1}{\tau^2}\sqrt{\var{[\tau]}}
+\end{equation*}
+Tuttavia l'\mykeyword{approssimazione quasi lineare del cambio di variabile} \'e una pessima approssimazione sull'ampio intervallo di incertezze della variabile originale.
+La distribuzione di $\hat{\lambda}=\frac{1}{\hat{\tau}}$ \'e:
+\begin{equation*}
+\prob{(\hat{\lambda},\lambda)}=\prob{(\hat{\tau}(\hat{\lambda});\lambda=\frac{1}{\tau})}|\TDy{\hat{\lambda}}{\hat{\tau}(=\frac{1}{\hat{\lambda}})}|
+\end{equation*}
+Momenti di ordine $>0$ non esistono: $\var{[\lambda]}=\infty$.
+\mykeyword{bande di confidenza per pdf esponenziale}
+Stima intervallare di $\lambda=\frac{1}{\tau}$ e $\prob{(t;\lambda)}=\lambda\exp{-\lambda t}$. \mykeyword{probability ordering}: pdf \'e monotona decrescente in t quindi p-ordering equivale a $o(t)=-t$, $t\leq t_{max}(\lambda)$
+\begin{align*}
+&\int_0^{t_{max}}\lambda\exp{-\lambda t}\,dt=\cl{}\\
+&t_{max}(\lambda)=-\frac{\log{(1-\cl{})}}{\lambda}
+\end{align*}
+$t_{max}(\lambda)$ decrescente in $\lambda$, da $t<t_{max}(\lambda)$ si vede che \mykeyword{la banda di confidenza \'e della forma $t<t_{max}(\lambda)$ porta a limite $\lambda\leq\lambda_{max}$} (limite superiore); l'inversione porta a $\lambda_{max}=-\frac{\log{(1-\cl{})}}{t_m}$.
+Per ottenere limite inferiore occorre ordinamento $o(t)=t$:
+\begin{equation*}
+\int_{t_{min}}^{\infty}\lambda\exp{-\lambda t}\,dt=\cl{}\Rightarrow t_{min}(\lambda)=-\frac{\log{(\cl{})}}{\lambda}
+\end{equation*}
+banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$. Limite inferiore a un fenomeno nuovo!
+
+LR-ordering:
+\begin{equation*}
+\lr{}=\frac{\prob{(t;\lambda)}}{\sup_{\lambda}\prob{(t;\lambda)}}=\lambda t\exp{-\lambda t}
+\end{equation*}
+fissato $\lambda$ ha singolo massimo in t e monotona da ambo i lati: usando $o(t)=\lr{(t)}$ ottengo intervallo $[t_{min},t_{max}]$.
+
+\mykeyword{prior impropria}: in mancanza di una scala definita utilizzo prior uniforme in $[0,\infty]$ (non normalizabile). Devo normalizare la \mykeyword{posterior}:
+\begin{align*}
+&\pi(\lambda|t_m)\propto \lambda\exp{-t_m\lambda}=L_{t_m}(\lambda)\\
+&\pi(\lambda|t_m)=t_m^2\lambda\exp{-t_m\lambda}
+\end{align*}
+quindi \mykeyword{limite bayesiano inferiore}
+\begin{equation*}
+\int_{\lambda_{min}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\cl{}
+\end{equation*}
+
+\mykeyword{limite bayesiano bilaterale simmetrico}:
+\begin{align*}
+&\int_0^{\lambda_{min}}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}\\
+&\int_{\lambda_{max}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}
+\end{align*}
+
+\mykeyword{limite bayesiano utilizzando posterior ordering}:
+\begin{align*}
+&\exp{-t_m\lambda_{min}}(t_m\lambda_{min}+1)-\exp{-t_m\lambda_{max}}(t_m\lambda_{max}+1)=\cl\\
+&\lambda_{min}\exp{-t_m\lambda_{min}}-\lambda_{max}\exp{-t_m\lambda_{max}}=0
+\end{align*}
+
+
 \end{wordonframe}
 
 \begin{wordonframe}{math basic}
