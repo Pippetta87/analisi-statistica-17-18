@@ -181,7 +181,7 @@ Assumo prior uniforme in $\log{m}$: $\prob{(m)}\propto\frac{1}{m}$, \mykeyword{p
 \end{wordonframe}
 
 \begin{wordonframe}{Stime limite superiore dati da pdf uniforme (Compito 09/11/18)}
-\begin{block}{\keyword{pdf di $X_{(2)}$ per N estrazioni da pdf uniforme}}
+\begin{block}{\mykeyword{pdf di $X_{(2)}$ per N estrazioni da pdf uniforme}}
 \begin{align*}
 &\prob{X_{(k)}<x}=\sum_{i=k}^nc(n,i)F(x)^i[1-F(x)]^{n-i}\\
 &\PDof{p}\sum_{i=k}^nc(n,i)p^{i}[1-p]^{n-i}=nC(n-1,k-1)p\expy{k-1}(1-p)\expy{k-1}\\
@@ -197,40 +197,40 @@ Massimizzando $L(m)$ per m si ha $\hat{m}=\frac{N}{N-1}x_2$, si corregge per il 
 \end{align*}
 \end{block}
 \begin{block}{Efficienza stimatore di m da statistica $x_M$}
-\keyword{pdf di $x_M$} \'e $\frac{N}{m}(\frac{x_M}{m})^{N-1}$: stima di \keyword{massima likelihood di m da statistica $x_M$}: $\hat{m}=x_M$; stimatore unbiased $\hat{m}'=\frac{N+1}{N}\hat{m}$.
+\mykeyword{pdf di $x_M$} \'e $\frac{N}{m}(\frac{x_M}{m})^{N-1}$: stima di \mykeyword{massima likelihood di m da statistica $x_M$}: $\hat{m}=x_M$; stimatore unbiased $\hat{m}'=\frac{N+1}{N}\hat{m}$.
 La varianza di $\hat{m}'$ \'e
 \begin{align*}
 &\E{[\hat{m}'^2]}-\E{\hat{m'}}^2=\frac{(N+1)^2}{N^2}\frac{N}{N+2}m^2-m^2=\frac{1}{N(N+2)}m^2
 \end{align*}
 \end{block}
 \begin{block}{Confronto efficienza stimatore da $x_2$ vs $x_M$}
-L'\keyword{efficienza relativa di due stimatori} si ottiene:
+L'\mykeyword{efficienza relativa di due stimatori} si ottiene:
 \begin{equation*}
 \epsilon_r=\frac{\var{[\hat{m'}_{M}]}}{\var{[\hat{m'}_{x_2}]}}
 \end{equation*}
 \end{block}
-\begin{block}{\keyword{Combinazione likelihood 2 misure di $x_2$}}
+\begin{block}{\mykeyword{Combinazione likelihood 2 misure di $x_2$}}
 Calcolare MLE massimizzando likelihood combinata:
 \begin{align*}
-&L(m_1,m_2;x_2'x_2'')=N^2(N-1)^2\frac{1}{m^{2N}}x_2'\expy{N-1}x_2''\expy{N-2}(m-x_2')(m-x_2'')\\
+&L(m_1,m_2;x_2'x_2'')=N^2(N-1)^2\frac{1}{m^{2N}}{x_2'}^{N-1}{x_2''}^{N-2}(m-x_2')(m-x_2'')\\
 &2(N-1)m^2+(x_2'+x_2'')(2N-1)m-2N(x_2'x_2'')=0\\
 &\hat{m}_{\pm}=\frac{(x_2'+x_2'')(2N-1)\pm\sqrt{(x_2'+x_2'')^2(2N-1)^2-16N(N-1)x_2'x_2''}}{4(N-1)}
 \end{align*}
 quale soluzione \'e nella regione in cui la likelihood \'e diversa da zero? Asintoticamente $\hat{m}=\max{(x_2',x_2'')}$ (Assumo $x_2''>x_2'$)
 \end{block}
-\begin{block}{\keyword{Test bilaterale di ipotesi composte: dati da pdf uniforme con $m_1\neq m_2$?}}
+\begin{block}{\mykeyword{Test bilaterale di ipotesi composte: dati da pdf uniforme con $m_1\neq m_2$?}}
 Likelihood ratio test:
 \begin{equation*}
-&\lambda(x_1',x_2'')=-2\log{\frac{\sup_m{p(x_2',x_2'';m)}}{\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}}\\
+\lambda(x_1',x_2'')=-2\log{\frac{\sup_m{p(x_2',x_2'';m)}}{\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}}
 \end{equation*}
-\keyword{chiarire cosa significa massimizzare likleihood combinata per pi\'u parametri o uno!}
+\mykeyword{chiarire cosa significa massimizzare likleihood combinata per pi\'u parametri o uno!}
 \begin{align*}
 &\hat{m}=f(N)x_2\Rightarrow p(x_2',\hat{m})=G(N)/x_2',\ p(x_2'',\hat{m})=G(N)/x_2''\\
-&\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}\propto\frac{1}{x_2'x_2''},\ p(x_2',x_2'';m)\propto(m-x_2')(m-x_2'')(x_2'x_2'')\expy{N-2}\\
-&??\sup_{m}p(x_2',x_2'';m)\propto x_2''(x_2''-x_2')(x_2'x_2'')\expy{N-2}
+&\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}\propto\frac{1}{x_2'x_2''},\ p(x_2',x_2'';m)\propto(m-x_2')(m-x_2'')(x_2'x_2'')^{N-2}\\
+&??\sup_{m}p(x_2',x_2'';m)\propto x_2''(x_2''-x_2')(x_2'x_2'')^{N-2}
 \end{align*}
-\keyword{Likelihood ratio monotona (asintoticamente): statistica $t(x_2',x_2'')=x_2''/x_2'$}: il test LR \'e della forma $x_2''/x_2'>q_{\alpha}$
-\keyword{Monotone LR in statistic $T(x)$} and \mykeyword{Karlin-Rubin theorem}
+\mykeyword{Likelihood ratio monotona (asintoticamente): statistica $t(x_2',x_2'')=x_2''/x_2'$}: il test LR \'e della forma $x_2''/x_2'>q_{\alpha}$
+\mykeyword{Monotone LR in statistic $T(x)$} and \mykeyword{Karlin-Rubin theorem}
 \end{block}
 \end{wordonframe}
 
