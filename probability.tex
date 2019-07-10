@@ -54,7 +54,7 @@ Disjoint: $\prob{A\cap B}=0$.
 
 \begin{frame}{Interpretazioni di probabilit\'a}
 \begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
-RV: \sout{Deterministic} Stochastic phenomena (\mykeyword{frequentista} Possibili risultati di una misura/\mykeyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni)
+RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili risultati di una misura/\keyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni)
 \end{block}
 \begin{block}{Probabilit\'a frequentista}
 Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
@@ -72,7 +72,7 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 	\tikz{\draw[->] (-3.5,0) -- (3.5,0) node [below] {};
 		\foreach \x/\d in {-2/T,-1/2T,0/3T,1/4T,2/5T}
 		\draw (\x, 0.1) -- (\x, -0.1) node [below] {\shortstack{\d}};}
-	Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia \mykeyword{pdf esponenziale} $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
+	Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia \keyword{pdf esponenziale} $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
 	\begin{columns}[T]
 		\begin{column}{0.4\textwidth}
 			Tempo medio attesa, tempo medio ritardo e tempo medio attesa pi\'u ritardo sono uguali? A $\frac{\tau}{2}$?
@@ -84,13 +84,13 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 			\end{align*}
 		\end{column}
 	\end{columns}
-	\mykeyword{Tempo medio di attesa in quale ensamble?}
+	\keyword{Tempo medio di attesa in quale ensamble?}
 	\begin{columns}[T]
 		\begin{column}{0.55\textwidth}
 			\begin{align*}
 			&\frac{\sum_i\sum_j\frac{T_{ij}}{n_i}}{N}\neq\frac{\sum_{ij}T_{ij}}{\sum_in_i}
 			\end{align*}
-			\mykeyword{Ex.: correlazione $x-T_i-n_i$?}
+			\keyword{Ex.: correlazione $x-T_i-n_i$?}
 			Soluzione: distro uniforme sul numero di autobus (il quinto ...)/SR autista: quelli con tempi caratteristici pi\'u lunghi raccolgono pi\'u passeggeri.
 		\end{column}
 		\begin{column}{0.45\textwidth}
@@ -287,7 +287,7 @@ $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}
 			&\prob{(z)}=\int\prob_x{(xy)}\prob_y{(y)}|y|\,dy\\
 			&\prob{(z)}=\left\{\begin{matrix}\int_0^1y\,dy\ (z\leq1)\\\int_0^{1/z}y\,dy=\frac{1}{2z^2}\ (z\geq1)\\0\ (z<0)\end{matrix}\right.
 			\end{align*}
-			\mykeyword{EX: Rapporto RV uniformi}
+			\keyword{EX: Rapporto RV uniformi}
 		\end{column}
 	\end{columns}
 \end{wordonframe}
@@ -313,7 +313,7 @@ $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}
 	&\E{(z^2n)}=\infty\\
 	&\E{(z^{2n+1})}=Ind
 	\end{align*}
-	\begin{block}{\mykeyword{Somma di Cauchy}: $S=x+y$}
+	\begin{block}{\keyword{Somma di Cauchy}: $S=x+y$}
 		\[\prob{(S)}=\int_{-\infty}^{+\infty}\frac{1}{\pi}\frac{1}{1+x^2}\frac{1}{\pi}\frac{1}{1+(S-X)^2}\,dx\to\frac{1}{2\pi}\frac{1}{1+(\frac{S}{2})^2}\]
 	\end{block}
 \end{wordonframe}
@@ -344,7 +344,7 @@ $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}
 \begin{block}{Dadi Dungeons\& Dragons}
 	Sei dadi $D_i$ con numero di facce $i=\{4,6,8,10,12,20\}$.
 	\begin{align*}
-	&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\intu{\mykeyword{T. probabilit\'a totale}}\\
+	&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\intu{\keyword{T. probabilit\'a totale}}\\
 	&\prob{(D_i|1)}=\frac{\prob{(1|D_i)\prob{(D_i)}}}{\prob{(1)}}=\frac{\frac{1}{i}\frac{1}{6}}{\frac{1}{6}\sum\frac{1}{i}}\\
 	&\prob{(1|1)}=\sum_i\prob{(1|D_i,1)}\prob{(D_i|1)}&\intertext{(indipendenti: $\prob{(A|B)}=\prob{(A)}$)}
 	&=\sum\frac{1}{i}\prob{(D_i|1)}=\sum\frac{1/i^2}{\sum1/i}\approx0.161\\
@@ -373,7 +373,7 @@ $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
-    \cov{x_ix_j}=\E{[(x-\mu_x)(y-\mu_y)]}=\E{[xy]}-\mu_x\mu_y
+&\cov{x_ix_j}=\E{[(x-\mu_x)(y-\mu_y)]}=\E{[xy]}-\mu_x\mu_y
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -492,8 +492,8 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 \end{wordonframe}
 
 \begin{wordonframe}{(contro)Esempi momenti}
-\begin{block}{pdf di \mykeyword{Cauchy}: non vale LLN}
-\mykeyword{Parametri larghezza e posizione}: $\prob{(x)}=\frac{1}{\pi\Gamma}\frac{1}{1+(\frac{x-m}{\Gamma})^2}$.
+\begin{block}{pdf di \keyword{Cauchy}: non vale LLN}
+\keyword{Parametri larghezza e posizione}: $\prob{(x)}=\frac{1}{\pi\Gamma}\frac{1}{1+(\frac{x-m}{\Gamma})^2}$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
@@ -665,6 +665,12 @@ Convoluzione e prodotto:
 
 \section{Legge grandi numeri - Teorema limite centrale}\linkdest{lln-clt}
 
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
+
 \begin{frame}{Legge grandi numeri}
 $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora \[\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}\]
     \begin{columns}
@@ -679,8 +685,8 @@ $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance:
     \begin{column}{0.6\textwidth}
 Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
 $\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$; Levy theorem: $\overline{X}_n\to\mu$.
-\mykeyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
-\mykeyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
+\keyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
+\keyword{Probability convergence}: Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
     \end{column}
     \end{columns}
 \end{frame}
@@ -729,9 +735,31 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 
 \section{Important pdfs}\linkdest{pdfs}
 
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
+
 \begin{wordonframe}{Combinazioni e permutazioni}
 $n!$: permutazioni - modi distinti di prendere n oggetti
 \end{wordonframe}
+
+\begin{frame}{Gaussian}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\prob{x}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+&F(x)=\frac{1}{2}[1+\Erf([\frac{x-\mu}{\sqrt{2}\sigma}])
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+\phi_X(t)=\exp{\mu it-\sigma^2\frac{t^2}{2}}
+\end{align*}
+\end{column}
+\end{columns}
+\end{frame}
 
 \begin{frame}{Bernoulli, binomiale}
 \begin{block}{Bernoulli: 2 possibili outcomes}
@@ -857,7 +885,7 @@ Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
 \begin{align*}
 &M_P(t)=\sum_k\exp{tk}\frac{\mu^k}{k!}\exp{-\mu}=\Exp{\mu(\exp{t}-1)}
 \end{align*}
-\mykeyword{Ex: media e varianza Poissoniana}
+\keyword{Ex: media e varianza Poissoniana}
 \end{frame}
 
 \begin{frame}{Irwin-Hall}
@@ -873,7 +901,7 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)
 &\phi_e(t)=\frac{1}{1-it\xi}
 &M_e(t)=\lambda\intzi{}\exp{-(\lambda-t)x}\,dx=\frac{\lambda}{\lambda-t}
 \end{align*}
-La \mykeyword{pdf del tempo fra due eventi di una pdf poissoniana \'e esponenziale}: 
+La \keyword{pdf del tempo fra due eventi di una pdf poissoniana \'e esponenziale}: 
 Hyperexponential:
 Erlang
 \end{frame}
@@ -889,7 +917,7 @@ Erlang
 	\end{align*}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-	\begin{block}{\mykeyword{Distribuzione massimo n misure estratte da $U(0,m)$}: pdf di $x_M$}
+	\begin{block}{\keyword{Distribuzione massimo n misure estratte da $U(0,m)$}: pdf di $x_M$}
 		n estrazioni di RV distribuita come $U([0,m])$, $Y=\max{(X_1,\ldots,X_n)}$:
 		\begin{align*}
 		&F(x)=p(x_M<x)=\prod_i\prob{(X_i\leq x)}\\
@@ -973,6 +1001,12 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 \end{frame}
 
 \section{come lo utilizzo}
+
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
 
 \begin{wordonframe}{PDF distanza stelle distribuite uniformemente in x,y,z}
 	\begin{block}{Generazione pdf da distribuzione uniforme}

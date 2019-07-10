@@ -120,7 +120,9 @@ Bib to learn}
  \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
 \makeatother
 
-\AtBeginSection{\frame{\sectionpage}
+\AtBeginSection{
+\addtocounter{cherrysectionlist}{1}
+\frame{\sectionpage}
 }
 \AtBeginSubsection{\frame{\subsectionpage}}
 \makeatletter
@@ -130,7 +132,6 @@ Bib to learn}
 \end{frame}
 \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
 }
-
 %% number, shortname, page.
 \providecommand\beamer@partintoc[3]{%
   \ifnum\c@tocdepth=-1\relax
@@ -177,4 +178,3 @@ Bib to learn}
         \vskip0pt%
     }
     \makeatother
-

@@ -1,5 +1,11 @@
 \section{Test di ipotesi}\linkdest{test}
 
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
+
 \subsection{Ipotesi semplici}
 
 \begin{frame}{Testing simple hypothesis}
@@ -18,8 +24,8 @@
 \begin{frame}{Propriet\'a dei test. MP test.}
 \begin{block}{errore tipo I/II}
 \begin{itemize}
-	\item Errore di tipo I (falso positivo), scarto $H_0$ quando \'e vera (loss,size,taglia,livello di significativit\'a $\alpha=\prob{(x\in C|H_0)}=\prob_0{(x\in C)}$.
-	\item Errore tipo II (falso negativo, contaminazione): probabilit\'a di accettare erroneamente $H_0$, $\prob{(x\in\overline{C}|\not{H_0})}=\beta$. Potenza del test $1-\beta=\prob{(x\in C|H_1)}$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
+	\item \keyword{Errore di tipo I} (falso positivo), scarto $H_0$ quando \'e vera (loss,size,taglia,livello di significativit\'a $\alpha=\prob{(x\in C|H_0)}=\prob_0{(x\in C)}$.
+	\item \keyword{Errore tipo II} (falso negativo, contaminazione): probabilit\'a di accettare erroneamente $H_0$, $\prob{(x\in\overline{C}|\not{H_0})}=\beta$. Potenza del test $1-\beta=\prob{(x\in C|H_1)}$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
 \end{itemize}
 \end{block}
 \end{frame}
@@ -37,8 +43,8 @@ Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
 \begin{frame}{Consistenza e bias}
 \begin{block}{Propriet\'a dei test}
 	\begin{itemize}
-		\item Consistenza: $\lim_{N\to\infty}\prob{(\vec{X}\in w_{\alpha}|H_1)}=1$ non \'e detto che sia uniforme.
-		\item unbiasedness $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
+		\item \keyword{Consistenza}: $\lim_{N\to\infty}\prob{(\vec{X}\in w_{\alpha}|H_1)}=1$ non \'e detto che sia uniforme.
+		\item \keyword{unbiasedness} $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
 	\end{itemize}
 \end{block}
 \begin{figure}[!ht] \begin{subfigure}[b]{0.47\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{powerconsistent} \label{fig:powerconsistent} \end{subfigure} ~ \begin{subfigure}[b]{0.47\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure} \end{figure} 
@@ -246,6 +252,12 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 
 \section{Goodness of fit}\linkdest{gof}
 
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
+
 \begin{wordonframe}{GOF Refs}
 \cite{james2006statistical}: chap 11. \cite{lehmann2006testing}: chap 14.
 
@@ -256,7 +268,7 @@ GOF: data una misura determino probabilit\'a di avere un risultato meno in accor
 Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}\prob{(T(x)\in C|H_0)}$, non specifico ipotesi alternative.
 \begin{itemize}
 \item Test statistic: function of data which measure ''distance'' between data and hypothesys
-\item Map statistic to P-value: suppose $\frac{p_1(X)}{p_0(X)}$ continuo, $\alpha<\alpha': S_{\alpha}\subset S_{\alpha'}$, p-value p is smallest significance level at which hypothesis would be rejected for the given observation.
+\item Map statistic to P-value: suppose $\frac{p_1(X)}{p_0(X)}$ continuo, $\alpha<\alpha': S_{\alpha}\subset S_{\alpha'}$, \keyword{p-value} p is smallest significance level at which hypothesis would be rejected for the given observation.
 \end{itemize}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -266,7 +278,7 @@ Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}\prob{(T(x)\in C|H_
 
 \end{column}
 \end{columns}
-Distribution-free test: the distribution of the statistic t is known independently of $H_0$.
+\keyword{Distribution-free test}: the distribution of the statistic t is known independently of $H_0$.
 \begin{block}{Unbiasedness}
 Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
 Costruire p-value per cui test unbiased: se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore.
@@ -300,16 +312,16 @@ Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha sig
 \begin{column}{0.5\textwidth}
 \begin{block}{Binned data}
 \begin{itemize}
-\item Pearson-$\chi^2$ test.
-\item GOF con LR
+\item \keyword{Pearson-$\chi^2$ test}.
+\item \keyword{GOF con LR}
 \end{itemize}
 \end{block}
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{block}{UnBinned data}
 \begin{itemize}
-\item Smirnov-Cramer-von Mises.
-\item Test di Kolmogorov-Smirnov.
+\item \keyword{Smirnov-Cramer-von Mises}.
+\item \keyword{Test di Kolmogorov-Smirnov}.
 \end{itemize}
 \end{block}
 \end{column}
@@ -334,8 +346,6 @@ statistica $Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\to\frac{1}{N}\sum^{k+1
 \begin{frame}{$\chi^2$ Test of uniformity}
 $X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Divido l'intervallo $(0,1)$ in $k+1$ sotto-intervalli di lunghezza $\frac{1}{k+1}$: pdf di $(Y_1,\ldots,Y_{k+1})$ \'e multinomiale e il test che rifiuta H per grandi $\sum_j^{k+1}\frac{(Y_j-\frac{n}{k+1})}{\frac{n}{k+1}}$.
 \end{frame}
-
-
 
 \begin{frame}{GOF for binned data with LR}
 

@@ -53,27 +53,27 @@
 
 %%% COUNTERS
 \newcounter{cherrykey}%conta le keyword totali per auto ref
-\newcounter{cherrysublist}% conta le key prima di keywordlist
+\newcounter{cherrysectionlist}% conta le key prima di keywordlist
+
 \newcommand\headinginfo[1]{%
-  \addcontentsline{key-\thecherrysublist}{heading}{{#1}}%
-  \addtocontents{key-\thecherrysublist}{\vspace{5pt}}}
+  \addcontentsline{key-\thecherrysectionlist}{heading}{{#1}}%
+  \addtocontents{key-\thecherrysectionlist}{\vspace{5pt}}}
 %% expert approach to keywords
  \makeatletter
-\newcommand\mykeyword[2][target-\thecherrykey]{%
+\newcommand\keyword[2][target-\thecherrykey]{%
 \addtocounter{cherrykey}{1}
 \noindent{%
 \color{keyword}{#2}%
 }%
 \phantomsection% comment out if hyperref is not used
   \linkdest{#1}%
-\addcontentsline{key-\thecherrysublist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}%
+\addcontentsline{key-\thecherrysectionlist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}%
 }
 \makeatother
   
 \makeatletter
 \newcommand{\listofkeywordsbasic}{%
-\addtocounter{cherrysublist}{1}
-  \@starttocorig{key-\thecherrysublist}
+  \@starttocorig{key-\thecherrysectionlist}
 }
 %%frameintoc
 \newcommand\listofframes{\@starttoc{lbf}}
@@ -119,7 +119,6 @@ Keyword ADS 18/19:
 }
 
 \makeatletter
-
 \newcommand\transformxdimension[1]{
 	\pgfmathparse{((#1/\pgfplots@x@veclength)+\pgfplots@data@scale@trafo@SHIFT@x)/10^\pgfplots@data@scale@trafo@EXPONENT@x}
 }

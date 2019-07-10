@@ -44,7 +44,7 @@ Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
 \end{frame}
 
 \begin{frame}{Esempi di Likelihood: uniforme, bernoulli, ...}
-\begin{block}{\mykeyword{Likelihood per distro uniforme}}
+\begin{block}{\keyword{Likelihood per distro uniforme}}
 \pgfmathsetmacro{\unifM}{3}
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -72,15 +72,14 @@ Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
 \end{columns}
 \end{block}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{block}{Likelihood per distro uniforme}
+\begin{column}{0.3\textwidth}
+\keyword{Likelihood per Bernoulli}:
 	\begin{align*}
 	&L_0=1-p\\
 	&L_1=p
 	\end{align*}
-\end{block}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.7\textwidth}
 \begin{block}{Likelihood di pi\'u misure e statistiche}
 	\begin{align*}
 	&\prob{(t,\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}\\
@@ -93,7 +92,7 @@ Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
 \end{frame}
 
 \begin{frame}{Esercizi su Likelihood applicata}
-\mykeyword{Ex: likelihood pdf exp; decadimento in volo particella.}
+\keyword{Ex: likelihood pdf exp; decadimento in volo particella.}
 Distribuzione esponenziale in x: quale z?
 \begin{tikzpicture}
 \draw[->] (0,0)--(1,0) node[draw,fill,circle,minimum size=1pt,inner sep=0,label=below:decay] {};
@@ -145,19 +144,19 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 \begin{align*}
 &L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
 \end{align*}
-La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\mykeyword{Ex: pdf della media aritmetica})
+La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica})
 \end{block}
 \begin{block}{Gaussiana: media nota, varianza ignota}
-$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\mykeyword{Ex: statistica sufficiente $\sigma$ gaussiana})
+$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
 \end{block}
-\begin{block}{\mykeyword{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale }}
+\begin{block}{\keyword{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale}}
 \begin{align*}
 &\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\\
 &\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
 &\prob{(x)}=\lambda\exp{-\lambda x}
 \end{align*}
 \end{block}
-\begin{block}{Distribuzione uniforme: \mykeyword{statistica $x_{max}$}.}
+\begin{block}{Distribuzione uniforme: \keyword{statistica $x_{max}$}.}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \pgfmathsetmacro{\unifM}{3}
@@ -171,7 +170,6 @@ extra x tick style={xticklabel style={yshift=-10}}]
 \addplot[color=red] function [raw gnuplot, id=unifpdf, mark=none]{set xrange [0:\unifM]; plot \unifN};
 \end{axis}
 \end{tikzpicture}
-
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{align*}
@@ -187,8 +185,8 @@ extra x tick style={xticklabel style={yshift=-10}}]
 &L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
 \end{align*}
 \end{block}
-\mykeyword{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
-\begin{block}{\mykeyword{Statistica $x_{min}$ per pdf uniforme}}
+\keyword{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
+\begin{block}{\keyword{Statistica $x_{min}$ per pdf uniforme}}
 pdf di $x_{min}$
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -199,7 +197,7 @@ Trasformazione di variabile
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
-\mykeyword{Ex: pdf $x_{min}$ (cumulanti)}
+\keyword{Ex: pdf $x_{min}$ (cumulanti)}
 \begin{align*}
 &F(x_0)=\prob{[x_m>x_0]}\\
 &\prob{(\{x_i\}>x_0)}=[\int_{x_0}^m\frac{dx}{m}]^N\\
@@ -214,11 +212,14 @@ Trasformazione di variabile
 
 \begin{frame}{Teorema di Darmois}
 \begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente}
-Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff
-\begin{align*}
-&p(\vec{x}|\theta)=\Exp{[\sum_i^n\alpha_i(\vec{x})a_i(\theta)+\beta(\vec{x})+\gamma(\theta)}\ \text{\mykeyword{famiglia esponenziale}}\\
-&S_j=\sum_i\alpha_j(x_i)
-\end{align*}
+Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: la pdf appartiene alla \keyword{famiglia esponenziale}:
+\begin{equation*}
+p(\vec{x}|\theta)=\Exp{[\sum_i^n\alpha_i(\vec{x})a_i(\theta)+\beta(\vec{x})+\gamma(\theta)}
+\end{equation*}
+
+\begin{equation*}
+S_j=\sum_i\alpha_j(x_i)
+\end{equation*}
 \end{block}
 Esiste statistica suff. iff: supporto pdf non dipende da parametro e appartiene alla famiglia esponenziale. In tal caso si ha:
 \begin{align*}
@@ -242,10 +243,10 @@ Esiste statistica suff. iff: supporto pdf non dipende da parametro e appartiene 
 &\beta(x)=-\frac{x^2}{2\sigma}\\
 &c(\mu)=
 \end{align*}
-La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\mykeyword{Ex: pdf della media aritmetica})
+La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica})
 \end{block}
 \begin{block}{Gaussiana: media nota, varianza ignota}
-$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\mykeyword{Ex: statistica sufficiente $\sigma$ gaussiana})
+$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
 \begin{align*}
 &L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\\
 &\alpha(x)=x\mu-\frac{x^2}{2}:\ T=\sum(x_i\mu-\frac{x_i^2}{2})\\
@@ -262,7 +263,7 @@ $\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di
 &S_{\mu}=\sum x_i,\ S_{\sigma^2}=-\sum\frac{x_i^2}{2}
 \end{align*}
 \end{block}
-\mykeyword{Quale relazione tra numero statistiche sufficienti e parametri?}
+\keyword{Quale relazione tra numero statistiche sufficienti e parametri?}
 \framebreak
 
 \begin{block}{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale.}
@@ -296,21 +297,23 @@ $\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di
 \end{columns}
 
 \end{block}
-\mykeyword{Ex: pdf non della famiglia esponenziale}: Come procedo se pdf non esponenziale (LHC)?
-e\end{wordonframe}
+\keyword{Ex: pdf non della famiglia esponenziale}: Come procedo se pdf non esponenziale (LHC)?
+\end{wordonframe}
 
 \section{Inferenza statistica. Paradigma frequentista e bayesiano.}
 
-%\begin{frame}[allowframebreaks]{List of keywords}%%mykeyword problems
-%\listofkeywords
-%\end{frame}
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
 
 %\begin{refsection}{}
 \subsection{Principio di sufficienza}
 
 \begin{frame}{Principio di sufficienza}
 \begin{block}{Principio di sufficienza}
-Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\mykeyword{esperimento derivato} con stesso spazio spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
+Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
 Principio di sufficienza: per ogni x $Ev(E,x)=Ev(E',t)$.
 \end{block}
 \begin{block}{Principio di likelihood (Fisher Barnard)}
@@ -337,6 +340,12 @@ Il teorema di Bayes \'e usato per aggiornare la probabilit\'a sulla base di nuov
 \subsection{Baysiano}
 
 \section{Stimatori}\linkdest{stimatori}
+
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
 
 \begin{frame}{Propriet\'a generali stiamatori}
 \begin{itemize}
@@ -395,10 +404,10 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 \end{column}
 \begin{column}{0.67\textwidth}
 \begin{itemize}
-\item \mykeyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
-\item \mykeyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
-\item \mykeyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
-\item \mykeyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
+\item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
+\item \keyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
+\item \keyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
+\item \keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
 \end{itemize}
 \end{column}
 \end{columns}
@@ -409,8 +418,9 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 $X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 \begin{align*}
 &V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
-&\left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)\intu{=: \mykeyword{minimum variance bound}}
+&\left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
 \end{align*}
+(\keyword{minimum variance bound})
 \end{block}
 \begin{block}{Best unbiased estimator}
 Uniformly minimum variance unbiased estimator such that $V_{\Theta}[T]\leq V_{\Theta}[T*]$ for all estimator $T^*$ unbiased.
@@ -526,7 +536,7 @@ $\vec{X}=(X_1,\ldots,X_n)$ e media $\exv{X}=\frac{1}{n}\sum X_i$ con pdf $N(\mu,
 \end{align*}
 \end{block}
 \begin{block}{Perdita di informazione se tengo solo la varianza campionaria delle RV gaussiane}
-Varianza campionaria $S^2=\frac{1}{n-1}\sum_i(X_i-\exv{X})^2$ (\mykeyword{Gaussian variance: unbiased estimator}). 
+Varianza campionaria $S^2=\frac{1}{n-1}\sum_i(X_i-\exv{X})^2$ (\keyword{Gaussian variance: unbiased estimator}). 
 La RV $Y=(n-1)\frac{S^2}{\sigma^2}$ ha pdf $\chi^2_{n-1}$: $c\exp{-\frac{1}{2}y}y\expy{\frac{n-3}{2}}$ con $c=2\expy{\frac{n-1}{2}}\Gamma(\frac{1}{2}(n-1))$
 \begin{align*}
 &S^2\to h(x;\theta)=d\sigma\expy{-(n-1)}\exp{-\frac{n-1}{2}\frac{x}{\sigma^2}}x\expy{\frac{n-3}{2}}\ d=c(n-1)^{\frac{n-1}{2}}\\
@@ -549,14 +559,14 @@ $I_s=I_k$ poich\'e $S$ \'e statistica sufficiente.
 &I_k(p)=-N\E{[\PtwoDy{p}{\log{f(k;n,p)}}]}=N\frac{n}{p(1-p)}\\
 &S=\sum_ik_i:\ f(S;nN,p)=\binom{nN}{S}p^S(1-p)^{nN-S}
 \end{align*}
-\mykeyword{Ex: Informazione di binomiale e statistica suff.}
+\keyword{Ex: Informazione di binomiale e statistica suff.}
 \end{block}
 \begin{block}{Ex: Pdf uniforme e minimum variance bound per $x_M$}
 \begin{align*}
 &I_{X_1}=I_{x_m}(m)=\frac{N^2}{m}\\
 &\var{[\hat{\theta},\theta]}=\frac{N}{(N+2)(N+1)^2}m\overset{??}{\geq}\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\theta}}(\theta)}=\frac{(1-\frac{1}{N+1})^2}{\frac{N^2}{m^2}}
 \end{align*}
-\mykeyword{Ex: Pdf uniforme e minimum variance bound per $x_m$}
+\keyword{Ex: Pdf uniforme e minimum variance bound per $x_m$}
 \end{block}
 \framebreak
 \begin{block}{Statistica $x_m$ non \'e consistente}
@@ -663,7 +673,7 @@ N fissato
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
-N variabile: \mykeyword{Extended likelihood}, normalizzazione varia
+N variabile: \keyword{Extended likelihood}, normalizzazione varia
 \begin{align*}
 &\mu_i=\mu_TP_i(\theta)\\
 &\prob{(k_i\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
@@ -680,7 +690,7 @@ $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 \end{block}\end{wordonframe}
 
 \begin{wordonframe}{Esempi di stimatori di massima likelihood}
-\mykeyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
+\keyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
 \begin{align*}
 &\log{(L(\vec{k},p))}=\log{[\prod_i^N\binom{n}{k_i}p^{k_i}(1-p)^{n-k_i}]}\\
 &\max{(L)}:\ \TDof{p}\log{(L)}=\sum_i^N[\frac{k_i}{p}+(n-k_i)\frac{(-1)}{1-p}]=0\Rightarrow\sum^Nk_i=Nnp\\
@@ -690,7 +700,7 @@ $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 &I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
 \end{align*}
 
-\mykeyword{Gaussiana}
+\keyword{Gaussiana}
 Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -719,7 +729,7 @@ $\E{[\hat{\sigma^2}]}=\frac{N-1}{N}\sigma^2$ quindi definisco lo stimatore unbia
 
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
-\mykeyword{Esponenziale: cambio di parametro.} $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
+\keyword{Esponenziale: cambio di parametro.} $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
 \end{column}
 \begin{column}{0.4\textwidth}
 likelihood \'e invariante per cambio di parametro
@@ -754,14 +764,14 @@ $\log{L}=N\log{\lambda}-\lambda\sum_ix_i$, $\TDy{\lambda}{\log{\lambda}}=0$. $\h
 \end{align*}
 \end{column}
 \end{columns}
-\mykeyword{Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''}
-\mykeyword{Ex: Cambiamento di variabile pdf Erlang}
+\keyword{Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''}
+\keyword{Ex: Cambiamento di variabile pdf Erlang}
 \begin{align*}
 &z\to\frac{z}{N}=\exv{x}=\hat{\tau}\\
 &\exv{x}\to\frac{1}{\exv{x}}=\hat{\lambda}
 \end{align*}
 
-\mykeyword{Ex: MLE per $x_{max}$ e $x_{min}$ per pdf uniforme}
+\keyword{Ex: MLE per $x_{max}$ e $x_{min}$ per pdf uniforme}
 Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{min}\in[0,m]$,
 \begin{align*}
 &\log{L}=\log{N}-\log{m}+(N-1)\log{(1-\frac{x_{min}}{m})}\\
@@ -770,7 +780,7 @@ Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{m
 \end{align*}
 lo stimatore non \'e consistente.
 
-\mykeyword{MLE per poissoniana}
+\keyword{MLE per poissoniana}
 \begin{align*}
 &P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}\\
 &
@@ -786,7 +796,7 @@ Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valor
 \end{align*}
 
 (se $W_{ij}>0$: $\PDy{\theta}{\mu_i}W_{ij}\PDy{\theta}{\mu_j}\geq0$??)
-\mykeyword{Estimators:Least square examples in cowan 95}
+\keyword{Estimators:Least square examples in cowan 95}
 \end{frame}
 
 \begin{frame}{Best linear unbiased estimator. Teorema di Gauss-Markov}
@@ -800,7 +810,7 @@ Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V
 &U=BVB^T=\invers{(A^TVA)}=\cov{(\theta_i,\theta_j)},\ [\invers{U}]_{ij}=\frac{1}{2}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}
 \end{align*}
 \end{block}
-\mykeyword{Contours in parameter space}
+\keyword{Contours in parameter space}
 \begin{align*}
 &\chi^2(\theta)=\chi^2(\hat{\theta})+\frac{1}{2}\sum_{ij}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}(\theta_i-\hat{\theta}_i)(\theta_j-\hat{\theta}_j)
 \end{align*}
@@ -832,12 +842,12 @@ $\lim_{p\to-\infty}\min\sum|x_i-\hat{m}_{-\infty}|^p$ seleziona coppia di dati p
 \end{block}
 \end{frame}
 
-\begin{wordonframe}{\mykeyword{Ex: compito a risposta multipla}}
-Compito a risposta multipla con  5 opzioni
+\begin{wordonframe}{Ex: Inferenza probabilistica}
+\keyword{Ex: compito a risposta multipla} con  5 opzioni
 \begin{itemize}
 \item Studente a risponde a caso: $P_G=1/5$.
 \item Studente B ipotizza distribuzione uniforme delle risposte attorno al valore giusto: sceglie la mediana. $P_B=5\frac{1}{5}\binom{4}{2}(\frac{1}{2})^2(1-\frac{1}{2}){4-2}=\frac{3}{8}$
-\item \mykeyword{Ex: Studente usa MLE per pdf uniforme}
+\item \keyword{Ex: Studente usa MLE per pdf uniforme}
 \end{itemize}
 
 \end{wordonframe}
@@ -878,9 +888,9 @@ z ha pdf binomiale w $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4
 \end{column}
 \end{columns}
 
-\mykeyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.
+\keyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.
 
-\mykeyword{Ex: Efficienza stimatori. Mediana vs MLE per pdf di Cauchy.}
+\keyword{Ex: Efficienza stimatori. Mediana vs MLE per pdf di Cauchy.}
 pdf $f(x)=\frac{1}{\pi\gamma[1+(\frac{x-x_0}{\gamma})^2]}$:
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -896,7 +906,7 @@ MLE:
 \end{column}
 \end{columns}
 
-\mykeyword{Confronto Stimatori: $L_P(\alpha)=\sum^N|x_i-\alpha|^P$}
+\keyword{Confronto Stimatori: $L_P(\alpha)=\sum^N|x_i-\alpha|^P$}
 \begin{tabular}{c|ccc}
 Unif & $\frac{1}{4N}$ & $\frac{1}{12N}$ & $\frac{1}{2(N^2+6N+4)}$\\
 Triang & & $\frac{1}{6N}$ & $4-\frac{\pi}{4N}$\\
@@ -915,6 +925,12 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 \end{wordonframe}
 
 \section{Stima intervallare}\linkdest{interval}
+
+\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+\listofkeywords
+\end{frame}
 
 \subsection{Credibility intervall (bayesiano) e Confidence interval (frequentista)}
 
@@ -988,7 +1004,7 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 \end{frame}
 
 \begin{wordonframe}{Workout funzione di coverage}
-\mykeyword{Warn: coverage}
+\keyword{Warn: coverage}
 Graphical Methods for Evaluating and ComparingConfidence-Interval Procedures
 \end{wordonframe}
 
@@ -1045,7 +1061,7 @@ L'intervallo di credibilit\'a \'e definito dalla banda per cui ''l'integrale del
 
 \begin{wordonframe}{Stima intervallare bayesiana/frequentista per $U([0,m])$: statistica sufficiente}
 \begin{block}{Statistica sufficiente $x_M$}
-\mykeyword{workout: pensare a relazione tra misura osservabile, bande di confidenza e statistiche sufficienti}: Nel caso uniforme ho una sola statistica sufficiente $x_{max}$ - posso ridurre la banda di confidenza per N misure a intervallo di confidenza utilizzando $x_{max}$.
+\keyword{workout: pensare a relazione tra misura osservabile, bande di confidenza e statistiche sufficienti}: Nel caso uniforme ho una sola statistica sufficiente $x_{max}$ - posso ridurre la banda di confidenza per N misure a intervallo di confidenza utilizzando $x_{max}$.
 \end{block}
 
 La distribuzione di probabilit\'a della statistica sufficiente $x_M$ \'e $\prob{(x;m)}=\frac{N}{m}(\frac{x}{m})^{N-1}$:
@@ -1071,7 +1087,7 @@ LR: upper limit - $m<\frac{x_M}{1-\cl{}}$
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
-likelihood decresce sempre con m (dove $\PDy{m}{L}=0$?). \mykeyword{Inconsistenza nella definizione di bande di confidenza con $o=\lr{}$?} (Likelihood funzione di m).
+likelihood decresce sempre con m (dove $\PDy{m}{L}=0$?). \keyword{Inconsistenza nella definizione di bande di confidenza con $o=\lr{}$?} (Likelihood funzione di m).
 La banda \'e identificata da $\lr\geq q_{\cl{}}$
 \end{column}
 \end{columns}
@@ -1094,7 +1110,7 @@ N>1:\ m\in[1,\frac{1}{\sqrt[N-1]{1-\cl}}]x_M (B)\\
 \end{array}
 \right.
 \end{align*}
-\mykeyword{Ex: Credibility LR-ordering $U$}
+\keyword{Ex: Credibility LR-ordering $U$}
 \end{wordonframe}
 
 %% banda di confidenza per distribuzione uniforme
@@ -1108,7 +1124,7 @@ Pivot: RV $U(T,\theta)$ funzione dib statistica sufficiente e parametro ma la di
 &(s=\frac{x-\mu}{\sigma}:\ p(s;\mu)=N(0,1)\\
 &\int_{s>c}p(s)\,DS=\cl{}
 \end{align*}
-\mykeyword{Pivot. 2-sided CI for exponential}:
+\keyword{Pivot. 2-sided CI for exponential}:
 \begin{align*}
 &f(x;\theta)=\invers{\theta}\exp{-\frac{x}{\theta}}I(x>0)\ \to\ g(u)=\exp{-u}I(u>0)\\
 &\prob{(a<u<b)}=1-\alpha\Rightarrow\prob{(\theta\in(\invers{b}x,\invers{a}x))}=1-\alpha\ (\alpha\leftrightarrow1-\alpha)
@@ -1128,10 +1144,10 @@ $p(x;\mu)$ due volte differenziabile con dominio indipendente da parametro $\Ome
 $\prob{(k|\mu)}=\frac{\mu^k\exp{-\mu}}{k!}$: registro $k=0$ conteggi, ricavo limite superiore frequentista e bayesiano per $\mu$
 \end{block}
 
-\mykeyword{Ex: limite superiore bayesiano per Poisson} - La posterior $\prob{(\mu|0)}=\exp{-\mu}$ per $\cl{}=\alpha\%$ si ha $\int_0^{\mu_u}\exp{-\mu}\,d\mu=\alpha$, per $\cl{}=90\%$ si ha $\mu<2.3@90\%\cl{}$.
+\keyword{Ex: limite superiore bayesiano per Poisson} - La posterior $\prob{(\mu|0)}=\exp{-\mu}$ per $\cl{}=\alpha\%$ si ha $\int_0^{\mu_u}\exp{-\mu}\,d\mu=\alpha$, per $\cl{}=90\%$ si ha $\mu<2.3@90\%\cl{}$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\mykeyword{Ex: limite superiore frequentista per Poisson} - Upper limit: $\sum_{k_{min}}^{\infty}\prob{(k|\mu)}=\alpha$; $\prob{(0|\mu)}=0.1 (=1-\alpha)$ per $\mu_0=\ln{10}$, $\prob{(0|\mu_1)}+\prob{(1|\mu_1)}=0.1$ per $\mu_1=3.89$, $\prob{(0|\mu_1)}+\prob{(1|\mu_1)}+\prob{(2|\mu_1)}=0.1$ per $\mu_2=5.32$
+\keyword{Ex: limite superiore frequentista per Poisson} - Upper limit: $\sum_{k_{min}}^{\infty}\prob{(k|\mu)}=\alpha$; $\prob{(0|\mu)}=0.1 (=1-\alpha)$ per $\mu_0=\ln{10}$, $\prob{(0|\mu_1)}+\prob{(1|\mu_1)}=0.1$ per $\mu_1=3.89$, $\prob{(0|\mu_1)}+\prob{(1|\mu_1)}+\prob{(2|\mu_1)}=0.1$ per $\mu_2=5.32$
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{picture}(100,130)
@@ -1148,12 +1164,12 @@ extra x tick labels={$\mu_0$, $\mu_1$, $\mu_2$},extra y ticks={0},extra y tick l
 \end{column}
 \end{columns}
 
-\mykeyword{Ex: Poisson con $k=0,1,2$ conteggi e ordinamento LR, Up, Down, Central} -
+\keyword{Ex: Poisson con $k=0,1,2$ conteggi e ordinamento LR, Up, Down, Central} -
 
-\mykeyword{Ex: Limiti bayesiani e frequentisti sul numero di facce dadi D\&D estrazioni 1,1} - $S=\{4,6,8,10,12,20\}$:
+\keyword{Ex: Limiti bayesiani e frequentisti sul numero di facce dadi D\&D estrazioni 1,1} - $S=\{4,6,8,10,12,20\}$:
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\mykeyword{T bayes (lancio 6 dadi)} $\pgfkeys{/pgf/fpu=true}\prob{(1)}=\sum_i\prob{(D_i)}\prob{(1|D_i)}=\xdef\Sum{0}
+\keyword{T bayes (lancio 6 dadi)} $\pgfkeys{/pgf/fpu=true}\prob{(1)}=\sum_i\prob{(D_i)}\prob{(1|D_i)}=\xdef\Sum{0}
 \foreach \i in {4,6,8,10,12,20} {\xdef\Sum{\Sum+1/(6*\i)}}\pgfmathparse{\Sum}\pgfmathprintnumber{\pgfmathresult}\pgfkeys{/pgf/fpu=false}$
 Limite superiore al numero di facce: $\sum_{\mu}\prob{(x_0;\mu)}\geq1-\alpha$, $n_f\leq12$ at $\cl>90\%$
 \end{column}
@@ -1226,7 +1242,7 @@ xticklabels={$D_4$, $D_6$, $D_8$, $D_{10}$, $D_{12}$, $D_{20}$},cycle list name 
 limiti di confidenza frequentisti: costruzione banda di confidenza prendendo ordinamento sulla pdf di X a parametro dato. Limite superiore ordinando da 20 per estrazione 1 si ha $n_f\leq8$ con $\cl{}\geq90\%$
 \end{column}
 \end{columns}
-\mykeyword{Ex: Dadi D\&D CI frequentista con LR ordering}
+\keyword{Ex: Dadi D\&D CI frequentista con LR ordering}
 \end{wordonframe}
 
 \subsection{Examples of estimator - exponential decay: MLE, distribution of estimator, change of variable, confidence interval}
@@ -1271,7 +1287,7 @@ $\hat{\tau}=\frac{1}{n}\sum^nt_i$: ritrovo il valore di aspettazione
 \end{align*}
 \end{block}
 \begin{block}{Costante di decadimento}
-\mykeyword{MLE for function of parameter} is same function of MLE of parameter:
+\keyword{MLE for function of parameter} is same function of MLE of parameter:
 \begin{align*}
 &\hat{\lambda}=\frac{1}{\hat{\tau}}\\
 &h(\hat{\lambda};n,\lambda)=g(\hat{\tau};n,\tau)|\TDy{\hat{\lambda}}{\hat{\tau}}|=\frac{n^n}{(n-1)!}\frac{\lambda^n}{\hat{\lambda}\expy{n+1}}\exp{-n\lambda/\hat{\lambda}}\\
