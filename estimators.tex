@@ -156,7 +156,7 @@ $\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di
 &\prob{(x)}=\lambda\exp{-\lambda x}
 \end{align*}
 \end{block}
-\begin{block}{Distribuzione uniforme: \keyword{statistica $x_{max}$}.}
+\begin{block}{Distribuzione uniforme: \keyword{$x_{max}$ statistica sufficiente}.}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \pgfmathsetmacro{\unifM}{3}
@@ -184,6 +184,7 @@ extra x tick style={xticklabel style={yshift=-10}}]
 &\prob{(x_M;m)}=\TDof{x_0}\left.F_M(x_0)\right|_{x_M}=\frac{N}{m}(\frac{x_M}{m})^{N-1}I(x_M<m)\\
 &L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
 \end{align*}
+$\prob{(x;S,\theta)}=\prob{x;S}$!
 \end{block}
 \keyword{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
 \begin{block}{\keyword{Statistica $x_{min}$ per pdf uniforme}}
