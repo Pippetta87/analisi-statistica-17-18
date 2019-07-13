@@ -619,6 +619,21 @@ Perdita informazione
 \end{columns}
 \end{frame}
 
+\begin{wordonframe}{Examples moment estimators}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+\begin{block}{Uniforme $U(a,b)$}
+\begin{align*}
+&\mu_1=\E{[X]}=\frac{1}{2}(a+b)\\
+&\mu_2=\E{[X^2]}=\frac{1}{3}(a^2+ab+b^2)\\
+&\hat{a}=\mu_1\pm\sqrt{3(\mu_2-\mu_1^2)}\\
+&\hat{b}=2\mu_1-a
+\end{align*}
+\end{block}
+\end{column}\begin{column}{0.5\textwidth}
+
+\end{column}\end{columns}
+\end{wordonframe}
+
 \begin{frame}{Stimatori impliciti}\frameintoc
 \begin{align*}
 &\E_{\theta}[g(X,\theta_0)]=0,\ \forall\theta:\ \int f(x;\theta_0)p(x;\theta)\,dx=0,\ h(\theta_0)=0\\
@@ -628,6 +643,8 @@ Perdita informazione
 \end{align*}
 Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{\theta_0}\neq0$: almeno una soluzione dell'equazione $K_N(\vec{X},\hat{\theta})=0$ \'e stimatore consistente.
 \end{frame}
+
+
 
 \begin{frame}{Massima likelihood}\linkdest{MLE}\frameintoc
 \begin{block}{Derivazione metodo massima likelihood da stimatori impliciti. Score di Fisher}
