@@ -605,7 +605,7 @@ Implicit method: $K_N(\vec{X},\theta)=\frac{1}{N}\sum_ia(x_i,\theta)=0$; Moment 
 &\E_{\theta}[a(X,\theta_0)]=h(\theta_0)=0,\ \forall\theta:\ \int a(X;\theta_0)f(X;\theta_0)\,dx=0\\
 %&(f(x,\theta)=S(x)-\E_{\theta}{[S]},\ \E{[f]}=\E_{\theta_0}{[S]}-\E_{\theta}{[S]})\\
 \end{align*}
-$K_N(\vec{X},\theta_0)=\frac{1}{N}\sum_ia(X_i,\theta_0) stimatore consistente di $h(\theta_0)$:
+$K_N(\vec{X},\theta_0)=\frac{1}{N}\sum_ia(X_i,\theta_0)$ stimatore consistente di $h(\theta_0)$:
 $K_N(\vec{X},\theta_0)\to\E{[f(\vec{X},\theta_0)]}$
 
 Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{\theta_0}\neq0$: almeno una soluzione dell'equazione $K_N(\vec{X},\hat{\theta})=0$ \'e stimatore consistente.
@@ -664,7 +664,7 @@ Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{
 
 \begin{frame}{Stimatori di massima likelihood: derivazione tramite stimatori impliciti}\linkdest{MLE}\frameintoc
 \begin{align*}
-&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta):\ K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
+&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
 &\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
 &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}
