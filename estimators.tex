@@ -404,12 +404,14 @@ Supponendo $b_N\propto\frac{1}{N}$
 Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$.
 \end{column}
 \begin{column}{0.67\textwidth}
+\begin{block}{Caratteristiche stimatori}
 \begin{itemize}
 \item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
 \item \keyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
 \item \keyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
 \item \keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
 \end{itemize}
+\end{block}
 \end{column}
 \end{columns}
 \end{frame}
@@ -594,10 +596,36 @@ Perdita informazione
 
 \subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
 
+\begin{frame}{Logica stimatori consistenti}
+Implicit method: $K_N(\vec{X},\theta)=\frac{1}{N}\sum_ia(x_i,\theta)=0$; Moment method $a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}$; in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$: maximum likelihood and minimum $\chi^2$.
+\end{frame}
+
+\begin{frame}{Stimatori impliciti}\frameintoc
+\begin{align*}
+&\E_{\theta}[a(X,\theta_0)]=h(\theta_0)=0,\ \forall\theta:\ \int a(X;\theta_0)f(X;\theta_0)\,dx=0\\
+%&(f(x,\theta)=S(x)-\E_{\theta}{[S]},\ \E{[f]}=\E_{\theta_0}{[S]}-\E_{\theta}{[S]})\\
+\end{align*}
+$K_N(\vec{X},\theta_0)=\frac{1}{N}\sum_ia(X_i,\theta_0) stimatore consistente di $h(\theta_0)$:
+$K_N(\vec{X},\theta_0)\to\E{[f(\vec{X},\theta_0)]}$
+
+Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{\theta_0}\neq0$: almeno una soluzione dell'equazione $K_N(\vec{X},\hat{\theta})=0$ \'e stimatore consistente.
+\end{frame}
+
 \begin{frame}{Momenti}\frameintoc
+\begin{block}{Stimatore consistente}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+\keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
+\end{column}\begin{column}{0.5\textwidth}
+\begin{align*}
+&\E{[a(X)]}=\int a(X)f(X,\theta)\,dX=h(\theta)\\
+&\var{[a(X)]}<\infty\\
+&\theta_0=\invers{h}{[\E{[a(X)]}]}
+\end{align*}
+\end{column}\end{columns}
+\end{block}
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
-\begin{block}{Momenti campionari: stimatori consistenti}
+\begin{block}{Momenti campionari: $a_j(X_i)=X^j$}
 \begin{align*}
 &m_k=\frac{\sum_ix_i^k}{N}\\
 &\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'\intu{convergono in probabilit\'a ai momenti della distribuzione}
@@ -634,26 +662,15 @@ Perdita informazione
 \end{column}\end{columns}
 \end{wordonframe}
 
-\begin{frame}{Stimatori impliciti}\frameintoc
+\begin{frame}{Stimatori di massima likelihood: derivazione tramite stimatori impliciti}\linkdest{MLE}\frameintoc
 \begin{align*}
-&\E_{\theta}[g(X,\theta_0)]=0,\ \forall\theta:\ \int f(x;\theta_0)p(x;\theta)\,dx=0,\ h(\theta_0)=0\\
-&(f(x,\theta)=S(x)-\E_{\theta}{[S]},\ \E{[f]}=\E_{\theta_0}{[S]}-\E_{\theta}{[S]})\\
-&K_N(\vec{X},\theta)=\frac{1}{N}\sum_if(x_i,\theta)\intu{stimatore consistente di $h(\theta)$:}
-&K_N(\vec{X},\theta)\to\E{[f(\vec{X},\theta)]}
+&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta):\ K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
+&\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
+&K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}
+&\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
 \end{align*}
-Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{\theta_0}\neq0$: almeno una soluzione dell'equazione $K_N(\vec{X},\hat{\theta})=0$ \'e stimatore consistente.
-\end{frame}
-
-
-
-\begin{frame}{Massima likelihood}\linkdest{MLE}\frameintoc
-\begin{block}{Derivazione metodo massima likelihood da stimatori impliciti. Score di Fisher}
-\begin{align*}
-&f(x,\theta)=\PDy{\theta}{\log{L}}:\ K_N=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
-&\E{[\left.\PDy{\theta}{\log{L}}\right|_{\theta_0=\hat{\theta}}]}=0\ (\hat{\theta}(\vec{x}):\ L(\hat{\theta})=\sup_{\theta}L(\theta))\intd{$\hat{\theta}$ \'e massimo per $L$ dato che}
-&\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-I_X<0
-\end{align*}
-\end{block}
+The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano con media 0 e varianza $NI(\theta)$
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Propriet\'a MLE}
