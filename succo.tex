@@ -155,6 +155,33 @@ Esiste statistica suff. iff: supporto pdf non dipende da parametro e appartiene 
 
 \subsection{Stimatori per parametri gaussiana}
 
+\section{Test d'ipotesi}
+
+\begin{frame}{Ipotesi semplice}
+Per ipotesi semplici esiste UMP test: Lemma NP.
+\end{frame}
+
+\begin{frame}{Ipotesi composte}
+For exponential family exists UMP one-sided ($H_0: \theta=\theta_0$, $H_1: \theta>\theta_0$)
+\end{frame}
+
+\begin{frame}{LMP test}
+If no UMP exists we can build test MP in neighbourhood of null H:
+\begin{columns}[T]
+	\begin{column}{0.4\textwidth}
+		\begin{align*}
+		&H_0: \theta=\theta_0\\
+		&H_1: \theta=\theta_0+\Delta
+		\end{align*}
+	\end{column}
+	\begin{column}{0.6\textwidth}
+		\begin{align*}
+		&\PDy{\theta}{L}\gtrless k_{\alpha}\gtrless\lambda_{\alpha}\sqrt{NI}\\
+		&\E{[\PDy{\theta}{L}|_{\theta_0}]}=0,\ \E{[(\PDy{\theta}{L}|_{\theta_0})^2]}=NI
+		\end{align*}
+	\end{column}
+\end{columns}
+\end{frame}
 
 
 \section{Compiti}\linkdest{compiti}
