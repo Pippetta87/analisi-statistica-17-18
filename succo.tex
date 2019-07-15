@@ -1,19 +1,18 @@
-\section{Assiomi di probabilit\'a e interpretazione}
+\section{Math}
 
-\begin{frame}{assiomi e implementazioni}
-\begin{block}{Osservabile sperimentale come variabile stocastica}
-Esperimento: procedura definita
+
+
+\section{Assiomi di probabilit\'a e RV}
+
+\begin{frame}{Convergenza di RV}
+\begin{block}{Chebychev ineq}
+\keyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
 \end{block}
-
-\begin{block}{Spazio dei risultati}
-
+\begin{block}{\keyword{Probability convergence}}
+Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
 \end{block}
 
 \end{frame}
-
-\begin{wordonframe}{Descrizione}
-
-\end{wordonframe}
 
 \section{Cambio di variabile}
 
@@ -46,7 +45,6 @@ Applicando regole cambio variabile per $Z=X+Y$ e $Y'=Y$ e marginalizzando su $Y'
 \end{align*}
 La funzione caratteristica determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
 \end{block}
-
 \end{frame}
 
 \section{Funzione caratteristica/generatrice (dei momenti)}
@@ -79,7 +77,49 @@ La funzione caratteristica determina completamente pdf: se $F(X)$ continua, $dF(
 Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
 \end{frame}
 
-\section{Legge grandi Numeri}
+\section{Legge grandi Numeri - T limite centrale}
+
+\begin{frame}{Legge grandi numeri}
+$X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora \[\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}\]
+\begin{align*}
+&\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
+&\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{Levy theorem: $\overline{X}_n\to\mu$}
+Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
+$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$
+\end{frame}
+
+\begin{frame}{LLN: asintoticamente gaussiana - Teorema limite centrale (CLT)}
+Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$.
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		\begin{align*}
+		&\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}\\
+		&=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
+		&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
+		%&\phi(t)=\phi_{X-\mu}
+		\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		\begin{align*}
+		&y_N=\sqrt{\frac{N}{\sigma^2}}(\overline{x}-\mu)\\
+		&\E{[y_N]}=0,\ \var{[y_N]}=1\\
+		&\phi_N=[\phi(\frac{t}{\sigma\sqrt{N}})]^N
+		\end{align*}
+	\end{column}
+\end{columns}
+\[\phi(t)=\sum_{m=0}^{\infty}\left.\frac{d^m\phi}{dt^m}\right|_{t=0}\frac{t^m}{m!}=\sum_{m=0}^{\infty}\frac{(it)^m}{m!}\E{(y^m)}\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots\]
+\begin{align*}
+&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\\
+&\log{\phi_N}\to-\frac{t^2}{2}\\
+%\text{Per T Levy la pdf \'e:}\\
+&\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}d\,t=\frac{1\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
+\end{align*}
+\end{frame}
 
 \section{Data analysis}
 
@@ -151,14 +191,32 @@ Esiste statistica suff. iff: supporto pdf non dipende da parametro e appartiene 
 \end{block}
 \end{frame}
 
-\section{Stimatori}
+\section{Stima puntuale}
 
-\subsection{Stimatori per parametri gaussiana}
+\section{Stima intervallare}
+
+\begin{frame}[fragile]{Bayesian credibility Interval}
+\begin{block}{Credibility (della posterior)}
+	\begin{align*}
+	&\cred{(x)}=\int_{\mu\in\inf(x)}\Pi(\mu|x)\,d\mu=\int_{\mu\inf(x)}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}\\
+	&
+	\end{align*}
+\end{block}
+\end{frame}
 
 \section{Test d'ipotesi}
 
-\begin{frame}{Ipotesi semplice}
-Per ipotesi semplici esiste UMP test: Lemma NP.
+\begin{frame}{Ipotesi semplice. UMP test: Lemma NP.}
+RV $\vec{X}$: pdf $f_N(\vec{X}|\theta)$, lo spazio dei parametri \'e $\theta_0,\theta_1$. Cerco la regione $S_0$ regione critica che massimizza power $1-\beta$ (dato $\alpha=\int_{w_{\alpha}}f_N(\vec{X}|\theta_0)\,dX=\alpha$):
+\begin{align*}
+&\int_{w_{\alpha}}f_N(\vec{X}|\theta_1)\,dX=1-\beta=\int_{w_{\alpha}}\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}f_N(\vec{X}|\theta_0)\,dX=\E_{w_{\alpha}}{[\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}]}\\
+&\Rightarrow l_N(\vec{X},\theta_0,\theta_1)=\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}\geq c_{\alpha}: H_1\ (\leq c_{\alpha}: H_0)
+\end{align*}
+Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\geq\beta_{NP}$ ($\pow'\leq\pow_{NP}$, probabilit\'a errore tipo II \'e maggiore), dimostro $\beta'-\beta\geq0$ cio\'e $\prob{(\overline{C}'|H_1)}-\prob{(\overline{C}|H_1)}$:
+\begin{align*}
+&\prob{(C|H_1)}-\prob{(C'|H_1)}=\prob{(C\cap|H_1)}+\prob{(C\cap\overline{C}'|H_1)}-\prob{(C\cap C'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}=\prob{(C\cap\overline{C}'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}\\
+&\prob{(C\cap C'|H_1)}=\int_{C\cap C'}\prob_1{(x)}\,dx\geq\int_{C\cap \overline{C}'}\frac{\prob_0{(x)}}{q}\,dx=\frac{1}{q}\prob{(C\cap\overline{C}'|H_0)}
+\end{align*}
 \end{frame}
 
 \begin{frame}{Ipotesi composte}
@@ -166,7 +224,11 @@ For exponential family exists UMP one-sided ($H_0: \theta=\theta_0$, $H_1: \thet
 \end{frame}
 
 \begin{frame}{LMP test}
-If no UMP exists we can build test MP in neighbourhood of null H:
+Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
+Applico NP a $H_0$ vs $H_1$:
+\begin{equation*}
+\ln{L(\vec{X},\theta_1)}-\ln{L(\vec{X},\theta_0)}\gtrless c_{\alpha} \Rightarrow \PDy{\theta}{\ln{L}}\gtrless q_{\alpha}
+\end{equation*}
 \begin{columns}[T]
 	\begin{column}{0.4\textwidth}
 		\begin{align*}
@@ -176,13 +238,16 @@ If no UMP exists we can build test MP in neighbourhood of null H:
 	\end{column}
 	\begin{column}{0.6\textwidth}
 		\begin{align*}
-		&\PDy{\theta}{L}\gtrless k_{\alpha}\gtrless\lambda_{\alpha}\sqrt{NI}\\
-		&\E{[\PDy{\theta}{L}|_{\theta_0}]}=0,\ \E{[(\PDy{\theta}{L}|_{\theta_0})^2]}=NI
+		&\PDy{\theta}{\log{L}}\gtrless k_{\alpha}\gtrless\lambda_{\alpha}\sqrt{NI}\\
+		&\E{[\PDy{\theta}{\log{L}}|_{\theta_0}]}=0,\ \E{[(\PDy{\theta}{\log{L}}|_{\theta_0})^2]}=NI
 		\end{align*}
 	\end{column}
 \end{columns}
 \end{frame}
 
+\begin{frame}{LR test}
+James pg 287
+\end{frame}
 
 \section{Compiti}\linkdest{compiti}
 
