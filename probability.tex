@@ -44,6 +44,16 @@
 \end{columns}
 \end{frame}
 
+\begin{frame}{Significato di evento. Eventi congiunti. Distribuzione cumulante}
+\begin{block}{\keyword{Distribuzione di probabilit\'a cumulante}}
+$F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$; $\alpha$-point, \keyword{quantile of order $\alpha$}: $F(x_{\alpha})=\alpha$
+\end{block}
+\begin{block}{\keyword{Eventi congiunti e probabilit\'a condizionata}}
+Probabilit\'a $([x,x+dx],y)=(A)$: \keyword{marginal pdf} for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$.
+$\prob{(A\cap B)}=f(x,y)\,dx\,dy$; \keyword{Probabilit\'a condizionata} $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: \keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and \keyword{law of total prob.}: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$
+\end{block}
+\end{frame}
+
 \begin{wordonframe}{Axioms exercises}
 \[\prob{(A\cap B)}=\prob{A}+\prob{B}-\prob{A\cup B}\]
 Indipendence: $\prob{A\cap B}=\prob{A}\prob{B}$.
@@ -54,13 +64,16 @@ Disjoint: $\prob{A\cap B}=0$.
 
 \begin{frame}{Interpretazioni di probabilit\'a}
 \begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
-RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili risultati di una misura/\keyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni)
+RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili risultati di una misura/\keyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni). Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
+\begin{align*}
+&\E_Y{[\E_{XY|Y}{XY|Y}]}=\E_Y{[Y\E_{X|Y}{[X]}]}\\
+&\text{Stat indip: }\E_{X|Y}{[X]}=\E_X{[X]}
+\end{align*}
 \end{block}
 \begin{block}{Probabilit\'a frequentista}
 Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
 \end{block}
 \begin{block}{Probabilit\'a bayesiana}
-
 \begin{itemize}
 \item Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
 \item Subjective probability can be associated with value of unknown constants (mass of electron, etc): probability of $95\%$ that electron mass is in given interval.
@@ -107,22 +120,6 @@ Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a 
 		\end{column}
 	\end{columns}
 \end{wordonframe}
-
-\subsection{Variabili casuali: osservabili}\linkdest{RV}
-
-\begin{frame}{Distribuzione di probabilit\'a di un osservabile: densit\'a di probabilit\'a, cumulante; osservabili multidimensionali.}
-\begin{itemize}
-\item \keyword{Distribuzione di probabilit\'a cumulante}: $F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$.
-\item $\alpha$-point, \keyword{quantile of order $\alpha$}: $F(x_{\alpha})=\alpha$.
-\item Probabilit\'a $([x,x+dx],y)=(A)$: \keyword{marginal pdf} for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$.
-$\prob{(A\cap B)}=f(x,y)\,dx\,dy$; \keyword{Probabilit\'a condizionata} $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: \keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and \keyword{law of total prob.}: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$.
-\item Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
-\begin{align*}
-&\E_Y{[\E_{XY|Y}{XY|Y}]}=\E_Y{[Y\E_{X|Y}{[X]}]}\\
-&\text{Stat indip: }\E_{X|Y}{[X]}=\E_X{[X]}
-\end{align*}
-\end{itemize}
-\end{frame}
 
 \subsection{Trasformazione pdf per cambio RV}\linkdest{pdfRVchange}
 
