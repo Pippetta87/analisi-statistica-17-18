@@ -823,7 +823,8 @@ lo stimatore non \'e consistente.
 \end{wordonframe}
 
 \begin{frame}{Massima likelihood e metodo minimi quadrati}\linkdest{MLS}\frameintoc
-Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
+%Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
+N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}$)
 \begin{align*}
 &\prob{(k_i,\theta)}\propto\exp{-\frac{(k_i-\mu_i)^2}{2\sigma_i^2}}\intd{$\log{L}$ \'e massimizzato dalla funzione che minimizza}
 &\chi^2=-2\log{L}=\sum_i\frac{(k_i-\mu_i(\theta))^2}{\sigma_i^2}\intd{if measures are not indipendent}

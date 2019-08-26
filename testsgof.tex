@@ -324,6 +324,12 @@ Misurazione flusso di neutroni $\phi$ con contatore: $\phi_0$ flusso normale.
 $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 \end{frame}
 
+\subsection{Monotone LR}
+
+\begin{frame}{monotone LR pdfs}
+Lehmann/Romano 3.4 pg 76
+\end{frame}
+
 \section{Goodness of fit}\linkdest{gof}
 
 \begin{frame}[allowframebreaks]{List of things}
@@ -340,15 +346,16 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 \subsection{Distance between data and hypothesis: map statistic to p-value}\linkdest{pvalue}
 
 \begin{frame}{How data well fit the model?}
-GOF: data una misura determino probabilit\'a di avere un risultato meno in accordo con ipotesi $H_0$, tecnica esclusivamente frequentista.
-Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}=\prob{(T(x)\in S_1|H_0)}$, non specifico ipotesi alternative.
+GOF tests compare experimental data with their pdf under null hyp. $H_0$:  ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$''; a small p-value is taken as evidence against $H_0$.
+%GOF: data una misura determino probabilit\'a di avere un risultato meno in accordo con ipotesi $H_0$, tecnica esclusivamente frequentista.
+%Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}=\prob{(T(x)\in S_1|H_0)}$, non specifico ipotesi alternative.
 \begin{itemize}
 \item Test statistic: function of data which measure ''distance'' between data and hypothesys
-\item Map statistic to P-value: suppose $\frac{p_1(X)}{p_0(X)}$ continuo, $\alpha<\alpha': S_{\alpha}\subset S_{\alpha'}$, \keyword{p-value} p is smallest significance level at which hypothesis would be rejected for the given observation.
+\item Map statistic to P-value: suppose $t=\frac{p_1(X)}{p_0(X)}$ continuo, $\alpha<\alpha': S_{\alpha}\subset S_{\alpha'}$, \keyword{p-value} p is smallest significance level at which hypothesis would be rejected for the given observation.
 \end{itemize}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in C_{\alpha}\}\]
+\[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in S_1\}\]
 \end{column}
 \begin{column}{0.5\textwidth}
 
@@ -388,10 +395,10 @@ P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})
 Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha significativit\'a $1-\alpha$. Considero una statistica con $\prob{(t(x))}=U([0,1])$ (per esempio una $F(X)$):
 \begin{block}{Combinazione di pi\'u p-value: algoritmo ordinamento prodotto}
 \begin{align*}
-&(p_1,p_2)\to\prob{(p=p_1p_2<q)}=q-q\log{q}&\intertext{cos\'i N non sono commutativi:}\\
+\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\
 &(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\intu{che ha pdf di Erlang, mentre asintoticamente:}
 &\prob{(\chi^2)}=\frac{1}{2\expy{N/2}\Gamma(N/2)}x\expy{k/2-1}\exp{-x/2}\to\frac{1}{2}\exp{-x/2}\\
-&\prob{(Q)}=\prob{(\chi^2_{2N})}
+&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
 \end{align*}
 
 \end{block}
