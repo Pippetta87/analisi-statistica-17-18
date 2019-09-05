@@ -384,20 +384,18 @@ Supponendo $b_N\propto\frac{1}{N}$
 
 \subsection{Stimatori puntuali}\linkdest{points}
 
-\begin{frame}{Stimatori puntuali}
+\begin{frame}{Stimatori puntuali: Caratteristiche stimatori}
 \begin{columns}[T]
-\begin{column}{0.33\textwidth}
+\begin{column}{0.4\textwidth}
 Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$.
 \end{column}
-\begin{column}{0.67\textwidth}
-\begin{block}{Caratteristiche stimatori}
+\begin{column}{0.6\textwidth}
 \begin{itemize}
 \item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
 \item \keyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
 \item \keyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
 \item \keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
 \end{itemize}
-\end{block}
 \end{column}
 \end{columns}
 \end{frame}
@@ -465,6 +463,15 @@ Per due parametri:
 \begin{align*}
 &I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
 \end{align*}
+\begin{block}{Score statistics}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+
+\end{column}\begin{column}{0.5\textwidth}
+
+\end{column}\end{columns}
+\end{block}
+\end{frame}
+
 \begin{block}{Informazione e statistiche}
 $I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
 \end{block}
