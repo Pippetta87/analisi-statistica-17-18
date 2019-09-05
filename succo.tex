@@ -1,20 +1,32 @@
-\section{Math}
-
-
 
 \section{Assiomi di probabilit\'a e RV}
 
-\begin{frame}{Convergenza di RV}
-\begin{block}{Chebychev ineq}
-\keyword{Chebyshev ineq}: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$.
-\end{block}
-\begin{block}{\keyword{Probability convergence}}
-Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0.
-\end{block}
+\begin{frame}{Assiomi probabilit\'a Kolmogorov e definizioni}
+\begin{itemize}
+	\item Assiomi di probabilit\'a: i) La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
+	ii) La probabilit\'a degli eventi del sample space \'e 1.
+	iii) $\sigma$-additivit\'a: per ogni sequenza numerabile di insiemi disgiunti (eventi mutualmente esclusivi) $\prob{(\cup_{i=1}^{\infty}E_i)}=\sum_{i=1}^{\infty}\prob{(E_i)}$
+	\item Addition rule: probability that A or B will - $\prob{(A\cup B)}=\prob{(A)}+\prob{(B)}-\prob{(A\cap B)}$
+	\item Probabilit\'a condizionata $\prob{(B|A)}=\frac{\prob{(B\cap A)}}{\prob{(A)}}$
+	\item Teorema di Bayes $\prob{(A|B)}=\frac{\prob{(B|A)}\prob{(A)}}{\prob{(B)}}$
+	\item eventi indipendenti $P(A|B)=P(A)$
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Distribuzioni di probabilit\'a - Convergenza di RV}
+\begin{itemize}
+\item Distribuzione di probabilit\'a cumulante e pdf: 	$F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$
+\item $\alpha$-point, quantile of order $\alpha$: $F(x_{\alpha})=\alpha$
+\item Eventi congiunti - Probabilit\'a $([x,x+dx],y)=(A)$: marginal pdf for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$.
+$\prob{(A\cap B)}=f(x,y)\,dx\,dy$
+\item Probabilit\'a condizionata $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$
+\item T Bayes $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$
+\item law of total prob.: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$
+\end{itemize}
 
 \end{frame}
 
-\section{Cambio di variabile}
+\section{Cambio di variabile: come cambia pdf?}
 
 \begin{frame}{Trasformazione pdf per cambio variabile}
 \begin{figure}
@@ -31,8 +43,6 @@ Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|
 &\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
 \end{align*}
 \end{frame}
-
-\subsection{Somma RV indipendenti}
 
 \begin{frame}{Somma di RV: Convoluzione e funzione caratteristica}
 \begin{block}{Applicazione cambio di variabile}
@@ -51,46 +61,52 @@ La funzione caratteristica determina completamente pdf: se $F(X)$ continua, $dF(
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
 \begin{columns}[T]
-	\begin{column}{0.5\textwidth}
+	\begin{column}{0.4\textwidth}
 		\begin{align*}
 		&M_X(t)=\E{[\exp{tX}]}\\
 		&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
 		&\phi(0)=1,\ |\phi(t)|\leq1\\
+		&Y=\alpha X+b:\ M_Y=\exp{ibt}M_X(\alpha t)\\
+		&\mu_n(x_0)=\E{[\sum_k^n]}\binom{n}{k}(-1)^{n-k}\mu'_kx_0^{n-k}\\
+		&E[a(X)]=\intsinf{}a(x)f(x)dx=\intsinf{}ag(a)da
+		\end{align*}
+%	Non \'e detto che $f(\mu)=\E{[f]}$.
+	\end{column}
+	\begin{column}{0.6\textwidth}
+		\begin{align*}
+		&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
+		&\PDyn{(it)}{\phi_X}{n}|_{t=0}=(-i)^n\E{[x^n]}=\mu_n'\\
+		&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
+		&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'\\
 		&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
 		\end{align*}
 	\end{column}
-	\begin{column}{0.5\textwidth}
-		\begin{align*}
-		&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
-		&\PDyn{(it)}{\phi_X}{n}|_{t=0}=\left.(-i)^n\E{[x^n]}\right|_{t=0}=\mu_n'\\
-		&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
-		&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
-		\end{align*}
-		\begin{block}{Trasf lineare}
-			\begin{align*}
-			&Y=\alpha X+b\\
-			&M_Y=\exp{ibt}M_X(\alpha t)
-			\end{align*}
-		\end{block}
-	\end{column}
 \end{columns}
-Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
+Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$
+\begin{block}{Levy theorem: if sequenza $\phi_n\to\phi$ allora $X_n\xrightarrow{D}X$}
+Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
+$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$
+\end{block}
+\end{frame}
+
+
+\begin{frame}{Funzioni caratteristiche}
+COwan 157
 \end{frame}
 
 \section{Legge grandi Numeri - T limite centrale}
 
 \begin{frame}{Legge grandi numeri}
-$X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora \[\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}\]
+\begin{itemize}
+\item Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$
+\item Probability convergence: 	Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0
+\item LLN: $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora $\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}$, infatti
 \begin{align*}
-&\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
+&\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}\\
+&=\frac{1}{n^2}\var{(X_1+\ldots+X_n)}=\frac{n\sigma^2}{n^2}=\frac{\sigma^2}{n}\\
 &\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}
 \end{align*}
-
-\end{frame}
-
-\begin{frame}{Levy theorem: $\overline{X}_n\to\mu$}
-Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
-$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$
+\end{itemize}
 \end{frame}
 
 \begin{frame}{LLN: asintoticamente gaussiana - Teorema limite centrale (CLT)}
@@ -123,15 +139,25 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 
 \section{Data analysis}
 
-\begin{frame}{Propagazione errori}
+\begin{frame}{Statistica}
+		\begin{block}{Momenti di una statistica S}
+	\begin{align*}
+	&\E{[(S(\vec{x})-\E{[S]})^l]}
+	\end{align*}
+\end{block}
+\begin{block}{Propagazione errori}
 \begin{align*}
 &S(\vec{x})\approx y(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
 &\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_i}{y}{\vec{\mu}}\cov{x_ix_j}\\
 &\cov{x_ix_j}=\E{[(x-\mu_x)(y-\mu_y)]}=\E{[xy]}-\mu_x\mu_y
 \end{align*}
+\end{block}
+\begin{block}{Statistica sufficiente}
+Statistica sufficiente $S$ per parametro $\Theta$. Pdf di X data $T(X)$ non dipende da parametro $\theta$: $\prob{(x;S,\theta)}=\prob{(x;S)}$.
+Statistica sufficiente minimale
+	$S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim({S})\leq\dim{(X)}$.
+\end{block}
 \end{frame}
-
-\subsection{Likelihood}
 
 \begin{frame}{Funzione di Likelihood}
 \begin{columns}[T]
@@ -141,14 +167,13 @@ $L_{f(t_0)}(m)=|J(t_0)|L_{t_0}(m)$
 \end{column}
 \begin{column}{0.5\textwidth}
 \begin{block}{T di Bayes e likelihood}
-Se posso definire una $p(\theta)$:
+Prior $p(\theta)$ contiene belief su parametro fino al nostro esperimento:
 \begin{align*}
 &p(\theta|x_0)=\frac{p(x_0|\theta)p(\theta)}{p(x_0)}\\
 &\posterior{}=\frac{\likelihood{}\prior{}}{\int p(x_0|\theta)p(\theta)\,d\theta}
 \end{align*}
-\end{block}
-\begin{block}{Degree of belief}
-Posterior ratio: $\frac{\Pi(\theta_1|x_0)}{\Pi(\theta_2|x_0)}=\frac{L_{x_0}(\theta_2)}{L_{x_0}(\theta_1)}\frac{\Pi(\theta_2)}{\Pi(\theta_1)}$.
+
+Posterior ratio (Degree of belief): $\frac{\Pi(\theta_1|x_0)}{\Pi(\theta_2|x_0)}=\frac{L_{x_0}(\theta_2)}{L_{x_0}(\theta_1)}\frac{\Pi(\theta_2)}{\Pi(\theta_1)}$.
 \end{block}
 \end{column}
 \end{columns} 
@@ -170,16 +195,17 @@ Posterior ratio: $\frac{\Pi(\theta_1|x_0)}{\Pi(\theta_2|x_0)}=\frac{L_{x_0}(\the
 \end{columns}
 \end{frame}
 
-\subsection{Statistica sufficiente}
+\begin{frame}{Esempi di likelihood}
+
+\end{frame}
+
+\begin{frame}{Bayesian inference}
+\end{frame}
 
 \begin{frame}{Statistiche sufficienti per il parametro dato. T di Darmois}
-Statistica sufficiente $S$ per parametro $\Theta$. Pdf di X data $T(X)$ non dipende da parametro $\theta$:
-\[\prob{(x;S,\theta)}=\prob{(x;S)}\]
+
 \begin{block}{Teorema di fattorizzazione}
 Probabilit\'a di osservare $X$ dato $\theta$ \'e probabilit\'a di $S(x)$ dato $\theta$ per funzione sole osservabili: $\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)$ e $\omega_{\theta}$ non dipende da $\theta$
-\end{block}
-\begin{block}{Statistica sufficiente minimale}
-$S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim({S})\leq\dim{(X)}$.
 \end{block}
 \begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente}
 Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff
@@ -250,10 +276,6 @@ James pg 287
 \end{frame}
 
 \section{Compiti}\linkdest{compiti}
-
-\begin{wordonframe}{List of keywords}
-%\listofkeywords
-\end{wordonframe}
 
 \begin{wordonframe}{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}
 	Fit di massima likelihood per le 10 osservabili (binned) basandosi su teoria: istogrammi suff. popolati per GOF test di Pearson con 30 dof (31 bins?)

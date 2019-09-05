@@ -1,9 +1,40 @@
-\section{Statistiche sufficienti}
+\section{Inferenza statistica - Paradigma frequentista e bayesiano}
+
+%\begin{refsection}{}
+\subsection{Principio di sufficienza}
+
+\begin{frame}{Principio di sufficienza}
+\begin{block}{Principio di sufficienza}
+	Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
+	\keyword{Principio di sufficienza}: per ogni x $Ev(E,x)=Ev(E',t)$.
+\end{block}
+\begin{block}{\keyword{Principio di likelihood} (Fisher Barnard)}
+	Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
+\end{block}
+\end{frame}
+
+\subsection{Principio di condizionalit\'a}
+
+\subsection{Paradigmi di inferenza}
+
+\begin{frame}{Paradigmi}
+\begin{block}{Fisher}
+
+\end{block}
+\begin{block}{Neyman Pearson}
+
+\end{block}
+\begin{block}{Bayesian}
+Il teorema di Bayes \'e usato per aggiornare la probabilit\'a sulla base di nuove informazioni. 
+\end{block}
+\end{frame}
+
+\subsection{Baysiano}
 
 \begin{frame}[allowframebreaks]{List of things}
 \printbibliography[keyword={inference},heading=beamer]
 %\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
+%\listofkeywords
 \end{frame}
 
 \subsection{Funzione di Likelihood}\linkdest{likelihood}
@@ -301,52 +332,7 @@ $\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di
 \keyword{Ex: pdf non della famiglia esponenziale}: Come procedo se pdf non esponenziale (LHC)?
 \end{wordonframe}
 
-\section{Inferenza statistica. Paradigma frequentista e bayesiano.}
-
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
-
-%\begin{refsection}{}
-\subsection{Principio di sufficienza}
-
-\begin{frame}{Principio di sufficienza}
-\begin{block}{Principio di sufficienza}
-Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
-Principio di sufficienza: per ogni x $Ev(E,x)=Ev(E',t)$.
-\end{block}
-\begin{block}{Principio di likelihood (Fisher Barnard)}
-Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
-\end{block}
-\end{frame}
-
-\subsection{Principio di condizionalit\'a}
-
-\subsection{Paradigmi di inferenza}
-
-\begin{frame}{Paradigmi}
-\begin{block}{Fisher}
-
-\end{block}
-\begin{block}{Neyman Pearson}
-
-\end{block}
-\begin{block}{Bayesian}
-Il teorema di Bayes \'e usato per aggiornare la probabilit\'a sulla base di nuove informazioni. 
-\end{block}
-\end{frame}
-
-\subsection{Baysiano}
-
 \section{Stimatori}\linkdest{stimatori}
-
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
 
 \begin{frame}{Propriet\'a generali stiamatori}
 \begin{itemize}
@@ -691,7 +677,7 @@ $\PDy{\theta}{\log{L_{tot}}}=0$.
 \begin{block}{Pdf dello stimatore tende asintoticamente ad gaussiana}
 \end{block}
 \begin{block}{MLE per pdf esponenziale}
-Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] il metodo di massima likelihood determina lo stimatore efficiente e senza bias $\Hat{M}=\frac{1}{N}\sum_i\alpha(x_i)$ di $M(\theta)=-\frac{\TDy{\theta}{c(\theta)}}{\TDy{\theta}{a(\theta)}}$.
+Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] il metodo di massima likelihood determina lo stimatore efficiente e senza bias $\hat{M}=\frac{1}{N}\sum_i\alpha(x_i)$ di $M(\theta)=-\frac{\TDy{\theta}{c(\theta)}}{\TDy{\theta}{a(\theta)}}$.
 \end{block}
 \cite{barlow1990extended}
 \end{frame}
@@ -822,22 +808,27 @@ lo stimatore non \'e consistente.
 \end{align*}
 \end{wordonframe}
 
+\begin{wordonframe}{MLS refs}
+(se $W_{ij}>0$: $\PDy{\theta}{\mu_i}W_{ij}\PDy{\theta}{\mu_j}\geq0$??)
+Estimators:Least square examples in cowan 95
+\end{wordonframe}
+
 \begin{frame}{Massima likelihood e metodo minimi quadrati}\linkdest{MLS}\frameintoc
 %Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
-N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}$)
+N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}$) ignota e varianza $\sigma_i$ nota
 \begin{align*}
 &\prob{(k_i,\theta)}\propto\exp{-\frac{(k_i-\mu_i)^2}{2\sigma_i^2}}\intd{$\log{L}$ \'e massimizzato dalla funzione che minimizza}
-&\chi^2=-2\log{L}=\sum_i\frac{(k_i-\mu_i(\theta))^2}{\sigma_i^2}\intd{if measures are not indipendent}
-&\log{(L(\theta))}=-\frac{1}{2}\sum_{ij}(y_i-\lambda_i(\theta))[\invers{V}]_{ij}(y_j-\lambda_j(\theta))
+&\chi^2=-2\log{L}=\sum_i^N\frac{(y_i-\mu(x_i;\theta_1,\ldots,\theta_m))^2}{\sigma_i^2}(=\sum_i\frac{(k_i-\mu_i(\theta))^2}{\sigma_i^2})\intd{if measures are not indipendent}
+&\log{(L(\theta))}=-\frac{1}{2}\sum_{ij}(y_i-\mu_i(\theta))[\invers{V}]_{ij}(y_j-\mu_j(\theta))
 \end{align*}
 
-(se $W_{ij}>0$: $\PDy{\theta}{\mu_i}W_{ij}\PDy{\theta}{\mu_j}\geq0$??)
-\keyword{Estimators:Least square examples in cowan 95}
+I parametri che minimizzano sono $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\hat{\theta}_m$
 \end{frame}
 
 \begin{frame}{Best linear unbiased estimator. Teorema di Gauss-Markov}
-\begin{block}{Funzioni lineari dei parametri}
-se $\lambda_i(\theta)=\mu_i(\theta)=\sum_ja_j(\vec{x})\theta_j$, $a_j(\vec{x})$ lin. indip., allora $\hat{\theta}_j$ sono unbiased e al MVB: teorema di Gauss-Markov.
+se la dipendenza della media ignota dai parametri \'e lineare
+\[\lambda_i(\theta)=\mu_i(\theta)=\sum_ja_j(\vec{x})\theta_j=\sum_j^mA_{ij}\theta_j\]
+$a_j(\vec{x})$ lin. indip., allora $\hat{\theta}_j$ sono unbiased e al MVB: \keyword{teorema di Gauss-Markov}.
 Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V$ nota
 \begin{align*}
 &\chi^2=(\vec{y}-\vec{\lambda})^T\invers{V}(\vec{y}-\vec{\lambda})=(\vec{y}-A\vec{\theta})^T\invers{V}(\vec{y}-A\vec{\theta})\\
@@ -845,7 +836,10 @@ Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V
 &\hat{\vec{\theta}}=\invers{(A^T\invers{V}A)}A^T\invers{V}\vec{y}=B\vec{y}\intd{e matrice di covarianza:}
 &U=BVB^T=\invers{(A^TVA)}=\cov{(\theta_i,\theta_j)},\ [\invers{U}]_{ij}=\frac{1}{2}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}
 \end{align*}
-\end{block}
+above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gaussian distributed ($\log(L)=-\chi^2/2$)
+\end{frame}
+
+\begin{frame}{Contours in parameter space}
 \keyword{Contours in parameter space}
 \begin{align*}
 &\chi^2(\theta)=\chi^2(\hat{\theta})+\frac{1}{2}\sum_{ij}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}(\theta_i-\hat{\theta}_i)(\theta_j-\hat{\theta}_j)
@@ -962,22 +956,21 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 
 \section{Stima intervallare}\linkdest{interval}
 
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
-
-\subsection{Credibility intervall (bayesiano) e Confidence interval (frequentista)}
+\subsection{Credibility intervall (bayesiano)}
 
 \begin{frame}[fragile]{Bayesian credibility Interval}
-\begin{block}{Credibility (della posterior)}
+\keyword{Intervallo di Credibilit\'a (Bayesiano)}: l'integrale della posterior sull'intervallo \'e $CL$, probabilit\'a che l'intervallo contenga il valore vero del parametro.
+\begin{block}{\keyword{Ordinamento (Funzione di)}}
+	determina la maniera in cui costruisco la regione di credibilit\'a: $+x$, $-x$, $\prob{x}$ possono essere funzioni di ordinamento - l'integrazione parte dal valore maggiore
+\end{block}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{\keyword{Credibility (della posterior)}}
 	\begin{align*}
-	&\cred{(x)}=\int_{\mu\in\inf(x)}\Pi(\mu|x)\,d\mu=\int_{\mu\inf(x)}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}\\
-	&
+	&\cred{(x)}=\int_{\mu\in\inf(x)}\Pi(\mu|x)\,d\mu=\int_{\mu\inf(x)}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}
 	\end{align*}
 \end{block}
-\begin{block}{Ordinamento}
 	\begin{picture}(100,130)
 	\put(20,20){
 		\begin{tikzpicture}[scale=0.4]
@@ -988,11 +981,13 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 		\addplot gnuplot [black,thick,fill=grey,smooth,no marks,domain={0:2}]{\basefunc} \closedcycle;
 		\node (unomenocl) at (axis cs:-1,0.3) {$1-\frac{\alpha}{2}$};
 		\end{axis}
+		\hspace{0.5cm}
 		\begin{axis}[title={upper limit}, at={($(central)+(4.5cm,-3cm)$)},name=upper,samples=50,ymin=0,xmin=-2,xmax=4,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
 		\addplot gnuplot [no marks,fill=grey,domain={-2:2}]{\basefunc} \closedcycle; 
 		\addplot gnuplot [black,thick,smooth,no marks,domain={2:4}]{\basefunc};   
 		\end{axis}
 		\edef\oprob{0.47}
+		\hspace{0.5cm}
 		\begin{axis}[at={($(upper)+(4.5cm,-3cm)$)}, title={probability order},name=central,samples=50,ymin=0,xmin=-2,xmax=4,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
 		\addplot[name path=prob] gnuplot[grey,thick,smooth,no marks]{\oprob};
 		\addplot[name path=gauss] gnuplot[black,thick,smooth,no marks]{\basefunc};
@@ -1010,10 +1005,12 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 		\end{axis}
 		\end{tikzpicture}}
 	\end{picture}
-\end{block}
 \end{frame}
 
-\begin{frame}{Neyman construction. Frequentist confidence intervals}
+\subsection{Confidence interval (frequentista)}
+
+\begin{frame}{\keyword{Neyman construction}. Frequentist confidence intervals}
+\keyword{Confidence interval (frequentista)}: molte ripetizioni dell'esperimento, CL volte l'intervallo contiene il parametro.
 %reminder: banda confidenza con pgfplot/gnuplot
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -1030,7 +1027,7 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 \end{column}
 \begin{column}{0.6\textwidth}
 	\begin{block}{Costruzione di Neyman}
-		Coverage: $\coverage{(\mu)}=\int_{x:\mu\in f(x)}\prob{(x:\mu)}\,dx$, $f(x)$ associa un intervallo nello spazio dei parametri a una misura; l'algoritmo ha livello di confidenza $\cl=\inf_{\mu\in A}C(\mu)$ cio\'e l'intervallo associato alla data misura ha probabilit\'a $\cl{}$ di contenere il parametro.
+		\keyword{Coverage}: $\coverage{(\mu)}=\int_{x:\mu\in f(x)}\prob{(x:\mu)}\,dx$, $f(x)$ associa un intervallo nello spazio dei parametri a una misura; l'algoritmo ha livello di confidenza $\cl=\inf_{\mu\in A}C(\mu)$ cio\'e l'intervallo associato alla data misura ha probabilit\'a $\cl{}$ di contenere il parametro.
 	\end{block}
 	\begin{block}{Ordering}
 		''The way I integrate over the data''
@@ -1054,6 +1051,7 @@ LR-ordering $R=\frac{\prob{(x;\mu)}}{\prob{(x;\mu_{best})}}$: values of x/n are 
 Confidence interval: $R(m_1)=R(m_2)$
 \end{column}
 \end{columns}
+Passaggio continuo da upper limit a confidence belt
 \end{frame}
 
 \begin{frame}{Stima intervallare bayesiana/frequentista per $U([0,m])$ (una misura)}
@@ -1118,9 +1116,9 @@ LR: upper limit - $m<\frac{x_M}{1-\cl{}}$
 \begin{column}{0.5\textwidth}
 \begin{align*}
 &\lr{}=\frac{\prob{(x_M;m)}}{\sup_m{\prob{(x_M;m)}}}\\
-&=\frac{\frac{N}{m}(\frac{x}{m})^{N-1}}{N/m}=(\frac{x}{m})^N\\
-&\lambda=-2\log{\lr{}}=-2N\log{\frac{x}{m}}
+&=\frac{\frac{N}{m}(\frac{x}{m})^{N-1}}{N/m}=(\frac{x}{m})^N
 \end{align*}
+\keyword{Funzione $\lambda$}: $\lambda=-2\log{\lr{}}=-2N\log{\frac{x}{m}}$
 \end{column}
 \begin{column}{0.5\textwidth}
 likelihood decresce sempre con m (dove $\PDy{m}{L}=0$?). \keyword{Inconsistenza nella definizione di bande di confidenza con $o=\lr{}$?} (Likelihood funzione di m).
@@ -1151,14 +1149,14 @@ N>1:\ m\in[1,\frac{1}{\sqrt[N-1]{1-\cl}}]x_M (B)\\
 
 %% banda di confidenza per distribuzione uniforme
 
-\subsection{Pivotal quantities}
+\subsection{Pivotal quantities}\linkdest{pivot}
 
 \begin{frame}{Pivot}
-Pivot: RV $U(T,\theta)$ funzione dib statistica sufficiente e parametro ma la distribuzione di U non dipende dal parametro $\forall \theta\in\Theta$ (asymptotic if true for $n\to\infty$).
+Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la distribuzione di U non dipende dal parametro $\forall \theta\in\Theta$ (asymptotic if true for $n\to\infty$).
 \begin{align*}
 &p(x;\mu)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
 &(s=\frac{x-\mu}{\sigma}:\ p(s;\mu)=N(0,1)\\
-&\int_{s>c}p(s)\,DS=\cl{}
+&\int_{s>c}p(s)\,ds=\cl{}
 \end{align*}
 \keyword{Pivot. 2-sided CI for exponential}:
 \begin{align*}
@@ -1168,7 +1166,7 @@ Pivot: RV $U(T,\theta)$ funzione dib statistica sufficiente e parametro ma la di
 \end{align*}
 \end{frame}
 
-\begin{frame}{Teorema di Wilks}
+\begin{frame}{Teorema di Wilks}\linkdest{lambda}
 $p(x;\mu)$ due volte differenziabile con dominio indipendente da parametro $\Omega(x;\mu)=\Omega(x)$: \[\lambda(x;\mu)=2\log{[\frac{\sup_{\mu}{p(x;\mu)}}{p(x;\mu)}]}\] (log-likelihood ratio statistics) ha asintoticamente pdf universale e indipendente da $\mu$: distribuzione di $\chi^2$ con dof pari a dimensione di $\vec{\mu}$.
 \begin{align*}
 &\ln{L(\theta)}-\ln{L(\hat{\theta})}=-\frac{1}{2}\invers{F}_{\chi_n^2}(1-\alpha)

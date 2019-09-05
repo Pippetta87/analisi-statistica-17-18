@@ -2,11 +2,11 @@
 
 \section{Test di ipotesi frequentista}\linkdest{testfreq}
 
-\begin{frame}[allowframebreaks]{List of things}
+%\begin{frame}[allowframebreaks]{List of things}
 %\printbibliography[keyword={inference},heading=beamer]
 %\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
+%\listofkeywords
+%\end{frame}
 
 \subsection{Accepting or rejecting hypothesis}\linkdest{Htest}
 	
@@ -332,12 +332,6 @@ Lehmann/Romano 3.4 pg 76
 
 \section{Goodness of fit}\linkdest{gof}
 
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
-
 \begin{wordonframe}{GOF Refs}
 \cite{james2006statistical}: chap 11. \cite{lehmann2006testing}: chap 14.
 
@@ -379,12 +373,12 @@ X RV $N(\xi,\sigma^2)$, $\sigma^2$ known. Null hypothesis $\xi=0$, alternative $
 \begin{equation*}
 \lr=\frac{p_1(x)}{p_0(x)}=\exp{\frac{\xi_1x}{\sigma^2}-\frac{\xi_1^2}{2\sigma^2}}
 \end{equation*}
-funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ co $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
+funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ con $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
 Regione di confidenza:
 \begin{equation*}
 S_{\alpha}=\{X: X>\sigma z_{1-\alpha}\}=\{X: \Phi(\frac{X}{\sigma})>1-\alpha\}
 \end{equation*}
-osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regionecritica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
+osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regione critica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
 \begin{equation*}
 P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})\geq 1-u\}
 \end{equation*}

@@ -54,6 +54,10 @@
 %%% COUNTERS
 \newcounter{cherrykey}%conta le keyword totali per auto ref
 \newcounter{cherrysectionlist}% conta le key prima di keywordlist
+\newcounter{todokey}%conta i todo totali per auto ref
+\newcounter{todosectionlist}% conta i todo prima di keywordlist
+\newcounter{mustkey}%conta i must totali per auto ref
+\newcounter{mustsectionlist}% conta i must prima di keywordlist
 
 \newcommand\headinginfo[1]{%
   \addcontentsline{key-\thecherrysectionlist}{heading}{{#1}}%
@@ -61,6 +65,7 @@
 %% expert approach to keywords
  \makeatletter
 \newcommand\keyword[2][target-\thecherrykey]{%
+\addtocounter{cherrysectionlist}{-1}
 \addtocounter{cherrykey}{1}
 \noindent{%
 \color{keyword}{#2}%
@@ -68,21 +73,51 @@
 \phantomsection% comment out if hyperref is not used
   \linkdest{#1}%
 \addcontentsline{key-\thecherrysectionlist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}%
+\addtocounter{cherrysectionlist}{1}
+}
+\newcommand\todo[2][todo-\thetodokey]{%todo
+	\addtocounter{todokey}{1}
+	\noindent{%
+		\color{todo}{#2}%
+	}%
+	\phantomsection% comment out if hyperref is not used
+	\linkdest{#1}%
+	\addcontentsline{todo-\thetodosectionlist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}\hspace{1mm}}%
+}
+\newcommand\must[2][must-\themustkey]{%must
+	\addtocounter{mustkey}{1}
+	\noindent{%
+		\color{must}{#2}%
+	}%
+	\phantomsection% comment out if hyperref is not used
+	\linkdest{#1}%
+	\addcontentsline{must-\themustsectionlist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}}%
 }
 \makeatother
   
-\makeatletter
+\makeatletter%%%@starttocorig
 \newcommand{\listofkeywordsbasic}{%
   \@starttocorig{key-\thecherrysectionlist}
 }
+\newcommand{\listoftodosbasic}{%listoftodos
+	\@starttocorig{todo-\thetodosectionlist}
+}
+\newcommand{\listofmustsbasic}{%listofmusts
+	\@starttocorig{must-\themustsectionlist}
+}
 %%frameintoc
 \newcommand\listofframes{\@starttoc{lbf}}
-\newcommand\listofframesname{List of keywords}
+\newcommand\listofframesname{List of frames}
 \makeatother
-
+\newcommand\listtodosname{TODO}%listoftodo
+\newcommand\listoftodos{%
+	\listtodosname\phantomsection: \listoftodosbasic}
+\newcommand\listmustsname{MUSTS}%listofmust
+\newcommand\listofmusts{%
+	\listmustsname\phantomsection: \listofmustsbasic}
 \newcommand\listkeywordsname{KEYWORDS}
 \newcommand\listofkeywords{%
-\subsubsection{\listkeywordsname}\listofkeywordsbasic}
+\subsubsection{\listkeywordsname}\listofkeywordsbasic\addtocounter{cherrysectionlist}{1}}
 %%frameintoc
 \newcommand\frameintoc{%
 %\subsubsection{\insertframetitle}

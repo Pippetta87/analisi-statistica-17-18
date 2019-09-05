@@ -32,7 +32,7 @@
 %\usetheme{Singapore}
 %\usetheme{Szeged}
 %\usetheme{Warsaw}
-
+\medmuskip=0mu
 \makeatletter
 \g@addto@macro\normalsize{%
   \setlength\abovedisplayskip{-0pt}
@@ -121,8 +121,14 @@ Bib to learn}
 \makeatother
 
 \AtBeginSection{
-\addtocounter{cherrysectionlist}{1}
-\frame{\sectionpage}
+\begin{frame}[allowframebreaks]
+    \begin{centering}
+	\begin{beamercolorbox}[sep=12pt,center]{part title}
+		\usebeamerfont{section title}\insertsection\par
+	\end{beamercolorbox}
+\end{centering}
+\listofkeywords
+\end{frame}
 }
 \AtBeginSubsection{\frame{\subsectionpage}}
 \makeatletter
@@ -153,27 +159,28 @@ Bib to learn}
     \leavevmode%
     \hbox{%Refintro
         \begin{beamercolorbox}[wd=.1\paperwidth,ht=3.8ex,dp=0ex,left]{author in head/foot}%
-            \hyperlink{intro}{i}:\hyperlink{rl18}{RLez} \hyperlink{ottobre}{Ott}\hyperlink{novembre}{Nov}\hyperlink{dicembre}{Dic}
+            \hyperlink{intro}{intro}:\hyperlink{rl18}{RLez} \hyperlink{ottobre}{Ott}\hyperlink{novembre}{Nov}\hyperlink{dicembre}{Dic}
         \end{beamercolorbox}%
 
-   \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.25ex,dp=0ex,center]{author in head/foot}%
-            \hyperlink{succo}{N}:\hyperlink{compiti}{probls}
+   \begin{beamercolorbox}[wd=.1\paperwidth,ht=4.25ex,dp=0ex,center]{author in head/foot}%
+            \hyperlink{succo}{succo}-\hyperlink{compiti}{probls}
         \end{beamercolorbox}%
         
- \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.25ex,dp=0ex,center]{author in head/foot}%refs Part 1
-            \hyperlink{statdistro}{p}:\hyperlink{axioms}{ax}-\hyperlink{RV}{RV}-\hyperlink{errors}{err}-\hyperlink{moments}{M}-\hyperlink{lln-clt}{LLN(clt)}-\hyperlink{pdfs}{f's}(\hyperlink{chi2}{$\chi2$})
+ \begin{beamercolorbox}[wd=.2\paperwidth,ht=4.25ex,dp=0ex,center]{author in head/foot}%refs probability
+            \hyperlink{statdistro}{p}:\hyperlink{axioms}{ax}-\hyperlink{aximple}{AXimpl}-\hyperlink{pdfRVchange}{pdfCV}-\hyperlink{moments}{M}-\hyperlink{lln-clt}{LLN(clt)}-\hyperlink{pdfs}{f's}(\hyperlink{chi2}{$\chi2$})
         \end{beamercolorbox}%
 
- \begin{beamercolorbox}[wd=.24\paperwidth,ht=4.2ex,dp=0ex,center]{author in head/foot}%refs Part 2
-            \hyperlink{inference}{inf}:\hyperlink{likelihood}{L}-\hyperlink{statistiche}{$S(X)$}-\hyperlink{points}{$\hat{\theta}$} \hyperlink{informazione}{$I_X$}-\hyperlink{methodsestimators}{mes}(\hyperlink{MLE}{MLE},\hyperlink{MLS}{MLS})-\hyperlink{interval}{intes};	
+ \begin{beamercolorbox}[wd=.3\paperwidth,ht=4.2ex,dp=0ex,center]{author in head/foot}%refs estimator
+            \hyperlink{inference}{inf}:\hyperlink{likelihood}{L}-\hyperlink{statistiche}{$S(X)$}-\hyperlink{points}{$\hat{\theta}$} \hyperlink{informazione}{$I_X$}-\hyperlink{methodsestimators}{mes}(\hyperlink{MLE}{MLE},\hyperlink{MLS}{MLS})-\hyperlink{interval}{intes}:\hyperlink{pivot}{pvt}-\hyperlink{lambda}{$\lambda$}
         \end{beamercolorbox}%
-         \begin{beamercolorbox}[wd=.2\paperwidth,ht=4.0ex,dp=0ex,center]{author in head/foot}%refs Part 2
+         \begin{beamercolorbox}[wd=.2\paperwidth,ht=4.0ex,dp=0ex,center]{author in head/foot}%refs test'ngof
         	\hyperlink{testfreq}{Tfreq}:\hyperlink{Htest}{H}-\hyperlink{Hsimple}{Hsim}-\hyperlink{Hcomposite}{Hcom}\\ \hyperlink{gof}{gof}:\hyperlink{pvalue}{pval}-\hyperlink{binnedgof}{bin}-\hyperlink{unbinnedgof}{unbin}
         \end{beamercolorbox}%
-        \begin{beamercolorbox}[wd=.15\paperwidth,ht=1.25ex,dp=0ex,right]{date in head/foot}%
+        \begin{beamercolorbox}[wd=.1
+        	\paperwidth,ht=1.25ex,dp=0ex,right]{date in head/foot}%
             %   \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
             \insertframenumber{} \hspace*{1ex}  / \hspace*{1ex} \inserttotalframenumber
-            \hspace*{2ex} 
+            \hspace*{2ex}
         \end{beamercolorbox}}%
         \vskip0pt%
     }

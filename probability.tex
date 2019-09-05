@@ -1,13 +1,5 @@
 \section{Variabili casuali e assiomi probabilit\'a}
 
-\begin{frame}[allowframebreaks]{List of keywords}
-\listofkeywords
-\end{frame}
-
-%\begin{frame}{List of keyword for ''probability''}
-%\listofkeywords
-%\end{frame}
-
 \subsection{Assiomi di probabilit\'a}\linkdest{axioms}
 
 \begin{frame}{Assiomi probabilit\'a Kolmogorov}
@@ -55,9 +47,10 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$; \keyword{Probabilit\'a condizionata} $\prob{(
 \end{frame}
 
 \begin{wordonframe}{Axioms exercises}
-\[\prob{(A\cap B)}=\prob{A}+\prob{B}-\prob{A\cup B}\]
-Indipendence: $\prob{A\cap B}=\prob{A}\prob{B}$.
-Disjoint: $\prob{A\cap B}=0$.
+\[\prob{(A\cap B)}=\prob{(A)}+\prob{(B)}-\prob{(A\cup B)}\]
+Indipendence: $\prob{(A\cap B)}=\prob{(A)}\prob{(B)}$.
+Disjoint: $\prob{(A\cap B)}=0$.
+T.Bayes: $\frac{P(B|A)P(A)}{P(B)}=P(A|B)=\frac{P(B|A)P(A)}{P(B)}=\frac{P(B\cap A)P(A)}{P(A)P(B)}$
 \end{wordonframe}
 
 \subsection{Significato di probabilit\'a??}\linkdest{aximpl}
@@ -74,10 +67,8 @@ RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili 
 Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
 \end{block}
 \begin{block}{Probabilit\'a bayesiana}
-\begin{itemize}
-\item Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
-\item Subjective probability can be associated with value of unknown constants (mass of electron, etc): probability of $95\%$ that electron mass is in given interval.
-\end{itemize}
+Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
+Subjective probability can be associated with value of unknown constants (mass of electron, etc): probability of $95\%$ that electron mass is in given interval.
 \end{block}
 \end{frame}
 
@@ -446,14 +437,14 @@ Non \'e detto che $f(\mu)=\E{[f]}$.
 \end{column}
 \end{columns}
 \begin{columns}[T]
-\begin{column}{0.3\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{block}{Momenti di una statistica S}
 \begin{align*}
     &\E{[(S(\vec{x})-\E{[S]})^l]}
 \end{align*}
 \end{block}
 \end{column}
-\begin{column}{0.7\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{block}{Relazione tra $\mu_n$ e $\mu'_n$.}
 \begin{align*}
 &\mu_n(x_0)=\E{[\sum_k^n]}\binom{n}{k}(-1)^{n-k}\mu'_kx_0^{n-k}
@@ -484,10 +475,6 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 \end{block}
 \end{wordonframe}
 
-\begin{wordonframe}{Funzione caratteristica di Cauchy}
-
-\end{wordonframe}
-
 \begin{wordonframe}{(contro)Esempi momenti}
 \begin{block}{pdf di \keyword{Cauchy}: non vale LLN}
 \keyword{Parametri larghezza e posizione}: $\prob{(x)}=\frac{1}{\pi\Gamma}\frac{1}{1+(\frac{x-m}{\Gamma})^2}$.
@@ -508,8 +495,6 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 Per gaussiana: $\phi_{\overline{X}}(t)=\exp{-\frac{t^2}{4}}$, $\sigma^2\to\frac{\sigma^2}{2}$.
 \end{block}
 \end{wordonframe}
-
-%\subsection{Funzione caratteristica}\linkdest{moments}
 
 \begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
 \begin{columns}[T]
@@ -660,17 +645,12 @@ Convoluzione e prodotto:
 &\tri{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\sinc^2{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\sinc^2{(\frac{\nu}{2\pi a})}\\
 &\exp{-\alpha x^2} & \frac{1}{\sqrt{2\alpha}}\exp{-\frac{\omega^2}{4\alpha}} & \sqrt{\frac{\pi}{\alpha}}\exp{-\frac{\nu^2}{4\alpha}}\\
 &\exp{-a|x|} & \sqrt{\frac{2}{\pi}}\frac{a}{a^2+\omega^2} & \frac{2a}{a^2+\nu^2}\exp{-\frac{a^2x^2}{2}}\\
-&\exp{-\frac{a^2x^2}{2}}H_n(ax) & \frac{(-i)^n}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\omega}{a}) & \frac{(-i)^n\sqrt{2\pi}}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\nu}{a})
+&\exp{-\frac{a^2x^2}{2}}H_n(ax) & \frac{(-i)^n}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\omega}{a}) & \frac{(-i)^n\sqrt{2\pi}}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\nu}{a})\\
+&\exp{-a|x|} & \frac{2a}{x^2+a^2}
 \end{align*}
 \end{wordonframe}
 
 \section{Legge grandi numeri - Teorema limite centrale}\linkdest{lln-clt}
-
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
 
 \begin{frame}{Legge grandi numeri}
 $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora \[\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}\]
@@ -713,10 +693,9 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{columns}
 \[\phi(t)=\sum_{m=0}^{\infty}\left.\frac{d^m\phi}{dt^m}\right|_{t=0}\frac{t^m}{m!}=\sum_{m=0}^{\infty}\frac{(it)^m}{m!}\E{(y^m)}\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots\]
 \begin{align*}
-&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\\
-&\log{\phi_N}\to-\frac{t^2}{2}\\
+&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\to-\frac{t^2}{2}\\
 %\text{Per T Levy la pdf \'e:}\\
-&\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}d\,t=\frac{1\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
+&\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}\,dt=\frac{\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
 \end{align*}
 \end{frame}
 
@@ -736,12 +715,6 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 
 \section{Important pdfs}\linkdest{pdfs}
 
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
-
 \begin{wordonframe}{Combinazioni e permutazioni}
 $n!$: permutazioni - modi distinti di prendere n oggetti
 \end{wordonframe}
@@ -750,7 +723,7 @@ $n!$: permutazioni - modi distinti di prendere n oggetti
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
-&\prob{x}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+&\prob{[x]}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
 &F(x)=\frac{1}{2}[1+\Erf([\frac{x-\mu}{\sqrt{2}\sigma}])
 \end{align*}
 \end{column}
@@ -964,13 +937,14 @@ x,y RV $N(0,\sigma^2)$
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
-&\prob{(x;\theta,\Sigma)}=\frac{1}{(2\pi)^{n/2}|\Sigma|^{1/2}}\exp{-\frac{1}{2}(\vec{x}-\mu)^T\Sigma\expy{-1}(\vec{x}-\mu)}
+&\prob{(\vec{x};\vec{\theta},V)}=\frac{1}{(2\pi)^{N/2}|V|^{1/2}}\exp{-\frac{1}{2}(\vec{x}-\vec{\mu})^TV\expy{-1}(\vec{x}-\vec{\mu})}
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
 Diagonal $\Sigma$ \'e equivalente a n gaussiane. Una gaussiana multivariata si ottiene da n gaussiane $N(0,1)$ tramite trasformazione $X=BZ+\mu$.
 \end{column}
 \end{columns}
+\keyword{Matrice di co-varianza}: $V_{ij}=\E{[(x_i-\mu_i)(x_j-\mu_j)]}$
 \end{frame}
 
 \subsection{Chi quadro}\linkdest{chi2}
@@ -979,10 +953,11 @@ Diagonal $\Sigma$ \'e equivalente a n gaussiane. Una gaussiana multivariata si o
 La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^2)}$ \'e la distribuzione di probabilit\'a di $\sum_1^{\nu}x_i^2$ con $x_i\to N(0,1)$ ($\sum_{i=1}^N\frac{(x_i-\mu_i)^2}{\sigma_i^2}$), $\chi^2$ non centrale $x_i\to N(\mu_i,1)$, parametro non centralit\'a $\lambda=\sum\mu_i^2$.
 \begin{columns}[T]
 	\begin{column}{0.7\textwidth}
-		Momenti:
+Funzione caratteristica: $y=\frac{(x_i-\mu_i)}{\sigma_i}$, $z=y^2$
 		\begin{align*}
-		&\phi_1(t)(=\E_x{(\exp{it\chi^2})})=\\
-		&=2\frac{p(x)}{|\TDy{x}{y}|}=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx=\frac{1}{\sqrt{1-2it}},\\
+		&f(z;n=1)=2\phi(y)|\TDy{z}{y}|=\frac{1}{\sqrt{2\pi z}}\exp{-z/2}\\
+		&\phi_1(t)=\E_z{(\exp{itz})}=(1-2it)\expy{-1/2}\\
+		%&=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx=\frac{1}{\sqrt{1-2it}},\\
 		&\phi_{\chi^2_{\nu}}(t)=(1-2it)\expy{-\frac{\nu}{2}}
 		\end{align*}
 	\end{column}
@@ -995,19 +970,12 @@ La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^
 	\end{column}
 \end{columns}
 \begin{align*}
-&\prob{(x=\chi^2_{\nu})}=\frac{1}{2\expy{\nu/2}\Gamma(\frac{\nu}{2})}x\expy{\frac{\nu}{2}-1}\exp{-\frac{x^2}{2}}\\
-&\lim_{\nu\to\infty}N(\nu,2\nu)
+&\prob{(x=\chi^2_{\nu})}=\frac{1}{2\expy{\nu/2}\Gamma(\frac{\nu}{2})}x\expy{\frac{\nu}{2}-1}\exp{-\frac{x^2}{2}}\xrightarrow{\nu\to\infty}N(\nu,2\nu)
 \end{align*}
 Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 \end{frame}
 
 \section{come lo utilizzo}
-
-\begin{frame}[allowframebreaks]{List of things}
-%\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-\listofkeywords
-\end{frame}
 
 \begin{wordonframe}{PDF distanza stelle distribuite uniformemente in x,y,z}
 	\begin{block}{Generazione pdf da distribuzione uniforme}
