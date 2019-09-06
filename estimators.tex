@@ -111,7 +111,7 @@ Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
 	\end{align*}
 \end{column}
 \begin{column}{0.7\textwidth}
-\begin{block}{Likelihood di pi\'u misure e statistiche}
+\begin{block}{N RV iid con pdf esponenziale}
 	\begin{align*}
 	&\prob{(t,\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}\\
 	&L_{(t_1,\ldots,t_n)}(\tau)=\prod_i^n\frac{1}{\tau}\exp{-\frac{t_i}{\tau}}\\
@@ -137,7 +137,7 @@ Distribuzione esponenziale in x: quale z?
 Statistica sufficiente $S$ per parametro $\Theta$. Pdf di X data $T(X)$ non dipende da parametro $\theta$:
 \[\prob{(x;S,\theta)}=\prob{(x;S)}\]
 \begin{block}{Teorema di fattorizzazione}
-Probabilit\'a di osservare $X$ dato $\theta$ \'e probabilit\'a di $S(x)$ dato $\theta$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$
+Probabilit\'a di osservare $X$ dato $\theta$ \'e probabilit\'a di $S(x)$ dato $\theta$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$. $\vec{x}=\{x_1,\ldots,x_n\}$: $T(\vec{x})$ sufficiente iff $L(\vec{x},\theta)=g(T,\theta)h(\vec{x})$ e dominio $\omega_{\theta}$ non dipende da $\theta$. Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
 \end{block}
 \begin{block}{Statistica sufficiente minimale}
 $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim({S})\leq\dim{(X)}$.
@@ -145,11 +145,10 @@ $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim(
 \end{frame}
 
 \begin{wordonframe}{Statistiche sufficienti: esempi.}
-$\vec{x}=\{x_1,\ldots,x_n\}$: $T(\vec{x})$ sufficiente iff $L(\vec{x},\theta)=g(T,\theta)h(\vec{x})$ e dominio $\omega_{\theta}$ non dipende da $\theta$. Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
-\begin{align*}
+%\begin{align*}
 %&L(x;\mu,\sigma)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}\\
 %&\overline{x}=\frac{\sum x_i}{N}:\ %L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\exp{-\frac{1}{2}\frac{\sum_i(x_i-\mu)^2}{\sigma^2}}
-\end{align*}
+%\end{align*}
 \begin{block}{n RV iid con pdf bernoulli p}
 $X_1,\ldots,X_n$: iid con pdf di Bernoulli, supporto pdf $\chi=\{0,1\}$, parametro p nell'intervallo $(0,1)$:
 \begin{align*}
@@ -215,9 +214,9 @@ extra x tick style={xticklabel style={yshift=-10}}]
 &\prob{(x_M;m)}=\TDof{x_0}\left.F_M(x_0)\right|_{x_M}=\frac{N}{m}(\frac{x_M}{m})^{N-1}I(x_M<m)\\
 &L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
 \end{align*}
-$\prob{(x;S,\theta)}=\prob{x;S}$!
+$\prob{(x;S,\theta)}=\prob{(x;S)}$!
 \end{block}
-\keyword{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
+\todo{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
 \begin{block}{\keyword{Statistica $x_{min}$ per pdf uniforme}}
 pdf di $x_{min}$
 \begin{columns}[T]
@@ -242,7 +241,7 @@ Trasformazione di variabile
 
 \subsection{Statistiche sufficienti: T di Darmois}
 
-\begin{frame}{Teorema di Darmois}
+\begin{frame}{Teorema di Darmois}\linkdest{darmoissuff}
 \begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente}
 Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: la pdf appartiene alla \keyword{famiglia esponenziale}:
 \begin{equation*}
@@ -400,8 +399,8 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 \end{columns}
 \end{frame}
 
-\begin{frame}{Best unbiased estimator}
-\begin{block}{Disuguaglianza di Cramer-Rao (CRLB)}
+\begin{frame}{Best unbiased estimator}\linkdest{cramerrao}
+\begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
 $X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 \begin{align*}
 &V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
@@ -472,6 +471,7 @@ Per due parametri:
 \end{block}
 \end{frame}
 
+\begin{frame}{Qualcosa su Informazione}
 \begin{block}{Informazione e statistiche}
 $I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
 \end{block}
@@ -590,7 +590,20 @@ Perdita informazione
 \subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
 
 \begin{frame}{Logica stimatori consistenti}
-Implicit method: $K_N(\vec{X},\theta)=\frac{1}{N}\sum_ia(x_i,\theta)=0$; Moment method $a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}$; in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$: maximum likelihood and minimum $\chi^2$.
+Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
+\[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
+dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$:
+\begin{align*}
+&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0,\ \xi(\hat{\theta})=0\tag{stimatore implicito}\\
+&
+\end{align*}
+One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$
+Moment method:
+\begin{align*}
+&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
+&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
+\end{align*}
+in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
 \end{frame}
 
 \begin{frame}{Stimatori impliciti}\frameintoc
@@ -829,7 +842,11 @@ N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}
 &\log{(L(\theta))}=-\frac{1}{2}\sum_{ij}(y_i-\mu_i(\theta))[\invers{V}]_{ij}(y_j-\mu_j(\theta))
 \end{align*}
 
-I parametri che minimizzano sono $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\hat{\theta}_m$
+I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\hat{\theta}_m$. Binned data:
+\begin{align*}
+&\chi^2(\theta)=\sum_i^N\frac{(y_i-\lambda_i(\theta)^2)}{\sigma_i^2}\xrightarrow{n\gg np_i}\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\lambda_i(\theta)}=\sum_i^N\frac{(y_i-np_i(\theta))^2}{np_i(\theta)}\\
+&\lambda_i=\E{[y_i]}=n\int_{x_{min}^i}^{x_{max}^i}=np_i(\theta)\tag{number of entries in bin i}
+\end{align*}
 \end{frame}
 
 \begin{frame}{Best linear unbiased estimator. Teorema di Gauss-Markov}
@@ -852,6 +869,17 @@ above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gauss
 &\chi^2(\theta)=\chi^2(\hat{\theta})+\frac{1}{2}\sum_{ij}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}(\theta_i-\hat{\theta}_i)(\theta_j-\hat{\theta}_j)
 \end{align*}
 contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$: $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$.
+\end{frame}
+
+\begin{frame}{Esempi di LS estimators}
+\begin{itemize}
+\item Combine many measures $y_i$ of $\lambda$ with estimated error $\sigma_i$: $\hat{\lambda}=\frac{\sum_iy_i/\sigma_i^2}{\sum_i1/\sigma_i^2}$, $\var[\hat{\lambda}]=\frac{1}{\sum\frac{1}{\sigma_i^2}}$; for not independent measures:
+\begin{align*}
+&\chi^2(\lambda)=\sum_{i,j}(y_i-\lambda)(\invers{V})_{i,j}(y_j-\lambda)\\
+&w_i=\frac{\sum_j(\invers{V})_{ij}}{\sum_{k,l=1}\invers{V}_{kl}},\ \hat{\lambda}=\sum_iw_iy_i\\
+&\var{[\hat{\lambda}]}=\sum_{i,j}w_iV_{ij}w_j
+\end{align*}
+\end{itemize}
 \end{frame}
 
 \subsection{Robustezza}
