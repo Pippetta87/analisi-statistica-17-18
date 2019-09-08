@@ -135,6 +135,36 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{align*}
 \end{frame}
 
+\begin{frame}{Bernulli, binomiale, Poisson, esponenziale, uniforme (massimo, minimo e mediana), gaussiana}
+\todo{Bernulli, binomiale, Poisson, esponenziale, uniforme (massimo, minimo e mediana), gaussiana}
+\end{frame}
+
+\begin{frame}{Propriet\'a $\chi^2$}
+La distribuzione di chi-squared con $\nu$ gradi di libert\'a $\prob{(\chi_{\nu}^2)}$ \'e la distribuzione di probabilit\'a di $\sum_1^{\nu}x_i^2$ con $x_i\to N(0,1)$ ($\sum_{i=1}^N\frac{(x_i-\mu_i)^2}{\sigma_i^2}$), $\chi^2$ non centrale $x_i\to N(\mu_i,1)$, parametro non centralit\'a $\lambda=\sum\mu_i^2$.
+\begin{columns}[T]
+	\begin{column}{0.7\textwidth}
+		Funzione caratteristica: $y=\frac{(x_i-\mu_i)}{\sigma_i}$, $z=y^2$
+		\begin{align*}
+		&f(z;n=1)=2\phi(y)|\TDy{z}{y}|=\frac{1}{\sqrt{2\pi z}}\exp{-z/2}\\
+		&\phi_1(t)=\E_z{(\exp{itz})}=(1-2it)\expy{-1/2}\\
+		%&=\intsinf{}\frac{\exp{itx-x^2/2}}{\sqrt{2\pi}}\,dx=\frac{1}{\sqrt{1-2it}},\\
+		&\phi_{\chi^2_{\nu}}(t)=(1-2it)\expy{-\frac{\nu}{2}}
+		\end{align*}
+	\end{column}
+	\begin{column}{0.3\textwidth}
+		\begin{align*}
+		&\E{(\chi^2_{\nu})}=\nu\\
+		&\var{[\chi_{\nu}^2]}=2\nu\\
+		&\E{(\chi^{2,NC}_{\nu})}=\nu+\lambda
+		\end{align*}
+	\end{column}
+\end{columns}
+\begin{align*}
+&\prob{(x=\chi^2_{\nu})}=\frac{1}{2\expy{\nu/2}\Gamma(\frac{\nu}{2})}x\expy{\frac{\nu}{2}-1}\exp{-\frac{x^2}{2}}\xrightarrow{\nu\to\infty}N(\nu,2\nu)
+\end{align*}
+Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
+\end{frame}
+
 \section{Data analysis}
 
 \begin{frame}{Funzione di Likelihood}
@@ -294,96 +324,377 @@ Statistica sufficiente minimale
 \end{block}
 \end{wordonframe}
 
-\begin{frame}{Teorema di Darmois}\linkdest{darmoissuff}
-\begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente}
-Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: la pdf appartiene alla famiglia esponenziale:
-\begin{equation*}
-p(\vec{x}|\theta)=\Exp{[\sum_i^n\alpha_i(\vec{x})a_i(\theta)+\beta(\vec{x})+\gamma(\theta)}
-\end{equation*}
+\section{Informazione}
 
-\begin{equation*}
-S_j=\sum_i\alpha_j(x_i)
-\end{equation*}
-\end{block}
-Esiste statistica suff. iff: supporto pdf non dipende da parametro e appartiene alla famiglia esponenziale. In tal caso si ha:
+\begin{frame}{Informazione di Fischer}
+Informazione contenuta nei dati su un parametro $\Theta$
 \begin{align*}
-&f(x;\theta)=\Exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\\
-&T=\sum_i\alpha(x_i)
+&\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
 \end{align*}
+Per due parametri:
+\begin{align*}
+&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
+\end{align*}
+\begin{block}{Score statistics}
+	\begin{columns}[T]\begin{column}{0.5\textwidth}
+			
+		\end{column}\begin{column}{0.5\textwidth}
+		$I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
+	\end{column}\end{columns}
+\end{block}
 \end{frame}
 
-\begin{wordonframe}{Famiglia esponenziale. Applicazioni del teorema di Darmois}
-\begin{block}{Poisson}
-\begin{align*}
-&\frac{\exp{-\mu}\mu^k}{k!}=\exp{\mu}\exp{k\ln{\mu}}\exp{-\ln{k!}}\\
-&S=\sum_i^Nk_i
-\end{align*}
-\end{block}
-\begin{block}{Gaussiana: media ignota, varianza nota}
-\begin{align*}
-&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\\
-&\alpha(x)=x\ \Rightarrow\ T=\frac{1}{N}\sum x_i=\exv{X}\\
-&a(\mu)=\frac{\mu}{\sigma^2}\\
-&\beta(x)=-\frac{x^2}{2\sigma}\\
-&c(\mu)=
-\end{align*}
-La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (Ex: pdf della media aritmetica)
-\end{block}
-\begin{block}{Gaussiana: media nota, varianza ignota}
-$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (Ex: statistica sufficiente $\sigma$ gaussiana)
-\begin{align*}
-&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\\
-&\alpha(x)=x\mu-\frac{x^2}{2}:\ T=\sum(x_i\mu-\frac{x_i^2}{2})\\
-&a(\sigma^2)=\frac{1}{\sigma^2}\\
-&\beta(x)=0\ c(\sigma^2)=-\frac{\mu^2}{2\sigma^2}-\ln{(\ldots)}\\
-&\hat{\sigma}^2=\frac{\sum(x_i-\mu)^2}{N}=\frac{N\mu^2-2T}{N}
-\end{align*}
-\end{block}
-\begin{block}{Applicazione allo spazio dei parametri completo della gaussiana}
-\begin{align*}
-&\log{\prob{(\vec{x};\mu,\sigma^2)}}=-\log{(\sqrt{2\pi}\sigma)}-\frac{x^2}{2\sigma^2}+\frac{x\mu}{2\sigma^2}+\frac{\mu^2}{2\sigma^2}\\
-&\alpha_1(x)=x,\ a_1(\mu)=\mu,\ c=-\frac{\mu}{2\sigma^2}-\ln{(\sqrt{2\pi}\sigma)}\\
-&\alpha_2(x)=-\frac{x^2}{2},\ a_2(\sigma^2)=\frac{1}{\sigma^2}\\
-&S_{\mu}=\sum x_i,\ S_{\sigma^2}=-\sum\frac{x_i^2}{2}
-\end{align*}
-\end{block}
-Quale relazione tra numero statistiche sufficienti e parametri?
-\begin{block}{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale.}
+\begin{wordonframe}{Esempi Informazione}
 \begin{columns}[T]
-	\begin{column}{0.33\textwidth}
+\begin{column}{0.5\textwidth}
+	\begin{block}{pdf Poisson}
 		\begin{align*}
-		&\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\intd{argomento di exp}
-		&\log{\binom{n}{k}}+k\log{\frac{p}{1-p}}\\
-		&+n\log{(1-p)}\\
-		&(\alpha(k)a(p)+\beta(k)+c(p))\\
-		&S=\sum_ik_i
+		&\log{f}=-\lambda+x\log{\lambda}-\log{x!}\\
+		&I_X(\lambda)=\invers{\lambda}
+		\end{align*}
+	\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{block}{pdf Gauss}
+		\begin{align*}
+		&\log{f}=-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}-\log{(\sqrt{2\pi}\sigma)}\\
+		&I_X(\mu)=\sigma\expy{-2}
+		\end{align*}
+	\end{block}
+\end{column}
+\end{columns}
+\begin{block}{n RV iid}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		$X_1,\ldots,X_n$ n RV iid:
+		\begin{align*}
+		&X=\sum X_i\\
+		&I_X(\Theta)=nI_{X_1}(\Theta)
 		\end{align*}
 	\end{column}
-	\begin{column}{0.33\textwidth}
-		\begin{align*}
-		&\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\intd{argomento di exp}
-		&k\log{\mu}-\mu-\log{k!}\\
-		&(\alpha(k)a(\mu)+\beta(k)+c(\mu))\\
-		&S=\sum_ik_i
-		\end{align*}
-	\end{column}
-	\begin{column}{0.33\textwidth}
-		\begin{align*}
-		&\prob{(x)}=\lambda\exp{-\lambda x}\intd{argomento di exp}
-		&-\lambda x-\mu+\log{\lambda}\\
-		&(\alpha(x)a(\lambda)+\beta(x)\\
-		&+c(\lambda))\\
-		&S=\sum_ix_i
-		\end{align*}
+	\begin{column}{0.5\textwidth}
+		proof pg 327 probability and statistical inference
 	\end{column}
 \end{columns}
 \end{block}
+\begin{block}{n RV gaussiane $N(\mu,\sigma^2)$: matrice informazione}
+$\vec{X}=(X_1,\ldots,X_n)$ e $\vec{\Theta}=(\mu,\sigma^2)$
+\begin{align*}
+&I_{11}=\E{[(\PDof{\mu}\log{f})^2]}=\sigma\expy{-2}\ I_{22}=\E{[(\PDof{\sigma^2}\log{f})^2]}=\frac{1}{2}\sigma\expy{-4}\\
+&I_{12}=I_{21}=\frac{1}{2\sigma^2}\E{[\sigma\expy{-3}(X_1-\mu)^3-(X_1-\mu)]}=0
+\end{align*}
+\end{block}
+\begin{block}{Statistica $x_m$ non \'e consistente}
+\begin{align*}
+&\E{[x_m]}=\int\,dx_mx_mf(x_m;m)=\int\,dx_mx_m\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}=\frac{m}{N+1}\\
+&\E{[x_m^2]}=\int\,dx_mx_m^2f(x_m;m)=\int\,dx_mx_m^2\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}\\
+&=\frac{2m^2}{(N+1)(N+2)}\\
+&\var{[x_m]}=\E{[x_m^2]}-\E^2{[x_m]}=\frac{N}{(N+1)^2(N+2)}m^2\to0\\
+&\hat{m}=(N+1)x_m:\ \E{[\hat{m}]}=m,\ \var{[\hat{m}]}=\frac{N^2}{(N+1)(N+2)}m^2\\
+&I_{x_m}(m)=\frac{N}{(N-2)m^2},\ (CR:\ \frac{N}{N+2}\geq\frac{N-2}{N})
+\end{align*}
+$\hat{m}$ non \'e consistente: non converge in probabilit\'a al parametro.
+\end{block}
 \end{wordonframe}
 
-\begin{frame}{Bayesian inference}
+\section{Stima puntuale}
+
+\begin{frame}{Propriet\'a generali stiamatori}
+Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$
+\begin{itemize}
+	\item Consistenza (LGN): $\prob{\hat{\theta}}\to\theta_0$
+	\item Varianza $\var{\vec{X}}\to\frac{1}{N}$ - Bias $b(\vec{x})$ non diminuisce all'aumentare delle misure; scuola soggettivista: bias non esiste.
+	\item distribuzione semplice
+\end{itemize}
+\begin{columns}[T]
+	\begin{column}{0.45\textwidth}
+	Riduzione del bias:
+		\begin{align*}
+	&\E{[S(x)]}=\theta+b(\theta)\\
+	&\to\ S'(x)=S(x)-b(\hat{\theta})-\hat{b}(x)\\
+	&\E{[\hat{b}(x)]}=b(\hat{\theta})\\
+	&\var{[S']}=\var{[S]}+\var{[b]}
+	\end{align*}
+	Metodo empirico
+	\begin{align*}
+	&S_N'(x)=2S_N(x)\\
+	&-\frac{1}{2}[S_{\frac{N}{2}}(x_1,\ldots,x_{\frac{N}{2}})+S_{\frac{N}{2}}(x_{\frac{N}{2}},\ldots,x_N)]
+	\end{align*}
+	\end{column}
+	\begin{column}{0.55\textwidth}
+		\begin{itemize}
+			\item unbiased estimator: $\E_{\Theta}[T]=\tau(\Theta)$
+			\item estimator bias: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
+			\item Estimator mean square error: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
+			\item Stimatori consistenti: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
+		\end{itemize}
+	\end{column}
+\end{columns}
 \end{frame}
 
-\section{Stima puntuale}
+\begin{frame}{Best unbiased estimator: Disuguaglianza di Cramer-Rao (CRLB)}
+$X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
+\begin{align*}
+&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
+&\left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
+\end{align*}
+minimum variance bound
+\end{frame}
+
+\section{Costruzione stimatori consistenti}
+
+\begin{frame}{Logica stimatori consistenti - Stimatori impliciti}
+Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
+\[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
+dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
+\begin{align*}
+&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
+\end{align*}
+One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$
+Moment method:
+\begin{align*}
+&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
+&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
+\end{align*}
+in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
+\end{frame}
+
+\begin{frame}{Momenti (Cowan 128)}
+Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
+\[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
+convergono in probabilit\'a ai momenti della distribuzione.
+\begin{columns}[T]
+\begin{column}{0.65\textwidth}
+	\begin{align*}
+	&\cov{(m_i,m_j)}=\E{[m_im_j]-\E{[m_i]}\E{[m_j]}}\\
+	&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}\\
+	&\cov{[\hat{\theta}_i,\hat{\theta}_j]}=\sum_{k,l}\PDy{\hat{e}_k}{\hat{\theta}_i}\PDy{\hat{e}_l}{\hat{\theta}_j}\cov{[\hat{e}_k,\hat{e}_l]}
+	\end{align*}
+	Co-var matrix of estimators (error propagation formula)
+\end{column}
+\begin{column}{0.35\textwidth}
+	\begin{align*}
+	&m_1=\mu_1'(\theta_1,\ldots,\theta_n)\\
+	&\vdots\\
+	&m_n=\mu_n'(\theta_1,\ldots,\theta_n)\intd{Invertendo il sistema sopra si trovano gli stimatori:}
+	&\hat{\theta_1}(m_1,\ldots,m_m)\\
+	&\vdots\\
+	&\hat{\theta_m}(m_1,\ldots,m_m)
+	\end{align*}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{wordonframe}{Examples moment estimators}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+	\begin{block}{Uniforme $U(a,b)$}
+		\begin{align*}
+		&\mu_1=\E{[X]}=\frac{1}{2}(a+b)\\
+		&\mu_2=\E{[X^2]}=\frac{1}{3}(a^2+ab+b^2)\\
+		&\hat{a}=\mu_1\pm\sqrt{3(\mu_2-\mu_1^2)}\\
+		&\hat{b}=2\mu_1-a
+		\end{align*}
+	\end{block}
+\end{column}\begin{column}{0.5\textwidth}
+	
+\end{column}\end{columns}
+\end{wordonframe}
+
+\begin{frame}{Stimatori di massima likelihood: derivazione tramite stimatori impliciti}
+\begin{align*}
+&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
+&\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
+&K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}
+&\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
+\end{align*}
+The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano con media 0 e varianza $NI(\theta)$
+\end{frame}
+
+\begin{frame}[allowframebreaks]{Propriet\'a MLE}
+\begin{block}{Consistente se soluzione della likelihood equation \'e unica: massimo assoluto (asintotico) \'e consistente}
+$\PDy{\theta}{\log{L_{tot}}}=0$.
+\end{block}
+\begin{block}{Invariante per trasformazione di parametro}
+\end{block}
+\begin{block}{Asintoticamente un-biased}
+\end{block}
+\begin{block}{Asintoticamente efficente: $\var{[\hat{\theta}]}\to\frac{1}{NI_{X_1}}$}
+\begin{align*}
+&K_N(\hat{\theta)}=K(\theta_0)+\PDy{\theta}{K_N}(\hat{\theta}-\theta_0)+o(\hat{\theta}-\theta_0)^2\intd{prendendo il valore di aspettazione}
+&0=\sum_i\frac{\PDy{\theta}{\log{(L(x_i))}}}{N}-I(\hat{\theta}-\theta_0)+(\var{[\hat{\theta}]})\\
+&\hat{\theta}-\theta_0\propto N(0,\frac{1}{NI})+\frac{\const{}}{N}: \lim_{N\to\infty}b(\hat{\theta})\propto\frac{1}{N}
+\end{align*}
+\end{block}
+\begin{block}{Pdf dello stimatore tende asintoticamente ad gaussiana}
+\end{block}
+\begin{block}{MLE per pdf esponenziale}
+Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] il metodo di massima likelihood determina lo stimatore efficiente e senza bias $\hat{M}=\frac{1}{N}\sum_i\alpha(x_i)$ di $M(\theta)=-\frac{\TDy{\theta}{c(\theta)}}{\TDy{\theta}{a(\theta)}}$.
+\end{block}
+\end{frame}
+
+\begin{wordonframe}{MLE in pratica}
+\begin{block}{binning}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+N fissato
+\begin{align*}
+&\prob{(\vec{k},\theta)}=\frac{N!}{\prod_ik_i!}\prod_i{\underbrace{\prob{(i)}}_{\int_{S_i}\prob{(x|\theta)}\,dx}}\mkern-20mu^{k_i}\\
+&\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
+&\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+N variabile: Extended likelihood, normalizzazione varia
+\begin{align*}
+&\mu_i=\mu_TP_i(\theta)\\
+&\prob{(k_i\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
+&\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\
+&-\mu_TP_i-\bcancel{\log{k!}}\\
+&\left\{\begin{matrix}\mkern-240mu\PDy{\theta_i}{\log{L}}=0\\\PDy{\mu_T}{\log{L}}=0\ (:L(\bcancel{\mu_T}),\mu_T(\bcancel{\theta_i}) \Rightarrow\ \mu_T=N)\\\end{matrix}\right.
+\end{align*}
+\end{column}
+\end{columns}
+\end{block}
+
+\begin{block}{Fit resolution of histogram (??)}
+$A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
+\end{block}\end{wordonframe}
+
+\begin{wordonframe}{Esempi di stimatori di massima likelihood}
+Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$
+\begin{align*}
+&\log{(L(\vec{k},p))}=\log{[\prod_i^N\binom{n}{k_i}p^{k_i}(1-p)^{n-k_i}]}\\
+&\max{(L)}:\ \TDof{p}\log{(L)}=\sum_i^N[\frac{k_i}{p}+(n-k_i)\frac{(-1)}{1-p}]=0\Rightarrow\sum^Nk_i=Nnp\\
+&\hat{p}_{MLE}=\sum\frac{k_i}{Nn}=\exv{k}\\
+&\E{[\hat{p}]}=\frac{1}{N}\frac{\sum\E{[k_i]}}{n}=\frac{\sum^Npn}{nN}=p\\
+&\var{[\hat{p}]}=\var{[\frac{1}{nN}\sum k_i]}=\frac{1}{n^2N^2}Nnp(1-p)\\
+&I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
+\end{align*}
+Gaussiana
+Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&G(x;\mu,\sigma)=\frac{1}{\sqrt{2\pi\sigma^2}}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+&\log{L}=-N\log{\sigma}-\frac{1}{2\sigma^2}\sum_i^N(x_i-\mu)^2\\
+&\E{[\hat{\sigma^2}]}=\frac{1}{N}\sum_i\E{[x_i^2-2x_i\exv{x}+\exv{x}^2]}\\
+&\E{[x_i^2]}=\mu^2+\sigma^2\\
+&\E{[x_i\exv{x}]}=\frac{1}{N}\E{[x_i^2+\sum_{j\neq i}x_ix_j]}\\
+&\E{[\exv{x}^2]}=\E{\frac{\sum x_i\sum x_j}{N^2}}=\mu^2+\frac{\sigma^2}{N}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+Maximum of $\log{L}$ for $\mu, \sigma^2$
+\begin{align*}
+&\PDy{\mu}{\log{L}}=0\\
+&\hat{\mu}=\frac{\sum x_i}{N}\\
+&\PDy{\sigma}{\log{L}}=0\\
+&-\frac{N}{\sigma^2}+\frac{1}{\sigma^4}\sum^N(x_i-\exv{x}(\to\mu))=0\\
+&\hat{\sigma^2}=\frac{\sum(x_i-\exv{x})^2}{N}\intd{T darmois in 2D: stat. suff.:}
+&\sum x_i,\ \sum x_i^2
+\end{align*}
+\end{column}
+\end{columns}
+$\E{[\hat{\sigma^2}]}=\frac{N-1}{N}\sigma^2$ quindi definisco lo stimatore unbiassato $\hat{\sigma^2}'=\frac{\sum(x_i-\exv{x})^2}{N-1}$.
+
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+Esponenziale: cambio di parametro. $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
+\end{column}
+\begin{column}{0.4\textwidth}
+likelihood \'e invariante per cambio di parametro
+\end{column}
+\end{columns}
+\begin{columns}[b]
+\begin{column}{0.4\textwidth}
+$\hat{\tau}_{MLE}=\frac{\sum_ix_i}{N}:\ \E{[\hat{\tau}]}=\tau,\ I_x(\tau)=\frac{1}{\var{\hat{\tau}}},\ \var{\hat{\tau}}=\frac{\tau^2}{N}$
+\end{column}
+\begin{column}{0.6\textwidth}
+$\log{L}=N\log{\lambda}-\lambda\sum_ix_i$, $\TDy{\lambda}{\log{\lambda}}=0$. $\hat{\lambda}=\frac{N}{\sum x_i}=\frac{1}{\hat{\tau}}$, $\E{[\hat{\lambda}]}=\frac{N}{N-1}\lambda$
+\end{column}
+\end{columns}
+\begin{align*}
+&\phi_x(k)=\E{[\exp{ikx}]}=\intzi\exp{ikx}\exp{-\lambda x}\lambda\,dx=\frac{1}{1-i\frac{k}{\lambda}}\\
+&\phi_{\sum x_i}\frac{1}{(1-\frac{ik}{\lambda})^N},\ z=\sum x_i\ \text{distribuzione di Erlang}\downarrow\\
+&\prob{(z)}=\frac{1}{2\pi}\intsinf{}\frac{\exp{-ikz}}{(1-\frac{ik}{\lambda})^N}\,dk=\frac{\lambda^N}{(N-1)!}z^{N-1}\exp{-\lambda z}
+\end{align*}
+\begin{columns}[T]
+\begin{column}{0.65\textwidth}
+\begin{align*}
+&\var{[\hat{\lambda}]}=\frac{N^2}{(N-1)^2(N-2)}\lambda^2\to\frac{\lambda^2}{N}\\
+&M(\lambda)=-\frac{\TDy{\lambda}{c(\lambda)}}{\TDy{\lambda}{a(\lambda)}}=-\frac{\frac{1}{\lambda}}{-1}=\frac{1}{\lambda}
+\end{align*}
+\end{column}
+\begin{column}{0.35\textwidth}
+\begin{align*}
+&\alpha(x)=x\\
+&a(\lambda)=\lambda\\
+&\beta(x)=0\\
+&c(\lambda)=\log{\lambda}
+\end{align*}
+\end{column}
+\end{columns}
+Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''
+Ex: Cambiamento di variabile pdf Erlang
+\begin{align*}
+&z\to\frac{z}{N}=\exv{x}=\hat{\tau}\\
+&\exv{x}\to\frac{1}{\exv{x}}=\hat{\lambda}
+\end{align*}
+Ex: MLE per $x_{max}$ e $x_{min}$ per pdf uniforme
+Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{min}\in[0,m]$,
+\begin{align*}
+&\log{L}=\log{N}-\log{m}+(N-1)\log{(1-\frac{x_{min}}{m})}\\
+&\TDy{m}{\log{L}}=-\frac{1}{m}+(N-1)\frac{1}{1-\frac{x_{min}}{m}}(\frac{-1}{m^2})=0\\
+&\hat{m}_{MLE}=Nx_{min}:\ \E{[\hat{m}]}=\frac{N}{N+1}m,\ \var{\hat{m}}=\frac{N^3}{(N+1)^2(N+2)}m^2
+\end{align*}
+lo stimatore non \'e consistente.
+MLE per poissoniana
+\begin{align*}
+&P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}\\
+&
+\end{align*}
+\end{wordonframe}
+
+\begin{frame}{Massima likelihood e metodo minimi quadrati}
+%Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
+N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}$) ignota e varianza $\sigma_i$ nota
+\begin{align*}
+&\prob{(k_i,\theta)}\propto\exp{-\frac{(k_i-\mu_i)^2}{2\sigma_i^2}}\intd{$\log{L}$ \'e massimizzato dalla funzione che minimizza}
+&\chi^2=-2\log{L}=\sum_i^N\frac{(y_i-\mu(x_i;\theta_1,\ldots,\theta_m))^2}{\sigma_i^2}(=\sum_i\frac{(k_i-\mu_i(\theta))^2}{\sigma_i^2})\intd{if measures are not indipendent}
+&\log{(L(\theta))}=-\frac{1}{2}\sum_{ij}(y_i-\mu_i(\theta))[\invers{V}]_{ij}(y_j-\mu_j(\theta))
+\end{align*}
+I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\hat{\theta}_m$. Binned data:
+\begin{align*}
+&\chi^2(\theta)=\sum_i^N\frac{(y_i-\lambda_i(\theta)^2)}{\sigma_i^2}\xrightarrow{n\gg np_i}\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\lambda_i(\theta)}=\sum_i^N\frac{(y_i-np_i(\theta))^2}{np_i(\theta)}\\
+&\lambda_i=\E{[y_i]}=n\int_{x_{min}^i}^{x_{max}^i}=np_i(\theta)\tag{number of entries in bin i}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Best linear unbiased estimator. Teorema di Gauss-Markov}
+se la dipendenza della media ignota dai parametri \'e lineare
+\[\lambda_i(\theta)=\mu_i(\theta)=\sum_ja_j(\vec{x})\theta_j=\sum_j^mA_{ij}\theta_j\]
+$a_j(\vec{x})$ lin. indip., allora $\hat{\theta}_j$ sono unbiased e al MVB: teorema di Gauss-Markov.
+Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V$ nota
+\begin{align*}
+&\chi^2=(\vec{y}-\vec{\lambda})^T\invers{V}(\vec{y}-\vec{\lambda})=(\vec{y}-A\vec{\theta})^T\invers{V}(\vec{y}-A\vec{\theta})\\
+&\nabla\chi^2=-2(A^T\invers{V}\vec{y}-A^T\invers{V}A\vec{\theta})=0\tag*{condizione di minimo}\\
+&\hat{\vec{\theta}}=\invers{(A^T\invers{V}A)}A^T\invers{V}\vec{y}=B\vec{y}\intd{e matrice di covarianza:}
+&U=BVB^T=\invers{(A^TVA)}=\cov{(\theta_i,\theta_j)},\ [\invers{U}]_{ij}=\frac{1}{2}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}
+\end{align*}
+above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gaussian distributed ($\log(L)=-\chi^2/2$)
+\end{frame}
+
+\begin{frame}{Esempi di LS estimators}
+\begin{itemize}
+\item Combine many measures $y_i$ of $\lambda$ with estimated error $\sigma_i$: $\hat{\lambda}=\frac{\sum_iy_i/\sigma_i^2}{\sum_i1/\sigma_i^2}$, $\var[\hat{\lambda}]=\frac{1}{\sum\frac{1}{\sigma_i^2}}$; for not independent measures:
+\begin{align*}
+&\chi^2(\lambda)=\sum_{i,j}(y_i-\lambda)(\invers{V})_{i,j}(y_j-\lambda)\\
+&w_i=\frac{\sum_j(\invers{V})_{ij}}{\sum_{k,l=1}\invers{V}_{kl}},\ \hat{\lambda}=\sum_iw_iy_i\\
+&\var{[\hat{\lambda}]}=\sum_{i,j}w_iV_{ij}w_j
+\end{align*}
+\end{itemize}
+\end{frame}
 
 \section{Stima intervallare}
 
@@ -398,18 +709,64 @@ Quale relazione tra numero statistiche sufficienti e parametri?
 
 \section{Test d'ipotesi}
 
-\begin{frame}{Ipotesi semplice. UMP test: Lemma NP.}
-RV $\vec{X}$: pdf $f_N(\vec{X}|\theta)$, lo spazio dei parametri \'e $\theta_0,\theta_1$. Cerco la regione $S_0$ regione critica che massimizza power $1-\beta$ (dato $\alpha=\int_{w_{\alpha}}f_N(\vec{X}|\theta_0)\,dX=\alpha$):
+
+\begin{frame}{Ipotesi e statistica di test}
+Due ipotesi consistono in partizione dello spazio dei parametri: il valore assunto da statistica di test determina se i dati a disposizione vengono da da pdf relativa a una delle ipotesi. Le propriet\'a dei test sono la probabilit\'a di rifiutare ipotesi di partenza quando \'e vera (probabilit\'a $t(x)$ in regione critica dato $H_0$: $\alpha$) e la probabilit\'a di non rifiutare $H_0$ quando \'e falsa ($\beta$)
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+	\begin{block}{Prob. Errore tipo I $\alpha$}
+		scarto $H_0$ quando \'e vera: probabilit\'a di errore I $\alpha=\prob{(x\in S_1|H_0)}$-livello di significativit\'a, livello di confidenza $1-\alpha=\prob{(x\in S_0|H_0)}$
+	\end{block}
+\end{column}
+\begin{column}{0.55\textwidth}
+	\begin{block}{Prob. Errore tipo II $\beta$}
+		probabilit\'a di accettare erroneamente $H_0$ (falso negativo, contaminazione), $\prob{(x\in S_1|\non{H_0})}=\beta$. Potenza del test $1-\beta=\prob{(x\in S_1|H_1)}$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
+	\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Test di ipotesi e propriet\'a}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+	\begin{itemize}
+		\item Ipotesi semplici: determinano unicamente $f(x)$
+		\item Per ipotesi composte non esiste test UMP generale
+		\item Consistenza: $\lim_{N\to\infty}\prob{(\vec{X}\in  S_1|H_1)}=1$ non \'e detto che sia uniforme.
+		\item unbiasedness $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
+	\end{itemize}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{figure}[!ht]
+	\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.85\textwidth]{mostpower}
+	\includegraphics[trim={0cm 0 0 0},clip, width=0.85\textwidth]{powerconsistent}
+	\includegraphics[trim={0cm 0 0 0},clip,width=0.8\textwidth]{biasedtest}
+\end{figure} 
+	Test B can't distinguish between $\theta_0$, $\theta_1$.
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Lemma di Neyman-Pearson (Test di NP)}
+Posso esprimere un test in funzione di una statistica: $T(\vec{x})=T(t(\vec{x}))$ (nel caso del lemma NP la statistica \'e il LR). 
+Lo spazio dei parametri \'e $\theta_0,\theta_1$. Cerco la regione $w_{\alpha}$ regione critica che massimizza power $1-\beta$ (dato $\alpha$):
 \begin{align*}
-&\int_{w_{\alpha}}f_N(\vec{X}|\theta_1)\,dX=1-\beta=\int_{w_{\alpha}}\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}f_N(\vec{X}|\theta_0)\,dX=\E_{w_{\alpha}}{[\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}]}\\
+&\int_{w_{\alpha}}f_N(\vec{X}|\theta_0)\,dX=\alpha\\
+&\int_{w_{\alpha}}f_N(\vec{X}|\theta_1)\,dX=1-\beta\\
+&=\int_{w_{\alpha}}\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}f_N(\vec{X}|\theta_0)\,dX=\E_{w_{\alpha}}{[\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}|\theta_0]}\\
 &\Rightarrow l_N(\vec{X},\theta_0,\theta_1)=\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}\geq c_{\alpha}: H_1\ (\leq c_{\alpha}: H_0)
 \end{align*}
-Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\geq\beta_{NP}$ ($\pow'\leq\pow_{NP}$, probabilit\'a errore tipo II \'e maggiore), dimostro $\beta'-\beta\geq0$ cio\'e $\prob{(\overline{C}'|H_1)}-\prob{(\overline{C}|H_1)}$:
-\begin{align*}
-&\prob{(C|H_1)}-\prob{(C'|H_1)}=\prob{(C\cap|H_1)}+\prob{(C\cap\overline{C}'|H_1)}-\prob{(C\cap C'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}=\prob{(C\cap\overline{C}'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}\\
-&\prob{(C\cap C'|H_1)}=\int_{C\cap C'}\prob_1{(x)}\,dx\geq\int_{C\cap \overline{C}'}\frac{\prob_0{(x)}}{q}\,dx=\frac{1}{q}\prob{(C\cap\overline{C}'|H_0)}
-\end{align*}
 \end{frame}
+
+\begin{wordonframe}{Regione critica: NP, il verso della disuguaglianza e il quantile}
+Voglio distinguere $H_0: G(\mu_0,\sigma)$ vs $H_1: G(\mu_1>\mu_0,\sigma)$ - Lemma NP:
+\begin{align*}
+&\frac{L(\mu_0)}{L(\mu_1)}=\exp{\frac{1}{2\sigma}[\sum_i(x_i-\mu_1)^2-\sum_i(x_i-\mu_0)^2]}\\
+&C=\{(x_i):\exp{\frac{1}{2\sigma}[\sum_i(x_i-\mu_1)^2-\sum_i(x_i-\mu_0)^2]}\leq k\}\\
+&C=\{(x_i):\exv{X}\geq k'=\mu_0+\lambda_{1-\alpha}\frac{\sigma}{\sqrt{N}}\}
+\end{align*}
+\end{wordonframe}
+
 
 \begin{frame}{Ipotesi composte}
 For exponential family exists UMP one-sided ($H_0: \theta=\theta_0$, $H_1: \theta>\theta_0$)

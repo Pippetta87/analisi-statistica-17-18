@@ -23,7 +23,7 @@ Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected w
 \begin{columns}[T]
 \begin{column}{0.45\textwidth}
 \begin{block}{ \keyword{Prob. Errore tipo I $\alpha$}}
-scarto $H_0$ quando \'e vera (falso positivo, loss,size,taglia,livello di significativit\'a $\alpha=\prob{(x\in S_0|H_0)}=\prob_0{(x\in S_0)}$.
+scarto $H_0$ quando \'e vera: probabilit\'a di errore I $\alpha=\prob{(x\in S_1|H_0)}=\prob_0{(x\in S_1)}$-\keyword{livello di significativit\'a}, \keyword{livello di confidenza} $1-\alpha=\prob{(x\in S_0|H_0)}$
 \end{block}
 \end{column}
 \begin{column}{0.55\textwidth}
@@ -51,14 +51,18 @@ Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
 \end{frame}
 
 \begin{frame}{Consistenza e bias}
-\begin{block}{Propriet\'a dei test}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
 \begin{itemize}
 	\item \keyword{Consistenza}: $\lim_{N\to\infty}\prob{(\vec{X}\in  S_1|H_1)}=1$ non \'e detto che sia uniforme.
 	\item \keyword{unbiasedness} $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
 \end{itemize}
-\end{block}
-\begin{figure}[!ht] \begin{subfigure}[b]{0.5\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{powerconsistent} \label{fig:powerconsistent} \end{subfigure} ~ \begin{subfigure}[b]{0.5\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure} \end{figure} 
+	\end{column}
+	\begin{column}{0.5\textwidth}
+\begin{figure}[!ht] \begin{subfigure}[b]{0.99\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{powerconsistent} \label{fig:powerconsistent} \end{subfigure} ~ \begin{subfigure}[b]{0.99\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure} \end{figure} 
 Test B can't distinguish between $\theta_0$, $\theta_1$.
+	\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Symmetry between $\alpha$ and $\beta$}
@@ -89,7 +93,7 @@ S is the set of x points $x: r(x)>c$ where c is determined by \[P_0[X\in S]=\sum
 \end{block}
 \end{frame}
 
-\begin{frame}{Lemma di Neyman-Pearson (Test di NP)}\frameintoc
+\begin{frame}{Lemma di Neyman-Pearson (Test di NP)}\frameintoc\linkdest{NPtest}
 \begin{block}{Statistica di un test}
 Posso esprimere un test in funzione di una statistica: $T(\vec{x})=T(t(\vec{x}))$ (nel caso del lemma NP la statistica \'e il LR). 
 \end{block}
@@ -108,21 +112,23 @@ RV $\vec{X}$: pdf $f_N(\vec{X}|\theta)$, lo spazio dei parametri \'e $\theta_0,\
 \begin{wordonframe}{Dimostrazione lemma Neyman-Pearson}
 Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\geq\beta_{NP}$ ($\pow'\leq\pow_{NP}$, probabilit\'a errore tipo II \'e maggiore), dimostro $\beta'-\beta\geq0$ cio\'e $\prob{(\overline{C}'|H_1)}-\prob{(\overline{C}|H_1)}$:
 \begin{align*}
-&\prob{(C|H_1)}-\prob{(C'|H_1)}=\prob{(C\cap|H_1)}+\prob{(C\cap\overline{C}'|H_1)}-\prob{(C\cap C'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}=\prob{(C\cap\overline{C}'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}\\
+&\prob{(C|H_1)}-\prob{(C'|H_1)}=\prob{(C\cap|H_1)}+\prob{(C\cap\overline{C}'|H_1)}-\prob{(C\cap C'|H_1)}\\
+&-\prob{(C'\cap\overline{C}|H_1)}=\prob{(C\cap\overline{C}'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}\\
 &\prob{(C\cap C'|H_1)}=\int_{C\cap C'}\prob_1{(x)}\,dx\geq\int_{C\cap \overline{C}'}\frac{\prob_0{(x)}}{q}\,dx=\frac{1}{q}\prob{(C\cap\overline{C}'|H_0)}
 \end{align*}
+dove si \'e usata la relazione di de morgan per complementare di intersezioni e la disuguaglianza del lemma-NP
 \end{wordonframe}
 
 \subsection{Ipotesi composte}\linkdest{Hcomposite}
 
 \begin{frame}{Monotone Likelihood property}
 \begin{block}{\keyword{Monotone LR}}
-Real parameter family of density $p_{\theta}(x)$ is said to have monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione non-decrescente/non-decrescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$.
+Real parameter family of density $p_{\theta}(x)$ is said to have monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione decrescente/non-decrescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$.
 \end{block}
 \begin{block}{One param exponential family}
 Sia $T(x)$ stat sufficiente per parametro $\theta$ e 
 \begin{equation*}
-g(t;\theta)=a(\theta)c(t)\exp(tb(\theta))
+g(t;\theta)=a(\theta)c(t)\exp{tb(\theta)}
 \end{equation*}
 con t del dominio di T. Le funzioni di questa famiglia godono del MLR property.
 \end{block}

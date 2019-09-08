@@ -415,7 +415,7 @@ Uniformly minimum variance unbiased estimator such that $V_{\Theta}[T]\leq V_{\T
 
 \begin{wordonframe}{Esempi di stimatori}
 \begin{block}{Notazione}
-$\Exp{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
+$\exv{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
 \end{block}
 \begin{block}{Stimatore per $\sigma^2$ di n iid gaussiane}
 $X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. La varianza campionaria definita come $S^2=\frac{1}{n-1}\sum_i^n(x_i-\exv{X})^2$ \'e stimatore unbiased di $T(\Theta)=\sigma^2$
@@ -589,13 +589,12 @@ Perdita informazione
 
 \subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
 
-\begin{frame}{Logica stimatori consistenti}
+\begin{frame}{Logica stimatori consistenti - \keyword{Stimatori impliciti}}\frameintoc
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
 \[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
-dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$:
+dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
 \begin{align*}
-&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0,\ \xi(\hat{\theta})=0\tag{stimatore implicito}\\
-&
+&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
 \end{align*}
 One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$
 Moment method:
@@ -606,48 +605,27 @@ Moment method:
 in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
 \end{frame}
 
-\begin{frame}{Stimatori impliciti}\frameintoc
-\begin{align*}
-&\E_{\theta}[a(X,\theta_0)]=h(\theta_0)=0,\ \forall\theta:\ \int a(X;\theta_0)f(X;\theta_0)\,dx=0\\
-%&(f(x,\theta)=S(x)-\E_{\theta}{[S]},\ \E{[f]}=\E_{\theta_0}{[S]}-\E_{\theta}{[S]})\\
-\end{align*}
-$K_N(\vec{X},\theta_0)=\frac{1}{N}\sum_ia(X_i,\theta_0)$ stimatore consistente di $h(\theta_0)$:
-$K_N(\vec{X},\theta_0)\to\E{[f(\vec{X},\theta_0)]}$
-
-Se $K_N(x)$ \'e $C^1$ e $\lim_{N\to\infty}\left.\E{[\PDy{\theta}{K_N}]}\right|_{\theta_0}\neq0$: almeno una soluzione dell'equazione $K_N(\vec{X},\hat{\theta})=0$ \'e stimatore consistente.
-\end{frame}
-
-\begin{frame}{Momenti}\frameintoc
-\begin{block}{Stimatore consistente}
-\begin{columns}[T]\begin{column}{0.5\textwidth}
-\keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
-\end{column}\begin{column}{0.5\textwidth}
-\begin{align*}
-&\E{[a(X)]}=\int a(X)f(X,\theta)\,dX=h(\theta)\\
-&\var{[a(X)]}<\infty\\
-&\theta_0=\invers{h}{[\E{[a(X)]}]}
-\end{align*}
-\end{column}\end{columns}
-\end{block}
+\begin{frame}{Momenti (Cowan 128)}\frameintoc
+Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
+\[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
+convergono in probabilit\'a ai momenti della distribuzione.
 \begin{columns}[T]
-\begin{column}{0.6\textwidth}
-\begin{block}{Momenti campionari: $a_j(X_i)=X^j$}
+\begin{column}{0.65\textwidth}
 \begin{align*}
-&m_k=\frac{\sum_ix_i^k}{N}\\
-&\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'\intu{convergono in probabilit\'a ai momenti della distribuzione}
 &\cov{(m_i,m_j)}=\E{[m_im_j]-\E{[m_i]}\E{[m_j]}}\\
-&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}
+&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}\\
+&\cov{[\hat{\theta}_i,\hat{\theta}_j]}=\sum_{k,l}\PDy{\hat{e}_k}{\hat{\theta}_i}\PDy{\hat{e}_l}{\hat{\theta}_j}\cov{[\hat{e}_k,\hat{e}_l]}
 \end{align*}
-\end{block}
+Co-var matrix of estimators (error propagation formula)
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.35\textwidth}
 \begin{align*}
 &m_1=\mu_1'(\theta_1,\ldots,\theta_n)\\
 &\vdots\\
 &m_n=\mu_n'(\theta_1,\ldots,\theta_n)\intd{Invertendo il sistema sopra si trovano gli stimatori:}
-&\hat{\theta_1}(m_1,\ldots,m_n)\\
+&\hat{\theta_1}(m_1,\ldots,m_m)\\
 &\vdots\\
-&\hat{\theta_1}(m_1,\ldots,m_n)
+&\hat{\theta_m}(m_1,\ldots,m_m)
 \end{align*}
 \end{column}
 \end{columns}

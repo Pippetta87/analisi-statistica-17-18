@@ -568,8 +568,15 @@ $y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
 	\end{columns}
 \end{frame}
 
-\begin{wordonframe}{Funzione caratteristica di Cauchy}
-
+\begin{wordonframe}{Funzioni caratteristiche}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+Gaussiana: $\phi_X(t)=\exp{\mu it-\frac{\sigma^2t^2}{2}}$
+	\end{column}
+	\begin{column}{0.5\textwidth}
+Poissoniana: $\Phi_X(t)=\exp{\lambda(\exp{it}-1)}$
+	\end{column}
+\end{columns}
 \end{wordonframe}
 
 \section{Math tools}\linkdest{math}
@@ -733,6 +740,7 @@ $n!$: permutazioni - modi distinti di prendere n oggetti
 \end{align*}
 \end{column}
 \end{columns}
+\todo{Somma N gaussiane?}
 \end{frame}
 
 \begin{frame}{Bernoulli, binomiale}
@@ -859,7 +867,8 @@ Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
 \begin{align*}
 &M_P(t)=\sum_k\exp{tk}\frac{\mu^k}{k!}\exp{-\mu}=\Exp{\mu(\exp{t}-1)}
 \end{align*}
-\keyword{Ex: media e varianza Poissoniana}
+\todo{Ex: media e varianza Poissoniana}
+\todo{Somma di N Poissoniane}
 \end{frame}
 
 \begin{frame}{Irwin-Hall}
