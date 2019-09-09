@@ -134,7 +134,7 @@ con t del dominio di T. Le funzioni di questa famiglia godono del MLR property.
 \end{block}
 \end{frame}
 
-\begin{frame}{Test UMP unilaterale per famiglia esponenziale}
+\begin{frame}{Test UMP unilaterale per famiglia esponenziale}\linkdest{UMPtestexp}
 %Karlin-Rubin theorem
 $X_1,\ldots,X_N$ N iid: pdf della forma $\prob{(x,\mu)}=F(x)G(\mu)\Exp{[A(x)B(\mu)]}$ e $B(\mu)$ (monotona):
 
@@ -162,7 +162,7 @@ $1+$ \'e il power per UMP test per $\theta>\theta_0$, $1-$ \'e il power per UMP 
 
 \end{wordonframe}
 
-\begin{frame}{Local most powerfull (LMP) tests}
+\begin{frame}{Local most powerfull (LMP) tests}\linkdest{LMP}
 (LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
 Applico NP a $H_0$ vs $H_1$:
 \begin{align*}
@@ -452,7 +452,7 @@ $X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Div
 
 \subsection{UnBinned GOF}\label{unbinnedgof}
 
-\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests}
+\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests ??}
 \begin{block}{Classes of EDF statistics}
 	Empirical distribution function (EDF): $\hat{F}_n(t)=\frac{\#\text{ elementi nel campione }\leq t}{n}$. Any $d(\hat{F_n},F_0)$ metric on the space of distribution functions is EDF statistics.
 	\begin{align*}
@@ -463,13 +463,14 @@ $X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Div
 \end{block}
 \end{frame}
 
-\begin{frame}{Smirnov-Cramer-von Mises test for unbinned data}
+\begin{frame}{Smirnov-Cramer-von Mises test for unbinned data ??}
 $H_0$ \'e identificato da $f(X)$: la pdf di  $W^2=\int[S_N(X)-F(X)]^2f(X)\,dX$ \'e indipendente da distribuzione di $X$: $Y=F(X)$ si ha $W^2=\int_0^1[S_N(Y)-Y]^2\,dY$. Ordering statistics, $X_{(1)}, X_{(2)}, \ldots X_{(N)}$, $S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}$
 
 \end{frame}
 
-\begin{frame}{Test di Kolmogorov-Smirnov }
-Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$.
+\begin{frame}{Test di Kolmogorov-Smirnov ??}
+Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$
+\[D_N=\max_{i}(F(Y_i)-\frac{i-1}{N},\frac{i}{N}-F(Y_i))\]
 \begin{block}{Limiting behaviour of KS test}
 \begin{itemize}
 \item Kolmogorov(33): comportamento asintotico del $1-\alpha$-quantile $s_{n,1-\alpha}$ \'e il quantile della distribuzione $\prob{(T_n>d)}\to2\sum_k^{\infty}(-1)\expy{k+1}\exp{-2k^2d^2}$ per $F_0$ continua.
