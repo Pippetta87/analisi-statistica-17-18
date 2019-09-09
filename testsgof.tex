@@ -418,8 +418,9 @@ Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha sig
 \begin{column}{0.5\textwidth}
 \begin{block}{UnBinned data}
 \begin{itemize}
-\item \keyword{Smirnov-Cramer-von Mises}.
-\item \keyword{Test di Kolmogorov-Smirnov}.
+\item \keyword{Smirnov-Cramer-von Mises}
+\item \keyword{Test di Kolmogorov-Smirnov}
+\item \keyword{Unbinned likelihood}.
 \end{itemize}
 \end{block}
 \end{column}
@@ -429,7 +430,7 @@ Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha sig
 \subsection{Binned GOF}\label{binnedgof}
 
 \begin{frame}{Pearson $\chi^2$ test for multinomial null hypothesis (histograms with k bins)}
-$k+1$ outcomes, n trials, $\sum_jp_j=1$: $\prob{(Y_1=y_1,\ldots,Y_{k+1}=y_{k+1})}=\frac{n!}{y_1!*\ldots*y_{k+1}!}p_1^{y_1}\ldots p_{k+1}^{y_{k+1}}$. Parameter space $\Omega=\{(p_1,\ldots,p_k\})\in \real{k}: p_i\geq0,\sum_{j=1}^kp_j\leq1$.
+$k+1$ outcomes, n trials, $\sum_jp_j=1$, $\sum_in_i=N$: $\prob{(Y_1=y_1,\ldots,Y_{k+1}=y_{k+1})}=\frac{n!}{y_1!*\ldots*y_{k+1}!}p_1^{y_1}\ldots p_{k+1}^{y_{k+1}}$. Parameter space $\Omega=\{(p_1,\ldots,p_k\})\in \real{k}: p_i\geq0,\sum_{j=1}^kp_j\leq1$.
 $H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$:
 statistica $Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\to\frac{1}{N}\sum^{k+1}\frac{n_i^2}{p_i}-N$ ha asintotic. pdf $\chi^2(k)$, quindi se $c_{k,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k)$ il test che rifiuta H quando $Q_n>c_{k,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
 \begin{block}{Power against local alternatives}

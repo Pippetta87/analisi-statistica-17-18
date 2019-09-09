@@ -126,10 +126,9 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 		\end{align*}
 	\end{column}
 \end{columns}
-\[\phi(t)=\sum_{m=0}^{\infty}\left.\frac{d^m\phi}{dt^m}\right|_{t=0}\frac{t^m}{m!}=\sum_{m=0}^{\infty}\frac{(it)^m}{m!}\E{(y^m)}\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots\]
 \begin{align*}
-&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\\
-&\log{\phi_N}\to-\frac{t^2}{2}\\
+&\phi(t)=\sum_{m=0}^{\infty}\left.\frac{d^m\phi}{dt^m}\right|_{t=0}\frac{t^m}{m!}=\sum_{m=0}^{\infty}\frac{(it)^m}{m!}\E{(y^m)}\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots\\
+&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\to-\frac{t^2}{2}\\
 %\text{Per T Levy la pdf \'e:}\\
 &\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}d\,t=\frac{1\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
 \end{align*}
@@ -445,10 +444,10 @@ minimum variance bound
 
 \begin{frame}{Logica stimatori consistenti - Stimatori impliciti}
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
-\[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
+\[\xi=\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
 dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
 \begin{align*}
-&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
+&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{[a(X,\theta_0)]}=0
 \end{align*}
 One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$
 Moment method:
@@ -459,8 +458,8 @@ Moment method:
 in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
 \end{frame}
 
-\begin{frame}{Momenti (Cowan 128)}
-Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
+\begin{frame}{Momenti}
+Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
 \[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
 convergono in probabilit\'a ai momenti della distribuzione.
 \begin{columns}[T]
@@ -502,10 +501,10 @@ convergono in probabilit\'a ai momenti della distribuzione.
 
 \begin{frame}{Stimatori di massima likelihood: derivazione tramite stimatori impliciti}
 \begin{align*}
-&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
+&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\xi=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
 &\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
 &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
-&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
 \end{align*}
 The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano con media 0 e varianza $NI(\theta)$
@@ -798,6 +797,56 @@ Applico NP a $H_0$ vs $H_1$:
 James pg 287
 \end{frame}
 
+\section{GOF}
+
+\subsection{Binned GOF}
+
+\begin{frame}{Pearson $\chi^2$ test for multinomial null hypothesis (histograms with k bins)}
+Asymptotic normality of multinomial to find asymptotic pdf of
+\[(\vec{n}-N\vec{p})^T\invers{V}(\vec{n}-N\vec{p})\]
+$V$ matrice covarianza osservazioni $\vec{n}$ di rango $k-1$ visto $\sum_i^kn_i=N$. Treating all bins simmetrically we find
+\[T=\frac{1}{N}\sum_i^k\frac{(n_i-Np_i)^2}{p_i}\]
+distribution of T close enough to $\chi^2(k-1)$ when all expected events per bin $Np_i>5$
+\end{frame}
+
+\begin{wordonframe}{Dettagli su $\chi^2$ di pearson}
+$k+1$ outcomes, n trials, $\sum_jp_j=1$, $\sum_in_i=N$: $\prob{(Y_1=y_1,\ldots,Y_{k+1}=y_{k+1})}=\frac{n!}{y_1!*\ldots*y_{k+1}!}p_1^{y_1}\ldots p_{k+1}^{y_{k+1}}$. Parameter space $\Omega=\{(p_1,\ldots,p_k\})\in \real{k}: p_i\geq0,\sum_{j=1}^kp_j\leq1$.
+$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$:
+statistica $Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\to\frac{1}{N}\sum^{k+1}\frac{n_i^2}{p_i}-N$ ha asintotic. pdf $\chi^2(k)$, quindi se $c_{k,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k)$ il test che rifiuta H quando $Q_n>c_{k,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
+\begin{block}{Power against local alternatives}
+	\begin{itemize}
+		\item $H: p_j=\pi_j$, $j=1,\ldots,k+1$: $Q_n\xrightarrow{d}\chi^2(k)$
+		\item Under alternative hypothesis $K: p_j^{(n)}=\pi_j+n\expy{-1/2}h_j$, $\sum_jh_j=0$: $Q_n\xrightarrow{d}\chi^{2,\lambda}(k)$ and NC parameter $\lambda=\sum_j^{k+1}\frac{h_j^2}{\pi_j}$
+		\item Power of $\chi^2$ test based on $Q_n$ tends to a limit greater than critical value $\alpha$
+	\end{itemize}
+\end{block}
+\end{wordonframe}
+
+\begin{frame}{$\chi^2$ Test of uniformity}
+$X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Divido l'intervallo $(0,1)$ in $k+1$ sotto-intervalli di lunghezza $\frac{1}{k+1}$: pdf di $(Y_1,\ldots,Y_{k+1})$ \'e multinomiale e il test che rifiuta H per grandi $\sum_j^{k+1}\frac{(Y_j-\frac{n}{k+1})}{\frac{n}{k+1}}$.
+\end{frame}
+
+\subsection{Unbinned GOF}
+
+\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests}
+\begin{block}{Classes of EDF statistics}
+	Empirical distribution function (EDF): N iid RV: $F_n(X)=\frac{1}{N}\sum_i^NI_{[-\infty,x](X_i)}$ $\hat{F}_n(t)=\frac{\#\text{ elementi nel campione }\leq t}{n}$.
+ Ordering statistics, $X_{(1)}, X_{(2)}, \ldots X_{(N)}$, $S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}$
+\end{block}
+%Smirnov-Cramer-von Mises test for unbinned data
+
+\begin{block}{Test di Kolmogorov-Smirnov }
+La statistica \'e massima deviazione di $S_N$ osservato da distribuzione $F(X)$ sotto $H_0$:
+\begin{align*}
+&D_N=\max|S_N(X)-F(X)|:\ \lim_{N\to\infty}\prob{[\sqrt{N}D_N>z]}=2\sum_{r=1}^{\infty}(-1)\expy{r-1}\exp{-2r^2z^2}\\
+&D_N^{\pm}=\max\pm(S_N(X)-F(X)):\ \lim_{N\to\infty}\prob{[\sqrt{N}D_N^{\pm}>z]}=\exp{-2z^2}
+\end{align*}
+%$T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$.
+Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\alpha}$ \'e determinato tramite $\prob{[\sqrt{N}D_N<K_{\alpha}]}=1-\alpha$ (asintoticamente)
+\end{block}
+\end{frame}
+
+
 \section{Compiti}\linkdest{compiti}
 
 \begin{wordonframe}{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}
@@ -1012,13 +1061,11 @@ Per ottenere limite inferiore occorre ordinamento $o(t)=t$:
 \int_{t_{min}}^{\infty}\lambda\exp{-\lambda t}\,dt=\cl{}\Rightarrow t_{min}(\lambda)=-\frac{\log{(\cl{})}}{\lambda}
 \end{equation*}
 banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$. Limite inferiore a un fenomeno nuovo!
-
 LR-ordering:
 \begin{equation*}
 \lr{}=\frac{\prob{(t;\lambda)}}{\sup_{\lambda}\prob{(t;\lambda)}}=\lambda t\exp{-\lambda t}
 \end{equation*}
 fissato $\lambda$ ha singolo massimo in t e monotona da ambo i lati: usando $o(t)=\lr{(t)}$ ottengo intervallo $[t_{min},t_{max}]$.
-
 prior impropria: in mancanza di una scala definita utilizzo prior uniforme in $[0,\infty]$ (non normalizabile). Devo normalizare la posterior:
 \begin{align*}
 &\pi(\lambda|t_m)\propto \lambda\exp{-t_m\lambda}=L_{t_m}(\lambda)\\
@@ -1028,20 +1075,56 @@ quindi limite bayesiano inferiore
 \begin{equation*}
 \int_{\lambda_{min}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\cl{}
 \end{equation*}
-
 limite bayesiano bilaterale simmetrico:
 \begin{align*}
 &\int_0^{\lambda_{min}}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}\\
 &\int_{\lambda_{max}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}
 \end{align*}
-
 limite bayesiano utilizzando posterior ordering:
 \begin{align*}
 &\exp{-t_m\lambda_{min}}(t_m\lambda_{min}+1)-\exp{-t_m\lambda_{max}}(t_m\lambda_{max}+1)=\cl\\
 &\lambda_{min}\exp{-t_m\lambda_{min}}-\lambda_{max}\exp{-t_m\lambda_{max}}=0
 \end{align*}
+\end{wordonframe}
 
+\begin{wordonframe}{Modello di partita di calcio - Compito del $10/09/19$}
+Probabilit\'a che squadra A faccia gol in un minuto \'e $q_A$: la probabilit\'a che un'incontro A-B finisca $g_A-g_B$ \'e
+\[P(g_ag_B=\exp{-\mu_A-\mu_B})\frac{\mu_A\expy{g_A}\mu_B\expy{g_B}}{g_A!g_B!}\] con $\mu_i=90*q_i$.
+Sia un risultato $(0,1)$: utilizzo approccio bayesiano per determinare la probabilit\'a della ''forza'' della squadra
+\[\pi(g_A,g_B)=L_{0-1}(g_A,g_B)p(g_A)p(g_B)\propto\mu_2\exp{-(\mu_1+\mu_2)}\]
+La probabilit\'a $P(q_A>q_B)$ integro la posterior su $dq_Adq_B$ sopra la retta $q_A=q_B$. Per determinare la probabilit\'a che in successivo incontro si abbia uno $0-0$ o $1-0$ uso la posterior calcolata in seguito allo $0-1$ che pesa le poissoniane integrati sui valori dei parametri:
+\[P(g_A,g_B)=\int P(g_A,g_B;\mu_1,\mu_2)\pi(\mu_1,\mu_2)\,d\mu_1\,d\mu_2\]
+La verifica del modello tramite il confronto con risultati di 3 partite per squadra con 8 squadre: quindi confronto l'ipotesi che i gol fatti nelle tre partite da una squadra appartengano a singola Poissoniana con un modello in cui ogni risultato viene da Poisson diversa:
+\[\lambda=-2\log{LR}=2\sum g_{ij}\log{\frac{g_{ij}}{\exv{g_i}}}\]
+$\prob{(\lambda)}\to\chi^2_{16}$ (24-8=8*(3-1)); usando il test di Pearson $\chi^2=\sum_{ij}\frac{g_{ij}-\exv{g_i}}{\exv{g_i}}$
+\end{wordonframe}
 
+\begin{wordonframe}{Contaminazione radioattiva - Compito del $10/09/19$}
+$^{32}P$, $t_{1/2}^{32}=\SI{14.263}{\day}$ di cui voglio misurare livello contaminazione con isotopo raro $^{33}P$, $t_{1/2}^{33}=\SI{25.25}{\day}$. Misuro conteggi particelle beta con rivelatore a stessa ora del giorno per 5 giorni $\{n_1,\ldots,n_5\}$.
+Ignorando fattori dipendenti solo dai dati
+\begin{align*}
+&\log{L(N_0,\alpha)}=\sum_{i=1}^5(n_i\log{\mu_i(N_0,\alpha)}-\mu_i(N_0,\alpha))\\
+&\mu_i(N_0,\alpha)=N_0[(1-\alpha)\lambda\exp{-\lambda t_i}+\alpha\lambda'\exp{-\lambda't_i}]
+\end{align*}
+Le likelihood equations per determinare stimatore $\hat{\alpha}$:
+\begin{align*}
+&\PDy{N_0}{\log{L(N_0,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0\\
+&\PDy{\alpha}{\log{L(N_o,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0
+\end{align*}
+i conteggi hanno pdf Poisson centrata attorno al valore atteso determinato da numero atomi radioattivi al momento della misure, il rate di decadimento, la durata della misura e l'efficienza del rivelatore; $N_0$ \'e un nuissance parameter.
+Risolvere seconda equazione equivale a risolvere quinto grado che \'e fattibile in generale con metodi numerici; dato che ho da determinare 2 parametri considero solo 2 misure - prima e l'ultima - quindi si ha il sistema $n_1=\mu_1$ e $n_5=\mu_5$ per la varianza considero la propagazione della varianza (su $n_1$, $n_5$).
+Adesso considero la distribuzione delle misure come sequenza temporale discreta e applico il metodo dei momenti per estrarre stima contaminazione ($t_i=i-1=0,\ldots,4$):
+\[P(t_i;\alpha)\propto[(1-\alpha)\lambda\exp{-\lambda t_i}+\alpha\lambda'\exp{-\lambda't_i}]\]
+Q normalizzazione, i momenti di ordine zero e uno:
+\begin{align*}
+&\mu_0(\alpha))=Q\sum_i^5[(1-\alpha)\lambda\exp{-\lambda t_i}+\alpha\lambda'\exp{-\lambda't_i}]\\
+&\mu_1(\alpha))=Q\sum_i^5[(1-\alpha)t_i\lambda\exp{-\lambda t_i}+\alpha t_i\lambda'\exp{-\lambda't_i}]
+\end{align*}
+si ricavano i 2 parametri uguagliando i valori attesi e osservati:
+\begin{align*}
+&\E{[\mu_0]}=\sum_i^5n_i\\
+&\E{[\mu_0]}=\sum_i^5(i-1)n_i
+\end{align*}
 \end{wordonframe}
 
 \begin{wordonframe}{math basic}

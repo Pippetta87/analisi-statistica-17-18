@@ -29,13 +29,15 @@ Il teorema di Bayes \'e usato per aggiornare la probabilit\'a sulla base di nuov
 \end{block}
 \end{frame}
 
-\subsection{Baysiano}
-
-\begin{frame}[allowframebreaks]{List of things}
-\printbibliography[keyword={inference},heading=beamer]
-%\printbibliography[keyword={\mybibcat},heading=beamer]
-%\listofkeywords
-\end{frame}
+\begin{wordonframe}{Esempi inferenza Bayesiana}
+\begin{block}{Modello elementare partita di calcio}
+Le due squadre hanno probabilit\'a $q_A$ e $q_B$ di fare gol per ogni minuto: la funzione di Likelihood del risultato $(g_A,g_B)$ \'e prodotto di due poissoniane indipendenti con $\mu_i=q_i*90$:
+\[L_{(g_A,g_B)}(\mu_A,\mu_B)=\exp{-\mu_A}\exp{-\mu_B}\frac{\mu_A\expy{g_A}\mu_B\expy{
+		g_B}}{g_A!g_B!}\]
+Nell'ottica Bayesiano-soggettivista si sceglie prior $p(\mu_X)$ uniforme in $(0,\infty)$: dato risultato $(0,1)$ la posterior $\pi(\mu_1,\mu_2)=\mu_2\exp{-\mu_1-\mu_2}$.
+\[P(\mu_1>\mu_2)=\int_{\mu_1>\mu_2}\pi(\mu_1,\mu_2)\,d\mu_1\,d\mu_2\]
+\end{block}
+\end{wordonframe}
 
 \subsection{Funzione di Likelihood}\linkdest{likelihood}
 
@@ -651,7 +653,7 @@ Co-var matrix of estimators (error propagation formula)
 &a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
 &\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
 &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
-&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
 \end{align*}
 The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano con media 0 e varianza $NI(\theta)$
@@ -1179,7 +1181,7 @@ Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la dis
 \end{align*}
 \end{frame}
 
-\begin{frame}{Teorema di Wilks}\linkdest{lambda}
+\begin{frame}{Teorema di Wilks}\linkdest{wilks}
 $p(x;\mu)$ due volte differenziabile con dominio indipendente da parametro $\Omega(x;\mu)=\Omega(x)$: \[\lambda(x;\mu)=2\log{[\frac{\sup_{\mu}{p(x;\mu)}}{p(x;\mu)}]}\] (log-likelihood ratio statistics) ha asintoticamente pdf universale e indipendente da $\mu$: distribuzione di $\chi^2$ con dof pari a dimensione di $\vec{\mu}$.
 \begin{align*}
 &\ln{L(\theta)}-\ln{L(\hat{\theta})}=-\frac{1}{2}\invers{F}_{\chi_n^2}(1-\alpha)
