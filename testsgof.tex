@@ -173,7 +173,7 @@ Applico NP a $H_0$ vs $H_1$:
 score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{\alpha}\sqrt{NI}$.
 \end{frame}
 
-\begin{frame}{Likelihood ratio test (LRT)}\frameintoc
+\begin{frame}{Likelihood ratio test (LRT)}\frameintoc\linkdest{LRT}
 Sia $H_0: \vec{\theta}\in\nu$, $H_0: \vec{\theta}\in\overline{\nu}$
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -197,15 +197,13 @@ Asymptotic pdf of $\hat{\theta}=(\hat{\theta}_r,\hat{\theta}_s)$ is $(r+s)$-D No
 \end{block}
 \end{frame}
 
-\begin{frame}{}
-\begin{block}{LR test: critical region, significance level and power for continuus families of Hypotheses}
+\begin{frame}{LR test: critical region, significance level and power for continuus families of Hypotheses}
 	%$\alpha=\sup{\prob{(\lambda(\vec{X})\leq k;\theta\in\theta_0)}}$.
 	Se $H_0$ impone r vincoli sugli $r+s$ parametri di $H_0, H_1$: $\forall\theta\in H_0$ $-2\log{\lambda}\to\chi^2_{r}$, $\forall\theta\in H_1$ $-2\log{\lambda}\to\chi^2_{r}$ non centrale con parametro $K_1=(\vec{\theta}_r-\vec{\theta}_{r0})^TI_r(\vec{\theta}_r-\vec{\theta}_{r0})$.
 	Regione critica: $-2\ln{\lambda}>\chi^2_{\alpha}(r)$, power:
 	\begin{equation*}
 	p=1-\beta=\int_{\chi_{\alpha}^2(r)}^{\infty}dF_1[\chi^2(r,K_1)]\approx\int_{(\frac{r+K_1}{r+2K_1})\chi^2_{\alpha}(r)}^{\infty}dF_2[\chi^2(r+\frac{K_1^2}{r+2K_1})]
 	\end{equation*}
-\end{block}
 \end{frame}
 
 \begin{wordonframe}{LRT: }

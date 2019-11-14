@@ -121,6 +121,7 @@ Bib to learn}
 \makeatother
 
 \AtBeginSection{
+	\addtocounter{keywordsectionlist}{1}
 \begin{frame}[allowframebreaks]
     \begin{centering}
 	\begin{beamercolorbox}[sep=12pt,center]{part title}
@@ -130,7 +131,9 @@ Bib to learn}
 \listofkeywords
 \end{frame}
 }
+
 \AtBeginSubsection{\frame{\subsectionpage}}
+
 \makeatletter
 \AtBeginPart{%
 \begin{frame}[allowframebreaks]
@@ -158,7 +161,7 @@ Bib to learn}
 {
     \leavevmode%
     \hbox{%Refintro
-        \begin{beamercolorbox}[wd=.1\paperwidth,ht=3.8ex,dp=0ex,left]{author in head/foot}%
+        \begin{beamercolorbox}[wd=.09\paperwidth,ht=3.8ex,dp=0ex,left]{author in head/foot}%
             \hyperlink{intro}{intro}:\hyperlink{rl18}{RLez} \hyperlink{ottobre}{Ott}\hyperlink{novembre}{Nov}\hyperlink{dicembre}{Dic}
         \end{beamercolorbox}%
 
@@ -166,17 +169,18 @@ Bib to learn}
             \hyperlink{succo}{succo}-\hyperlink{compiti}{probls}
         \end{beamercolorbox}%
         
- \begin{beamercolorbox}[wd=.2\paperwidth,ht=4.25ex,dp=0ex,center]{author in head/foot}%refs probability
+ \begin{beamercolorbox}[wd=.19\paperwidth,ht=4.25ex,dp=0ex,center]{author in head/foot}%refs probability
             \hyperlink{statdistro}{p}:\hyperlink{axioms}{ax}-\hyperlink{axiomsmplementation}{AXimpl}-\hyperlink{pdfRVchange}{pdfCV}-\hyperlink{moments}{M}-\hyperlink{lln-clt}{LLN(clt)}-\hyperlink{pdfs}{f's}(\hyperlink{chi2}{$\chi2$})
         \end{beamercolorbox}%
 
- \begin{beamercolorbox}[wd=.3\paperwidth,ht=4.2ex,dp=0ex,center]{author in head/foot}%refs estimator
+ \begin{beamercolorbox}[wd=.29\paperwidth,ht=4.2ex,dp=0ex,center]{author in head/foot}%refs estimator
             \hyperlink{inference}{inf}:\hyperlink{likelihood}{L}-\hyperlink{statistiche}{$S(X)$}(\hyperlink{darmoissuff}{Darm}-\hyperlink{cramerrao}{CRbound})-\hyperlink{points}{$\hat{\theta}$} \hyperlink{informazione}{$I_X$}-\hyperlink{methodsestimators}{mes}(\hyperlink{MLE}{MLE},\hyperlink{MLS}{MLS})-\hyperlink{interval}{intes}:\hyperlink{pivot}{pvt}-\hyperlink{wilks}{WT($\lambda$)}
         \end{beamercolorbox}%
          \begin{beamercolorbox}[wd=.3\paperwidth,ht=4.0ex,dp=0ex,center]{author in head/foot}%refs test'ngof
         	\hyperlink{testfreq}{Tfreq}:\hyperlink{Htest}{H}-\hyperlink{Hsimple}{Hsim}(\hyperlink{NPtest}{NP})-\hyperlink{Hcomposite}{Hcom}(\hyperlink{UMPtestexp}{UMPe}-\hyperlink{LMP}{LMP}) \hyperlink{gof}{gof}:\hyperlink{pvalue}{pval}-\hyperlink{binnedgof}{bin}-\hyperlink{unbinnedgof}{unbin}
         \end{beamercolorbox}%
-        \begin{beamercolorbox}[wd=.05
+    
+        \begin{beamercolorbox}[wd=.03
         	\paperwidth,ht=4.25ex,dp=0ex,right]{date in head/foot}%
             %   \usebeamerfont{date in head/foot}\insertshortdate{}\hspace*{2em}
             \insertframenumber{}/\inserttotalframenumber
