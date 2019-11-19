@@ -4,7 +4,20 @@
 
 \subsection{Paradigmi di inferenza}
 
+\begin{frame}{Inference statistics}
+\begin{itemize}
+\item experiments/observations modelled as observed values of RV: provide framework to draw inductive conclusion on mechanism giving rise to data
+\item Suitable family of pdf: $f(x;\theta)$ where $\theta\subset R^d$ is the model function. Point estimators, confidence set estimators and hypothesis test and adeguacy of model specified by $f(x;\theta)$.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Paradigmi}
+\begin{itemize}
+\item Bayesian: Prior pdf on $\theta$ before data analysis (statistician's own prior state of belief)
+\item Fisherian: Repeated sampling principle: inference from x founded on analysis of how conclusions change with variation in data sample through rep under same conditions. Principio di massima likelihood: L measures ''probability'' that values of $\theta$ assign to re-observe actual data under experiment repetition; inference must be conditionalon everything known and uninformative about params.
+\item Frequentist (Neyman-Pearson-Wald-Lehmann): Based on Fisher's Likelihood and sufficiency - shifted from inference as summary of data to decision problems. Optimum procedure should be identified before data x are available.
+\end{itemize}
+
 \begin{block}{Fisher}
 	
 \end{block}
@@ -1191,6 +1204,7 @@ Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la dis
 &\prob{(a<u<b)}=1-\alpha\Rightarrow\prob{(\theta\in(\invers{b}x,\invers{a}x))}=1-\alpha\ (\alpha\leftrightarrow1-\alpha)
 %
 \end{align*}
+
 \end{frame}
 
 \begin{wordonframe}{Example of CI using Pivot}
