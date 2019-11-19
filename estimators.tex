@@ -19,23 +19,20 @@
 \begin{wordonframe}{Esempi inferenza Bayesiana}
 \begin{block}{Modello elementare partita di calcio}
 	Le due squadre hanno probabilit\'a $q_A$ e $q_B$ di fare gol per ogni minuto: la funzione di Likelihood del risultato $(g_A,g_B)$ \'e prodotto di due poissoniane indipendenti con $\mu_i=q_i*90$:
-	\[L_{(g_A,g_B)}(\mu_A,\mu_B)=\exp{-\mu_A}\exp{-\mu_B}\frac{\mu_A\expy{g_A}\mu_B\expy{
-			g_B}}{g_A!g_B!}\]
+	\[L_{(g_A,g_B)}(\mu_A,\mu_B)=\exp{-\mu_A}\exp{-\mu_B}\frac{\mu_A\expy{g_A}\mu_B\expy{g_B}}{g_A!g_B!}\]
 	Nell'ottica Bayesiano-soggettivista si sceglie prior $p(\mu_X)$ uniforme in $(0,\infty)$: dato risultato $(0,1)$ la posterior $\pi(\mu_1,\mu_2)=\mu_2\exp{-\mu_1-\mu_2}$.
 	\[P(\mu_1>\mu_2)=\int_{\mu_1>\mu_2}\pi(\mu_1,\mu_2)\,d\mu_1\,d\mu_2\]
 \end{block}
 \end{wordonframe}
 
-\subsection{Principio di sufficienza}
-
 \begin{frame}{Principio di sufficienza}
-\begin{block}{Principio di sufficienza}
-	Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
+E modello statistico per osservabile X con parametro $\theta$, $t(x)$ stat. suff. iff $\prob{(X|t)}$ non dipende da $\theta$; sia $E'$ modello statistico di $t(x)$. Inferences on $\theta$ are same from $(E,X)$ or $E',t(x)$
+	%Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
 	\keyword{Principio di sufficienza}: per ogni x $Ev(E,x)=Ev(E',t)$.
-\end{block}
-\begin{block}{\keyword{Principio di likelihood} (Fisher Barnard)}
+\end{frame}
+
+\begin{frame}{\keyword{Principio di likelihood} (Fisher Barnard)}
 	Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
-\end{block}
 \end{frame}
 
 \subsection{Principio di condizionalit\'a}
