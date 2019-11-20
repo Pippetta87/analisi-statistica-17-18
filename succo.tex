@@ -849,7 +849,8 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 
 \section{Compiti}\linkdest{compiti}
 
-\begin{wordonframe}{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}
+\subsection{{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}}
+\begin{frame}{Valori $\chi^2$ per 10 osservabili binned}
 	Fit di massima likelihood per le 10 osservabili (binned) basandosi su teoria: istogrammi suff. popolati per GOF test di Pearson con 30 dof (31 bins?)
 	\begin{table}[h!]
 		\centering
@@ -861,6 +862,8 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 		\end{tabular}
 	\end{table}
 	Impressione che ci siano troppi valori alti del $\chi^2$: come risolvere il dubbio in maniera rigorosa?
+\end{frame}
+\begin{frame}{Additivit\'a $\chi^2$ e GOF test}
 	\begin{itemize}
 	\item \keyword{additivit\'a del $\chi^2$}: somma quadrati di RV normali standard.
 			Sommando $\chi^2$ in tab si ottiene RV con pdf $\chi^2_{300}$ approssimabile con gaussiana con $\sigma=\sqrt{2N}\approx24.5$.
@@ -872,9 +875,9 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 	\item Test della mediana
 	\item Test basato su propriet\'a pdf $\chi^2_{30}$: test varianza $2N$; test secondo momento attorno a media nominale 30.
 \end{itemize}
-\end{wordonframe}
+\end{frame}
 
-\begin{wordonframe}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
+\begin{frame}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
 \begin{columns}[T]\begin{column}{0.5\textwidth}
 x RV $U(0,m)$; $2k+1=3$ misura la mediana $x_2=3.4$
 \begin{block}{MLE estimator, bias, incertezza statistica}
@@ -907,82 +910,83 @@ Determinazione $p(\mu=x_2)$ dove $\mu$ pu\'o essere vista come seconda misura pi
 Assumo prior uniforme in $\log{m}$: $\prob{(m)}\propto\frac{1}{m}$, posterior $\pi(m)\propto L(\mu|m)\prob{(m)}=\frac{6\mu}{m^3}-\frac{6\mu^2}{m^4}$ ($\prob{(H)}=\frac{\prob{(E|H)\prob{(H)}}}{\prob{(E)}}$): la posterior va normalizzata tra $[\mu,+\infty]$ (likelihood nulla  in $[0,\mu]$), $\pi(m)=\frac{3\mu^2}{m^3}-\frac{3\mu^3}{m^4}$, il massimo fornisci una stima bayesiana di m: $\hat{m}=\frac{4}{3}\mu$.
 \end{block}
 \end{column}\end{columns}
-\end{wordonframe}
+\end{frame}
 
-\begin{wordonframe}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
-	\begin{columns}[T]\begin{column}{0.5\textwidth}
-			\begin{block}{MLE estimator, bias, incertezza statistica}
-				\begin{align*}
-				&\var{[\hat{m}']}=\sigma^2_{\hat{m}'}=4\var{\mu}=4\sigma_{\mu}^2\\
-				&\sigma^2_{\mu}=\exv{\mu^2}-\exv{\mu}^2=\frac{m^2}{20}
-				\end{align*}
-				Le varianze sono funzione del valore di m: le stimo usando $\hat{m}$
-			\end{block}
-		\end{column}\begin{column}{0.5\textwidth}
-			\begin{block}{Stima bayesiana di m}
-				Assumo prior uniforme in $\log{m}$: $\prob{(m)}\propto\frac{1}{m}$, posterior $\pi(m)\propto L(\mu|m)\prob{(m)}=\frac{6\mu}{m^3}-\frac{6\mu^2}{m^4}$ ($\prob{(H)}=\frac{\prob{(E|H)\prob{(H)}}}{\prob{(E)}}$): la posterior va normalizzata tra $[\mu,+\infty]$ (likelihood nulla  in $[0,\mu]$), $\pi(m)=\frac{3\mu^2}{m^3}-\frac{3\mu^3}{m^4}$, il massimo fornisci una stima bayesiana di m: $\hat{m}=\frac{4}{3}\mu$.
-			\end{block}
-	\end{column}\end{columns}
-\end{wordonframe}
+\begin{frame}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+\begin{block}{MLE estimator, bias, incertezza statistica}
+\begin{align*}
+&\var{[\hat{m}']}=\sigma^2_{\hat{m}'}=4\var{\mu}=4\sigma_{\mu}^2\\
+&\sigma^2_{\mu}=\exv{\mu^2}-\exv{\mu}^2=\frac{m^2}{20}
+\end{align*}
+Le varianze sono funzione del valore di m: le stimo usando $\hat{m}$
+\end{block}
+\end{column}\begin{column}{0.5\textwidth}
+\begin{block}{Stima bayesiana di m}
+Assumo prior uniforme in $\log{m}$: $\prob{(m)}\propto\frac{1}{m}$, posterior $\pi(m)\propto L(\mu|m)\prob{(m)}=\frac{6\mu}{m^3}-\frac{6\mu^2}{m^4}$ ($\prob{(H)}=\frac{\prob{(E|H)\prob{(H)}}}{\prob{(E)}}$): la posterior va normalizzata tra $[\mu,+\infty]$ (likelihood nulla  in $[0,\mu]$), $\pi(m)=\frac{3\mu^2}{m^3}-\frac{3\mu^3}{m^4}$, il massimo fornisci una stima bayesiana di m: $\hat{m}=\frac{4}{3}\mu$.
+\end{block}
+\end{column}\end{columns}
+\end{frame}
 
-\begin{wordonframe}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
-	\begin{block}{Limite superiore/bilaterale}
-		Limite superiore per m di $U(0,m)$ da mediana campionaria: $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=\cl=0.9$, con $y=\frac{\mu}{m}$ si risolve $F(\mu)=y^2(3-2y)=1-\cl$ ha soluzione $y=0.1958$ quindi $m<\frac{\mu}{0.1958}$.
-		Limite bilaterali simmetrici per m da mediana campionaria: $F(\mu)=y^2(3-2y)=(1-\cl)/2$ $y_+=0.13535$, $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=(1-\cl)/2$ quindi $F(\mu)=y^2(3-2y)=(1+\cl)/2$ e $y_-=0.8647$: Limiti bilaterali con $\cl=0.9$ sono $\frac{\mu}{0.8647}<m<\frac{\mu}{0.13535}$
-	\end{block}
-	\begin{block}{Limiti credibilit\'a Bayesiana}
-		prior uniform, $\cred=90\%$. La posterior \'e $\pi(m)=\frac{2\mu}{m^2}-\frac{2\mu^2}{m^3}$ diversa da zero in $[\mu,+\infty]$ e la cumulante $F(m)=\int_{\mu}^m\pi(\tilde{m})\,d\tilde{m}=1+\mu(\frac{\mu}{m^2}-\frac{2}{m})$:
-		\begin{align*}
-		&F(m_{min})=\frac{1-\cl}{2}\\
-		&F(m_{max})=\frac{1+\cl}{2}\\
-		&\frac{\mu}{1-\sqrt{(1-\cl)/2}}<m<\frac{\mu}{1-\sqrt{(1+\cl)/2}}
-		\end{align*}
-		dove ho scelto le soluzioni maggiori di $\mu$, per il limite superiore si ha $m<66.26$.
-	\end{block}
-	\begin{block}{Limiti confidenza al $90\%\cl$ a la FC}
-		Imponiamo il LR-ordering e coverage $90\%$
-		\begin{equation*}
-		\lambda\propto\mu\prob{(\mu;m)}=6\frac{\mu^2}{m^2}(1-\frac{\mu}{m})
-		\end{equation*}
-		LR \'e unimodale: un intervallo con $\lambda(m_1)=\lambda(m_2)$, mentre il coverage richiede $\int_{m_1}^{m_2}\prob{(\mu;m)}\,d\mu=\cl$ da cui si ottiene il sistema di equazioni
-		\begin{align*}
-		&y_2^3-y_1^3=\cl\\
-		&y_2^2-y_1^2=\cl\\
-		&y_1=\frac{m_1}{m},\ y_1=\frac{m_1}{m}\\
-		&\frac{\mu}{0.96804}<m<\frac{\mu}{0.192606}
-		\end{align*}
-	\end{block}
-	\begin{block}{$2k+1$ misure: propriet\'a statistica mediana per costruzione estimatori}
-		pdf per mediana campionaria
-		\begin{equation*}
-		\prob{(\mu;m)}=\frac{1}{m}(\frac{\mu}{m})^k(1-\frac{\mu}{m})^k\frac{(2k+1)!}{k!k!1!}
-		\end{equation*}
-		stimatore massima likelihood:
-		\begin{align*}
-		&\log{L(m)}=\log{\frac{1}{m}}+k\log{\frac{\tilde{m}}{m}}+k\log{(1-\frac{\tilde{m}}{m})}+\const{}\\
-		&\TDy{m}{\log{L}}=0 \Rightarrow \hat{m}=\frac{2k+1}{k+1}\tilde{m}
-		\end{align*}
-		Bias estimatore:
-		\begin{align*}
-		&\E{[\hat{m}]}=\frac{2k+1}{k+1}\E{[\tilde{m}]}\\
-		&\E{[\tilde{m}]}=\int_0^m\tilde{m}\prob{(\tilde{m};m)}\,d\tilde{m}\\
-		&=\frac{(2k+1)!}{k!k!1!}m\int_0^1x^{k+1}(1-x)^k\,dx\ (x=\frac{\tilde{m}}{m})\\
-		&\E{[\tilde{m}]}=\frac{(2k+1)!}{k!k!1!}m\frac{\Gamma(k+1)\Gamma(k+2)}{\Gamma(2k+3)}=\frac{m}{2}\ (\Gamma(k+1)=k!)\\
-		&\E{[\hat{m}]}=\frac{2k+1}{2(k+1)}m\\
-		&b=m-\frac{2k+1}{2(k+1)}=\frac{1}{2(k+1)}m\to0
-		\end{align*}
-		Varianza
-		\begin{align*}
-		&\E{[\tilde{m}^2]}=\frac{(2k+1)!}{k!k!1!}m^2\int_0^1x^{k+2}(1-x)^k\,dx\\
-		&=\frac{(2k+1)!}{k!k!1!}m^2\frac{\Gamma(k+1)\Gamma(k+3)}{\Gamma(2k+4)}\\
-		&=\frac{(k+1)(k+1)}{(2k+3)(2k+2)}m^2\\
-		&\var{[\tilde{m}]}=\E{[\tilde{m}^2]}-\E{[\tilde{m}]}^2=m^2\frac{1}{4(2k+3)}\\
-		&\var{[\hat{m}]}=(\frac{2k+1}{k+1})^2\var{[\tilde{m}]}\to0
-		\end{align*}
-		Efficienza estimatore mediana campionaria per pdf uniforme: non si pu\'o usare MVB come riferimento assoluto dato che per pdf uniforme $I_F$ non \'e proporzionale al numero di misure; efficienza relativa rispetto a stimatore ricavato da statistica suff. $x_M$ $\var{[x_M]}=frac{m^2}{k^2}$: il MLE ricavato da mediana \'e meno efficiente ed efficienza relativa va a 0.
-	\end{block}
-\end{wordonframe}
+\begin{frame}{Limite di confidenza superiore/bilaterale}
+Limite superiore per m di $U(0,m)$ da mediana campionaria: $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=\cl=0.9$, con $y=\frac{\mu}{m}$ si risolve $F(\mu)=y^2(3-2y)=1-\cl$ ha soluzione $y=0.1958$ quindi $m<\frac{\mu}{0.1958}$.
+Limite bilaterali simmetrici per m da mediana campionaria: $F(\mu)=y^2(3-2y)=(1-\cl)/2$ $y_+=0.13535$, $\int_{\mu}^m6\frac{\tilde{\mu}}{m^2}(1-\frac{\tilde{\mu}}{m})\,d\tilde{\mu}=(1-\cl)/2$ quindi $F(\mu)=y^2(3-2y)=(1+\cl)/2$ e $y_-=0.8647$: Limiti bilaterali con $\cl=0.9$ sono $\frac{\mu}{0.8647}<m<\frac{\mu}{0.13535}$
+\end{frame}
 
+\begin{frame}{Limiti credibilit\'a Bayesiana}
+prior uniform, $\cred=90\%$. La posterior \'e $\pi(m)=\frac{2\mu}{m^2}-\frac{2\mu^2}{m^3}$ diversa da zero in $[\mu,+\infty]$ e la cumulante $F(m)=\int_{\mu}^m\pi(\tilde{m})\,d\tilde{m}=1+\mu(\frac{\mu}{m^2}-\frac{2}{m})$:
+\begin{align*}
+&F(m_{min})=\frac{1-\cl}{2}\\
+&F(m_{max})=\frac{1+\cl}{2}\\
+&\frac{\mu}{1-\sqrt{(1-\cl)/2}}<m<\frac{\mu}{1-\sqrt{(1+\cl)/2}}
+\end{align*}
+dove ho scelto le soluzioni maggiori di $\mu$, per il limite superiore si ha $m<66.26$.
+\end{frame}
+
+\begin{frame}{Limiti confidenza al $90\%\cl$ \'a l\'a FC}
+Imponiamo il LR-ordering e coverage $90\%$
+\begin{equation*}
+\lambda\propto\mu\prob{(\mu;m)}=6\frac{\mu^2}{m^2}(1-\frac{\mu}{m})
+\end{equation*}
+LR \'e unimodale: un intervallo con $\lambda(m_1)=\lambda(m_2)$, mentre il coverage richiede $\int_{m_1}^{m_2}\prob{(\mu;m)}\,d\mu=\cl$ da cui si ottiene il sistema di equazioni
+\begin{align*}
+&y_2^3-y_1^3=\cl\\
+&y_2^2-y_1^2=\cl\\
+&y_1=\frac{m_1}{m},\ y_1=\frac{m_1}{m}\\
+&\frac{\mu}{0.96804}<m<\frac{\mu}{0.192606}
+\end{align*}
+\end{frame}
+
+\begin{frame}{$2k+1$ misure: propriet\'a statistica mediana per costruzione estimatori}
+pdf per mediana campionaria
+\begin{equation*}	\prob{(\mu;m)}=\frac{1}{m}(\frac{\mu}{m})^k(1-\frac{\mu}{m})^k\frac{(2k+1)!}{k!k!1!}
+\end{equation*}
+stimatore massima likelihood:
+\begin{align*}
+&\log{L(m)}=\log{\frac{1}{m}}+k\log{\frac{\tilde{m}}{m}}+k\log{(1-\frac{\tilde{m}}{m})}+\const{}\\
+&\TDy{m}{\log{L}}=0 \Rightarrow \hat{m}=\frac{2k+1}{k+1}\tilde{m}
+\end{align*}
+Bias estimatore:
+\begin{align*}
+&\E{[\hat{m}]}=\frac{2k+1}{k+1}\E{[\tilde{m}]}\\
+&\E{[\tilde{m}]}=\int_0^m\tilde{m}\prob{(\tilde{m};m)}\,d\tilde{m}\\
+&=\frac{(2k+1)!}{k!k!1!}m\int_0^1x^{k+1}(1-x)^k\,dx\ (x=\frac{\tilde{m}}{m})\\
+&\E{[\tilde{m}]}=\frac{(2k+1)!}{k!k!1!}m\frac{\Gamma(k+1)\Gamma(k+2)}{\Gamma(2k+3)}=\frac{m}{2}\ (\Gamma(k+1)=k!)\\
+&\E{[\hat{m}]}=\frac{2k+1}{2(k+1)}m\\
+&b=m-\frac{2k+1}{2(k+1)}=\frac{1}{2(k+1)}m\to0
+\end{align*}
+Varianza
+\begin{align*}
+&\E{[\tilde{m}^2]}=\frac{(2k+1)!}{k!k!1!}m^2\int_0^1x^{k+2}(1-x)^k\,dx\\
+&=\frac{(2k+1)!}{k!k!1!}m^2\frac{\Gamma(k+1)\Gamma(k+3)}{\Gamma(2k+4)}\\
+&=\frac{(k+1)(k+1)}{(2k+3)(2k+2)}m^2\\
+&\var{[\tilde{m}]}=\E{[\tilde{m}^2]}-\E{[\tilde{m}]}^2=m^2\frac{1}{4(2k+3)}\\
+&\var{[\hat{m}]}=(\frac{2k+1}{k+1})^2\var{[\tilde{m}]}\to0
+\end{align*}
+Efficienza estimatore mediana campionaria per pdf uniforme: non si pu\'o usare MVB come riferimento assoluto dato che per pdf uniforme $I_F$ non \'e proporzionale al numero di misure; efficienza relativa rispetto a stimatore ricavato da statistica suff. $x_M$ $\var{[x_M]}=frac{m^2}{k^2}$: il MLE ricavato da mediana \'e meno efficiente ed efficienza relativa va a 0.
+\end{frame}
+
+\subsection{section name}
 \begin{wordonframe}{Stime limite superiore dati da pdf uniforme (Compito 09/11/18)}
 \begin{block}{pdf di $X_{(2)}$ per N estrazioni da pdf uniforme}
 \begin{align*}
@@ -1037,6 +1041,7 @@ Monotone LR in statistic $T(x)$ and Karlin-Rubin theorem
 \end{block}
 \end{wordonframe}
 
+\subsection{section name}
 \begin{wordonframe}{Stima di tempo medio tra eventi di onde gravitazionali}
 Conteggi generati da eventi casuali statisticamente indipendenti: distribuzione del tempo tra due eventi (Poissoniana con $n\approx1$) esponenziale $\prob{(t;\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}$. Il massimo della likelihood ci fornisce stimatore $\hat{t}=t_m=\SI{39}{\day}$ quindi ha la stessa distribuzione esponenziale dei tempi t: $\E{[\hat{\tau}]}=\tau$, $\var{[\tau]}=\tau^2$ quindi $\hat{\tau}=\SI{0.107+-107}{\year}$.
 Il MLE trasforma in modo banale sotto cambio di variabile: $\hat{\lambda}=\hat{\frac{1}{\tau}}=\SI{9.3}{\counts\per\year}$; usando formula per propagazione errori si ha
@@ -1087,6 +1092,7 @@ limite bayesiano utilizzando posterior ordering:
 \end{align*}
 \end{wordonframe}
 
+\subsection{section name}
 \begin{wordonframe}{Modello di partita di calcio - Compito del $10/09/19$}
 Probabilit\'a che squadra A faccia gol in un minuto \'e $q_A$: la probabilit\'a che un'incontro A-B finisca $g_A-g_B$ \'e
 \[P(g_ag_B=\exp{-\mu_A-\mu_B})\frac{\mu_A\expy{g_A}\mu_B\expy{g_B}}{g_A!g_B!}\] con $\mu_i=90*q_i$.
@@ -1099,19 +1105,27 @@ La verifica del modello tramite il confronto con risultati di 3 partite per squa
 $\prob{(\lambda)}\to\chi^2_{16}$ (24-8=8*(3-1)); usando il test di Pearson $\chi^2=\sum_{ij}\frac{g_{ij}-\exv{g_i}}{\exv{g_i}}$
 \end{wordonframe}
 
-\begin{wordonframe}{Contaminazione radioattiva - Compito del $10/09/19$}
-$^{32}P$, $t_{1/2}^{32}=\SI{14.263}{\day}$ di cui voglio misurare livello contaminazione con isotopo raro $^{33}P$, $t_{1/2}^{33}=\SI{25.25}{\day}$. Misuro conteggi particelle beta con rivelatore a stessa ora del giorno per 5 giorni $\{n_1,\ldots,n_5\}$.
+\subsection{Contaminazione radioattiva - Compito del $10/09/19$}
+
+\begin{frame}{Determino livello contaminazione $\alpha$ da conteggi nel tempo}
+$^{32}P$, $t_{1/2}^{32}=\SI{14.263}{\day}$ di cui voglio misurare livello contaminazione $\alpha$ con isotopo raro $^{33}P$, $t_{1/2}^{33}=\SI{25.25}{\day}$. Misuro conteggi particelle beta con rivelatore a stessa ora del giorno per 5 giorni $\{n_1,\ldots,n_5\}$.\\
 Ignorando fattori dipendenti solo dai dati
 \begin{align*}
 &\log{L(N_0,\alpha)}=\sum_{i=1}^5(n_i\log{\mu_i(N_0,\alpha)}-\mu_i(N_0,\alpha))\\
 &\mu_i(N_0,\alpha)=N_0[(1-\alpha)\lambda\exp{-\lambda t_i}+\alpha\lambda'\exp{-\lambda't_i}]
 \end{align*}
+\end{frame}
+
+\begin{frame}{Likelihood equation}
 Le likelihood equations per determinare stimatore $\hat{\alpha}$:
 \begin{align*}
 &\PDy{N_0}{\log{L(N_0,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0\\
 &\PDy{\alpha}{\log{L(N_o,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0
 \end{align*}
 i conteggi hanno pdf Poisson centrata attorno al valore atteso determinato da numero atomi radioattivi al momento della misure, il rate di decadimento, la durata della misura e l'efficienza del rivelatore; $N_0$ \'e un nuissance parameter.
+\end{frame}
+
+\begin{frame}{Stmatori usando momenti da sequenza temporale discreta}
 Risolvere seconda equazione equivale a risolvere quinto grado che \'e fattibile in generale con metodi numerici; dato che ho da determinare 2 parametri considero solo 2 misure - prima e l'ultima - quindi si ha il sistema $n_1=\mu_1$ e $n_5=\mu_5$ per la varianza considero la propagazione della varianza (su $n_1$, $n_5$).
 Adesso considero la distribuzione delle misure come sequenza temporale discreta e applico il metodo dei momenti per estrarre stima contaminazione ($t_i=i-1=0,\ldots,4$):
 \[P(t_i;\alpha)\propto[(1-\alpha)\lambda\exp{-\lambda t_i}+\alpha\lambda'\exp{-\lambda't_i}]\]
@@ -1123,17 +1137,22 @@ Q normalizzazione, i momenti di ordine zero e uno:
 si ricavano i 2 parametri uguagliando i valori attesi e osservati:
 \begin{align*}
 &\E{[\mu_0]}=\sum_i^5n_i\\
-&\E{[\mu_0]}=\sum_i^5(i-1)n_i
+&\E{[\mu_1]}=\sum_i^5(i-1)n_i
 \end{align*}
-\end{wordonframe}
+\end{frame}
 
-\begin{wordonframe}{math basic}
-\begin{block}{Soluzione equazione di secondo grado}
+\subsection{Math tools}
+\begin{frame}{algebra basic}
+
 \begin{align*}
 &4a(ax^2+bx+c)=0\\
 &4a^2x^2+4abx+4ac+b^2-b^2=0\\
 &(2ax+b)^2=b^2-4ac
 \end{align*}
-\end{block}
+%McLAurin expansion
+%
+\end{frame}
 
-\end{wordonframe}
+\begin{frame}{Integral}
+	contenu...
+\end{frame}
