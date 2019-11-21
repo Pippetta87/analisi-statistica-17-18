@@ -36,13 +36,28 @@
 \end{columns}
 \end{frame}
 
-\begin{frame}{Significato di evento. Eventi congiunti. Distribuzione cumulante}
-\begin{block}{\keyword{Distribuzione di probabilit\'a cumulante}}
-$F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$; $\alpha$-point, \keyword{quantile of order $\alpha$}: $F(x_{\alpha})=\alpha$
+\begin{frame}{Eventi congiunti - Cumulante}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+\begin{block}{\keyword{Cumulante}}
+$F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$
 \end{block}
-\begin{block}{\keyword{Eventi congiunti e probabilit\'a condizionata}}
-Probabilit\'a $([x,x+dx],y)=(A)$: \keyword{marginal pdf} for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$.
-$\prob{(A\cap B)}=f(x,y)\,dx\,dy$; \keyword{Probabilit\'a condizionata} $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$: \keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$ and \keyword{law of total prob.}: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$
+\end{column}\begin{column}{0.5\textwidth}
+\begin{block}{\keyword{quantile of order $\alpha$}}
+$\alpha$-point: $F(x_{\alpha})=\alpha$
+\end{block}
+\end{column}\end{columns}
+
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+\begin{block}{\keyword{Eventi congiunti}}
+$([x,x+dx],y)=(A)$: \keyword{marginal pdf} for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$. $\prob{(A\cap B)}=f(x,y)\,dx\,dy$
+\end{block}
+\end{column} \begin{column}{0.5\textwidth}
+\begin{block}{\keyword{Probabilit\'a condizionata}}
+$\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$
+\end{block}
+\end{column}\end{columns}
+\keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}\\
+\keyword{law of total prob.}: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$
 \end{block}
 \end{frame}
 
