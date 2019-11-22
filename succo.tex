@@ -986,51 +986,67 @@ Varianza
 Efficienza estimatore mediana campionaria per pdf uniforme: non si pu\'o usare MVB come riferimento assoluto dato che per pdf uniforme $I_F$ non \'e proporzionale al numero di misure; efficienza relativa rispetto a stimatore ricavato da statistica suff. $x_M$ $\var{[x_M]}=frac{m^2}{k^2}$: il MLE ricavato da mediana \'e meno efficiente ed efficienza relativa va a 0.
 \end{frame}
 
-\subsection{section name}
-\begin{wordonframe}{Stime limite superiore dati da pdf uniforme (Compito 09/11/18)}
-\begin{block}{pdf di $X_{(2)}$ per N estrazioni da pdf uniforme}
+\subsection{Stime limite superiore dati da pdf uniforme (Problema 1 - Compito 09/11/18)}
+
+\begin{frame}{Pdf secondo valore pi\'u grande $x_2$}
+pdf di $X_{(2)}$ per N estrazioni da pdf uniforme:
 \begin{align*}
-&\prob{X_{(k)}<x}=\sum_{i=k}^nc(n,i)F(x)^i[1-F(x)]^{n-i}\\
+&\prob{(X_{(k)}<x)}=\sum_{i=k}^nc(n,i)F(x)^i[1-F(x)]^{n-i}\\
 &\PDof{p}\sum_{i=k}^nc(n,i)p^{i}[1-p]^{n-i}=nC(n-1,k-1)p\expy{k-1}(1-p)\expy{k-1}\\
 &\prob{(X_{(k)})}=nC(n-1,k-1)f(x)F(x)\expy{k-1}(1-F(x))\expy{k-1}\\
 &\prob{(x_2;m)}=N(N-1)\frac{1}{m^N}x_2\expy{N-2}(m-x_2)
 \end{align*}
-\end{block}
-\begin{block}{Efficienza stimatore di m da statistica $x_2$}
-Massimizzando $L(m)$ per m si ha $\hat{m}=\frac{N}{N-1}x_2$, si corregge per il bias $\E{[\hat{m}]}-m=-\frac{1}{N+1}m$ definendo $\hat{m}'=\frac{N+1}{N}\hat{m}=\frac{N+1}{N-1}x_2$; per calcolare la varianza
+\end{frame}
+
+\begin{frame}{Confronto efficienza stimatore da $x_2$ vs $x_M$}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+Efficienza stimatore di m da statistica $x_2$:\\
+Massimizzando $L(m)$ per m si ha $\hat{m}=\frac{N}{N-1}x_2$\\
+bias $\E{[\hat{m}]}-m=-\frac{1}{N+1}m$:\\ $\hat{m}'=\frac{N+1}{N}\hat{m}=\frac{N+1}{N-1}x_2$\\
+varianza $\var{[\hat{m}']}=\E{[\hat{m}'^2]}-\E{[\hat{m}']}^2$
 \begin{align*}
-\var{[\hat{m}']}=\E{\hat{m}'^2}-\E{[\hat{m}']}^2\\
-\E{[\hat{m}'^2]}=\frac{(N+1)^2}{(N-1)^2}\E{[x_2^2]}=\frac{2}{(N-1)(N+2)}m^2
+&\E{[\hat{m}'^2]}=\frac{(N+1)^2}{(N-1)^2}\E{[x_2^2]}\\
+&=\frac{2}{(N-1)(N+2)}m^2
 \end{align*}
-\end{block}
-\begin{block}{Efficienza stimatore di m da statistica $x_M$}
-pdf di $x_M$ \'e $\frac{N}{m}(\frac{x_M}{m})^{N-1}$: stima di massima likelihood di m da statistica $x_M$: $\hat{m}=x_M$; stimatore unbiased $\hat{m}'=\frac{N+1}{N}\hat{m}$.
-La varianza di $\hat{m}'$ \'e
+\end{column}
+\begin{column}{0.5\textwidth}
+Efficienza $x_M$:\\
+$\hat{m}_{MLE}=x_M$, stimatore unbiased $\hat{m}'=\frac{N+1}{N}\hat{m}$:
 \begin{align*}
-&\E{[\hat{m}'^2]}-\E{\hat{m'}}^2=\frac{(N+1)^2}{N^2}\frac{N}{N+2}m^2-m^2=\frac{1}{N(N+2)}m^2
+&\prob{(x_M)}=\frac{N}{m}(\frac{x_M}{m})^{N-1}\\
+&L_{x_M}(m)=I_{x>M}\frac{1}{m}
 \end{align*}
-\end{block}
-\begin{block}{Confronto efficienza stimatore da $x_2$ vs $x_M$}
-L'efficienza relativa di due stimatori si ottiene:
+varianza di $\hat{m}'$:
+\begin{align*}
+&\E{[\hat{m}'^2]}-\E{[\hat{m'}]}^2=\frac{(N+1)^2}{N^2}\frac{N}{N+2}m^2-m^2\\
+&=\frac{1}{N(N+2)}m^2
+\end{align*}
+efficienza relativa
 \begin{equation*}
 \epsilon_r=\frac{\var{[\hat{m'}_{M}]}}{\var{[\hat{m'}_{x_2}]}}
 \end{equation*}
-\end{block}
-\begin{block}{Combinazione likelihood 2 misure di $x_2$}
-Calcolare MLE massimizzando likelihood combinata:
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Ripetizione misure $x_2$}
+Combinazione likelihood 2 misure di $x_2$: MLE massimizzando likelihood combinata
 \begin{align*}
 &L(m_1,m_2;x_2'x_2'')=N^2(N-1)^2\frac{1}{m^{2N}}{x_2'}^{N-1}{x_2''}^{N-2}(m-x_2')(m-x_2'')\\
 &2(N-1)m^2+(x_2'+x_2'')(2N-1)m-2N(x_2'x_2'')=0\\
 &\hat{m}_{\pm}=\frac{(x_2'+x_2'')(2N-1)\pm\sqrt{(x_2'+x_2'')^2(2N-1)^2-16N(N-1)x_2'x_2''}}{4(N-1)}
 \end{align*}
-quale soluzione \'e nella regione in cui la likelihood \'e diversa da zero? Asintoticamente $\hat{m}=\max{(x_2',x_2'')}$ (Assumo $x_2''>x_2'$)
-\end{block}
-\begin{block}{Test bilaterale di ipotesi composte: dati da pdf uniforme con $m_1\neq m_2$?}
+Asintoticamente $\hat{m}=\max{(x_2',x_2'')}$ (Assumo $x_2''>x_2'$)
+\end{frame}
+
+\begin{frame}{Monotone LR}
+Test bilaterale di ipotesi composte: dati da pdf uniforme con $m_1\neq m_2$? \\
 Likelihood ratio test:
 \begin{equation*}
 \lambda(x_1',x_2'')=-2\log{\frac{\sup_m{p(x_2',x_2'';m)}}{\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}}
 \end{equation*}
-chiarire cosa significa massimizzare likleihood combinata per pi\'u parametri o uno!
+
 \begin{align*}
 &\hat{m}=f(N)x_2\Rightarrow p(x_2',\hat{m})=G(N)/x_2',\ p(x_2'',\hat{m})=G(N)/x_2''\\
 &\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}\propto\frac{1}{x_2'x_2''},\ p(x_2',x_2'';m)\propto(m-x_2')(m-x_2'')(x_2'x_2'')^{N-2}\\
@@ -1038,11 +1054,12 @@ chiarire cosa significa massimizzare likleihood combinata per pi\'u parametri o 
 \end{align*}
 Likelihood ratio monotona (asintoticamente): statistica $t(x_2',x_2'')=x_2''/x_2'$: il test LR \'e della forma $x_2''/x_2'>q_{\alpha}$
 Monotone LR in statistic $T(x)$ and Karlin-Rubin theorem
-\end{block}
-\end{wordonframe}
+\end{frame}
 
-\subsection{section name}
-\begin{wordonframe}{Stima di tempo medio tra eventi di onde gravitazionali}
+\subsection{Stima di tempo medio tra eventi di onde gravitazionali - problema 2 Compito $09/11/18$}
+
+\begin{frame}{Pdf tempo tra eventi Poissoniani: MLE per eventi che generano onde gravitazionali - propriet\'a dello stimatore per numero eventi annuali}
+
 Conteggi generati da eventi casuali statisticamente indipendenti: distribuzione del tempo tra due eventi (Poissoniana con $n\approx1$) esponenziale $\prob{(t;\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}$. Il massimo della likelihood ci fornisce stimatore $\hat{t}=t_m=\SI{39}{\day}$ quindi ha la stessa distribuzione esponenziale dei tempi t: $\E{[\hat{\tau}]}=\tau$, $\var{[\tau]}=\tau^2$ quindi $\hat{\tau}=\SI{0.107+-107}{\year}$.
 Il MLE trasforma in modo banale sotto cambio di variabile: $\hat{\lambda}=\hat{\frac{1}{\tau}}=\SI{9.3}{\counts\per\year}$; usando formula per propagazione errori si ha
 \begin{equation*}
@@ -1054,56 +1071,72 @@ La distribuzione di $\hat{\lambda}=\frac{1}{\hat{\tau}}$ \'e:
 \prob{(\hat{\lambda},\lambda)}=\prob{(\hat{\tau}(\hat{\lambda});\lambda=\frac{1}{\tau})}|\TDy{\hat{\lambda}}{\hat{\tau}(=\frac{1}{\hat{\lambda}})}|
 \end{equation*}
 Momenti di ordine $>0$ non esistono: $\var{[\lambda]}=\infty$.
-bande di confidenza per pdf esponenziale
-Stima intervallare di $\lambda=\frac{1}{\tau}$ e $\prob{(t;\lambda)}=\lambda\exp{-\lambda t}$. probability ordering: pdf \'e monotona decrescente in t quindi p-ordering equivale a $o(t)=-t$, $t\leq t_{max}(\lambda)$
+\end{frame}
+
+\begin{frame}{Limiti di confidenza su numero eventi annuali: p-ordering, limite inferiore, LR-ratio di $\lambda$}
+
+Stima intervallare di $\lambda=\frac{1}{\tau}$ e $\prob{(t;\lambda)}=\lambda\exp{-\lambda t}$: pdf \'e monotona decrescente in t quindi p-ordering equivale a $o(t)=-t$, $t\leq t_{max}(\lambda)$
 \begin{align*}
-&\int_0^{t_{max}}\lambda\exp{-\lambda t}\,dt=\cl{}\\
-&t_{max}(\lambda)=-\frac{\log{(1-\cl{})}}{\lambda}
+&\int_0^{t_{max}}\lambda\exp{-\lambda t}\,dt=\cl{}:\ t_{max}(\lambda)=-\frac{\log{(1-\cl{})}}{\lambda}
 \end{align*}
 $t_{max}(\lambda)$ decrescente in $\lambda$, da $t<t_{max}(\lambda)$ si vede che la banda di confidenza \'e della forma $t<t_{max}(\lambda)$ porta a limite $\lambda\leq\lambda_{max}$ (limite superiore); l'inversione porta a $\lambda_{max}=-\frac{\log{(1-\cl{})}}{t_m}$.
-Per ottenere limite inferiore occorre ordinamento $o(t)=t$:
+Ma limite inferiore a un fenomeno nuovo! $o(t)=t$:
 \begin{equation*}
 \int_{t_{min}}^{\infty}\lambda\exp{-\lambda t}\,dt=\cl{}\Rightarrow t_{min}(\lambda)=-\frac{\log{(\cl{})}}{\lambda}
 \end{equation*}
-banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$. Limite inferiore a un fenomeno nuovo!
+banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$. 
+
 LR-ordering:
 \begin{equation*}
 \lr{}=\frac{\prob{(t;\lambda)}}{\sup_{\lambda}\prob{(t;\lambda)}}=\lambda t\exp{-\lambda t}
 \end{equation*}
 fissato $\lambda$ ha singolo massimo in t e monotona da ambo i lati: usando $o(t)=\lr{(t)}$ ottengo intervallo $[t_{min},t_{max}]$.
-prior impropria: in mancanza di una scala definita utilizzo prior uniforme in $[0,\infty]$ (non normalizabile). Devo normalizare la posterior:
+\end{frame}
+
+\begin{frame}{Limiti di credibilit\'a (Bayesiani)}
+Prior impropria: in mancanza di una scala definita utilizzo prior uniforme in $[0,\infty]$ (non normalizabile). Devo normalizare la posterior:
 \begin{align*}
 &\pi(\lambda|t_m)\propto \lambda\exp{-t_m\lambda}=L_{t_m}(\lambda)\\
 &\pi(\lambda|t_m)=t_m^2\lambda\exp{-t_m\lambda}
 \end{align*}
-quindi limite bayesiano inferiore
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+Limite bayesiano inferiore
 \begin{equation*}
 \int_{\lambda_{min}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\cl{}
 \end{equation*}
-limite bayesiano bilaterale simmetrico:
+	\end{column}
+	\begin{column}{0.5\textwidth}
+Limite bayesiano bilaterale simmetrico:
 \begin{align*}
 &\int_0^{\lambda_{min}}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}\\
 &\int_{\lambda_{max}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}
 \end{align*}
-limite bayesiano utilizzando posterior ordering:
+\end{column}
+\end{columns}
+Limite bayesiano utilizzando posterior ordering:
 \begin{align*}
 &\exp{-t_m\lambda_{min}}(t_m\lambda_{min}+1)-\exp{-t_m\lambda_{max}}(t_m\lambda_{max}+1)=\cl\\
 &\lambda_{min}\exp{-t_m\lambda_{min}}-\lambda_{max}\exp{-t_m\lambda_{max}}=0
 \end{align*}
-\end{wordonframe}
+\end{frame}
 
-\subsection{section name}
-\begin{wordonframe}{Modello di partita di calcio - Compito del $10/09/19$}
+\subsection{Modello goal fatti durante partita come realizzazione poissoniana - Compito del $10/09/19$}
+
+\begin{frame}{Modello di partita di calcio - approccio Bayesiano per determinare probabilit\'a della forzo di una squadra e del risultato successivo}
 Probabilit\'a che squadra A faccia gol in un minuto \'e $q_A$: la probabilit\'a che un'incontro A-B finisca $g_A-g_B$ \'e
 \[P(g_ag_B=\exp{-\mu_A-\mu_B})\frac{\mu_A\expy{g_A}\mu_B\expy{g_B}}{g_A!g_B!}\] con $\mu_i=90*q_i$.
 Sia un risultato $(0,1)$: utilizzo approccio bayesiano per determinare la probabilit\'a della ''forza'' della squadra
 \[\pi(g_A,g_B)=L_{0-1}(g_A,g_B)p(g_A)p(g_B)\propto\mu_2\exp{-(\mu_1+\mu_2)}\]
 La probabilit\'a $P(q_A>q_B)$ integro la posterior su $dq_Adq_B$ sopra la retta $q_A=q_B$. Per determinare la probabilit\'a che in successivo incontro si abbia uno $0-0$ o $1-0$ uso la posterior calcolata in seguito allo $0-1$ che pesa le poissoniane integrati sui valori dei parametri:
 \[P(g_A,g_B)=\int P(g_A,g_B;\mu_1,\mu_2)\pi(\mu_1,\mu_2)\,d\mu_1\,d\mu_2\]
+\end{frame}
+
+\begin{frame}{Test verifica modello con LRT e $\chi^2$-Pearson}
 La verifica del modello tramite il confronto con risultati di 3 partite per squadra con 8 squadre: quindi confronto l'ipotesi che i gol fatti nelle tre partite da una squadra appartengano a singola Poissoniana con un modello in cui ogni risultato viene da Poisson diversa:
 \[\lambda=-2\log{LR}=2\sum g_{ij}\log{\frac{g_{ij}}{\exv{g_i}}}\]
 $\prob{(\lambda)}\to\chi^2_{16}$ (24-8=8*(3-1)); usando il test di Pearson $\chi^2=\sum_{ij}\frac{g_{ij}-\exv{g_i}}{\exv{g_i}}$
-\end{wordonframe}
+\end{frame}
 
 \subsection{Contaminazione radioattiva - Compito del $10/09/19$}
 
@@ -1116,7 +1149,7 @@ Ignorando fattori dipendenti solo dai dati
 \end{align*}
 \end{frame}
 
-\begin{frame}{Likelihood equation}
+\begin{frame}{Likelihood equation e stima con 2 conteggi}
 Le likelihood equations per determinare stimatore $\hat{\alpha}$:
 \begin{align*}
 &\PDy{N_0}{\log{L(N_0,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0\\
