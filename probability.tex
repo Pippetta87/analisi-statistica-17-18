@@ -1,3 +1,7 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+
 \section{Variabili casuali e assiomi probabilit\'a}
 
 \subsection{Assiomi di probabilit\'a}\linkdest{axioms}
@@ -56,9 +60,8 @@ $([x,x+dx],y)=(A)$: \keyword{marginal pdf} for x $\prob{(A)}=\int f(x,y)\,dxdy=f
 $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$; conditional pdf for y given x $h(y|x)=\frac{f(x,y)}{f_x(x)}$, simile per $g(x|y)=\frac{f(x,y)}{f_y(y)}$
 \end{block}
 \end{column}\end{columns}
-\keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}\\
+\keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$\\
 \keyword{law of total prob.}: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$
-\end{block}
 \end{frame}
 
 \begin{wordonframe}{Axioms exercises}
@@ -1033,3 +1036,5 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 		
 	\end{block}
 \end{wordonframe}
+
+\end{document}
