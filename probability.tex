@@ -1,4 +1,4 @@
-\documentclass[main.tex]{subfiles}
+\documentclass[asd-beamer.tex]{subfiles}
 
 \begin{document}
 
@@ -6,7 +6,8 @@
 
 \subsection{Assiomi di probabilit\'a}\linkdest{axioms}
 
-\begin{frame}{Assiomi probabilit\'a Kolmogorov}
+\begin{frame}{Assiomi probabilit\'a Kolmogorov: spazio di probabilit\'a $(\Omega,F,P)$}
+$\Omega$ spazio campionario (sample space: $\{1,2,3,4,5,6\}$) , $F$ (: (1), (dado pari), etc) 
 \begin{itemize}
 \item Spazio campionario: set enumerating each and every possible outcomes (simple events) of experiment. La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
 \item La probabilit\'a degli eventi del sample space \'e 1.
@@ -15,42 +16,45 @@
 \prob{(\cup_{i=1}^{\infty}E_i)}=\sum_{i=1}^{\infty}\prob{(E_i)}
 \end{equation*}
 \end{itemize}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
 \begin{block}{Addition rule: probability that A or B will}
 \begin{equation*}
 \prob{(A\cup B)}=\prob{(A)}+\prob{(B)}-\prob{(A\cap B)}
 \end{equation*}
 \end{block}
-\begin{columns}[T]
-\begin{column}{0.3\textwidth}
-\begin{block}{Probabilit\'a condizionata}
-\[\prob{(B|A)}=\frac{\prob{(B\cap A)}}{\prob{(A)}}
-\]
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{Teorema probabilit\'a totale}
+$B_n$ partition of sample space
+\begin{align*}
+&\prob{(A)}=\sum_i\prob{(A\cup B_i)}\\
+&=\sum_i\prob{(A|B_i)}\prob{(B_i)}
+\end{align*}
 \end{block}
 \end{column}
-\begin{column}{0.4\textwidth}
-\begin{block}{Teorema di Bayes}
-\[\prob{(A|B)}=\frac{\prob{(B|A)}\prob{(A)}}{\prob{(B)}}\]
-\end{block}
-\end{column}
-\begin{column}{0.25\textwidth}
-\begin{block}{eventi indipendenti}
-    \[P(A|B)=P(A)\]
-    \end{block}
-    \end{column}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Eventi congiunti - Cumulante}
-\begin{columns}[T]\begin{column}{0.5\textwidth}
-\begin{block}{\keyword{Cumulante}}
-$F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$
-\end{block}
-\end{column}\begin{column}{0.5\textwidth}
-\begin{block}{\keyword{quantile of order $\alpha$}}
-$\alpha$-point: $F(x_{\alpha})=\alpha$
-\end{block}
-\end{column}\end{columns}
-
+\begin{frame}{Eventi congiunti}
+\begin{columns}[T]
+	\begin{column}{0.3\textwidth}
+		\begin{block}{Probabilit\'a condizionata}
+			\[\prob{(B|A)}=\frac{\prob{(B\cap A)}}{\prob{(A)}}
+			\]
+		\end{block}
+	\end{column}
+	\begin{column}{0.4\textwidth}
+		\begin{block}{Teorema di Bayes}
+			\[\prob{(A|B)}=\frac{\prob{(B|A)}\prob{(A)}}{\prob{(B)}}\]
+		\end{block}
+	\end{column}
+	\begin{column}{0.25\textwidth}
+		\begin{block}{eventi indipendenti}
+			\[P(A|B)=P(A)\]
+		\end{block}
+	\end{column}
+\end{columns}
 \begin{columns}[T]\begin{column}{0.5\textwidth}
 \begin{block}{\keyword{Eventi congiunti}}
 $([x,x+dx],y)=(A)$: \keyword{marginal pdf} for x $\prob{(A)}=\int f(x,y)\,dxdy=f_x(x)\,dx$, $(x,[y,y+dy])=(B)$. $\prob{(A\cap B)}=f(x,y)\,dx\,dy$
@@ -62,6 +66,18 @@ $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$
 \end{column}\end{columns}
 \keyword{T Bayes} $g(x|y)=\frac{h(y|x)f_x(x)}{f_y(y)}$\\
 \keyword{law of total prob.}: $f_x(x)=\intsinf{}g(x|y)f_y(y)\,dy$
+\end{frame}
+
+\begin{frame}{Cumulante e quantile}
+\begin{columns}[T]\begin{column}{0.5\textwidth}
+		\begin{block}{\keyword{Cumulante}}
+			$F(x)=P(x_n<x)=\int_{-\infty}^xf(x')\,dx'$: $f(x)=\TDy{x}{F(x)}$
+		\end{block}
+	\end{column}\begin{column}{0.5\textwidth}
+		\begin{block}{\keyword{quantile of order $\alpha$}}
+			$\alpha$-point: $F(x_{\alpha})=\alpha$
+		\end{block}
+\end{column}\end{columns}
 \end{frame}
 
 \begin{wordonframe}{Axioms exercises}
