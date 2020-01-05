@@ -27,7 +27,7 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$
 \section{Cambio di variabile: come cambia pdf?}
 
 \begin{frame}{Trasformazione pdf per cambio variabile}
-\begin{figure}
+\begin{figure}\
 	\centering
 	\includegraphics[width=0.65\textwidth,keepaspectratio]{RVfunc}
 	\label{fig:RVfunc}
@@ -53,6 +53,33 @@ Applicando regole cambio variabile per $Z=X+Y$ e $Y'=Y$ e marginalizzando su $Y'
 \end{align*}
 La funzione caratteristica determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
 \end{block}
+\end{frame}
+
+\section{Formule propagazione errori}
+
+\begin{frame}{Formule propagazione errori}
+\begin{block}{Teorema di Cramer}
+$F(X,Y)$ continua,e derivataprima e seconda continua in intorno di $(M_x,M_y)$: RV $W=F(\bar{x},\bar{y})$ is asymptotically normal with $\E{[W]}=F(M_x,M_y)$,
+\[\var{[W]}=[\PDy{X}{F}]_M^2\frac{\sigma^2_X}{n}+[\PDy{Y}{F}]_M^2\frac{\sigma^2_Y}{n}+2[\PDy{X}{F}]_M[\PDy{Y}{F}]_M\frac{\sigma_{XY}}{n}\]
+\end{block}
+\begin{block}{Error propagation}
+\begin{align*}
+&\E{[\hat{W}]}=\E{[F(\bar{x},\bar{y})]}\\
+&=F(M_x,M_y)+\frac{1}{2}\{[\PtwoDy{X}{F}]\frac{\sigma_x^2}{n}+2[\PtwoMDy{X}{Y}{F}]\frac{\sigma_{xy}}{n}+[\PtwoDy{Y}{F}]\frac{\sigma_y^2}{n}\}\\
+&\var{\hat{W}}=[\PDy{X}{F}]^2\frac{\sigma_x^2}{n}+[\PDy{Y}{F}]^2\frac{\sigma_y^2}{n}+2[\PDy{X}{F}][\PDy{Y}{F}]\frac{\sigma_{xy}}{n}
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Estimators of population parameters}
+\begin{align*}
+&\bar{x}=\frac{1}{n}\sum_ix_i&M_x\tag{Mean: first moment}\\
+&s_x^2=\frac{1}{n-1}\sum_i(x_i-\bar{x})^2&\sigma_x^2\tag{var: 2nd central moment}\\
+&s_{xy}=\frac{1}{n-1}\sum_i(x_i-\bar{x})(y_i-\bar{x})&\sigma_{xy}\tag{covariance}\\
+&r_{xy}=\frac{s_{xy}}{s_xs_y}&\rho_{xy}\tag{correlation coefficient}\\
+&s_{\bar{x}}=\frac{1}{\sqrt{n}}s_x&\sigma_{\bar{x}}\tag{std deviation of average}\\
+&v_x=\frac{s_x}{\bar{x}}&\frac{\sigma_x}{M_x}\tag{relative standard deviation}
+\end{align*}
 \end{frame}
 
 \section{Funzione caratteristica/generatrice (dei momenti)}
