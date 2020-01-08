@@ -147,6 +147,23 @@ Subjective probability can be associated with value of unknown constants (mass o
 	\end{columns}
 \end{wordonframe}
 
+\begin{frame}{Momenti RV}
+\begin{columns}[T]\begin{column}{0.4\textwidth}
+\begin{align*}
+&\mu=\E{[(X-\mu)^n]}\\
+&
+\end{align*}
+\end{column}\begin{column}{0.6\textwidth}
+
+\begin{align*}
+&Y=X_1+\ldots+X_n:\ \E{[Y]}=n\E{X_1}\\
+&\mu_1=\E{[\sum X_i-\mu]}=\sum_i\E{[X_i]}-\mu\\
+&\var{[Y]}=\sum\var{[X_i]}+2\sum_i^{n-1}\sum_{j=i}\cov{(X_i,X_j)}\\
+&=n\sigma^2\tag{$X_i$ iid RV}
+\end{align*}
+\end{column}\end{columns}
+\end{frame}
+
 \subsection{Trasformazione pdf per cambio RV}\linkdest{pdfRVchange}
 
 \begin{frame}{Density function for order statistics}
