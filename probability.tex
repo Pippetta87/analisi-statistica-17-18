@@ -728,46 +728,56 @@ $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance:
 \end{align*}
     \end{column}
     \begin{column}{0.6\textwidth}
-Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
-$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+i\frac{t}{n}\mu+\ldots]^n\to\exp{i\mu t}$: for Levy theorem $\overline{X}_n\to\mu$; Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$ (Probability convergence)
+Per ogni RV con $\mu$ finita 
+$\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
+$\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+i\frac{t}{n}\mu+\ldots]^n\to\exp{i\mu t}$: for Levy theorem $\overline{X}_n\to\mu$. ($\E{[\overline{X}_n]}=\frac{1}{n}\sum\E{X_i}$)
     \end{column}
     \end{columns}
+Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$ (Probability convergence)
 \end{frame}
 
 \begin{frame}{Teorema limite centrale (CLT): asymptotically gaussian}\linkdest{clt}
-Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$.
+\begin{itemize}
+\item Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$ e
+\[\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\]%\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
+\item Cambio RV: $Y_i=\sqrt{\frac{1}{\sigma^2}}(\overline{X}_i-\mu)$, $\E{[Y_i]}=0$, $\var{Y_i]}=1$
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.4\textwidth}
 \begin{align*}
-&\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}\\
-&=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
-&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
-%&\phi(t)=\phi_{X-\mu}
+&\phi(t)=\phi_{\sum\frac{Y_i}{\sqrt{N}}}(t)\\
+&=[\phi_{Y_1}(\frac{t}{\sigma\sqrt{N}})]^N\\
+&=(1-\frac{t^2}{\sqrt{n}}+o(\frac{t^2}{N}))^N
 \end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&y_N=\sqrt{\frac{N}{\sigma^2}}(\overline{x}-\mu)\\
-&\E{[y_N]}=0,\ \var{[y_N]}=1\\
-&\phi_N=[\phi(\frac{t}{\sigma\sqrt{N}})]^N
-\end{align*}
-\end{column}
-\end{columns}
+	\end{column}
+	\begin{column}{0.7\textwidth}
 \begin{align*}
 &\phi(t)=\sum_{m=0}^{\infty}\left.\frac{d^m\phi}{dt^m}\right|_{t=0}\frac{t^m}{m!}=\sum_{m=0}^{\infty}\frac{(it)^m}{m!}\E{(y^m)}\\
-&\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots\\
-&\log{\phi_N}=N\log{\phi(\frac{t}{\sigma\sqrt{N}})}\approx N[\frac{it\mu}{\sigma\sqrt{N}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\to-\frac{t^2}{2}\\
+&\approx1-\frac{t^2}{2N}\sigma^2-\frac{it^3}{3!}\frac{\E{[(x-\mu)^3]}}{n\expy{3/2}}+\ldots
+\end{align*}
+	\end{column}
+\end{columns}
+\begin{align*}
+%&\log{\phi}=N\log{\phi_{Y_1}(\frac{t}{\sqrt{N}})}\approx N[\cancel{\frac{it\mu}{\sigma\sqrt{N}}}+\frac{(it)^2\sigma^2}{2\sigma N}+o(\frac{t^3}{N\expy{\frac{3}{2}}})]\to-\frac{t^2}{2}
 %\text{Per T Levy la pdf \'e:}\\
 &\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}\,dt=\frac{\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
 \end{align*}
+\item Per Paul-L\'evy $Y_n$ \'e asintoticamente normale
+\end{itemize}
 \end{frame}
 
-\begin{wordonframe}{Espansioni di Taylor}
-\begin{align*}
-&\phi(t)=1+it\mu-\frac{\sigma^2t^2}{2}+o(t^2)\\
-&\log{(1+x)}\approx x-\frac{x^2}{2}+o(x^2)
-\end{align*}
-\end{wordonframe}
+\begin{frame}{CLT: specialization}
+%Vedi wiki \url{https://en.wikipedia.org/wiki/Berry\%E2\%80\%93Esseen\_theorem}
+\begin{block}{Berry–Esseen theorem}
+Siano $\iidrv$ con $\E{[X_i]}=0$, $\E{[X_i]}=\sigma^2$, $\E{|X_i|^3}=a\leq\infty$ e $Y_N=\frac{\iidrv[X][+][1][N]}{N}$
+\end{block}
+\begin{block}{}
+
+\end{block}
+\end{frame}
+
+\begin{frame}{\todo{De Moivre–Laplace theorem}}
+%Vedi wiki \url{https://en.wikipedia.org/wiki/De\_Moivre\%E2\%80\%93Laplace\_theorem}
+\end{frame}
 
 \begin{frame}{Examples where CLT breaks down}
 \begin{itemize}
