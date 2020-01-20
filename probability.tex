@@ -166,7 +166,7 @@ Subjective probability can be associated with value of unknown constants (mass o
 
 \subsection{Trasformazione pdf per cambio RV}\linkdest{pdfRVchange}
 
-\begin{frame}{Density function for order statistics}
+\begin{frame}{Density function for \keyword{order statistics}}
 $X_{(1)}<X_{(2)}<\ldots<X_{(n)}$: pdf $\prob{(X_{(k)}\in[x,x+dx])}$
 \begin{block}{Maximum/minimum statistics}
 \begin{align*}
@@ -761,22 +761,49 @@ Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$ (Probability con
 %\text{Per T Levy la pdf \'e:}\\
 &\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}\,dt=\frac{\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
 \end{align*}
-\item Per Paul-L\'evy $Y_n$ \'e asintoticamente normale
+\item Per Paul-L\'evy $\frac{\sum Y_i}{\sqrt{N}}=\overline{X}-\mu$ \'e asintoticamente normale
 \end{itemize}
 \end{frame}
 
 \begin{frame}{CLT: specialization}
 %Vedi wiki \url{https://en.wikipedia.org/wiki/Berry\%E2\%80\%93Esseen\_theorem}
 \begin{block}{Berry–Esseen theorem}
-Siano $\iidrv$ con $\E{[X_i]}=0$, $\E{[X_i]}=\sigma^2$, $\E{|X_i|^3}=a\leq\infty$ e $Y_N=\frac{\iidrv[X][+][1][N]}{N}$
+Siano $\iidrv$ con $\E{[X_i]}=0$, $\E{[X_i]}=\sigma^2$, $\E{|X_i|^3}=a\leq\infty$ e $Y_N=\frac{\iidrv[X][+][1][N]}{N}$, $F_n$ cumulante di $\frac{Y_n\sqrt{n}}{\sigma}$, $\Phi$ cumulante di $N(0,1)$. Si ha che la distanza tra le cumulanti converge a zero come $\frac{1}{\sqrt{n}}$
+\[|F_n(x)-\Phi(x)|\leq\frac{ca}{\sigma^3\sqrt{n}}\]
 \end{block}
-\begin{block}{}
-
+%Vedi wiki \url{https://en.wikipedia.org/wiki/De\_Moivre\%E2\%80\%93Laplace\_theorem}
+\begin{block}{De Moivre–Laplace theorem}
+Se considero n misure di X RV binomiale la pdf dei successi k \'e asintoticamente normale attorno a $np$ e varianza $npq$: $\frac{X-np}{\sqrt{npq}}\to n(0,1)$.
+\[\binom{n}{k}p^kq^{n-k}\xrightarrow{n\to\infty}\frac{\exp{-\frac{(k-np)^2}{2npq}}}{\sqrt{2\pi npq}}\]
 \end{block}
 \end{frame}
 
-\begin{frame}{\todo{De Moivre–Laplace theorem}}
-%Vedi wiki \url{https://en.wikipedia.org/wiki/De\_Moivre\%E2\%80\%93Laplace\_theorem}
+\begin{frame}{Proofs of De Moivre–Laplace theorem}
+\begin{block}{Limit of finite difference ration}
+$N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
+\[\frac{f'}{f}\frac{npq}{np-k}=\frac{p(n,k+1)-p(k)}{p(n,k)}\frac{\sqrt{npq}}{-c}=\frac{np-k-q}{kq+q}\frac{\sqrt{npq}}{-c}\to1\]
+\end{block}
+\begin{block}{Limit of pdf using Stirling approx}
+\begin{columns}[T]
+	\begin{column}{0.4\textwidth}
+		\begin{align*}
+		&\binom{n}{k}=\frac{n!p^kq^{n-k}}{k!(n-k)!}\\
+		&\approx\sqrt{\frac{n}{2\pi k(n-k)}(\frac{np}{k})^k(\frac{nq}{n-k})^{n-k}}%\frac{n^n\exp{-n}\sqrt{2\pi n}p^kq^{n-k}}{k^k\exp{-k}\sqrt{2\pi k}(n-k)^{n-k}\exp{-(n-k)}\sqrt{2\pi(n-k)}}\\
+		\end{align*}
+	\end{column}
+	\begin{column}{0.6\textwidth}
+\begin{align*}
+&n!\approx n^n\exp{-n}\sqrt{2\pi n}\tag{Stirling approx}\\
+&\ln{(1+x)}\approx x-\frac{x^2}{2}+\frac{x^3}{3}
+\end{align*}
+	\end{column}
+\end{columns}
+\begin{align*}
+&\to\frac{1}{\sqrt{2\pi npq}}(\frac{np}{k})^k(\frac{nq}{n-k})^{n-k}\\
+&\approx\frac{1}{\sqrt{2\pi npq}}\Exp{-k\ln{\frac{np+x\sqrt{npq}}{np}}+(k-n)\ln{\frac{n-np-x\sqrt{npq}}{nq}}}\\
+&\approx\frac{1}{\sqrt{2\pi npq}}\exp{-\frac{(k-np)^2}{2npq}}
+\end{align*}
+\end{block}
 \end{frame}
 
 \begin{frame}{Examples where CLT breaks down}
@@ -801,6 +828,8 @@ Siano $\iidrv$ con $\E{[X_i]}=0$, $\E{[X_i]}=\sigma^2$, $\E{|X_i|^3}=a\leq\infty
 \begin{column}{0.5\textwidth}
 \begin{align*}
 &\prob{[x]}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+&\E{[(\sigma Z+\mu)^n]}=\sum_{i=0}^n\binom{n}{i}\sigma^i\E{[Z^i]}\mu^{n-i}\\
+&=\sum_{i=0}^{\lfloor n/2\rfloor}\binom{n}{2j}(2j-1)!!\sigma^{2j}\mu^{n-2j}\\
 &F(x)=\frac{1}{2}[1+\Erf([\frac{x-\mu}{\sqrt{2}\sigma}])
 \end{align*}
 \end{column}
@@ -816,18 +845,18 @@ Siano $\iidrv$ con $\E{[X_i]}=0$, $\E{[X_i]}=\sigma^2$, $\E{|X_i|^3}=a\leq\infty
 \begin{frame}{Bernoulli, binomiale}
 \begin{block}{Bernoulli: 2 possibili outcomes}
 	\begin{columns}[T]
-	\begin{column}{0.5\textwidth}
+	\begin{column}{0.65\textwidth}
 	\begin{align*}
 	&\prob{(X=1)}=p=1-\prob{(X=0)}=1-q
 	\end{align*}
 	\end{column}
-	\begin{column}{0.5\textwidth}
+	\begin{column}{0.35\textwidth}
 	\begin{align*}
-	&\E{X}=p,\ \var{X}=qp\\
-	&CF: q+p\exp{it}
+	&\E{[X]}=p,\ \var{[X]}=qp
 	\end{align*}
 	\end{column}
 	\end{columns}
+\[\phi(t)=\E{[\exp{itx}]}=\E{[\exp{itx}I_{\{X=0\}}]}+\E{[\exp{itx}I_{\{X=0\}}]}=q+p\exp{it}\]
 \end{block}
 \begin{block}{Distribuzione binomiale: k eventi con probabilit\'a p in sequenza di n estrazioni. Somma n variabili Bernoulli.}
 \begin{align*}
@@ -836,15 +865,15 @@ Siano $\iidrv$ con $\E{[X_i]}=0$, $\E{[X_i]}=\sigma^2$, $\E{|X_i|^3}=a\leq\infty
 \begin{align*}
 &\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np\\
 &\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
-&M_X(t)=\E{[\exp{tX}]}=\sum_k\exp{tk}\binom{n}{k}p^k(1-p)^{n-k}=M_B^n(t)
+&\phi_X(t)=\E{[\exp{itX}]}=\sum_k\exp{itk}\binom{n}{k}p^k(1-p)^{n-k}=\phi_B^n(t)
 \end{align*}
 \end{block}
 \end{frame}
 
 \begin{frame}{Multinomiale: n trials with one success between k categories}
 	\begin{align*}
-	&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}:\ \E{[X_i]}=Np_i\\
-	&\var{[X_i]}=Np_i(1-p_i)\\
+	&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}:\ \sum x_i=n\\
+	&\E{[X_i]}=Np_i\ \var{[X_i]}=Np_i(1-p_i)\\
 	&CF: (\sum_j^kp_j\exp{it_j})^n
 	\end{align*}
 \end{frame}
