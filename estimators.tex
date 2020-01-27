@@ -611,13 +611,8 @@ dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean
 \begin{align*}
 &\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
 \end{align*}
-One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$
-Moment method:
-\begin{align*}
-&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
-&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
-\end{align*}
-in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
+One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
+In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
 \end{frame}
 
 \begin{frame}{Stimatori Consistenti: Metodo dei Momenti (Cowan 128)}\frameintoc
@@ -644,6 +639,14 @@ Co-var matrix of estimators (error propagation formula)
 \end{align*}
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{Metodo momenti come stimatore implicito}
+
+\begin{align*}
+&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
+&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
+\end{align*}
 \end{frame}
 
 \begin{wordonframe}{Examples moment estimators}
@@ -695,7 +698,7 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \cite{barlow1990extended}
 \end{frame}
 
-\begin{wordonframe}{MLE in pratica}
+\begin{frame}{MLE in pratica: binned data and extended likelihood}\frameintoc
 \begin{block}{binning}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -721,7 +724,7 @@ N variabile: \keyword{Extended likelihood}, normalizzazione varia
 
 \begin{block}{Fit resolution of histogram (??)}
 $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
-\end{block}\end{wordonframe}
+\end{block}\end{frame}
 
 \begin{wordonframe}{Esempi di stimatori di massima likelihood}
 \keyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
@@ -1065,21 +1068,23 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 \end{frame}
 
 \begin{wordonframe}{Workout funzione di coverage}
-\keyword{Warn: coverage}
+\keyword{Coverage in frequentist approach}: \'e propriet\'a del metodo not of any particular interval.
 Graphical Methods for Evaluating and ComparingConfidence-Interval Procedures
 \end{wordonframe}
 
-\begin{frame}{Feldman-Cousins unified approach.}
+\begin{frame}{Feldman-Cousins unified approach}\frameintoc
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-insactisfaction with Neyman construction for upper limit in case of empty/unphysical interval (flip-flop problem depending on data)
-\end{column}
-\begin{column}{0.5\textwidth}
-LR-ordering $R=\frac{\prob{(x;\mu)}}{\prob{(x;\mu_{best})}}$: values of x/n are added to acceptance region as decreasing function of R.
+%insactisfaction with Neyman construction for upper limit in case of empty/unphysical interval
+\keyword{Shortcoming of Neyman}: flip-flop problem, ie using upper limit and central limits after seeing the data may not cover; empty interval: the method has exact coverage even if empty interval don't cover true param
+\keyword{Feldman-Cousins unified approach}: LR-ordering $R=\frac{\prob{(x;\mu)}}{\prob{(x;\mu_{best})}}$, values of x/n are added to acceptance region as decreasing function of R.
 Confidence interval: $R(m_1)=R(m_2)$
 \end{column}
+\begin{column}{0.5\textwidth}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.49\textheight]{flipflopping}\label{fig:pdfestexp}\end{figure}
+\end{column}
 \end{columns}
-Passaggio continuo da upper limit a confidence belt
+
 \end{frame}
 
 \begin{frame}{Stima intervallare bayesiana/frequentista per $U([0,m])$ (una misura)}
