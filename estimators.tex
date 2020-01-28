@@ -39,7 +39,7 @@ E modello statistico per osservabile X con parametro $\theta$, $t(x)$ stat. suff
 	Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
 \end{frame}
 
-\subsection{Principio di condizionalit\'a}
+%\subsection{Principio di condizionalit\'a}
 
 \subsection{Funzione di Likelihood}\linkdest{likelihood}
 
@@ -148,12 +148,14 @@ $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim(
 \end{block}
 \end{frame}
 
-\begin{wordonframe}{Statistiche sufficienti: esempi.}
+\subsection{Esempi di statistiche sufficienti}
+
+
 %\begin{align*}
 %&L(x;\mu,\sigma)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}\\
 %&\overline{x}=\frac{\sum x_i}{N}:\ %L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\exp{-\frac{1}{2}\frac{\sum_i(x_i-\mu)^2}{\sigma^2}}
 %\end{align*}
-\begin{block}{n RV iid con pdf bernoulli p}
+\begin{wordonframe}{n RV iid con pdf bernoulli p}
 $X_1,\ldots,X_n$: iid con pdf di Bernoulli, supporto pdf $\chi=\{0,1\}$, parametro p nell'intervallo $(0,1)$:
 \begin{align*}
 &T=\sum X_i\to\{0,\ldots,n\}&\intu{con pdf binomiale}
@@ -165,32 +167,37 @@ e poich\'e le $X_i$ sono indipendenti si ha
 \begin{align*}
 &\frac{\prod\prob{(X_i=x_i)}}{\prob{(T=t)}}=\frac{p^{\sum x_i}(1-p)^{n-\sum x_i}}{\binom{n}{t}p^t(1-p)^{n-t}}
 \end{align*}
-\end{block}
-\begin{block}{n RV iid Poisson$(\lambda)$}
+\end{wordonframe}
+
+\begin{wordonframe}{n RV iid Poisson$(\lambda)$}
 $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 \begin{align*}
 &\prob{(X_1=x_1\cap\ldots X_n=x_n|T=t)}=\prob{(\cap_iX_i=x_i|T=t)}\\
 &\frac{\prob{((\cap_iX_i=x_i)\cap(T=t))}}{\prob{(T=t)}}=\frac{\prob{(\cap_iX_i=x_i)}}{\prob{(T=t)}},\ t=\sum x_i\\
 &=\frac{\prod_i[\frac{\exp{-\lambda}\lambda^{x_i}}{x_i!}]}{\frac{\exp{-\lambda}(n\lambda)^t}{t!}}=\frac{t!}{\prod x_i!}n^{-t}
 \end{align*}
-\end{block}
-\begin{block}{Gaussiana: media ignota, varianza nota}
+\end{wordonframe}
+
+\begin{wordonframe}{Gaussiana: media ignota, varianza nota}
 \begin{align*}
 &L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
 \end{align*}
 La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica})
-\end{block}
-\begin{block}{Gaussiana: media nota, varianza ignota}
+\end{wordonframe}
+
+\begin{wordonframe}{Gaussiana: media nota, varianza ignota}
 $\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
-\end{block}
-\begin{block}{\keyword{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale}}
+\end{wordonframe}
+
+\begin{wordonframe}{\keyword{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale}}
 \begin{align*}
 &\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\\
 &\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
 &\prob{(x)}=\lambda\exp{-\lambda x}
 \end{align*}
-\end{block}
-\begin{block}{Distribuzione uniforme: \keyword{$x_{max}$ statistica sufficiente}.}
+\end{wordonframe}
+
+\begin{wordonframe}{Distribuzione uniforme: \keyword{$x_{max}$ statistica sufficiente}.}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \pgfmathsetmacro{\unifM}{3}
@@ -219,9 +226,13 @@ extra x tick style={xticklabel style={yshift=-10}}]
 &L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
 \end{align*}
 $\prob{(x;S,\theta)}=\prob{(x;S)}$!
-\end{block}
+\end{wordonframe}
+
+\begin{wordonframe}{Minimo campionario per distribuzione uniforme}
 \todo{Ex: distribuzione uniforme e statistica ''minimo campionario''}: Per pdf uniforme $x_{min}$ \'e sufficiente per m?
-\begin{block}{\keyword{Statistica $x_{min}$ per pdf uniforme}}
+\end{wordonframe}
+
+\begin{wordonframe}{\keyword{Statistica $x_{min}$ per pdf uniforme}}
 pdf di $x_{min}$
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -240,7 +251,6 @@ Trasformazione di variabile
 \end{align*}
 \end{column}
 \end{columns}
-\end{block}
 \end{wordonframe}
 
 \subsection{Statistiche sufficienti: T di Darmois}
@@ -475,8 +485,11 @@ Perdita informazione
 
 \begin{frame}{Propriet\'a generali stiamatori}
 \begin{itemize}
-\item Consistenza (LGN): $\prob{\hat{\theta}}\to\theta_0$
-\item Varianza $\var{\vec{X}}\to\frac{1}{N}$/Bias $b(\vec{x})$ non diminuisce all'aumentare delle misure; scuola soggettivista: bias non esiste.
+\item Consistenza (LGN): $\hat{\theta}\xrightarrow{P}\theta_0$
+\item Mean Square Error:
+\[\E{[(T-\tau(\theta))^2]}=\var{[T]}+[\E{[T]}-\tau(\theta)]^2\]
+\item Bias: $B(T)=\E{[T]}-\tau(\theta)$; scuola soggettivista: bias non esiste.
+\item Varianza $\var{\vec{X}}\propto\frac{1}{N}$, bias $b(\vec{x})$ non diminuisce all'aumentare delle misure.
 \item distribuzione semplice
 \end{itemize}
 \end{frame}
@@ -539,6 +552,19 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 \end{columns}
 \end{frame}
 
+\begin{wordonframe}{Teorema di Rao-Blackwell}
+T is unbiased estimator of $\tau(\theta)$, U if jointly sufficient statistics for $\theta$ and $g(u)=\E{[T|U=u]}$: $W=g(U)$ is unbiased estimator of $\tau(\theta)$ $\var{[W]}\leq\var{[T]}$.
+Proof:
+\begin{align*}
+&\E{[X]}=\E_Y{[\E{[(X|Y)]}]}\\
+&\tau(\theta)=\E_{\theta}{[T]}=\E_U{[\E{[T|U]}]}=\E{[g(u)]}=\E_{\theta}{[W]}\\
+&\var{[T]}=\E{[(T-\tau(\theta))^2]}=\E{[(W-\tau(\theta))^2]}+\E{[(T-W)^2]}\\
+&+2\E{[(T-W)(W-\tau(\theta))]}\\
+&\E{[(T-W)(W-\tau(\theta))]}=\E_U{[\E{[(T-g(U))(g(U)-\tau(\theta))|U]}]}\\
+&=\E_U{[(T-g(U))\E{[(g(U)-\tau(\theta))|U]}]}=0
+\end{align*}
+\end{wordonframe}
+
 \begin{frame}{Best unbiased estimator}\linkdest{cramerrao}
 \begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
 $X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
@@ -562,6 +588,12 @@ Uniformly minimum variance unbiased estimator such that $V_{\Theta}[T]\leq V_{\T
 &\tau'^2=\cov^2{(T,Y)}=(\E{[TY]}-\E{[T]}\cancelto{0}{\E{[Y]}})^2\leq \var{[T]}\var{[Y]}\\
 &\var{[Y]}=\E{[Y^2]}=n\E{[(\PDof{\theta}\log{f(X_i;\theta)})^2]}
 \end{align*}
+\end{frame}
+
+\begin{frame}{Best Linear Uniform Estimators (\keyword{BLUE})}
+$T_i$: k stimatori unbiased di $\tau(\theta)$, $\var{[T_i]}=\delta^2<\infty$, $T_i$ pairwise uncorrelated. Estimator with smallest variance in
+\[D=\{T=\sum_i^k\alpha_iT_i,\ \sum_i\alpha_i=1\}\]
+is for $\alpha_i=\invers{k}$: $\frac{1}{k}\sum_i^kT_i$
 \end{frame}
 
 \begin{wordonframe}{Esempi di stimatori}
@@ -604,18 +636,19 @@ $X_1,\ldots,X_n$ n RV iiir has received mainly positive reviews. d con pdf $B(p)
 
 \subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
 
-\begin{frame}{Logica stimatori consistenti - \keyword{Stimatori impliciti}}\frameintoc
+\begin{frame}{Utilizzo LLN per costruzione stimatori consistenti}\frameintoc
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
 \[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
-dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
-\begin{align*}
-&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
-\end{align*}
-One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
-In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
+dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$.
+Most used methods making use of LLN:
+\begin{itemize}
+\item Moments methods
+\item Maximum likelihood method
+\item Least square method
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Stimatori Consistenti: Metodo dei Momenti (Cowan 128)}\frameintoc
+\begin{frame}{Stimatori Consistenti: Metodo dei Momenti (Cowan 128/James 131)}\frameintoc
 Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
 \[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
 convergono in probabilit\'a ai momenti della distribuzione.
@@ -641,8 +674,13 @@ Co-var matrix of estimators (error propagation formula)
 \end{columns}
 \end{frame}
 
-\begin{frame}{Metodo momenti come stimatore implicito}
-
+\begin{frame}{\keyword{Stimatori impliciti} come generalizzazione del metodo dei momenti}
+ We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
+\begin{align*}
+&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
+\end{align*}
+One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
+In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
 \begin{align*}
 &a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
 &g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
