@@ -639,7 +639,7 @@ $X_1,\ldots,X_n$ n RV iiir has received mainly positive reviews. d con pdf $B(p)
 \begin{frame}{Utilizzo LLN per costruzione stimatori consistenti}\frameintoc
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
 \[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
-dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$.
+dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. Se per $\theta_0$ esiste la funzione inversa $\invers{h}[h(\theta_0)]=\theta_0$ si ha $\hat{\theta}=\invers{h}[\invers{N}\sum_i^Na(X_i)]$
 Most used methods making use of LLN:
 \begin{itemize}
 \item Moments methods
@@ -649,42 +649,38 @@ Most used methods making use of LLN:
 \end{frame}
 
 \begin{frame}{Stimatori Consistenti: Metodo dei Momenti (Cowan 128/James 131)}\frameintoc
-Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
-\[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
-convergono in probabilit\'a ai momenti della distribuzione.
-\begin{columns}[T]
-\begin{column}{0.65\textwidth}
-\begin{align*}
-&\cov{(m_i,m_j)}=\E{[m_im_j]-\E{[m_i]}\E{[m_j]}}\\
-&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}\\
-&\cov{[\hat{\theta}_i,\hat{\theta}_j]}=\sum_{k,l}\PDy{\hat{e}_k}{\hat{\theta}_i}\PDy{\hat{e}_l}{\hat{\theta}_j}\cov{[\hat{e}_k,\hat{e}_l]}
-\end{align*}
-Co-var matrix of estimators (error propagation formula)
-\end{column}
-\begin{column}{0.35\textwidth}
-\begin{align*}
-&m_1=\mu_1'(\theta_1,\ldots,\theta_n)\\
-&\vdots\\
-&m_n=\mu_n'(\theta_1,\ldots,\theta_n)\intd{Invertendo il sistema sopra si trovano gli stimatori:}
-&\hat{\theta_1}(m_1,\ldots,m_m)\\
-&\vdots\\
-&\hat{\theta_m}(m_1,\ldots,m_m)
-\end{align*}
-\end{column}
-\end{columns}
+Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$:
+\[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=h_i(\theta)\to\frac{\sum_i\E{[x_i^k]}}{N}\]
+Se $a_j(X_i)=X^j$ $h_j(\theta)$ sono i momenti della distribuzione $\mu_j'(\theta)$.
+%\begin{columns}[T]
+%\begin{column}{0.65\textwidth}
+%\begin{align*}
+%&\cov{(m_i,m_j)}=\E{[m_im_j]-\E{[m_i]}\E{[m_j]}}\\
+%&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}\\
+%&\cov{[\hat{\theta}_i,\hat{\theta}_j]}=\sum_{k,l}\PDy{\hat{e}_k}{\hat{\theta}_i}\PDy{\hat{e}_l}{\hat{\theta}_j}\cov{[\hat{e}_k,\hat{e}_l]}
+%\end{align*}
+%Co-var matrix of estimators (error propagation formula)
+%\end{column}
+%\begin{column}{0.35\textwidth}
+%\begin{align*}
+%&m_1=\mu_1'(\theta_1,\ldots,\theta_n)\\
+%&\vdots\\
+%&m_n=\mu_n'(\theta_1,\ldots,\theta_n)\intd{Invertendo il sistema sopra si trovano gli stimatori:}
+%&\hat{\theta_1}(m_1,\ldots,m_m)\\
+%&\vdots\\
+%&\hat{\theta_m}(m_1,\ldots,m_m)
+%\end{align*}
+%\end{column}
+%\end{columns}
 \end{frame}
 
-\begin{frame}{\keyword{Stimatori impliciti} come generalizzazione del metodo dei momenti}
- We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
-\begin{align*}
-&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0
-\end{align*}
+\begin{frame}{\keyword{Stimatori impliciti}: generalizzazione del metodo dei momenti}
+We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$
+\[\E{[a(X,\theta_0)]}=\int a(X,\theta_0)f(X,\theta_0)dX=h(\theta_0)=0\]
+Per LLN \[\xi(\theta_0)=\frac{1}{N}\sum_ia(X_i,\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0\]
 One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
-In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
-\begin{align*}
-&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
-&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
-\end{align*}
+In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ (maximum likelihood and minimum $\chi^2$).
+Metodo momenti: $a(X_i,\theta)\to a(X_i)-\E{[a(X)]}$.
 \end{frame}
 
 \begin{wordonframe}{Examples moment estimators}
@@ -702,16 +698,25 @@ In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)
 \end{column}\end{columns}
 \end{wordonframe}
 
-\begin{frame}{Stimatori di massima likelihood: derivazione tramite stimatori impliciti}\linkdest{MLE}\frameintoc
+
+\begin{frame}{Stimatori di massima likelihood: Likelihood equation}\linkdest{MLE}\frameintoc
 \begin{align*}
-&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
-&\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
+&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &\xi(\theta)=K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
+&\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}
+\end{align*}
+Condizione necessaria per massimo di $L(\vec{X},\theta)$ se non si ha sul bordo di $\Theta$: una radice \'e stimatore consistente se $f$ \'e dopiamente differenziabile risp $\theta$, le medie delle due prime derivate esistono e l'integrazione risp $\vec{X}$ e la derivata risp $\theta$ commutano
+\end{frame}
+
+\begin{wordonframe}{Radice equazione di likelihood \'e stimatore consistente}
+\begin{align*}
+&\E{[\PDof{\theta}\ln{f(X,\theta)}]}|_{\theta=\theta_0}=0\tag{normalizzazione}\\
+&\int\PtwoDy{\theta}{\ln{f}}f\,dX+\int(\PDy{\theta}{\ln{f}})^2f\,dX=0\tag{differenziando ancora}\\
 &K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
 \end{align*}
 The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}\to G(0,NI(\theta))$.
-\end{frame}
+\end{wordonframe}
 
 \begin{frame}[allowframebreaks]{Propriet\'a MLE}
 \begin{block}{Consistente se soluzione della likelihood equation \'e unica: massimo assoluto (asintotico) \'e consistente}
