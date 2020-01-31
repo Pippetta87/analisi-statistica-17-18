@@ -704,18 +704,28 @@ Metodo momenti: $a(X_i,\theta)\to a(X_i)-\E{[a(X)]}$.
 &a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &\xi(\theta)=K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
 &\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}
 \end{align*}
-Condizione necessaria per massimo di $L(\vec{X},\theta)$ se non si ha sul bordo di $\Theta$: una radice \'e stimatore consistente se $f$ \'e dopiamente differenziabile risp $\theta$, le medie delle due prime derivate esistono e l'integrazione risp $\vec{X}$ e la derivata risp $\theta$ commutano
+Condizione necessaria per massimo di $L(\vec{X},\theta)$ se non si ha sul bordo di $\Theta$: una radice \'e stimatore consistente se $f$ \'e dopiamente differenziabile risp $\theta$, le medie delle due prime derivate esistono e l'integrazione risp $\vec{X}$ e la derivata risp $\theta$ commutano. The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}\to G(0,NI_{X_1}(\theta))$: massimo assoluto (asintotico) \'e consistente.
+
 \end{frame}
 
 \begin{wordonframe}{Radice equazione di likelihood \'e stimatore consistente}
 \begin{align*}
 &\E{[\PDof{\theta}\ln{f(X,\theta)}]}|_{\theta=\theta_0}=0\tag{normalizzazione}\\
-&\int\PtwoDy{\theta}{\ln{f}}f\,dX+\int(\PDy{\theta}{\ln{f}})^2f\,dX=0\tag{differenziando ancora}\\
-&K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
-&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}\\
-&\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
+&\int\PtwoDy{\theta}{\ln{f}}f\,dX+\int(\PDy{\theta}{\ln{f}})^2f\,dX=0\tag{differenziando ancora}
 \end{align*}
-The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}\to G(0,NI(\theta))$.
+Differenziando la grandezza sperimentale $K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\xi(X_i,\theta)$
+\begin{align*}
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0\\
+%&\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
+\end{align*}
+\begin{align*}
+&\int f(X,\theta_0)\ln{[\frac{f(X,\theta)}{f(X,\theta_0)}]}\,dX\\
+&<\ln{\int f(X,\theta_0)\frac{f(X,\theta)}{f(X,\theta_0)}\,dX}=0:\ \theta\neq\theta_0\tag{ln strictly concave}\\
+&\lim_{N\to\infty}\frac{1}{N}\sum_i^N\ln{f(X_i,\hat{\theta}_N')}=\E{[\ln{f(X_i,\lim_{N\to\infty}\hat{\theta}_N')}]}\tag{$\hat{\theta}_N'$ non-C sols.}\\
+&<\E{[\ln{f(X,\theta_0)}]}=\lim_{N\to\infty}\frac{1}{N}\sum_i^N\ln{f(X_i,\hat{\theta}_N)}
+\end{align*}
+
 \end{wordonframe}
 
 \begin{frame}[allowframebreaks]{Propriet\'a MLE}
@@ -867,12 +877,21 @@ lo stimatore non \'e consistente.
 \end{align*}
 \end{wordonframe}
 
-\begin{wordonframe}{MLS refs}
-(se $W_{ij}>0$: $\PDy{\theta}{\mu_i}W_{ij}\PDy{\theta}{\mu_j}\geq0$??)
-Estimators:Least square examples in cowan 95
-\end{wordonframe}
+%\begin{wordonframe}{MLS refs}
+%(se $W_{ij}>0$: $\PDy{\theta}{\mu_i}W_{ij}\PDy{\theta}{\mu_j}\geq0$??)
+%Estimators:Least square examples in cowan 95
+%\end{wordonframe}
 
-\begin{frame}{Massima likelihood e metodo minimi quadrati}\linkdest{MLS}\frameintoc
+\begin{frame}{Consistent estimator: Least square Method}\linkdest{MLS}\frameintoc
+$Y=\iidrv{Y}{N}{,}$ osservazioni da pdf con $\E{[Y]}=\vec{M}(\vec{\theta})=m_i(\theta)$. LS method minimizes
+\[g(Y,\Theta)=[Y-M(\theta)]^TW[Y-M(\theta)]\]
+W is a matrix of weight PD and indipendent of params.
+The LS estimate $\hat{\theta}$ is a root of:
+\[\xi(\theta)=\PDy{\theta}{g}=-2\PDy{\theta}{M(\theta)^T}W[Y-M(\theta)]=0\]
+If cov of $Y_i$ is finite one root is C-estimator.
+\end{frame}
+
+\begin{frame}{Massima likelihood e metodo minimi quadrati}
 %Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
 N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}$) ignota e varianza $\sigma_i$ nota
 \begin{align*}
