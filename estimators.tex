@@ -883,26 +883,29 @@ lo stimatore non \'e consistente.
 %\end{wordonframe}
 
 \begin{frame}{Consistent estimator: Least square Method}\linkdest{MLS}\frameintoc
-$Y=\iidrv{Y}{N}{,}$ osservazioni da pdf con $\E{[Y]}=\vec{M}(\vec{\theta})=m_i(\theta)$. LS method minimizes
+$Y=\iidrv[Y]$ osservazioni da pdf con $\E{[Y]}=\vec{M}(\vec{\theta})=m_i(\theta)$. LS method minimizes
 \[g(Y,\Theta)=[Y-M(\theta)]^TW[Y-M(\theta)]\]
 W is a matrix of weight PD and indipendent of params.
 The LS estimate $\hat{\theta}$ is a root of:
 \[\xi(\theta)=\PDy{\theta}{g}=-2\PDy{\theta}{M(\theta)^T}W[Y-M(\theta)]=0\]
 If cov of $Y_i$ is finite one root is C-estimator.
+\begin{align*}
+&\chi^2(\theta)=-2\ln{L(\theta)}+\const=\sum_i^N\frac{(y_i-\mu(x_i;\theta))^2}{\sigma_i^2}\tag{iid, $\sigma_i$ nota}\\
+&\chi^2(\theta)=(Y-\mu(\theta))^T\invers{V}(Y-\mu(\theta))\tag{not indep. $V_{ij}=\cov{[y_i,y_j]}$}
+\end{align*}
 \end{frame}
 
-\begin{frame}{Massima likelihood e metodo minimi quadrati}
+\begin{frame}{Massima likelihood e metodo minimi quadrati: gaussiane}
 %Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
-N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_=\prob{k_i}$) ignota e varianza $\sigma_i$ nota
+N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_i=\prob{[k_i]}$) ignota e varianza $\sigma_i$ nota
 \begin{align*}
-&\prob{(k_i,\theta)}\propto\exp{-\frac{(k_i-\mu_i)^2}{2\sigma_i^2}}\intd{$\log{L}$ \'e massimizzato dalla funzione che minimizza}
+&\prob{(k_i,\theta)}=\frac{1}{\sqrt{2\pi\sigma^2}}\exp{-\frac{(k_i-\mu_i)^2}{2\sigma_i^2}}\intd{$\log{L}$ \'e massimizzato dalla funzione che minimizza}
 &\chi^2=-2\log{L}=\sum_i^N\frac{(y_i-\mu(x_i;\theta_1,\ldots,\theta_m))^2}{\sigma_i^2}(=\sum_i\frac{(k_i-\mu_i(\theta))^2}{\sigma_i^2})\intd{if measures are not indipendent}
 &\log{(L(\theta))}=-\frac{1}{2}\sum_{ij}(y_i-\mu_i(\theta))[\invers{V}]_{ij}(y_j-\mu_j(\theta))
 \end{align*}
-
 I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\hat{\theta}_m$. Binned data:
 \begin{align*}
-&\chi^2(\theta)=\sum_i^N\frac{(y_i-\lambda_i(\theta)^2)}{\sigma_i^2}\xrightarrow{n\gg np_i}\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\lambda_i(\theta)}=\sum_i^N\frac{(y_i-np_i(\theta))^2}{np_i(\theta)}\\
+&\chi^2(\theta)=\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\sigma_i^2}\xrightarrow{n\gg np_i}\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\lambda_i(\theta)}=\sum_i^N\frac{(y_i-np_i(\theta))^2}{np_i(\theta)}\\
 &\lambda_i=\E{[y_i]}=n\int_{x_{min}^i}^{x_{max}^i}=np_i(\theta)\tag{number of entries in bin i}
 \end{align*}
 \end{frame}
@@ -921,11 +924,12 @@ Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V
 above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gaussian distributed ($\log(L)=-\chi^2/2$)
 \end{frame}
 
-\begin{frame}{Contours in parameter space}
-\keyword{Contours in parameter space}
-\begin{align*}
-&\chi^2(\theta)=\chi^2(\hat{\theta})+\frac{1}{2}\sum_{ij}\left[\frac{\partial^2\chi^2}{\partial\theta_i\partial\theta_j}\right]|_{\theta=\hat{\theta}}(\theta_i-\hat{\theta}_i)(\theta_j-\hat{\theta}_j)
-\end{align*}
+\begin{frame}{Espansione attorno al $\chi^2_{min}$ per gaussiane cn dipendenza lineare dai params}
+	\begin{figure}
+	\centering
+	\includegraphics[width=0.9\textwidth,keepaspectratio]{estimatorvar}
+	\label{fig:}
+\end{figure}
 contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$: $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$.
 \end{frame}
 

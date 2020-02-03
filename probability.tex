@@ -652,7 +652,6 @@ f(x)\FT{}\begin{matrix}
 \end{matrix}
 \end{align*}
 \end{column}
-
 \begin{column}{0.5\textwidth}
 \begin{align*}
 &a*f(x)+bg(x)\FT{}a\hat{f}(\nu)+b\hat{g}(\nu)\\
@@ -660,14 +659,12 @@ f(x)\FT{}\begin{matrix}
 \end{align*}
 \end{column}
 \end{columns}
-
 \begin{columns}
 \begin{column}{0.5\textwidth}
 Scalar: \[f(ax)\FT{}\frac{1}{|a|}\hat{f}(\frac{\omega}{a}) \]
 Translations:
 \[f(x-a)\FT{}\exp{-ia\nu}\hat{f}(\nu)f(x)\exp{iax}\]
 \[\hat{f}(\xi-\frac{a}{2\pi}) \hat{f}(\nu-a)\]
-
 Derivates:
 \[\frac{d^n\,f(x)}{dx^n}\FT{}(i\omega)^n\hat{f}(\omega)\]
 \[x^nf(x)\FT{}i^n\frac{d^n\hat{f}(\omega)}{d\omega^n}\]
@@ -680,6 +677,7 @@ Convoluzione e prodotto:
 &\hat{f}(\nu)\hat{g}(\nu)\\
 &f(x)g(x)\FT{}\frac{1}{\sqrt{2\pi}}(\hat{f}*\hat{g})(\omega)\\
 &\FT{}\frac{1}{2\pi}(\hat{f}*\hat{g})(\nu)
+&f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}{[\FT{[f_X]}\FT{[f_Y]}]}
 \end{align*}
 
 \end{column}
