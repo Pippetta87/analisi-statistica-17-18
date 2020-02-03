@@ -482,7 +482,7 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 
 \subsection{Funzione caratteristica}\linkdest{moments}
 
-\begin{frame}{Funzione generatrice dei momenti - Funzione caratteristica}
+\begin{frame}{(Funzione generatrice dei momenti) Funzione caratteristica}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 		\begin{align*}
@@ -507,6 +507,7 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 		&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
 		&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
 		\end{align*}
+		\begin{block}{\keyword{$\FT-\phi$-connection}}\end{block}
 		\begin{block}{Trasf lineare}
 			\begin{align*}
 			&Y=\alpha X+b\\
@@ -853,6 +854,18 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \begin{column}{0.5\textwidth}
 \begin{align*}
 \phi_X(t)=\exp{\mu it-\sigma^2\frac{t^2}{2}}
+\end{align*}
+Moments:
+\begin{align*}
+&\mu_0'=1\\
+&\mu_1'=\mu\ \mu=0\\
+&\mu_2'=\mu^2+\sigma^2\ \mu_2=\sigma^2\\
+&\mu_3'=\mu(\mu^2+3\sigma^2)\ \mu_3=0
+\end{align*}
+Unbiased estimators:
+\begin{align*}
+&\hat{\sigma}^2=\frac{N}{N-1}s^2\\
+&\frac{N}{N-1}\frac{1}{N}\sum(x_i-\overline{x})^2
 \end{align*}
 \end{column}
 \end{columns}
