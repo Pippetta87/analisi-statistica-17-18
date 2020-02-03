@@ -58,8 +58,8 @@
 %%% COUNTERS
 \newcounter{mustkey}%conta i must totali per auto ref
 \newcounter{mustsectionlist}% conta i must prima di keywordlist
-
-%%% COUNTERS
+\newcounter{todokey}%conta i todo totali per auto ref
+\newcounter{todosectionlist}% conta i todo prima di keywordlist
 %\newcounter{keywordkey}%conta le keyword totali per auto ref
 \newcounter{keywordsectionlist}% conta le key prima di keywordlist
 
@@ -74,10 +74,6 @@
   \linkdest{#1}%
 \addcontentsline{keylist-\thekeywordsectionlist}{subsection}{\textbullet\protect\hyperlink{#1}{#2}}%
 }
-%%TODO
-%%% COUNTERS
-\newcounter{todokey}%conta i todo totali per auto ref
-\newcounter{todosectionlist}% conta i todo prima di keywordlist
 \newcommand\todo[2][todo-\thetodokey]{%todo
 	%\addtocounter{todokey}{1}
 	\noindent{%
@@ -111,13 +107,15 @@
 }
 %%frameintoc
 \newcommand\listofframes{\@starttoc{lbf}}
-\newcommand\listofframesname{List of frames}
 \makeatother
+\newcommand\listofframesname{List of frames}
 \newcommand\listtodosname{TODO}%listoftodo
 \newcommand\listoftodos{%
+	\addtocounter{todosectionlist}{1}
 	\listtodosname\phantomsection: \listoftodosbasic}
 \newcommand\listmustsname{MUSTS}%listofmust
 \newcommand\listofmusts{%
+	\addtocounter{mustsectionlist}{1}
 	\listmustsname\phantomsection: \listofmustsbasic}
 \newcommand\listkeywordsname{KEYWORDS}%List of keywords
 \newcommand\listofkeywords{%
