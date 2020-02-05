@@ -257,20 +257,15 @@ Trasformazione di variabile
 
 \begin{frame}{Teorema di Darmois}\linkdest{darmoissuff}
 \begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente}
-Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: la pdf appartiene alla \keyword{famiglia esponenziale}:
+Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: pdf appartiene alla \keyword{famiglia esponenziale} e supporto non dipende dal parametro.
 \begin{equation*}
-p(\vec{x}|\theta)=\Exp{[\sum_i^n\alpha_i(\vec{x})a_i(\theta)+\beta(\vec{x})+\gamma(\theta)}
+p(x|\theta)=\Exp{[\sum_i^n\alpha_i(x)a_i(\theta)+\beta(x)+\gamma(\theta)}
 \end{equation*}
-
 \begin{equation*}
 S_j=\sum_i\alpha_j(x_i)
 \end{equation*}
+$\vec{S}$ is jointly sufficient for $\theta$
 \end{block}
-Esiste statistica suff. iff: supporto pdf non dipende da parametro e appartiene alla famiglia esponenziale. In tal caso si ha:
-\begin{align*}
-&f(x;\theta)=\Exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\\
-&T=\sum_i\alpha(x_i)
-\end{align*}
 \end{frame}
 
 \begin{wordonframe}{Famiglia esponenziale. Applicazioni del teorema di Darmois}

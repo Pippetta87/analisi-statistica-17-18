@@ -1,5 +1,9 @@
 \section{Test ipotesi Bayesiano}
 
+\begin{frame}{MAP Test}
+Choose hypothesis with maximum a posteriori probability: $\prob{(H_i|Y=y)}$
+\end{frame}
+
 \section{Test di ipotesi frequentista}\linkdest{testfreq}
 
 %\begin{frame}[allowframebreaks]{List of things}
@@ -31,7 +35,7 @@ Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected w
 	scarto $H_0$ quando \'e vera: probabilit\'a di errore I $\alpha=\prob{(x\in S_1|H_0)}=\prob_0{(x\in S_1)}$: \keyword{livello di significativit\'a}. \keyword{Livello di confidenza} $1-\alpha=\prob{(x\in S_0|H_0)}$
 \end{block}
 \begin{block}{\keyword{Prob. Errore tipo II $\beta$}}
-	probabilit\'a di accettare erroneamente $H_0$ (falso negativo, contaminazione), $\prob{(x\in S_1|\non{H_0})}=\beta$. Potenza del test $1-\beta=\prob{(x\in S_1|H_1)}$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
+	probabilit\'a di accettare erroneamente $H_0$ (falso negativo, contaminazione), $\prob{(x\in S_0|\non{H_0})}=\beta$. Potenza del test $1-\beta=\prob{(x\in S_1|H_1)}$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
 \end{block}
 \end{frame}
 
@@ -126,16 +130,16 @@ dove si \'e usata la relazione di de morgan per complementare di intersezioni e 
 
 \subsection{Ipotesi composte}\linkdest{Hcomposite}
 
-\begin{frame}{Monotone Likelihood property}
+\begin{frame}{Monotone Likelihood property}\frameintoc
 \begin{block}{\keyword{Monotone LR}}
-Real parameter family of density $p_{\theta}(x)$ is said to have monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione decrescente/non-decrescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$.
+Real parameter family of density $p_{\theta}(x)$ is said to have Monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione decrescente/non-decrescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$.
 \end{block}
 \begin{block}{One param exponential family}
 Sia $T(x)$ stat sufficiente per parametro $\theta$ e 
 \begin{equation*}
 g(t;\theta)=a(\theta)c(t)\exp{tb(\theta)}
 \end{equation*}
-con t del dominio di T. Le funzioni di questa famiglia godono del MLR property.
+con t del dominio di T. Le funzioni di questa famiglia godono del Monotone Likelihood Ratio property
 \end{block}
 \end{frame}
 
@@ -168,7 +172,7 @@ $1+$ \'e il power per UMP test per $\theta>\theta_0$, $1-$ \'e il power per UMP 
 \end{wordonframe}
 
 \begin{frame}{Local most powerfull (LMP) tests}\linkdest{LMP}
-(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di 0: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
+(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di $\theta_0$: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
 Applico NP a $H_0$ vs $H_1$:
 \begin{align*}
 &\ln{L(\vec{X},\theta_1)}-\ln{L(\vec{X},\theta_0)}\gtrless c_{\alpha} \Rightarrow \PDy{\theta}{\ln{L}}\gtrless q_{\alpha}\\
