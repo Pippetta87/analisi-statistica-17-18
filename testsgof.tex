@@ -19,7 +19,7 @@ Choose hypothesis with maximum a posteriori probability: $\prob{(H_i|Y=y)}$
 Decisione basata su valore di RV X la cui pdf $P_{\theta}$ che appartiene a una classe di pdf $\mathcal{P}=\{P_{\theta}, \theta\in\Omega\}$:  $\mathcal{P}=H\cup K$ denotano classi mutualmente esclusive di pdf rel a 2 ipotesi sullo spazio dei parametri con $\Omega=\Omega_H\cup\Omega_K$ (se il parametro \'e noto sappiamo con certezza se vera/falsa). Se indico $d_0/d_1$ la decisione di accettare/rifiutare assegno ogni $x\in X$ a regioni complementari $S_0/S_1$ regione di accettanza/critica.
 \end{block}
 \begin{block}{Test function and power}
-Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected when $X=x$, power $Q(\theta)=\E_{\theta}[\psi(X)]$.
+Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected when $X=x$ is observed, power $Q(\theta)=\E_{\theta}[\psi(X)]$.
 %Fissato $\cl=1-\alpha$ impongo la condizione
 %P_{\theta}[\delta(X)=d_1]=
 %\[P_{\theta}[X\in S_1]\leq\alpha,\quad \forall\theta\in\Omega_H\]
@@ -132,7 +132,21 @@ dove si \'e usata la relazione di de morgan per complementare di intersezioni e 
 
 \begin{frame}{Monotone Likelihood property}\frameintoc
 \begin{block}{\keyword{Monotone LR}}
-Real parameter family of density $p_{\theta}(x)$ is said to have Monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione decrescente/non-decrescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$.
+Real parameter family of density $p_{\theta}(x)$ is said to have Monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione non-decrescente/non-crescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		Non-decreasing LR:
+		\begin{align*}
+		&\psi(X)=\lbt{1:\ T(X)>k}{0:\ T(X)<k}
+		\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		Non-increasing LR:
+		\begin{align*}
+		&\psi(X)=\lbt{1:\ T(X)<k}{0:\ T(X)>k}
+		\end{align*}
+	\end{column}
+\end{columns}
 \end{block}
 \begin{block}{One param exponential family}
 Sia $T(x)$ stat sufficiente per parametro $\theta$ e 
@@ -151,7 +165,7 @@ UMP test (one-sided) per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$; app
 
 \[\frac{F^N(x)G^N(\overline{\mu})}{F^N(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\gtrless c_{\alpha}\]
 $F,G>0$.
-Se il likelihood ratio \'e funzione monotona di una statistica $T(\vec{X})=\sum_iA(x_i)$ e scelgo $\alpha$ e $k_{\alpha}$ tali che $\prob{[\lr{(T(x))}\geq c_{\alpha}]}=\alpha$  allora la regione critica per un test UMP unilaterale $H_0$ vs $H_1$ \'e $C=\{x:T(x)\geq k_{\alpha}\}$.
+Se il likelihood ratio \'e funzione monotona (non-decrescente) di una statistica $T(\vec{X})=\sum_iA(x_i)$ e scelgo $\alpha$ e $k_{\alpha}$ tali che $\prob{[\lr{(T(x))}\geq c_{\alpha}]}=\alpha$  allora la regione critica per un test UMP unilaterale $H_0$ vs $H_1$ \'e $C=\{x:T(x)\geq k_{\alpha}\}$.
 
 \cite[5]{lrtmptumpt}; \cite[445]{inferencemukhopadhyay2000}; \cite[sec 3.6]{lehmann2006testing}
 \end{frame}
@@ -161,7 +175,7 @@ Se il likelihood ratio \'e funzione monotona di una statistica $T(\vec{X})=\sum_
 \cite[269]{james2006statistical}\cite[sec 3.7]{lehmann2006testing}
 \end{frame}
 
-\begin{wordonframe}{One/two-sided test}
+\begin{wordonframe}{No UMP test for two-sided hypothesis}
 %insert-fig 10.9: oneone2sides
 $1+$ \'e il power per UMP test per $\theta>\theta_0$, $1-$ \'e il power per UMP test per $\theta<\theta_0$: if the size of one sided tests is $\frac{\alpha}{2}$ that of two-sided (sum of the two one-sided) is $\alpha$
 \begin{figure}[!ht]
@@ -171,15 +185,14 @@ $1+$ \'e il power per UMP test per $\theta>\theta_0$, $1-$ \'e il power per UMP 
 
 \end{wordonframe}
 
-\begin{frame}{Local most powerfull (LMP) tests}\linkdest{LMP}
-(LMP) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di $\theta_0$: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
+\begin{frame}{Locally most powerfull (LMP) tests}\linkdest{LMP}
+(LMP) (Se non esiste UMP test) Se ho bisogno di massima sensibilit\'a vicino alla soglia: $1-\beta$ grande nelle vicinanze di $\theta_0$: $H_0$: $\theta=\theta_0$, $H_1$: $\theta=\theta_0+\Delta$, quindi $\ln{L(\vec{X},\theta_1)}\approx\ln{L(\vec{X},\theta_0)}+\Delta\PDy{\theta}{\ln{L}}|_{\theta_0}$.
 Applico NP a $H_0$ vs $H_1$:
 \begin{align*}
 &\ln{L(\vec{X},\theta_1)}-\ln{L(\vec{X},\theta_0)}\gtrless c_{\alpha} \Rightarrow \PDy{\theta}{\ln{L}}\gtrless q_{\alpha}\\
 &\E{[\PDy{\theta}{\ln{L}}|_{\theta_0}]}=0,\ \E{[(\PDy{\theta}{\ln{L}})^2]}=NI
 \end{align*}
-
-score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{\alpha}\sqrt{NI}$.
+score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{?1-\alpha}\sqrt{NI}$.
 \end{frame}
 
 \begin{frame}{Likelihood ratio test (LRT)}\frameintoc\linkdest{LRT}
@@ -486,4 +499,14 @@ Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_
 \item Massey(50): KS-test is biased
 \end{itemize}
 \end{block}
+\end{frame}
+
+\section{Search: stima+test}
+
+\begin{frame}{Sensitivity region}
+Region of parameter m for which power of chosen test is greater equal confidence level chosen for limit in case of no discovery: $1-\beta_{\alpha}(m)>\cl{}$.
+\begin{itemize}
+\item If true m is inside sensitivity region there is probability at least $\cl{}$ that performing experiment will lead to discovery (with significance $\alpha$)
+\item If experiment don't lead to discovery the resulting limits will exclude (at least) entire region at $\cl{}$
+\end{itemize}
 \end{frame}
