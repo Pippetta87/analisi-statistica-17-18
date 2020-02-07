@@ -73,10 +73,24 @@ Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
 \end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-\begin{figure}[!ht] \begin{subfigure}[b]{0.99\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{powerconsistent} \label{fig:powerconsistent} \end{subfigure} ~ \begin{subfigure}[b]{0.99\textwidth} \centering \includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure} \end{figure} 
+\begin{figure}[!ht]\begin{subfigure}[b]{0.99\textwidth}\centering\includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{powerconsistent}\label{fig:powerconsistent}\end{subfigure}~\begin{subfigure}[b]{0.99\textwidth}\centering\includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{biasedtest}\label{fig:biasedtest}\end{subfigure}\end{figure} 
 Test B can't distinguish between $\theta_0$, $\theta_1$.
 	\end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{}
+\begin{block}{Test Unbiased}
+Hypothesis $H: \theta\in\Omega_H$ vs $K:\theta\in\Omega_K$. Unbiasedness: for no alternatives in K probability of rejection is less then size of test
+\begin{align*}
+&\pow{}=\E_{\theta}{[\phi(X)]}\leq\alpha\tag{$\theta\in\Omega_H$}\\
+&\pow{}=\E_{\theta}{[\phi(X)]}\geq\alpha\tag{$\theta\in\Omega_K$}
+\end{align*}
+\end{block}
+\begin{block}{Invarince and symmetry}
+$X\in f(x;\theta)$ con $\theta\in\Omega$; g trasformazione 1-1 dello spazio campionario in se: $gX$ denota RV con valore $gx$ quando $X=x$ con pdf $f(x;\theta')$ cos\'i definisco $\overline{g}\theta=\theta'\in\Omega$. Lo spazio dei parametri \'e invariqante sotto g se $\overline{g}\Omega=\Omega$.
+\keyword{Invariant test under G:} $\phi(gx)=\phi(x)$ per ogni $x\in X$ e $g\in G$ inoltre $\overline{g}\Omega_H=\Omega_H$ e lo stesso $\Omega_K$
+\end{block}
 \end{frame}
 
 \subsection{Ipotesi semplici}\linkdest{Hsimple}
@@ -350,10 +364,10 @@ Misurazione flusso di neutroni $\phi$ con contatore: $\phi_0$ flusso normale.
 $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 \end{frame}
 
-\subsection{Monotone LR}
+\subsection{Principio di MinMax}
 
-\begin{frame}{monotone LR pdfs}
-Lehmann/Romano 3.4 pg 76
+\begin{frame}{}
+
 \end{frame}
 
 \section{Goodness of fit}\linkdest{gof}
