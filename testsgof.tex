@@ -392,8 +392,11 @@ Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione 
 \begin{frame}{Combinazione di pi\'u p-value}
 	%algoritmo ordinamento prodotto
 	\begin{align*}
-	\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\		&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\intu{che ha pdf di Erlang, mentre asintoticamente:}\\
-	&\prob{(\chi^2)}=\frac{1}{2\expy{N/2}\Gamma(N/2)}x\expy{k/2-1}\exp{-x/2}\to\frac{1}{2}\exp{-x/2}\\
+	&\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\
+	&x=-\frac{1}{\lambda}\ln{(1-F(x))}\tag{inverse CDF exponential}\\
+	&x=-\frac{1}{\lambda}\ln{P},\ P\in U([0,1])\tag{exponential distribution rate 1}\\
+	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{Erlang $\lambda=1/2$:}\\
+	&=\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N}\Gamma(2N)}x\expy{2N-1}\exp{-x/2}\tag{sum N $\chi^2_2$}\\
 	&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
 	\end{align*}
 \end{frame}
