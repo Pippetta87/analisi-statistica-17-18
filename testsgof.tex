@@ -30,7 +30,7 @@ Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected w
 \end{block}
 \end{frame}
 
-\begin{frame}{Errori di tipo I (rifiuto ipotesi H vera), errori tipo II (accetto ipotesi H falsa)}
+\begin{frame}{Errori: tipo I (rifiuto ipotesi vera), tipo II (accetto ipotesi falsa)}
 \begin{block}{ \keyword{Prob. Errore tipo I $\alpha$}}
 	scarto $H_0$ quando \'e vera: probabilit\'a di errore I $\alpha=\prob{(x\in S_1|H_0)}=\prob_0{(x\in S_1)}$: \keyword{livello di significativit\'a}. \keyword{Livello di confidenza} $1-\alpha=\prob{(x\in S_0|H_0)}$
 \end{block}
@@ -365,26 +365,25 @@ Lehmann/Romano 3.4 pg 76
 
 \subsection{Distance between data and hypothesis: map statistic to p-value}\linkdest{pvalue}
 
-\begin{frame}{How data well fit the model?}
-GOF tests compare experimental data with their pdf under null hyp. $H_0$:  ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$''; a small p-value is taken as evidence against $H_0$.
-%GOF: data una misura determino probabilit\'a di avere un risultato meno in accordo con ipotesi $H_0$, tecnica esclusivamente frequentista.
-%Ipotesi $H_0$ definisco $\alpha=\prob{(T(x)=\non{(H_0)}|H_0)}=\prob{(T(x)\in S_1|H_0)}$, non specifico ipotesi alternative.
-\begin{itemize}
-\item Test statistic: function of data which measure ''distance'' between data and hypothesys
-\item Map statistic to P-value: suppose $t=\frac{p_1(X)}{p_0(X)}$ continuo, $\alpha<\alpha': S_{\alpha}\subset S_{\alpha'}$, \keyword{p-value} p is smallest significance level at which hypothesis would be rejected for the given observation.
-\end{itemize}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{frame}{p-value: quantify agreement data/hypothesis}
+%Probabilit\'a della regione $C=\{t(x)>q_{\alpha}\}=\alpha$ il test di GOF ha significativit\'a $\alpha$. Considero una statistica con $\prob{(t(x))}=U([0,1])$ (per esempio una $F(X)$).
+Quantifico accordo tra dati e ipotesi senza riferimento esplicito a ipotesi alternative: definisco statistica t che misura distanza dati/ipotesi. L'ipotesi determina la pdf $f(t|H_0)$ della statistica. \keyword{p-value} \'e probabilit\'a di trovare t in regione di uguale/minore accordo con $H_0$ di quanto osservato: per esempio se grandi valori t sono in minore accordo con $H_0$ $p=\int_{t_{obs}}^{\infty}f(t|H_0)\,dt$; p-value is function of data and if $H_0$ is true per misure continue ha distribuzione $U(0,1)$,  ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$''; a small p-value is taken as evidence against $H_0$.
+$\alpha<\alpha'$: rejection region $S_{\alpha}\subset S_{\alpha'}$, p-value is smallest significance level at which hypothesis would be rejected for the given observation
 \[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in S_1\}\]
-\end{column}
-\begin{column}{0.5\textwidth}
-
-\end{column}
-\end{columns}
 \begin{block}{Unbiasedness}
 Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
 Costruire p-value per cui test unbiased: se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore.
 \end{block}
+\end{frame}
+
+
+\begin{frame}{Combinazione di pi\'u p-value}
+	%algoritmo ordinamento prodotto
+	\begin{align*}
+	\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\		&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\intu{che ha pdf di Erlang, mentre asintoticamente:}\\
+	&\prob{(\chi^2)}=\frac{1}{2\expy{N/2}\Gamma(N/2)}x\expy{k/2-1}\exp{-x/2}\to\frac{1}{2}\exp{-x/2}\\
+	&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
+	\end{align*}
 \end{frame}
 
 \begin{wordonframe}{P-value examples for $H_0$ with discrete pdf}
@@ -410,19 +409,6 @@ P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})
 \end{equation*}
 \end{block}
 \end{wordonframe}
-
-\begin{frame}{p-value: probabilit\'a risultato meno in accordo con teoria di quello ottenuto}
-Probabilit\'a della regione $C=\{t(x)<q_{\alpha}\}=\alpha$ il test di GOF ha significativit\'a $1-\alpha$. Considero una statistica con $\prob{(t(x))}=U([0,1])$ (per esempio una $F(X)$):
-\begin{block}{Combinazione di pi\'u p-value: algoritmo ordinamento prodotto}
-\begin{align*}
-\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\
-&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\intu{che ha pdf di Erlang, mentre asintoticamente:}
-&\prob{(\chi^2)}=\frac{1}{2\expy{N/2}\Gamma(N/2)}x\expy{k/2-1}\exp{-x/2}\to\frac{1}{2}\exp{-x/2}\\
-&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
-\end{align*}
-
-\end{block}
-\end{frame}
 
 \begin{frame}{Distribution free Tests}
 \keyword{Distribution-free test}: the distribution of the statistic t is known independently of $H_0$.
