@@ -381,12 +381,10 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 
 \begin{frame}{p-value: quantify agreement data/hypothesis}
 %Probabilit\'a della regione $C=\{t(x)>q_{\alpha}\}=\alpha$ il test di GOF ha significativit\'a $\alpha$. Considero una statistica con $\prob{(t(x))}=U([0,1])$ (per esempio una $F(X)$).
-Quantifico accordo tra dati e ipotesi senza riferimento esplicito a ipotesi alternative: definisco statistica t che misura distanza dati/ipotesi. L'ipotesi determina la pdf $f(t|H_0)$ della statistica. \keyword{p-value} \'e probabilit\'a di trovare t in regione di uguale/minore accordo con $H_0$ di quanto osservato: per esempio se grandi valori t sono in minore accordo con $H_0$ $p=\int_{t_{obs}}^{\infty}f(t|H_0)\,dt$; p-value is function of data and if $H_0$ is true per misure continue ha distribuzione $U(0,1)$,  ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$''; a small p-value is taken as evidence against $H_0$.
-$\alpha<\alpha'$: rejection region $S_{\alpha}\subset S_{\alpha'}$, p-value is smallest significance level at which hypothesis would be rejected for the given observation
-\[P_X=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in S_1\}\]
+Quantifico accordo tra dati e ipotesi senza riferimento esplicito a ipotesi alternative: definisco statistica t che misura distanza dati/ipotesi, l'ipotesi determina la pdf $f(t|H_0)$ della statistica. \keyword{p-value} \'e probabilit\'a di trovare t in regione di uguale/minore accordo con $H_0$ di quanto osservato: per esempio se grandi valori t sono in minore accordo con $H_0$ $p=\int_{t_{obs}}^{\infty}f(t|H_0)\,dt$; p-value is function of data and if $H_0$ is true per misure continue ha distribuzione $U(0,1)$: ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$'', a small p-value is taken as evidence against $H_0$.
+p-value is smallest significance level at which hypothesis would be rejected for the given observation: $\alpha<\alpha'$ rejection region $S_{\alpha}\subset S_{\alpha'}$ $p=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in S_1\}$
 \begin{block}{Unbiasedness}
-Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (riferimento a un set arbitrario di distribuzioni).
-Costruire p-value per cui test unbiased: se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore.
+Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (set arbitrario di distribuzioni): se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore.
 \end{block}
 \end{frame}
 
