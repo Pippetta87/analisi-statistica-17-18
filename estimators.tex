@@ -148,8 +148,22 @@ $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim(
 \end{block}
 \end{frame}
 
-\subsection{Esempi di statistiche sufficienti}
+\begin{frame}{Proof Neyman Factorization Theorem}
+\begin{itemize}
+\item $T(x_1,\ldots,x_n)$ suf. per $\theta$ ($P_{\theta}(X=x|T(X)=t(x))$ non dipende da $\theta$):
+\begin{align*}
+&(A): X=x,\ (B): T(X)=t(x): A\subset B\\
+&L(\theta)=P_{\theta}(X=x)=P_{\theta}(X=x\cap T(X)=t(x))=P_{\theta}(T(X)=T(x))P_{\theta}(X=x|T(X)=T(x))
+\end{align*}
+\item $L(\theta)=g(T(x_1,\ldots,x_n);\theta)h(x_1,\ldots,x_n)$.
+\begin{align*}
+&p(t;\theta)=P_{\theta}(T(X)=t)=\sum_{\vec{y}:T(\vec{y})=t}\prod_if(y_i;\theta)=\sum_{\vec{y}:T(\vec{y})=t}L(\theta)\\
+&P_{\theta}(X=x|T(X)=t)=g(t;\theta)h(x)/(g(t;\theta)\sum_{\vec{y}:T(\vec{y})=t}h(\vec{y}))
+\end{align*}
+\end{itemize}
+\end{frame}
 
+\subsection{Esempi di statistiche sufficienti}
 
 %\begin{align*}
 %&L(x;\mu,\sigma)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}}\\
