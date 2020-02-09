@@ -190,26 +190,26 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 &\frac{\prob{((\cap_iX_i=x_i)\cap(T=t))}}{\prob{(T=t)}}=\frac{\prob{(\cap_iX_i=x_i)}}{\prob{(T=t)}},\ t=\sum x_i\\
 &=\frac{\prod_i[\frac{\exp{-\lambda}\lambda^{x_i}}{x_i!}]}{\frac{\exp{-\lambda}(n\lambda)^t}{t!}}=\frac{t!}{\prod x_i!}n^{-t}
 \end{align*}
+\begin{block}{\keyword{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale}}
+	\begin{align*}
+	&\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\\
+	&\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
+	&\prob{(x)}=\lambda\exp{-\lambda x}
+	\end{align*}
+\end{block}
 \end{wordonframe}
 
-\begin{wordonframe}{Gaussiana: media ignota, varianza nota}
-\begin{align*}
-&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
-\end{align*}
-La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica})
-\end{wordonframe}
-
-\begin{wordonframe}{Gaussiana: media nota, varianza ignota}
-$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
-\end{wordonframe}
-
-\begin{wordonframe}{\keyword{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale}}
-\begin{align*}
-&\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\\
-&\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
-&\prob{(x)}=\lambda\exp{-\lambda x}
-\end{align*}
-\end{wordonframe}
+\begin{frame}{Statistiche suff. Gaussiana}
+\begin{block}{Gaussiana: media ignota, varianza nota}
+	\begin{align*}
+	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
+	\end{align*}
+	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica})
+\end{block}
+\begin{block}{Gaussiana: media nota, varianza ignota}
+	$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
+\end{block}
+\end{frame}
 
 \begin{wordonframe}{Distribuzione uniforme: \keyword{$x_{max}$ statistica sufficiente}.}
 \begin{columns}[T]
@@ -959,23 +959,22 @@ contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$
 I dati seguono una pdf a meno di $\epsilon$: $p_{tot}=(1-\epsilon)p_{th}+\epsilon q_{sys}()$
 All'aumentare del numero di eventi di un rivelatore di particelle l'incertezza statistica diminuisce quindi diventa rilevante incertezza sistematica: si considerano stimatori del tipo $\min\sum|x_i-\hat{m}_p|^p$
 \begin{block}{Costruzione stimatori robusti (distribution indipendent)}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\end{column}
-\begin{column}{0.5\textwidth}
-\end{column}
-\end{columns}
-Parametro di localizzazione: invariante per traslazione.
+Location-scale model observation $x_i=\mu+\sigma\epsilon_i$ (if $\epsilon_i$ iid Cauchy expected value doesn't exist)
+Parametro di localizzazione e scala (sample mean and variance under normality assumption) invariante per:
+\begin{align*}
+&T_n(ax_1+b,\ldots,ax_n+b)=aT_n(x_1,\ldots,x_n)+b\\
+&S_n(ax_1+b,\ldots,ax_n+b)=|a|S_n(x_1,\ldots,x_n)
+\end{align*}
 \end{block}
-\begin{block}{Mediana campionaria}
-$\min\sum|x_i-\hat{m}_1|$: $P(x<\hat{m}_1)=\prob{(x>\hat{m}_1)}$. MLE per $p(x,m)=\exp{-|x-m|}$
-\end{block}
-\begin{block}{Stimatore di mid-range}
-$\lim_{p\to\infty}\min\sum|x_i-\hat{m}_{\infty}|^p=\frac{x_M-x_m}{2}$
-\end{block}
-\begin{block}{Moda}
-$\lim_{p\to-\infty}\min\sum|x_i-\hat{m}_{-\infty}|^p$ seleziona coppia di dati pi\'u vicini.
-\end{block}
+\end{frame}
+
+\begin{frame}{Stimatori robusti}
+\begin{itemize}
+\item Mediana campionaria: $\min\sum|x_i-\hat{m}_1|$: $P(x<\hat{m}_1)=\prob{(x>\hat{m}_1)}$. MLE per $p(x,m)=\exp{-|x-m|}$. $T_n=\med{}$
+\item Stimatore di mid-range: $\lim_{p\to\infty}\min\sum|x_i-\hat{m}_{\infty}|^p=\frac{x_M-x_m}{2}$
+\item Moda:	$\lim_{p\to-\infty}\min\sum|x_i-\hat{m}_{-\infty}|^p$ seleziona coppia di dati pi\'u vicini.
+\item Dispersion estimator (MAD): $c\med{}_i|x_i-\med{}_jx_j|$
+\end{itemize}
 \end{frame}
 
 \begin{wordonframe}{Ex: Inferenza probabilistica}

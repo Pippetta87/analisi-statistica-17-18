@@ -167,26 +167,28 @@ Subjective probability can be associated with value of unknown constants (mass o
 \end{column}\end{columns}
 \end{frame}
 
-\subsection{Trasformazione pdf per cambio RV}\linkdest{pdfRVchange}
+\subsection{Order Statistics}
 
-\begin{frame}{Density function for \keyword{order statistics}}
-$X_{(1)}<X_{(2)}<\ldots<X_{(n)}$: pdf $\prob{(X_{(k)}\in[x,x+dx])}$
-\begin{block}{Maximum/minimum statistics}
-\begin{align*}
-&\prob{(X_{(1)}<x)}=1-\prob{(X_{(1)}>x)}\\
-&=1-\prob{(X_1>x)}\ldots\prob{(X_n>x)}=1-[1-F(x)]^n\\
-&\prob{(X_{(n)}<x)}=\prob{(X_1<x,\ldots,X_n<x)}=F(x)^n
-\end{align*}
-\end{block}
-\begin{block}{Probability density of k-th order}
-\begin{align*}
-&\prob{(X_{(k)}\in[x,x+dx])}=\prob{(X_i\in[x,x+dx],k-1 X_i's<x)}\\
-&=n\prob{(X_1\in[x,x+dx],k-1 X_i's<x)}\\
-&=n\prob{(X_1\in[x,x+dx])}\prob{(k-1 X_i's<x)}\\
-&=n\prob{(X_1\in[x,x+dx])}\binom{n-1}{k-1}\prob{(X_1<x)}^{k-1}\prob{(X_1>x)}^{n-k}
-\end{align*}
-\end{block}
+\begin{frame}{Density function for order statistics}
+	$X_{(1)}<X_{(2)}<\ldots<X_{(n)}$: pdf $\prob{(X_{(k)}\in[x,x+dx])}$
+	\begin{block}{Maximum/minimum statistics}
+		\begin{align*}
+		&\prob{(X_{(1)}<x)}=1-\prob{(X_{(1)}>x)}\\
+		&=1-\prob{(X_1>x)}\ldots\prob{(X_n>x)}=1-[1-F(x)]^n\\
+		&\prob{(X_{(n)}<x)}=\prob{(X_1<x,\ldots,X_n<x)}=F(x)^n
+		\end{align*}
+	\end{block}
+	\begin{block}{Probability density of k-th order}
+		\begin{align*}
+		&\prob{(X_{(k)}\in[x,x+dx])}=\prob{(X_i\in[x,x+dx],k-1 X_i's<x)}\\
+		&=n\prob{(X_1\in[x,x+dx],k-1 X_i's<x)}\\
+		&=n\prob{(X_1\in[x,x+dx])}\prob{(k-1 X_i's<x)}\\
+		&=n\prob{(X_1\in[x,x+dx])}\binom{n-1}{k-1}\prob{(X_1<x)}^{k-1}\prob{(X_1>x)}^{n-k}
+		\end{align*}
+	\end{block}
 \end{frame}
+
+\subsection{Trasformazione pdf per cambio RV}\linkdest{pdfRVchange}
 
 \begin{frame}{Funzioni di RV}
 \begin{figure}
@@ -974,6 +976,7 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 \begin{frame}{Poissoniane!}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
+\keyword{Poissoniana come limite piccoli p binomiale}
 \[\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}\]
 Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
 \begin{align*}
