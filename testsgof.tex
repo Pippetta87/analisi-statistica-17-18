@@ -412,18 +412,17 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
 Quantifico accordo tra dati e ipotesi senza riferimento esplicito a ipotesi alternative: definisco statistica t che misura distanza dati/ipotesi, l'ipotesi determina la pdf $f(t|H_0)$ della statistica. \keyword{p-value} \'e probabilit\'a di trovare t in regione di uguale/minore accordo con $H_0$ di quanto osservato: per esempio se grandi valori t sono in minore accordo con $H_0$ $p=\int_{t_{obs}}^{\infty}f(t|H_0)\,dt$; p-value is function of data and if $H_0$ is true per misure continue ha distribuzione $U(0,1)$: ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$'', a small p-value is taken as evidence against $H_0$.
 p-value is smallest significance level at which hypothesis would be rejected for the given observation: $\alpha<\alpha'$ rejection region $S_{\alpha}\subset S_{\alpha'}$ $p=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in S_1\}$
 \begin{block}{Unbiasedness}
-Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$; misurazione potenza empirica (set arbitrario di distribuzioni): se considero $H_1$ alternativa la probabilit\'a di finire sotto deve essere maggiore.
+Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$: misurazione potenza empirica (set arbitrario di distribuzioni).
 \end{block}
 \end{frame}
 
-
-\begin{frame}{Combinazione di pi\'u p-value}
+\begin{frame}{Combinazione di pi\'u p-value \'a la Fisher}
 	%algoritmo ordinamento prodotto
 	\begin{align*}
 	&\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\
 	&x=-\frac{1}{\lambda}\ln{(1-F(x))}\tag{inverse CDF exponential}\\
 	&x=-\frac{1}{\lambda}\ln{P},\ P\in U([0,1])\tag{exponential distribution rate 1}\\
-	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{Erlang $\lambda=1/2$:}\\
+	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{Erlang $\lambda=1/2$}\\
 	&=\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N}\Gamma(2N)}x\expy{2N-1}\exp{-x/2}\tag{sum N $\chi^2_2$}\\
 	&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
 	\end{align*}
@@ -436,21 +435,22 @@ Observed counts: $N=12$
 $P_{12}=0.229$ is the probability to observe event at least as far as the observed.
 $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \end{block}
-\begin{block}{}
-X RV $N(\xi,\sigma^2)$, $\sigma^2$ known. Null hypothesis $\xi=0$, alternative $\xi=\xi_1>0$.
-\begin{equation*}
-\lr=\frac{p_1(x)}{p_0(x)}=\exp{\frac{\xi_1x}{\sigma^2}-\frac{\xi_1^2}{2\sigma^2}}
-\end{equation*}
-funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ con $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
-Regione di confidenza:
-\begin{equation*}
-S_{\alpha}=\{X: X>\sigma z_{1-\alpha}\}=\{X: \Phi(\frac{X}{\sigma})>1-\alpha\}
-\end{equation*}
-osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regione critica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
-\begin{equation*}
-P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})\geq 1-u\}
-\end{equation*}
-\end{block}
+\end{wordonframe}
+
+\begin{wordonframe}{P-value examples for gaussians}
+		X RV $N(\xi,\sigma^2)$, $\sigma^2$ known. Null hypothesis $\xi=0$, alternative $\xi=\xi_1>0$.
+		\begin{equation*}
+		\lr=\frac{p_1(x)}{p_0(x)}=\exp{\frac{\xi_1x}{\sigma^2}-\frac{\xi_1^2}{2\sigma^2}}
+		\end{equation*}
+		funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ con $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
+		Regione di confidenza:
+		\begin{equation*}
+		S_{\alpha}=\{X: X>\sigma z_{1-\alpha}\}=\{X: \Phi(\frac{X}{\sigma})>1-\alpha\}
+		\end{equation*}
+		osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regione critica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
+		\begin{equation*}
+		P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})\geq 1-u\}
+		\end{equation*}
 \end{wordonframe}
 
 \begin{frame}{Distribution free Tests}
@@ -478,17 +478,22 @@ P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})
 
 \subsection{Binned GOF}\label{binnedgof}
 
-\begin{frame}{Pearson $\chi^2$ test for multinomial null hypothesis (histograms with k bins)}
-$k+1$ outcomes, n trials, $\sum_jp_j=1$, $\sum_in_i=N$: $\prob{(Y_1=y_1,\ldots,Y_{k+1}=y_{k+1})}=\frac{n!}{y_1!*\ldots*y_{k+1}!}p_1^{y_1}\ldots p_{k+1}^{y_{k+1}}$. Parameter space $\Omega=\{(p_1,\ldots,p_k\})\in \real{k}: p_i\geq0,\sum_{j=1}^kp_j\leq1$.
-$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$:
+\begin{frame}{Pearson $\chi^2$ GOF (histograms with k bins)}
+Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\sigma_i^2}$, $\sigma_i^2=\var{n_i}$.
+\begin{itemize}
+\item $\sum_in_i=N$ fixed: $\sum_jp_j=1$, $\prob{(Y_1=y_1,\ldots,Y_{k+1}=y_{k+1})}=\frac{n!}{y_1!*\ldots*y_{k+1}!}p_1^{y_1}\ldots p_{k+1}^{y_{k+1}}$, parameter space $\Omega=\{(p_1,\ldots,p_k\})\in \real{k}$. $H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$:
 statistica $Q_n=\sum_j^{k+1}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\to\frac{1}{N}\sum^{k+1}\frac{n_i^2}{p_i}-N$ ha asintotic. pdf $\chi^2(k)$, quindi se $c_{k,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k)$ il test che rifiuta H quando $Q_n>c_{k,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
-\begin{block}{Power against local alternatives}
+\item $n_i=Pois(\nu_i)$: $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\nu_i}$. $n_i=G(\nu_i,\sigma_i^2)$ (Poisson with $\nu_i\gg1$): Pearson-$\chi^2$ follow chi-squared pdf with k-dof.
+\end{itemize}
+\[p=\int_{\chi^2_{data}}^{\infty}f_{\chi^2}(z)\,dz\]
+\end{frame}
+
+\begin{frame}{Power against local alternatives}
 	\begin{itemize}
 		\item $H: p_j=\pi_j$, $j=1,\ldots,k+1$: $Q_n\xrightarrow{d}\chi^2(k)$
 		\item Under alternative hypothesis $K: p_j^{(n)}=\pi_j+n\expy{-1/2}h_j$, $\sum_jh_j=0$: $Q_n\xrightarrow{d}\chi^{2,\lambda}(k)$ and NC parameter $\lambda=\sum_j^{k+1}\frac{h_j^2}{\pi_j}$
 		\item Power of $\chi^2$ test based on $Q_n$ tends to a limit greater than critical value $\alpha$
 	\end{itemize}
-\end{block}
 \end{frame}
 
 \begin{frame}{$\chi^2$ Test of uniformity}
