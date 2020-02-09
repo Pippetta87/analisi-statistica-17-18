@@ -53,7 +53,6 @@ Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
 \end{figure}
 \end{column}
 \begin{column}{0.6\textwidth}
-
 \begin{block}{Ottimizzazione: power maggiore possibile.}
 	UMP test: power maggiore uguale a qualunque test per tutte le ipotesi: esiste?
 \end{block}
@@ -79,7 +78,7 @@ Test B can't distinguish between $\theta_0$, $\theta_1$.
 \end{columns}
 \end{frame}
 
-\begin{frame}{}
+\begin{frame}{Properties of tests}
 \begin{block}{Test Unbiased}
 Hypothesis $H: \theta\in\Omega_H$ vs $K:\theta\in\Omega_K$. Unbiasedness: for no alternatives in K probability of rejection is less then size of test
 \begin{align*}
@@ -302,11 +301,40 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 \end{wordonframe}
 
 \begin{wordonframe}{Max power test in intervallo}
-	\begin{itemize}
-		\item \'E possible espansione L in intervallo?
-		\item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$. Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
-	\end{itemize}
+\begin{itemize}
+\item \'E possible espansione L in intervallo?
+\item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$. Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
+\end{itemize}
 \end{wordonframe}
+
+\subsection{Stusent's t-test}
+
+\begin{frame}{t statistics}
+$\overline{x}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\overline{x}$ normally distributed around $\hat{x}$, $y=\frac{\overline{x}-\hat{x}}{\sigma(\overline{x})}$ standard normal G. Estimate for variance:
+\[s_x^2=\frac{1}{N-1}\sum_i^N(x_i-\hat{x})^2\to s_{\overline{x}}^2=\frac{1}{N(N-1)}\sum_i^N(x_i-\overline{x})^2\]
+$(N-1)s_x^2=fs_x^2$ follow $\chi^2$ with $f=N-1$ dof and we define
+\begin{align*}
+&t=\frac{\overline{x}}{s_{\overline{x}}}=\frac{\overline{x}\sqrt{Nf}}{\chi}\\
+&t_f=\frac{Z}{\sqrt{k/f}}:\ Z=G(0,1),\ k=\chi^2(f)\\
+&P(|t|\leq t)=2F(|t|)-1\\
+&\int_0^{t_{\alpha}'}f(t)\,dt=\frac{1}{2}(1-\alpha),\ t_{\alpha}'=t_{1-\frac{1}{2}\alpha}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Student's t test}
+Hypothesis $\lambda_0$  for pop mean of normal distro: sample of size N yields sample mean $\overline{x}$, sample variance $s_x^2$: for given signficance level $\alpha$
+\[|t|=\frac{|\overline{x}-\lambda_0|\sqrt{N}}{s_x}>t_{1-\frac{1}{2}\alpha}\]
+hypothesis must be rejected.
+\begin{block}{Student difference test: $\hat{x}=\hat{y}$?}
+\begin{align*}
+&\sigma^2(\overline{x})=\frac{1}{N_1}\sigma^2(x)\ \sigma^2(\overline{y})=\frac{1}{N_2}\sigma^2(y)\\
+&\Delta=\overline{x}-\overline{y}\ \sigma^2(\Delta)=\sigma^2(x)+\sigma^2(y)\\
+&s_{\Delta}=s_{\overline{x}}^2+s_{\overline{y}}^2=\frac{N_1+N_2}{N_1N_2}s^2\\
+&|t|=\frac{|\Delta|}{s_{\Delta}}\geq t_{\alpha}'
+\end{align*}
+Sample quantity compared with quantile of t with $f=N_1+N_2-2$ with sign. level $\alpha$
+\end{block}
+\end{frame}
 
 \subsection{esempi di test}
 
