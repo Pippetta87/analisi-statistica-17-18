@@ -574,7 +574,7 @@ Proof:
 \end{align*}
 \end{wordonframe}
 
-\begin{frame}{Best unbiased estimator}\linkdest{cramerrao}
+\begin{frame}{Best unbiased estimator}\frameintoc\linkdest{cramerrao}
 \begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
 $X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 \begin{align*}
@@ -713,8 +713,7 @@ Metodo momenti: $a(X_i,\theta)\to a(X_i)-\E{[a(X)]}$.
 &a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &\xi(\theta)=K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
 &\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}
 \end{align*}
-Condizione necessaria per massimo di $L(\vec{X},\theta)$ se non si ha sul bordo di $\Theta$: una radice \'e stimatore consistente se $f$ \'e dopiamente differenziabile risp $\theta$, le medie delle due prime derivate esistono e l'integrazione risp $\vec{X}$ e la derivata risp $\theta$ commutano. The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}\to G(0,NI_{X_1}(\theta))$: massimo assoluto (asintotico) \'e consistente.
-
+Condizione necessaria per massimo di $L(\vec{X},\theta)$ se non si ha sul bordo di $\Theta$: una radice \'e stimatore consistente se $f$ \'e  2-differenziabile risp $\theta$, le medie delle due prime derivate esistono e l'integrazione risp $\vec{X}$ e la derivata risp $\theta$ commutano. The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}\to G(0,NI_{X_1}(\theta))$: massimo assoluto (asintotico) \'e consistente.
 \end{frame}
 
 \begin{wordonframe}{Radice equazione di likelihood \'e stimatore consistente}
@@ -760,33 +759,47 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \cite{barlow1990extended}
 \end{frame}
 
-\begin{frame}{MLE in pratica: binned data and extended likelihood}\frameintoc
-\begin{block}{binning}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-N fissato
+\begin{frame}{Likelihood for binned data}
+%N fissato
+%\begin{align*}
+%&\prob{(\vec{k},\theta)}=\frac{N!}{\prod_ik_i!}\prod_i{\underbrace{\prob{(i)}}_{\int_{S_i}\prob{(x|\theta)}\,dx}}\mkern-20mu^{k_i}\\
+%&\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
+%&\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
+%\end{align*}
+\begin{block}{Multinomial model of data}
 \begin{align*}
-&\prob{(\vec{k},\theta)}=\frac{N!}{\prod_ik_i!}\prod_i{\underbrace{\prob{(i)}}_{\int_{S_i}\prob{(x|\theta)}\,dx}}\mkern-20mu^{k_i}\\
-&\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
-&\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
+&\vec{n}=(n_1,\ldots,n_N),\ n_T=\sum^Nn_i\\
+&\vec{\nu}=(\nu_1,\ldots,\nu_N),\ \nu_T=\sum^N\nu_i\\
+&\nu_i(\theta)=\nu_T\int_{bin i}f(x;\theta)\,dx\\
+&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
+&L(\theta)=\sum^Nn_i\ln{\nu_i(\theta)}
 \end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-N variabile: \keyword{Extended likelihood}, normalizzazione varia
-\begin{align*}
-&\mu_i=\mu_TP_i(\theta)\\
-&\prob{(k_i\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
-&\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\
-&-\mu_TP_i-\bcancel{\log{k!}}\\
-&\left\{\begin{matrix}\mkern-240mu\PDy{\theta_i}{\log{L}}=0\\\PDy{\mu_T}{\log{L}}=0\ (:L(\bcancel{\mu_T}),\mu_T(\bcancel{\theta_i}) \Rightarrow\ \mu_T=N)\\\end{matrix}\right.
-\end{align*}
-\end{column}
-\end{columns}
+\end{block}
+\begin{block}{Poissonian model of data}
+Extended Likelihood
 \end{block}
 
-\begin{block}{Fit resolution of histogram (??)}
-$A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
-\end{block}\end{frame}
+Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
+\end{frame}
+
+\begin{frame}{\keyword{Extended likelihood}}
+La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson
+%\begin{align*}
+%&\mu_i=\mu_TP_i(\theta)\\	&\prob{(k_i;\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
+%&\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\	&-\mu_TP_i-\bcancel{\log{k!}}\\
+%&\left\{\begin{matrix}\mkern-240mu\PDy{\theta_i}{\log{L}}=0\\\PDy{\mu_T}{\log{L}}=0\ (:L(\bcancel{\mu_T}),\mu_T(\bcancel{\theta_i}) \Rightarrow\ \mu_T=N)\\\end{matrix}\right.
+%\end{align*}
+$\Delta x$ such that 0/1 event per bin: Poisson statistics say that $P_0(x)=\exp{-\Delta xP(x)}$, $P_1(x)=\Delta xP(x)\exp{-\Delta xP(x)}$; inlimit $\Delta x\to dx$
+\begin{align*}
+&L=\prod_{bin i: 1}\Delta xP(x_i)\prod_j\exp{-\Delta xP(x_j)}\to\prod_iP(x_i)d^Nx\exp{-\mathcal{N}}\\
+&\ln{L}=\sum\ln{P(x_i)}-\mathcal{N}(\theta)
+\end{align*}
+oppure
+\begin{align*}
+&L=\prod_i(x_i)\exp{-\mathcal{N}}\frac{\mathcal{N}^N}{N!}\\
+&L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))
+\end{align*}
+\end{frame}
 
 \begin{wordonframe}{Esempi di stimatori di massima likelihood}
 \keyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}

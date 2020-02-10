@@ -522,8 +522,9 @@ $H_0$ \'e identificato da $f(X)$: la pdf di  $W^2=\int[S_N(X)-F(X)]^2f(X)\,dX$ \
 
 \end{frame}
 
-\begin{frame}{Test di Kolmogorov-Smirnov ??}
-Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$
+\begin{frame}{Test di Kolmogorov-Smirnov}
+$H_0: F=F_0$, $H_1: F\neq F_0$. Stima campionaria della cumulante da campione iid $\iidrv{}$: \[S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\]
+tende in probabilit\'a a F: la distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$
 \[D_N=\max_{i}(F(Y_i)-\frac{i-1}{N},\frac{i}{N}-F(Y_i))\]
 \begin{block}{Limiting behaviour of KS test}
 \begin{itemize}
