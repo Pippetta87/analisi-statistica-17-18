@@ -461,6 +461,11 @@ $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \begin{itemize}
 \item \keyword{Pearson-$\chi^2$ test}.
 \item \keyword{GOF con LR}
+\begin{align*}
+&\ln{L(\mu)}-\ln{L(\hat{\mu})}=-\frac{1}{2}\invers{F}_{\chi_n^2}(1-\alpha)\\
+&p_{\mu}=\int_{t_{\mu,obs}}^{\infty}f_{\chi^2_N}(t_{\mu}|\mu)\,t_{\mu}
+\end{align*}
+\todo{think about p-value formula for GOF-LR}
 \end{itemize}
 \end{block}
 \end{column}
