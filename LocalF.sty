@@ -46,7 +46,7 @@
 }{\vspace{5mm}\noindent\rule{0.5\textwidth}{0.4pt}\\\endgroup}
 
 \ifx\status\keeptrying
-\newenvironment{wordonframe}[1]{\begin{frame}[allowframebreaks]{#1}}{\end{frame}}
+\newenvironment{wordonframe}[1]{\begin{frame}{MEMO: #1}}{\end{frame}}
 \else
 \newenvironment{wordonframe}[1]{\comment}{\endcomment}
 \fi

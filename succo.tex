@@ -27,16 +27,25 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$
 \section{Cambio di variabile: come cambia pdf?}
 
 \begin{frame}{Trasformazione pdf per cambio variabile}
-\begin{figure}\
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{figure}
 	\centering
-	\includegraphics[width=0.65\textwidth,keepaspectratio]{RVfunc}
+	\includegraphics[width=0.99\textwidth,keepaspectratio]{RVfunc}
 	\label{fig:RVfunc}
 \end{figure}
-%Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
+\end{column}
+\begin{column}{0.5\textwidth}
 \begin{align*}
 %&g(a)=f(x(a))|\TDy{a}{x}|\tag*{g(a)\,da=f(x)\,dx}\\
-&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\\
-&\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|\\
+&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|\\
+&=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\\
+&\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|
+\end{align*}
+\end{column}
+\end{columns}
+%Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
+\begin{align*}
 &g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
 &\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
 \end{align*}
@@ -52,6 +61,12 @@ Applicando regole cambio variabile per $Z=X+Y$ e $Y'=Y$ e marginalizzando su $Y'
 &M_X(t)=M_{X_1}M_{X_2}
 \end{align*}
 La funzione caratteristica determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
+\end{block}
+\begin{block}{Generate RV with given pdf: Inverse transform}
+\begin{align*}
+&x=\invers{F}(U)\\
+&F_X(a)=\prob{(X<a)}=\prob{(\invers{F}(U\leq a))}=\prob{(U\leq F(a))}=F(a)
+\end{align*}
 \end{block}
 \end{frame}
 
@@ -93,7 +108,7 @@ $F(X,Y)$ continua,e derivataprima e seconda continua in intorno di $(M_x,M_y)$: 
 		&\phi(0)=1,\ |\phi(t)|\leq1\\
 		&Y=\alpha X+b:\ M_Y=\exp{ibt}M_X(\alpha t)\\
 		&\mu_n(x_0)=\E{[\sum_k^n]}\binom{n}{k}(-1)^{n-k}\mu'_kx_0^{n-k}\\
-		&E[a(X)]=\intsinf{}a(x)f(x)dx=\intsinf{}ag(a)da
+		%&E[a(X)]=\intsinf{}a(x)f(x)dx=\intsinf{}ag(a)da
 		\end{align*}
 %	Non \'e detto che $f(\mu)=\E{[f]}$.
 	\end{column}
@@ -107,16 +122,11 @@ $F(X,Y)$ continua,e derivataprima e seconda continua in intorno di $(M_x,M_y)$: 
 		\end{align*}
 	\end{column}
 \end{columns}
-Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$
+$\phi_X(t)$ determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$
 \begin{block}{Levy theorem: if sequenza $\phi_n\to\phi$ allora $X_n\xrightarrow{D}X$}
 Per ogni RV con $\mu$ finita $\phi_X(t)\approx1+i\mu t+o(t)$,$\phi_{\frac{1}{n}X}(t)=\phi_X(\frac{t}{n})$, $\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)$:
 $\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$
 \end{block}
-\end{frame}
-
-
-\begin{frame}{Funzioni caratteristiche}
-COwan 157
 \end{frame}
 
 \section{Legge grandi Numeri - T limite centrale}
@@ -139,8 +149,7 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 		\begin{align*}
-		&\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}\\
-		&=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
+		&\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
 		&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
 		%&\phi(t)=\phi_{X-\mu}
 		\end{align*}
@@ -161,8 +170,17 @@ Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$
 \end{align*}
 \end{frame}
 
-\begin{frame}{Bernulli, binomiale, Poisson, esponenziale, uniforme (massimo, minimo e mediana), gaussiana}
-\todo{Bernulli, binomiale, Poisson, esponenziale, uniforme (massimo, minimo e mediana), gaussiana}
+\begin{frame}[allowframebreaks]{PDFs}
+Bernoulli: $\prob{(X=0)}=p$, $\prob{(X=1)}=q$, $\E{(X)}=p$, $\var{X}=p(1-p)$, $\phi_X(t)=\E[\exp{itX}]=p\exp{it}+q$.
+
+Binomiale: k eventi con probabilit\'a p in sequenza di n estrazioni. Somma n variabili Bernoulli: $\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}$, $\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np$, $\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}$, $\phi_X(t)=\E{[\exp{itX}]}=\sum_k\exp{itk}\binom{n}{k}p^k(1-p)^{n-k}=\phi_B^n(t)$; multinomiale: n trials with one success between k categories $f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}$: $\sum x_i=n$, $\E{[X_i]}=Np_i\ \var{[X_i]}=Np_i(1-p_i)$, CF: $(\sum_j^kp_j\exp{it_j})^n$.
+
+Poissoniane! $\prob{(k;\mu)}=\frac{\mu^k}{k!}\exp{-\mu}$, $\E{[k]}=\sum_{k=0}^{\infty}k\frac{\mu^k}{k!}\exp{-\mu}$, $\E{[k^2]}=\sum_{k=0}^{\infty}k^2\frac{\mu^k}{k!}\exp{-\mu}=\mu^2+\mu$, $\var[k]=\E{[k^2]}-(\E{[k]})^2=\mu$, $M_P(t)=\sum_k\exp{tk}\frac{\mu^k}{k!}\exp{-\mu}=\Exp{\mu(\exp{t}-1)}$.
+
+Esponenziale: $p(t;\lambda)=\lambda\exp{-\lambda t}$, $p(t;\xi)=\frac{1}{\xi}\exp{-\frac{t}{\xi}}$, $\phi_e(t)=\frac{1}{1-it\xi}$, $M_e(t)=\lambda\intzi{}\exp{-(\lambda-t)x}\,dx=\frac{\lambda}{\lambda-t}$.
+
+Uniforme: $f(x;\alpha,\beta)=\left\{\begin{array}{c}\frac{1}{\beta-\alpha}\\0\\
+			\end{array}\right.$, $\var{[x]}=\frac{1}{12}m^2$, $\phi_U=\frac{\exp{i\beta t}-\exp{i\alpha t}}{(\beta-\alpha)it}$
 \end{frame}
 
 \begin{frame}{Propriet\'a $\chi^2$}
@@ -280,8 +298,8 @@ Statistica sufficiente minimale
 \end{block}
 \end{frame}
 
-\begin{wordonframe}{Dimostrazioni S sufficiente}
-\begin{block}{n RV iid con pdf bernoulli p}
+\begin{frame}[allowframebreaks,fragile]{Dimostrazioni S sufficiente}
+n RV iid con pdf bernoulli p:
 	$X_1,\ldots,X_n$: iid con pdf di Bernoulli, supporto pdf $\chi=\{0,1\}$, parametro p nell'intervallo $(0,1)$:
 	\begin{align*}
 	&T=\sum X_i\to\{0,\ldots,n\}&\intu{con pdf binomiale}
@@ -293,135 +311,60 @@ Statistica sufficiente minimale
 	\begin{align*}
 	&\frac{\prod\prob{(X_i=x_i)}}{\prob{(T=t)}}=\frac{p^{\sum x_i}(1-p)^{n-\sum x_i}}{\binom{n}{t}p^t(1-p)^{n-t}}
 	\end{align*}
-\end{block}
-\begin{block}{n RV iid Poisson$(\lambda)$}
+
+n RV iid Poisson$(\lambda)$:
 	$X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 	\begin{align*}
 	&\prob{(X_1=x_1\cap\ldots X_n=x_n|T=t)}=\prob{(\cap_iX_i=x_i|T=t)}\\
 	&\frac{\prob{((\cap_iX_i=x_i)\cap(T=t))}}{\prob{(T=t)}}=\frac{\prob{(\cap_iX_i=x_i)}}{\prob{(T=t)}},\ t=\sum x_i\\
 	&=\frac{\prod_i[\frac{\exp{-\lambda}\lambda^{x_i}}{x_i!}]}{\frac{\exp{-\lambda}(n\lambda)^t}{t!}}=\frac{t!}{\prod x_i!}n^{-t}
 	\end{align*}
-\end{block}
-\begin{block}{Gaussiana: media ignota, varianza nota}
-	\begin{align*}
-	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
-	\end{align*}
-	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (Ex: pdf della media aritmetica)
-\end{block}
-\begin{block}{Gaussiana: media nota, varianza ignota}
-	$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (Ex: statistica sufficiente $\sigma$ gaussiana)
-\end{block}
-\begin{block}{Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale}
-	\begin{align*}
-	&\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\\
-	&\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
-	&\prob{(x)}=\lambda\exp{-\lambda x}
-	\end{align*}
-\end{block}
-\begin{block}{Distribuzione uniforme: $x_{max}$ statistica sufficiente.}
-	\begin{columns}[T]
-		\begin{column}{0.5\textwidth}
-			\pgfmathsetmacro{\unifM}{3}
-			\begin{tikzpicture}[scale=0.5,domain=0:1.5*\unifM]
-			\pgfmathsetmacro{\unifN}{(\unifM)^-1}
-			\begin{axis}[ylabel={$p(x;m)$},extra x ticks={\unifM}, extra x tick labels={$m$},
-			extra x tick style={xticklabel style={yshift=-10}}]
-			%\draw[->] (-0.2,0) -- (1.5*\unifM,0) node[right] {$x$};
-			%\draw[->] (0,-0.2) -- (0,1.5*\unifM) node[above,red] {$p(x;m)$};
-			%\draw[color=red] plot[domain=0:\unifM, id=unif] function{\unifN} node[right] {$\frac{1}{m}$};
-			\addplot[color=red] function [raw gnuplot, id=unifpdf, mark=none]{set xrange [0:\unifM]; plot \unifN};
-			\end{axis}
-			\end{tikzpicture}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			\begin{align*}
-			&\prob{(x;m)}=\left\{\begin{matrix}\frac{1}{m}\ x\in[0,m]\\0\\\end{matrix}\right.&\intertext{estraggo N $x_1,\ldots,x_n$}\\
-			&L(\vec{x},m)=\prod_iL(x_i;m)=\left\{\begin{matrix}\frac{1}{m^N}\ m>x_{max}\\0\ m<x_{max}\\\end{matrix}\right.
-			\end{align*}
-		\end{column}
-	\end{columns}
-	%$g(T,\theta)\propto A(T;\theta)$ dove $A$ \'e pdf di statistica $T$?
-	\begin{align*}
-	&\prob{(x_{max}<x_0)}=F_M(x_0)=\prod_i\prob{(x_i<x_0)}=\prod_i\int_0^{x_0}\frac{1}{m}\,dx=(\frac{x_0}{m})^N\\
-	&\prob{(x_M;m)}=\TDof{x_0}\left.F_M(x_0)\right|_{x_M}=\frac{N}{m}(\frac{x_M}{m})^{N-1}I(x_M<m)\\
-	&L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
-	\end{align*}
-	$\prob{(x;S,\theta)}=\prob{x;S}$!
-\end{block}
-\end{wordonframe}
 
-\section{Informazione}
+%Gaussiana: media ignota, varianza nota:
+%	\begin{align*}
+%	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
+%	\end{align*}
+%	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (Ex: pdf della media aritmetica)
+%Gaussiana: media nota, varianza ignota:
+%	$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (Ex: statistica sufficiente $\sigma$ gaussiana)
+%Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale:
+%	\begin{align*}
+%	&\prob{(k)}=\binom{n}{k}p^k(1-p)^{n-k}\\
+%	&\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
+%	&\prob{(x)}=\lambda\exp{-\lambda x}
+%	\end{align*}
 
-\begin{frame}{Informazione di Fischer}
-Informazione contenuta nei dati su un parametro $\Theta$
+Distribuzione uniforme: $x_{max}$ statistica sufficiente:
 \begin{align*}
-&\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
+&\prob{(x;m)}=\left\{\begin{matrix}\frac{1}{m}\ x\in[0,m]\\0\\\end{matrix}\right.&\intertext{estraggo N $x_1,\ldots,x_n$}\\
+&L(\vec{x},m)=\prod_iL(x_i;m)=\left\{\begin{matrix}\frac{1}{m^N}\ m>x_{max}\\0\ m<x_{max}\\\end{matrix}\right.
 \end{align*}
-Per due parametri:
+%$g(T,\theta)\propto A(T;\theta)$ dove $A$ \'e pdf di statistica $T$?
 \begin{align*}
-&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
+&\prob{(x_{max}<x_0)}=F_M(x_0)=\prod_i\prob{(x_i<x_0)}=\prod_i\int_0^{x_0}\frac{1}{m}\,dx=(\frac{x_0}{m})^N\\
+&\prob{(x_M;m)}=\TDof{x_0}\left.F_M(x_0)\right|_{x_M}=\frac{N}{m}(\frac{x_M}{m})^{N-1}I(x_M<m)\\
+&L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
 \end{align*}
-\begin{block}{Score statistics}
-	\begin{columns}[T]\begin{column}{0.5\textwidth}
-			
-		\end{column}\begin{column}{0.5\textwidth}
-		$I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
-	\end{column}\end{columns}
-\end{block}
+$\prob{(x;S,\theta)}=\prob{x;S}$!
+Media aritmetica \'e statistica sufficiente per parametro binomiale, poissoniana, esponenziale: $\log{\binom{n}{k}}+k\log{\frac{p}{1-p}}+n\log{(1-p)}$: $S=\sum_ik_i$, $k\log{\mu}-\mu-\log{k!}$: $S=\sum_ik_i$, $-\lambda x-\mu+\log{\lambda}$: $S=\sum_ix_i$.
+Gaussiana media ignota:
+	\begin{align*}
+	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}\\
+	&\alpha(x)=x\ \Rightarrow\ T=\frac{1}{N}\sum x_i=\exv{X}
+	\end{align*}
+Gaussiana varianza ignota:
+	\begin{align*}
+	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}\\
+	&\alpha(x)=x\mu-\frac{x^2}{2}:\ T=\sum(x_i\mu-\frac{x_i^2}{2})\\
+	&\hat{\sigma}^2=\frac{\sum(x_i-\mu)^2}{N}=\frac{N\mu^2-2T}{N}
+	\end{align*}
+Spazio dei parametri della Gaussiana:
+	\begin{align*}
+	&\log{\prob{(\vec{x};\mu,\sigma^2)}}=-\log{(\sqrt{2\pi}\sigma)}-\frac{x^2}{2\sigma^2}+\frac{x\mu}{2\sigma^2}+\frac{\mu^2}{2\sigma^2}\\
+	&\alpha_1(x)=x,\ a_1(\mu)=\mu,\ \alpha_2(x)=-\frac{x^2}{2},\ a_2(\sigma^2)=\frac{1}{\sigma^2},\ S_{\mu}=\sum x_i\\
+	&S_{\sigma^2}=-\sum\frac{x_i^2}{2}
+	\end{align*}
 \end{frame}
-
-\begin{wordonframe}{Esempi Informazione}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-	\begin{block}{pdf Poisson}
-		\begin{align*}
-		&\log{f}=-\lambda+x\log{\lambda}-\log{x!}\\
-		&I_X(\lambda)=\invers{\lambda}
-		\end{align*}
-	\end{block}
-\end{column}
-\begin{column}{0.5\textwidth}
-	\begin{block}{pdf Gauss}
-		\begin{align*}
-		&\log{f}=-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}-\log{(\sqrt{2\pi}\sigma)}\\
-		&I_X(\mu)=\sigma\expy{-2}
-		\end{align*}
-	\end{block}
-\end{column}
-\end{columns}
-\begin{block}{n RV iid}
-\begin{columns}[T]
-	\begin{column}{0.5\textwidth}
-		$X_1,\ldots,X_n$ n RV iid:
-		\begin{align*}
-		&X=\sum X_i\\
-		&I_X(\Theta)=nI_{X_1}(\Theta)
-		\end{align*}
-	\end{column}
-	\begin{column}{0.5\textwidth}
-		proof pg 327 probability and statistical inference
-	\end{column}
-\end{columns}
-\end{block}
-\begin{block}{n RV gaussiane $N(\mu,\sigma^2)$: matrice informazione}
-$\vec{X}=(X_1,\ldots,X_n)$ e $\vec{\Theta}=(\mu,\sigma^2)$
-\begin{align*}
-&I_{11}=\E{[(\PDof{\mu}\log{f})^2]}=\sigma\expy{-2}\ I_{22}=\E{[(\PDof{\sigma^2}\log{f})^2]}=\frac{1}{2}\sigma\expy{-4}\\
-&I_{12}=I_{21}=\frac{1}{2\sigma^2}\E{[\sigma\expy{-3}(X_1-\mu)^3-(X_1-\mu)]}=0
-\end{align*}
-\end{block}
-\begin{block}{Statistica $x_m$ non \'e consistente}
-\begin{align*}
-&\E{[x_m]}=\int\,dx_mx_mf(x_m;m)=\int\,dx_mx_m\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}=\frac{m}{N+1}\\
-&\E{[x_m^2]}=\int\,dx_mx_m^2f(x_m;m)=\int\,dx_mx_m^2\frac{N}{m}[1-\frac{x_m}{m}]^{N-1}\\
-&=\frac{2m^2}{(N+1)(N+2)}\\
-&\var{[x_m]}=\E{[x_m^2]}-\E^2{[x_m]}=\frac{N}{(N+1)^2(N+2)}m^2\to0\\
-&\hat{m}=(N+1)x_m:\ \E{[\hat{m}]}=m,\ \var{[\hat{m}]}=\frac{N^2}{(N+1)(N+2)}m^2\\
-&I_{x_m}(m)=\frac{N}{(N-2)m^2},\ (CR:\ \frac{N}{N+2}\geq\frac{N-2}{N})
-\end{align*}
-$\hat{m}$ non \'e consistente: non converge in probabilit\'a al parametro.
-\end{block}
-\end{wordonframe}
 
 \section{Stima puntuale}
 
@@ -458,6 +401,36 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 \end{columns}
 \end{frame}
 
+\begin{frame}{Informazione di Fischer}
+	Informazione contenuta nei dati su un parametro $\Theta$: la condizione di massimo su log L da lo stimatore, la curvatura determina la massima precisione dello stimatore
+	\begin{align*}
+	&\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
+	\end{align*}
+	Per due parametri:
+	\begin{align*}
+	&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
+	\end{align*}
+	\begin{block}{Score statistics}
+		\begin{columns}[T]\begin{column}{0.5\textwidth}
+				
+			\end{column}\begin{column}{0.5\textwidth}
+				$I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
+		\end{column}\end{columns}
+	\end{block}
+\end{frame}
+
+\begin{wordonframe}{Esempi Informazione}
+	Poisson: $I_X(\lambda)=\invers{\lambda}$;
+	Gaussian: $I_X(\mu)=\sigma\expy{-2}$;
+	N RV iid: $I_X(\Theta)=nI_{X_1}(\Theta)$;
+	N RV gaussiane $N(\mu,\sigma^2)$: matrice informazione
+	$\vec{X}=(X_1,\ldots,X_n)$ e $\vec{\Theta}=(\mu,\sigma^2)$
+	\begin{align*}
+	&I_{11}=\E{[(\PDof{\mu}\log{f})^2]}=\sigma\expy{-2}\ I_{22}=\E{[(\PDof{\sigma^2}\log{f})^2]}=\frac{1}{2}\sigma\expy{-4}\\
+	&I_{12}=I_{21}=\frac{1}{2\sigma^2}\E{[\sigma\expy{-3}(X_1-\mu)^3-(X_1-\mu)]}=0
+	\end{align*}
+\end{wordonframe}
+
 \begin{frame}{Best unbiased estimator: Disuguaglianza di Cramer-Rao (CRLB)}
 $X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 \begin{align*}
@@ -471,21 +444,27 @@ minimum variance bound
 
 \begin{frame}{Logica stimatori consistenti - Stimatori impliciti}
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
-\[\xi=\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
-dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
+\begin{align*}
+&\xi(\theta)=\invers{N}\sum_ia(X_i,\theta)\xrightarrow{N\to\infty}\E{[a(X,\underbrace{\theta}_{impl})]}=\int a(X,\theta)f(X;\theta)\,dX=h(\theta)
+\end{align*}
+$a(X)$ ha varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
 \begin{align*}
 &\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{[a(X,\theta_0)]}=0
 \end{align*}
-One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$
-Moment method:
+One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
+In practice one find $a(X_i,\theta)$ extremizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$: $\hat{\theta}=\invers{N}\sum_i^Ng(X_i,\theta)$ is C-estimator of $\theta_0$ and is a root of $\xi(\theta)=0$ and we construct $a(X,\theta)$
 \begin{align*}
-&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}\\
-&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
+&a(X_i,\theta_0)=\PDy{[g(X_i,\theta)-\E{[g(X_i,\theta)]}]}|_{\theta_0}\\
+&\E{(a(X_i,\theta_0))}=0
 \end{align*}
-in practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ - maximum likelihood and minimum $\chi^2$
 \end{frame}
 
 \begin{frame}{Momenti}
+Moment method:
+\begin{align*}
+&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}
+&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
+\end{align*}
 Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
 \[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
 convergono in probabilit\'a ai momenti della distribuzione.
