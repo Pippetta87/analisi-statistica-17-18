@@ -443,35 +443,45 @@ minimum variance bound
 \section{Costruzione stimatori consistenti}
 
 \begin{frame}{Logica stimatori consistenti - Stimatori impliciti}
-Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
 \begin{align*}
-&\xi(\theta)=\invers{N}\sum_ia(X_i,\theta)\xrightarrow{N\to\infty}\E{[a(X,\underbrace{\theta}_{impl})]}=\int a(X,\theta)f(X;\theta)\,dX=h(\theta)
+&\xi(\theta)=\invers{N}\sum_ia(X_i,\theta)\xrightarrow{N\to\infty}\E{[a(X,\theta)]}=\int a(X,\theta)f(X;\theta)\,dX=h(\theta)
 \end{align*}
-$a(X)$ ha varianza finita: per LLN sample mean is C-estimator of $a(X)$. We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$, $\xi(\hat{\theta})=0$, stimatore implicito:
-\begin{align*}
-&\xi(\theta)=\frac{1}{N}\sum_ia(X_i,\theta),\ \xi(\theta_0)\xrightarrow{N\to\infty}\E{[a(X,\theta_0)]}=0
-\end{align*}
+\hl{$a$ ha varianza finita}, \hl{$h(\theta_0)=0$}: per LLN uno zero di $\xi(\theta)$ converge a $\theta_0$, $\xi(\hat{\theta})=0$ \keyword{stimatore implicito}.
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
 One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
-In practice one find $a(X_i,\theta)$ extremizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$: $\hat{\theta}=\invers{N}\sum_i^Ng(X_i,\theta)$ is C-estimator of $\theta_0$ and is a root of $\xi(\theta)=0$ and we construct $a(X,\theta)$
+\end{column}
+\begin{column}{0.4\textwidth}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.99\textwidth,keepaspectratio]{estimpl}
+	\label{fig:RVfunc}
+\end{figure}
+\end{column}
+\end{columns}
+
+In practice one find $a(X,\theta)$ extremizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$: a root of $\xi{\theta}=\invers{N}\sum_i^Ng(X_i,\theta)=0$ is C-estimator of $\theta_0$: hp are meet if
 \begin{align*}
-&a(X_i,\theta_0)=\PDy{[g(X_i,\theta)-\E{[g(X_i,\theta)]}]}|_{\theta_0}\\
-&\E{(a(X_i,\theta_0))}=0
+&a(X_i,\theta_0)=\PDy{\theta}{[g(X_i,\theta)-\E{[g(X_i,\theta)]}]}|_{\theta_0},\ \E{(a(X_i,\theta_0))}=0
 \end{align*}
+and $\E{\PDy{\theta}{g(X_i,\theta)}}$ don't depends on $\theta_0$.
 \end{frame}
 
 \begin{frame}{Momenti}
-Moment method:
+Moment method as implicit:
 \begin{align*}
-&a(X_i,\theta)\to a(X_i,\theta)-\E{[a(X)]}
-&g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
+&a(X_i,\theta)\to a(X_i)-\E{[a(X)]}, g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
 \end{align*}
 Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
-\[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=e_i(\theta)\to\E{[m_k]}=\frac{\sum_i\E{[x_i^k]}}{N}=\mu'_k\]
-convergono in probabilit\'a ai momenti della distribuzione.
+\begin{align*}
+&\E{[a_k(X)]}=\int a_k(x)f(x;\theta)\,dx=e_k(\theta):\ \E{[X^k]}=\frac{\sum_i\E{[x_i^k]}}{N}\xrightarrow{P}\mu'_k\\
+&\hat{\theta}=\invers{e}[\invers{N}\sum_i^Na(X_i)]
+\end{align*}
+
 \begin{columns}[T]
 \begin{column}{0.65\textwidth}
 	\begin{align*}
-	&\cov{(m_i,m_j)}=\E{[m_im_j]-\E{[m_i]}\E{[m_j]}}\\
+	&\cov{(x_i,x_j)}=\E{[x_ix_j]-\E{[x_i]}\E{[x_j]}}\\
 	&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}\\
 	&\cov{[\hat{\theta}_i,\hat{\theta}_j]}=\sum_{k,l}\PDy{\hat{e}_k}{\hat{\theta}_i}\PDy{\hat{e}_l}{\hat{\theta}_j}\cov{[\hat{e}_k,\hat{e}_l]}
 	\end{align*}
