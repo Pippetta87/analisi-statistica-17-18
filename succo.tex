@@ -446,7 +446,7 @@ minimum variance bound
 \begin{align*}
 &\xi(\theta)=\invers{N}\sum_ia(X_i,\theta)\xrightarrow{N\to\infty}\E{[a(X,\theta)]}=\int a(X,\theta)f(X;\theta)\,dX=h(\theta)
 \end{align*}
-\hl{$a$ ha varianza finita}, \hl{$h(\theta_0)=0$}: per LLN uno zero di $\xi(\theta)$ converge a $\theta_0$, $\xi(\hat{\theta})=0$ \keyword{stimatore implicito}.
+\hypo{$a$ ha varianza finita}, \hypo{$h(\theta_0)=0$}: per LLN uno zero di $\xi(\theta)$ converge a $\theta_0$, $\xi(\hat{\theta})=0$ \keyword{stimatore implicito}.
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
 One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
