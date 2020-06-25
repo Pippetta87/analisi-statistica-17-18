@@ -467,8 +467,7 @@ In practice one find $a(X,\theta)$ extremizing other function g: $a(X_i,\theta)=
 and $\E{\PDy{\theta}{g(X_i,\theta)}}$ don't depends on $\theta_0$.
 \end{frame}
 
-\begin{frame}{Momenti}
-Moment method as implicit:
+\begin{frame}{Moment method as implicit estimator}
 \begin{align*}
 &a(X_i,\theta)\to a(X_i)-\E{[a(X)]}, g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
 \end{align*}
@@ -515,15 +514,15 @@ Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\th
 \end{column}\end{columns}
 \end{wordonframe}
 
-\begin{frame}{Stimatori di massima likelihood: derivazione tramite stimatori impliciti}
+\begin{frame}{Stimatori di massima likelihood (as stimatori impliciti)}
 \begin{align*}
-&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ &K_N=\xi=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\\
-&\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
-&K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0: \E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
-&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}\\
+&a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ %&K_N=\xi=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\tag{}\\
+&K_N=\xi=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
+%&K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0:\\
+&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
 \end{align*}
-The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano con media 0 e varianza $NI(\theta)$
+so the root $\hat{\theta}$ correspond to maximum of L. The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano con media 0 e varianza $NI(\theta)$
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Propriet\'a MLE}
@@ -531,6 +530,7 @@ The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}$ \'e asintoticamente gaussiano
 $\PDy{\theta}{\log{L_{tot}}}=0$.
 \end{block}
 \begin{block}{Invariante per trasformazione di parametro}
+$\tau(\lambda)=\frac{1}{\lambda}$: $\hat{\tau}=\frac{1}{\hat{\lambda}}$
 \end{block}
 \begin{block}{Asintoticamente un-biased}
 \end{block}
@@ -543,7 +543,7 @@ $\PDy{\theta}{\log{L_{tot}}}=0$.
 \end{block}
 \begin{block}{Pdf dello stimatore tende asintoticamente ad gaussiana}
 \end{block}
-\begin{block}{MLE per pdf esponenziale}
+\begin{block}{\keyword{MLE per pdf esponenziale}}
 Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] il metodo di massima likelihood determina lo stimatore efficiente e senza bias $\hat{M}=\frac{1}{N}\sum_i\alpha(x_i)$ di $M(\theta)=-\frac{\TDy{\theta}{c(\theta)}}{\TDy{\theta}{a(\theta)}}$.
 \end{block}
 \end{frame}
@@ -576,7 +576,7 @@ N variabile: Extended likelihood, normalizzazione varia
 $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 \end{block}\end{wordonframe}
 
-\begin{wordonframe}{Esempi di stimatori di massima likelihood}
+\begin{frame}[allowframebreaks]{Esempi di stimatori di massima likelihood}
 Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$
 \begin{align*}
 &\log{(L(\vec{k},p))}=\log{[\prod_i^N\binom{n}{k_i}p^{k_i}(1-p)^{n-k_i}]}\\
@@ -586,7 +586,8 @@ Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$
 &\var{[\hat{p}]}=\var{[\frac{1}{nN}\sum k_i]}=\frac{1}{n^2N^2}Nnp(1-p)\\
 &I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
 \end{align*}
-Gaussiana
+
+Gaussiana:
 Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -650,8 +651,10 @@ $\log{L}=N\log{\lambda}-\lambda\sum_ix_i$, $\TDy{\lambda}{\log{\lambda}}=0$. $\h
 \end{align*}
 \end{column}
 \end{columns}
-Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''
-Ex: Cambiamento di variabile pdf Erlang
+
+Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''.
+
+Ex: Cambiamento di variabile pdf Erlang.
 \begin{align*}
 &z\to\frac{z}{N}=\exv{x}=\hat{\tau}\\
 &\exv{x}\to\frac{1}{\exv{x}}=\hat{\lambda}
@@ -669,7 +672,7 @@ MLE per poissoniana
 &P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}\\
 &
 \end{align*}
-\end{wordonframe}
+\end{frame}
 
 \begin{frame}{Massima likelihood e metodo minimi quadrati}
 %Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood

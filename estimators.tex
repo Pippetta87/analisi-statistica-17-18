@@ -912,16 +912,35 @@ lo stimatore non \'e consistente.
 %\end{wordonframe}
 
 \begin{frame}{Consistent estimator: Least square Method}\linkdest{MLS}\frameintoc
-$Y=\iidrv[Y]$ osservazioni da pdf con $\E{[Y]}=\vec{M}(\vec{\theta})=m_i(\theta)$. LS method minimizes
-\[g(Y,\Theta)=[Y-M(\theta)]^TW[Y-M(\theta)]\]
+$Y=\iidrv[Y]$ osservazioni da pdf con $\E{[\vec{Y}]}=\vec{M}(\vec{\theta})=m_i(\vec{\theta})$, $\theta_1,\ldots,\theta_r$. LS method minimizes $g(Y,\Theta)=[Y-M(\theta)]^TW[Y-M(\theta)]$.
 W is a matrix of weight PD and indipendent of params.
 The LS estimate $\hat{\theta}$ is a root of:
 \[\xi(\theta)=\PDy{\theta}{g}=-2\PDy{\theta}{M(\theta)^T}W[Y-M(\theta)]=0\]
 If cov of $Y_i$ is finite one root is C-estimator.
 \begin{align*}
-&\chi^2(\theta)=-2\ln{L(\theta)}+\const=\sum_i^N\frac{(y_i-\mu(x_i;\theta))^2}{\sigma_i^2}\tag{iid, $\sigma_i$ nota}\\
+&\chi^2(\theta)(=-2\ln{L(\theta)}+\const)=\sum_i^N\frac{(y_i-\mu(x_i;\theta))^2}{\sigma_i^2}\tag{iid G, $\sigma_i$ nota}\\
 &\chi^2(\theta)=(Y-\mu(\theta))^T\invers{V}(Y-\mu(\theta))\tag{not indep. $V_{ij}=\cov{[y_i,y_j]}$}
 \end{align*}
+\keyword{Linear LS}: $\vec{M}(\theta)=\E{[\vec{Y}]}=A\cdot\vec{\theta}$ linear function of $\theta$. Unique root of $\xi(\theta)=-2A^TW(\vec{Y}-A\vec{\theta})=0$ is $\hat{\theta}=\invers{(A^TWA)}A^TW\vec{Y}$ - if $A^TWA$ not singular is consistent.
+\end{frame}
+
+\begin{frame}{LS estimators as implicit estimator}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&X_i(\theta)=-\PDy{\theta_k}{m_i(\theta)}W_{ii}[Y_i-m_i(\theta)]\\
+&\xi_k(\theta)=-\sum_i^N\PDy{\theta_k}{m_i(\theta)}W_{ii}[Y_i-m_i(\theta)]\\
+&\E{[X_i(\theta_0)]}=0
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+One of the root of $\xi(\theta)=0$ converge to $\theta_0$ in case $\PDy{\theta}{\xi}\neq0$:
+\begin{align*}
+\PDy{\theta}{\xi}=-\PtwoDy{\theta}{M}W[\vec{Y}-M(\theta)]+\PDy{\theta}{M^T}W\PDy{\theta}{M}
+\end{align*}
+first term vanish as $N\to\infty$
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Massima likelihood e metodo minimi quadrati: gaussiane}
