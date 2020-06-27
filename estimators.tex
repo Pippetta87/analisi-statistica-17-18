@@ -1,4 +1,4 @@
-\section{Inferenza statistica: Likelihood, statistiche e stimatori}
+\section{Inferenza statistica: Likelihood, statistiche e stimatori}\linkdest{inferenceparadigm}
 
 %\begin{refsection}{}
 
@@ -282,7 +282,6 @@ $\vec{S}$ is jointly sufficient for $\theta$
 \end{block}
 \end{frame}
 
-
 \begin{frame}{Esempi pdf esponenziale: Poisson}\frameintoc
 \begin{align*}
 &\frac{\exp{-\mu}\mu^k}{k!}=\exp{\mu}\exp{k\ln{\mu}}\exp{-\ln{k!}}\\
@@ -354,114 +353,7 @@ $\hat{\sigma}^2=\frac{\sum_i^N(x_i-\mu)^2}{N}$ \'e sufficiente per $\sigma^2$ (p
 \keyword{Ex: pdf non della famiglia esponenziale}: Come procedo se pdf non esponenziale (LHC)?
 \end{frame}
 
-\subsection{Stimatori puntuali}
-
-\begin{frame}{Propriet\'a generali stiamatori}
-	\begin{itemize}
-		\item Consistenza (LGN): $\hat{\theta}\xrightarrow{P}\theta_0$
-		\item Mean Square Error:
-		\[\E{[(T-\tau(\theta))^2]}=\var{[T]}+[\E{[T]}-\tau(\theta)]^2\]
-		\item Bias: $B(T)=\E{[T]}-\tau(\theta)$; scuola soggettivista: bias non esiste.
-		\item Varianza $\var{\vec{X}}\propto\frac{1}{N}$, bias $b(\vec{x})$ non diminuisce all'aumentare delle misure.
-		\item distribuzione semplice
-	\end{itemize}
-\end{frame}
-
-\begin{frame}{Riduzione del bias}
-	\begin{columns}[T]
-		\begin{column}{0.5\textwidth}
-			$\PDy{\theta}{b}=0$ banale: $\E{[S]}=\alpha\theta$ si pone $S'=\frac{S}{\alpha}$
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			Esempio:
-			\begin{align*}
-			&\E{[x_{max}]}=\frac{N}{N+1}m\\
-			&b(x_M)=-\frac{1}{N+1}m\\
-			&\hat{m}=\frac{N+1}{N}x_M\\
-			&\var{[\hat{m}]}=(\frac{N+1}{N})^2\var{[x_M]}
-			\end{align*}
-		\end{column}
-	\end{columns}
-	\begin{columns}[T]
-		\begin{column}{0.5\textwidth}
-			\begin{align*}
-			&\E{[S(x)]}=\theta+b(\theta)\\
-			&\to\ S'(x)=S(x)-b(\hat{\theta})-\hat{b}(x)\\
-			&\E{[\hat{b}(x)]}=b(\hat{\theta})\\
-			&\var{[S']}=\var{[S]}+\var{[b]}
-			\end{align*}
-		\end{column}
-		\begin{column}{0.5\textwidth}
-			Metodo empirico
-			\begin{align*}
-			&S_N'(x)=2S_N(x)\\
-			&-\frac{1}{2}[S_{\frac{N}{2}}(x_1,\ldots,x_{\frac{N}{2}})+S_{\frac{N}{2}}(x_{\frac{N}{2}},\ldots,x_N)]
-			\end{align*}
-			Supponendo $b_N\propto\frac{1}{N}$
-			\begin{align*}
-			&\E{[S_N']}=2\E{[S_N]}-\frac{1}{2}[2\E{[S_N]}]\\
-			&=2\theta+\frac{2c}{N}-\frac{1}{2}[2(\theta-\frac{2c}{N})]=\theta_0+o(\frac{1}{N^2})
-			\end{align*}
-		\end{column}
-	\end{columns}
-	
-\end{frame}
-
-\begin{frame}{Stimatori puntuali: Caratteristiche stimatori}
-	\begin{columns}[T]
-		\begin{column}{0.4\textwidth}
-			Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$.
-		\end{column}
-		\begin{column}{0.6\textwidth}
-			\begin{itemize}
-				\item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
-				\item \keyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
-				\item \keyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
-				\item \keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
-			\end{itemize}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{wordonframe}{Esempi di stimatori}
-	\begin{block}{Notazione}
-		$\exv{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
-	\end{block}
-	\begin{block}{Stimatore per $\sigma^2$ di n iid gaussiane}
-		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. La varianza campionaria definita come $S^2=\frac{1}{n-1}\sum_i^n(x_i-\exv{X})^2$ \'e stimatore unbiased di $T(\Theta)=\sigma^2$
-	\end{block}
-	\begin{block}{Stimatore per $\mu$ di n iid gaussiane: CRLB per $\sigma$ noto}
-		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. $\exv{X}\to T(\mu)=\mu$; dato che $I_{X_1}=\sigma\expy{-2}$ la media campionaria \'e CRLB $\frac{\sigma^2}{n}=V_{\mu}[\exv{X}]$.
-	\end{block}
-	\begin{block}{Stimatore per $\lambda$ di n iid poissoniane}
-		$X_1,\ldots,X_n$ n RV iid con pdf $P(\lambda)$. $\exv{X}$ \'e stimatore di $T(\lambda)=\lambda$, $V_{\lambda}[\exv{X}]=\frac{\lambda}{n}$ quindi si raggiunge CRLB $\frac{\lambda}{n}$ ($I_{X_1}(\lambda)=\invers{\lambda}$).
-	\end{block}
-	\begin{block}{Stimatore per $p$ di n iid Bernoulli}
-		$X_1,\ldots,X_n$ n RV iiir has received mainly positive reviews. d con pdf $B(p)$. $\exv{X}$ \'e unbiased estimator of $\tau(p)=p$; dato che $I_{X_1}(p)=\frac{1}{p(1-p)}$, con $X_p[\exv{X}]=\frac{p(1-p)}{n}$ siamo al CRLB $\frac{p(1-p)}{n}$.
-	\end{block}
-	\begin{block}{Stimatori upper limit pdf uniforme: media aritmetica vs $x_{max}$.}
-		\begin{columns}[T]
-			\begin{column}{0.4\textwidth}
-				\begin{align*}
-				&\hat{m}_1=\frac{S_N}{N}=2\exv{X}\\
-				&b=\E{[\hat{m}_1]}-m=0\\
-				&\var{[\hat{m}_1]}=\frac{4Nm^2}{12N^2}
-				\end{align*}
-			\end{column}
-			\begin{column}{0.6\textwidth}
-				\begin{align*}
-				&p(x_{max};m)=\frac{N}{m^N}x_m^{N-1}\\
-				&\E{[x_{max}]}=\int_0^m\frac{N}{m^N}x_m^N\,dx_m=\frac{N}{N+1}\frac{m^{N+1}}{m^N}\intu{asintoticamente unbiased}
-				&\E{[x_{max}^2]}=\frac{N}{N+2}m^2-\frac{N^2}{(N+1)^2}m^2\\
-				&\var{[x_m]}=\E{[x_m^2]}-\E^2{[x_m]}\to0\\
-				&b(x_m)=-\frac{1}{N+1}m
-				\end{align*}
-			\end{column}
-		\end{columns}
-	\end{block}
-\end{wordonframe}
-
-\section{Informazione, statistiche sufficienti e MVB}
+\section{Informazione, statistiche sufficienti}\linkdest{infandssuff}
 
 \subsection{Informazione}\linkdest{informazione}
 
@@ -599,53 +491,117 @@ Perdita informazione
 \end{itemize}
 \end{frame}
 
-\subsection{Unbiased best estimator}
+\section{Stimatori puntuali}
 
-\begin{wordonframe}{Teorema di Rao-Blackwell}
-	T is unbiased estimator of $\tau(\theta)$, U if jointly sufficient statistics for $\theta$ and $g(u)=\E{[T|U=u]}$: $W=g(U)$ is unbiased estimator of $\tau(\theta)$ $\var{[W]}\leq\var{[T]}$.
-	Proof:
-	\begin{align*}
-	&\E{[X]}=\E_Y{[\E{[(X|Y)]}]}\\
-	&\tau(\theta)=\E_{\theta}{[T]}=\E_U{[\E{[T|U]}]}=\E{[g(u)]}=\E_{\theta}{[W]}\\
-	&\var{[T]}=\E{[(T-\tau(\theta))^2]}=\E{[(W-\tau(\theta))^2]}+\E{[(T-W)^2]}\\
-	&+2\E{[(T-W)(W-\tau(\theta))]}\\
-	&\E{[(T-W)(W-\tau(\theta))]}=\E_U{[\E{[(T-g(U))(g(U)-\tau(\theta))|U]}]}\\
-	&=\E_U{[(T-g(U))\E{[(g(U)-\tau(\theta))|U]}]}=0
-	\end{align*}
+\subsection{Caratteristiche stimatori puntuali e esempi}
+
+\begin{frame}{Propriet\'a generali stiamatori}
+	\begin{itemize}
+		\item Consistenza (LGN): $\hat{\theta}\xrightarrow{P}\theta_0$
+		\item Mean Square Error:
+		\[\E{[(T-\tau(\theta))^2]}=\var{[T]}+[\E{[T]}-\tau(\theta)]^2\]
+		\item Bias: $B(T)=\E{[T]}-\tau(\theta)$; scuola soggettivista: bias non esiste.
+		\item Varianza $\var{\vec{X}}\propto\frac{1}{N}$, bias $b(\vec{x})$ non diminuisce all'aumentare delle misure.
+		\item distribuzione semplice
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{Riduzione del bias}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			$\PDy{\theta}{b}=0$ banale: $\E{[S]}=\alpha\theta$ si pone $S'=\frac{S}{\alpha}$
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Esempio:
+			\begin{align*}
+			&\E{[x_{max}]}=\frac{N}{N+1}m\\
+			&b(x_M)=-\frac{1}{N+1}m\\
+			&\hat{m}=\frac{N+1}{N}x_M\\
+			&\var{[\hat{m}]}=(\frac{N+1}{N})^2\var{[x_M]}
+			\end{align*}
+		\end{column}
+	\end{columns}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&\E{[S(x)]}=\theta+b(\theta)\\
+			&\to\ S'(x)=S(x)-b(\hat{\theta})-\hat{b}(x)\\
+			&\E{[\hat{b}(x)]}=b(\hat{\theta})\\
+			&\var{[S']}=\var{[S]}+\var{[b]}
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			Metodo empirico
+			\begin{align*}
+			&S_N'(x)=2S_N(x)\\
+			&-\frac{1}{2}[S_{\frac{N}{2}}(x_1,\ldots,x_{\frac{N}{2}})+S_{\frac{N}{2}}(x_{\frac{N}{2}},\ldots,x_N)]
+			\end{align*}
+			Supponendo $b_N\propto\frac{1}{N}$
+			\begin{align*}
+			&\E{[S_N']}=2\E{[S_N]}-\frac{1}{2}[2\E{[S_N]}]\\
+			&=2\theta+\frac{2c}{N}-\frac{1}{2}[2(\theta-\frac{2c}{N})]=\theta_0+o(\frac{1}{N^2})
+			\end{align*}
+		\end{column}
+	\end{columns}
+	
+\end{frame}
+
+\begin{frame}{Stimatori puntuali: Caratteristiche stimatori}
+	\begin{columns}[T]
+		\begin{column}{0.4\textwidth}
+			Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$.
+		\end{column}
+		\begin{column}{0.6\textwidth}
+			\begin{itemize}
+				\item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
+				\item \keyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
+				\item \keyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
+				\item \keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
+			\end{itemize}
+		\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{wordonframe}{Esempi di stimatori}
+	\begin{block}{Notazione}
+		$\exv{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
+	\end{block}
+	\begin{block}{Stimatore per $\sigma^2$ di n iid gaussiane}
+		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. La varianza campionaria definita come $S^2=\frac{1}{n-1}\sum_i^n(x_i-\exv{X})^2$ \'e stimatore unbiased di $T(\Theta)=\sigma^2$
+	\end{block}
+	\begin{block}{Stimatore per $\mu$ di n iid gaussiane: CRLB per $\sigma$ noto}
+		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. $\exv{X}\to T(\mu)=\mu$; dato che $I_{X_1}=\sigma\expy{-2}$ la media campionaria \'e CRLB $\frac{\sigma^2}{n}=V_{\mu}[\exv{X}]$.
+	\end{block}
+	\begin{block}{Stimatore per $\lambda$ di n iid poissoniane}
+		$X_1,\ldots,X_n$ n RV iid con pdf $P(\lambda)$. $\exv{X}$ \'e stimatore di $T(\lambda)=\lambda$, $V_{\lambda}[\exv{X}]=\frac{\lambda}{n}$ quindi si raggiunge CRLB $\frac{\lambda}{n}$ ($I_{X_1}(\lambda)=\invers{\lambda}$).
+	\end{block}
+	\begin{block}{Stimatore per $p$ di n iid Bernoulli}
+		$X_1,\ldots,X_n$ n RV iiir has received mainly positive reviews. d con pdf $B(p)$. $\exv{X}$ \'e unbiased estimator of $\tau(p)=p$; dato che $I_{X_1}(p)=\frac{1}{p(1-p)}$, con $X_p[\exv{X}]=\frac{p(1-p)}{n}$ siamo al CRLB $\frac{p(1-p)}{n}$.
+	\end{block}
+	\begin{block}{Stimatori upper limit pdf uniforme: media aritmetica vs $x_{max}$.}
+		\begin{columns}[T]
+			\begin{column}{0.4\textwidth}
+				\begin{align*}
+				&\hat{m}_1=\frac{S_N}{N}=2\exv{X}\\
+				&b=\E{[\hat{m}_1]}-m=0\\
+				&\var{[\hat{m}_1]}=\frac{4Nm^2}{12N^2}
+				\end{align*}
+			\end{column}
+			\begin{column}{0.6\textwidth}
+				\begin{align*}
+				&p(x_{max};m)=\frac{N}{m^N}x_m^{N-1}\\
+				&\E{[x_{max}]}=\int_0^m\frac{N}{m^N}x_m^N\,dx_m=\frac{N}{N+1}\frac{m^{N+1}}{m^N}\intu{asintoticamente unbiased}
+				&\E{[x_{max}^2]}=\frac{N}{N+2}m^2-\frac{N^2}{(N+1)^2}m^2\\
+				&\var{[x_m]}=\E{[x_m^2]}-\E^2{[x_m]}\to0\\
+				&b(x_m)=-\frac{1}{N+1}m
+				\end{align*}
+			\end{column}
+		\end{columns}
+	\end{block}
 \end{wordonframe}
 
-\begin{frame}{Best unbiased estimator}\frameintoc\linkdest{cramerrao}
-	\begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
-		$X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
-		\begin{align*}
-		&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
-		&\E{[T-\tau(\theta)]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
-		\end{align*}
-		(\keyword{minimum variance bound})
-	\end{block}
-	\begin{block}{Best unbiased estimator}
-		Uniformly minimum variance unbiased estimator such that $V_{\Theta}[T]\leq V_{\Theta}[T*]$ for all estimator $T^*$ unbiased.
-	\end{block}
-\end{frame}
 
-\begin{frame}[t]{Dimostrazione CRLB}
-	\begin{align*}
-	&\tau(\theta)=\int_{\chi}T(X_1,\ldots,X_n)\underbrace{\prod_if(X_i;\theta)}_{\Exp{\sum_i\log{f(X_i;\theta)}}}\,dx_i\\
-	&\tau'(\theta)=\int_{\chi}T(X_1,\ldots,X_n)\underbrace{[\PDof{\theta}\prod_if(X_i;\theta)]}_{\sum_i\PDof{\theta}[\log{f(X_i;\theta)}]\prod_if(X_i;\theta)}\prod_i\,dx_i\\
-	&=\E{[TY]},\ Y=\sum_i\PDof{\theta}[\log{f(X_i;\theta)}]\\
-	&\E{[Y]}=\E{[\sum_i\PDof{\theta}(\log{f(X_i;\theta)})]}=0=\sum_i\PDof{\theta}\int_{\chi}f(X_i;\theta)\,dx\\
-	&\tau'^2=\cov^2{(T,Y)}=(\E{[TY]}-\E{[T]}\cancelto{0}{\E{[Y]}})^2\leq \var{[T]}\var{[Y]}\\
-	&\var{[Y]}=\E{[Y^2]}=n\E{[(\PDof{\theta}\log{f(X_i;\theta)})^2]}
-	\end{align*}
-\end{frame}
-
-\begin{frame}{Best Linear Uniform Estimators (\keyword{BLUE})}
-	$T_i$: k stimatori unbiased di $\tau(\theta)$, $\var{[T_i]}=\delta^2<\infty$, $T_i$ pairwise uncorrelated. Estimator with smallest variance in
-	\[D=\{T=\sum_i^k\alpha_iT_i,\ \sum_i\alpha_i=1\}\]
-	is for $\alpha_i=\invers{k}$: $\frac{1}{k}\sum_i^kT_i$
-\end{frame}
-
-\section{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
+\subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
 
 \begin{frame}{Utilizzo LLN per costruzione stimatori consistenti}\frameintoc
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
@@ -956,6 +912,52 @@ I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\
 &\chi^2(\theta)=\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\sigma_i^2}\xrightarrow{n\gg np_i}\sum_i^N\frac{(y_i-\lambda_i(\theta))^2}{\lambda_i(\theta)}=\sum_i^N\frac{(y_i-np_i(\theta))^2}{np_i(\theta)}\\
 &\lambda_i=\E{[y_i]}=n\int_{x_{min}^i}^{x_{max}^i}=np_i(\theta)\tag{number of entries in bin i}
 \end{align*}
+\end{frame}
+
+\subsection{Unbiased best estimator: CRLB.}
+
+\begin{wordonframe}{Teorema di Rao-Blackwell}
+	T is unbiased estimator of $\tau(\theta)$, U if jointly sufficient statistics for $\theta$ and $g(u)=\E{[T|U=u]}$: $W=g(U)$ is unbiased estimator of $\tau(\theta)$ $\var{[W]}\leq\var{[T]}$.
+	Proof:
+	\begin{align*}
+	&\E{[X]}=\E_Y{[\E{[(X|Y)]}]}\\
+	&\tau(\theta)=\E_{\theta}{[T]}=\E_U{[\E{[T|U]}]}=\E{[g(u)]}=\E_{\theta}{[W]}\\
+	&\var{[T]}=\E{[(T-\tau(\theta))^2]}=\E{[(W-\tau(\theta))^2]}+\E{[(T-W)^2]}\\
+	&+2\E{[(T-W)(W-\tau(\theta))]}\\
+	&\E{[(T-W)(W-\tau(\theta))]}=\E_U{[\E{[(T-g(U))(g(U)-\tau(\theta))|U]}]}\\
+	&=\E_U{[(T-g(U))\E{[(g(U)-\tau(\theta))|U]}]}=0
+	\end{align*}
+\end{wordonframe}
+
+\begin{frame}{Best unbiased estimator}\frameintoc\linkdest{cramerrao}
+	\begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
+		$X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
+		\begin{align*}
+		&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
+		&\E{[T-\tau(\theta)]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
+		\end{align*}
+		(\keyword{minimum variance bound})
+	\end{block}
+	\begin{block}{Best unbiased estimator}
+		Uniformly minimum variance unbiased estimator such that $V_{\Theta}[T]\leq V_{\Theta}[T*]$ for all estimator $T^*$ unbiased.
+	\end{block}
+\end{frame}
+
+\begin{frame}[t]{Dimostrazione CRLB}
+	\begin{align*}
+	&\tau(\theta)=\int_{\chi}T(X_1,\ldots,X_n)\underbrace{\prod_if(X_i;\theta)}_{\Exp{\sum_i\log{f(X_i;\theta)}}}\,dx_i\\
+	&\tau'(\theta)=\int_{\chi}T(X_1,\ldots,X_n)\underbrace{[\PDof{\theta}\prod_if(X_i;\theta)]}_{\sum_i\PDof{\theta}[\log{f(X_i;\theta)}]\prod_if(X_i;\theta)}\prod_i\,dx_i\\
+	&=\E{[TY]},\ Y=\sum_i\PDof{\theta}[\log{f(X_i;\theta)}]\\
+	&\E{[Y]}=\E{[\sum_i\PDof{\theta}(\log{f(X_i;\theta)})]}=0=\sum_i\PDof{\theta}\int_{\chi}f(X_i;\theta)\,dx\\
+	&\tau'^2=\cov^2{(T,Y)}=(\E{[TY]}-\E{[T]}\cancelto{0}{\E{[Y]}})^2\leq \var{[T]}\var{[Y]}\\
+	&\var{[Y]}=\E{[Y^2]}=n\E{[(\PDof{\theta}\log{f(X_i;\theta)})^2]}
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Best Linear Uniform Estimators (\keyword{BLUE})}
+	$T_i$: k stimatori unbiased di $\tau(\theta)$, $\var{[T_i]}=\delta^2<\infty$, $T_i$ pairwise uncorrelated. Estimator with smallest variance in
+	\[D=\{T=\sum_i^k\alpha_iT_i,\ \sum_i\alpha_i=1\}\]
+	is for $\alpha_i=\invers{k}$: $\frac{1}{k}\sum_i^kT_i$
 \end{frame}
 
 \begin{frame}{Best linear unbiased estimator. Teorema di Gauss-Markov}
