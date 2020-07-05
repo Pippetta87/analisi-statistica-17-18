@@ -1,3 +1,8 @@
+%! TEX root = asd-beamer.tex
+\documentclass[asd-beamer.tex]{subfiles}
+
+\begin{document}
+
 \section{Assiomi di probabilit\'a e RV}
 
 \begin{frame}{Assiomi probabilit\'a Kolmogorov e definizioni}
@@ -31,7 +36,7 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$
 \begin{column}{0.5\textwidth}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\textwidth,keepaspectratio]{RVfunc}
+	\includegraphics[width=0.99\textwidth,keepaspectratio]{figures/cowan/probability/RVfunc}
 	\label{fig:RVfunc}
 \end{figure}
 \end{column}
@@ -69,7 +74,7 @@ La funzione caratteristica determina completamente pdf: se $F(X)$ continua, $dF(
 \end{align*}
 \end{block}
 \end{frame}
-
+i
 \section{Formule propagazione errori}
 
 \begin{frame}{Formule propagazione errori}
@@ -454,8 +459,8 @@ One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ i
 \begin{column}{0.4\textwidth}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\textwidth,keepaspectratio]{estimpl}
-	\label{fig:RVfunc}
+	\includegraphics[width=0.99\textwidth,keepaspectratio]{figures/james/estimators/estimpl}
+	\label{fig:estimpl}
 \end{figure}
 \end{column}
 \end{columns}
@@ -755,9 +760,9 @@ Due ipotesi consistono in partizione dello spazio dei parametri: il valore assun
 \end{column}
 \begin{column}{0.5\textwidth}
 	\begin{figure}[!ht]
-	\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.85\textwidth]{mostpower}
-	\includegraphics[trim={0cm 0 0 0},clip, width=0.85\textwidth]{powerconsistent}
-	\includegraphics[trim={0cm 0 0 0},clip,width=0.8\textwidth]{biasedtest}
+	\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.85\textwidth]{figures/james/test/mostpower}
+	\includegraphics[trim={0cm 0 0 0},clip, width=0.85\textwidth]{figures/james/test/powerconsistent}
+	\includegraphics[trim={0cm 0 0 0},clip,width=0.8\textwidth]{figures/james/test/biasedtest}
 \end{figure} 
 	Test B can't distinguish between $\theta_0$, $\theta_1$.
 \end{column}
@@ -875,6 +880,37 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \begin{frame}[allowframebreaks]{Section TOC}
 %currentsection,hideallsubsections,subsubsectionstyle=hide
 \tableofcontents[currentsection,sectionstyle=show/hide,subsectionstyle=show/show/hide]
+\end{frame}
+
+\subsection{2 numeri casuali da pdf uniformi (21/11/19)}
+
+\begin{frame}{Joint pdf, marginalization (and \keyword{integration limits})}
+	Scelti 2 numeri casuali da $U(0,m)$, con ipotesi provenienza da $U(0,x_1)$ ($x_+=\max{[x_1,x_2]}$, $x_-=\min{[x_1,x_2]}$)
+	\begin{align*}
+	&\prob{(x_-)}=\int\prob{(x_1,x_2)}\,dx_+=\int\frac{I(0\leq x_-\leq x_+\leq m)}{(m?)x_+}\,dx_+=\int_{x_2}^m\\
+	&\prob{(X_-<x_1|X_+=x_+)}\lbt{1:\ x_+<x_-}{\frac{x_-}{x_+}:\ x_-<x_+}\\
+	&\prob{(X_-<x_-)}=\int_{x_+=0}^{x_-}\,dx_++\int_{x_+=x_-}^1\frac{x_-}{x_+}\,dx_+\\
+	&P(x_+)=\frac{1}{m},\ P(x_-)=\frac{1}{m}\ln{\frac{m}{x_-}}
+	\end{align*}
+\end{frame}
+
+\begin{frame}{Test ipotesi (significato) e moment estimator}
+	Test per identificare algoritmo sbagliato da parte di studente: \keyword{RV come parametro $U$ e ipotesi semplici} (nel caso del singolo studente ho tutti i parametri fissi) - significato del test (cosa significa che su 20 trovo 6 casi?) - cosa combia sapendo che su un grande campione risulta che $5\%$ studenti usano algoritmo sgabliato? Quale probabilit\'a che studente positivo abbia usato algoritmo sbagliato?
+	Stimare col metodo dei momenti la frazione di studenti che usa algoritmo sbagliato avendo a disposizione lista di tutti numeri generati: $\int(x-\frac{m}{2})[(1-f)\frac{1}{m}+\frac{f}{m}\ln{\frac{m}{x}}]\,dx\approx\frac{2f}{N}\E{[x_-]}$??.
+		Local most powerfull test having $x_-$ to determine even small fraction of wrong algoritm: test statistics??
+		\begin{align*}
+		&\TDof{f}\ln{L(\vec{X},f)}|_{\theta=0}
+		\end{align*}
+	\end{frame}
+
+\begin{frame}{Test, ipotesi semplice e pdf uniforme}
+Lista completa $(x_+,x_-)$. Test per distingure: tutti algoritmo giusto da tutti algoritmo sbagliato.
+Considero $H_0$: $x_-\in U(0,m)$, $H_1$: $x_-\in U(0,x_+)$. Statistica di test e distribuzione sotto le due ipotesi?
+\begin{align*}
+&T(\vec{X})=\prod_i^N\frac{m}{x_{+i}}I(0\leq x_{-i}\leq x_{+i})\tag{NP}
+\end{align*}
+Pdf asintotica statistica, soglia regione critica e power per $\alpha=0.1$.
+
 \end{frame}
 
 \subsection{{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}}
@@ -1228,3 +1264,5 @@ si ricavano i 2 parametri uguagliando i valori attesi e osservati:
 \end{column}\begin{column}{0.5\textwidth}
 \end{column}\end{columns}
 \end{frame}
+
+\end{document}

@@ -1,3 +1,8 @@
+%! TEX root = asd-beamer.tex
+\documentclass[asd-beamer.tex]{subfiles}
+
+\begin{document}
+
 \section{Inferenza statistica: Likelihood, statistiche e stimatori}\linkdest{inferenceparadigm}
 
 %\begin{refsection}{}
@@ -977,8 +982,8 @@ above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gauss
 \begin{frame}{Espansione attorno al $\chi^2_{min}$ per gaussiane cn dipendenza lineare dai params}
 	\begin{figure}
 	\centering
-	\includegraphics[width=0.9\textwidth,keepaspectratio]{estimatorvar}
-	\label{fig:}
+	\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/james/estimators/estimatorvar}
+	\label{fig:estimatorvar}
 \end{figure}
 contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$: $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$.
 \end{frame}
@@ -1157,20 +1162,20 @@ Otherwise, (or non gaussian estimators, physical boundary for parameters) one ha
 	\put(20,20){
 		\begin{tikzpicture}[scale=0.4]
 		\def\basefunc{exp(-(x-1)^2)}
-		\begin{axis}[title={central},name=central,samples=50,ymin=0,xmin=-2,xmax=4,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
+		\begin{axis}[title={central},name=central,samples=50,ymin=0,xmin=-2,xmax=5,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
 		\addplot gnuplot [no marks,domain={-2:0}]{\basefunc} \closedcycle; 
 		\addplot gnuplot [no marks,domain={2:4}]{\basefunc} \closedcycle; 
 		\addplot gnuplot [black,thick,fill=grey,smooth,no marks,domain={0:2}]{\basefunc} \closedcycle;
 		\node (unomenocl) at (axis cs:-1,0.3) {$1-\frac{\alpha}{2}$};
 		\end{axis}
 		\hspace{0.5cm}
-		\begin{axis}[title={upper limit}, at={($(central)+(4.5cm,-3cm)$)},name=upper,samples=50,ymin=0,xmin=-2,xmax=4,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
+		\begin{axis}[title={upper limit}, at={($(central)+(4.5cm,-3cm)$)},name=upper,samples=50,ymin=0,xmin=-2,xmax=5,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
 		\addplot gnuplot [no marks,fill=grey,domain={-2:2}]{\basefunc} \closedcycle; 
 		\addplot gnuplot [black,thick,smooth,no marks,domain={2:4}]{\basefunc};   
 		\end{axis}
 		\edef\oprob{0.47}
 		\hspace{0.5cm}
-		\begin{axis}[at={($(upper)+(4.5cm,-3cm)$)}, title={probability order},name=central,samples=50,ymin=0,xmin=-2,xmax=4,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
+		\begin{axis}[at={($(upper)+(4.5cm,-3cm)$)}, title={probability order},name=central,samples=50,ymin=0,xmin=-2,xmax=5,xlabel={$m$},ylabel={$\prob{(m|x_0)}$}]
 		\addplot[name path=prob] gnuplot[grey,thick,smooth,no marks]{\oprob};
 		\addplot[name path=gauss] gnuplot[black,thick,smooth,no marks]{\basefunc};
 		\path [name intersections={of=gauss and prob ,by={Pa,Pb}}];
@@ -1198,12 +1203,12 @@ Otherwise, (or non gaussian estimators, physical boundary for parameters) one ha
 \begin{column}{0.4\textwidth}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.9\textwidth,keepaspectratio]{clband}
+		\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/interval/clband}
 		\label{fig:clband}
 	\end{figure}
 	\begin{figure}
 		\centering
-		\includegraphics[width=0.9\textwidth,keepaspectratio]{neyman}
+		\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/interval/neyman}
 		\label{fig:neyman}
 	\end{figure}
 \end{column}
@@ -1232,7 +1237,7 @@ Graphical Methods for Evaluating and ComparingConfidence-Interval Procedures
 Confidence interval: $R(m_1)=R(m_2)$
 \end{column}
 \begin{column}{0.5\textwidth}
-\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.49\textheight]{flipflopping}\label{fig:pdfestexp}\end{figure}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.49\textheight]{figures/james/estimators/flipflopping}\label{fig:flipflopping}\end{figure}
 \end{column}
 \end{columns}
 
@@ -1476,7 +1481,7 @@ If experiment repeated many times one would obtain $\hat{\xi}$ distributed as $g
 &g(\hat{\xi};n,\xi)=g_z(z)|\TDy{\hat{\xi}}{z}|=ng_z(n\hat{\xi})=\frac{n^n}{(n-1)!}\frac{\hat{\xi}\expy{n-1}}{\xi^n}\exp{-n\hat{\xi}/\xi}
 \end{align*}
 Special case of $\Gamma$ distribution
-\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.4\textheight]{pdfestexp}\label{fig:pdfestexp}\end{figure}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.4\textheight]{figures/cowan/estimators/pdfestexp}\label{fig:pdfestexp}\end{figure}
 \end{frame}
 
 \begin{wordonframe}{Funzione caratteristica pdf esponenziale: Ripasso cambio di variabili e integrali nel piano complesso}
@@ -1519,5 +1524,7 @@ n osservaqzioni di x per determinare lo stimatore $\hat{\xi}=\hat{\xi}_{obs}$ co
 perfissati $\alpha,\beta$, indipendentemente dal vero $\xi$. Per $n\to\infty$ $g$ becomes gaussian (CLT) and $68.3\%$ central confidence interval approaches $[\hat{\xi}_{obs}-\hat{\sigma}_{\hat{\xi}},\hat{\xi}_{obs}+\hat{\sigma}_{\hat{\xi}}]$.
 \end{column}
 \end{columns}
-\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.4\textheight]{intestclt}\label{fig:intestclt}\end{figure}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.4\textheight]{figures/cowan/estimators/intestclt}\label{fig:intestclt}\end{figure}
 \end{frame}
+
+\end{document}
