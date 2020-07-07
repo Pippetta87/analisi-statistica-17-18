@@ -1355,9 +1355,31 @@ Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la dis
 \end{align*}
 \end{frame}
 
-\begin{wordonframe}{Example of CI using Pivot}
-
-\end{wordonframe}
+\begin{frame}[allowframebreaks]{Example of CI using Pivot}
+\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for exponential}
+\begin{align*}
+&f(x;\theta)=\frac{1}{\theta}\exp{-\frac{x}{\theta}}I(x>0)\\
+&U=\frac{X}{\theta}:\ g(u)=\exp{-u}I(u>0)\\
+&P(u<a)=\frac{1}{2}\alpha=P(u>b):\ P(a<u<b)=1-\alpha\\
+&\Rightarrow P_{\theta}[\theta\in(\invers{b}X,\invers{a}X)]=1-\alpha
+\end{align*}
+\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for U - $T=\max_iX_i$}
+\begin{align*}
+&U(0,\theta):\ U=\frac{\max X_i}{\theta},\ g(u)=nu^{n-1}I(0<u<1)\\
+&P(a<U<b)=1-\alpha\Rightarrow P_{\theta}[\theta\in(\invers{b}T,\invers{a}T)]=1-\alpha
+\end{align*}
+\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for exponential location param}
+\begin{align*}
+&f(x;\theta)=\invers{\sigma}\exp{-\frac{x-\theta}{\sigma}}I(x>0):\ T=\min_iX_i\\
+&U=\frac{n(T-\theta)}{\sigma}:\ g(u)=\exp{-u}I(u>0)\\
+&P(U>b)=\alpha: P(0<U<b)=1-\alpha\Rightarrow P_{\theta}(\theta\in(T-b\invers{n}\sigma,T))=1-\alpha
+\end{align*}
+\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for gaussian mean}: $T=\exv{X}$ minimal sufficient statistics and $f(t)=N(\mu\frac{\sigma^2}{n})$ hence pivot $U=\frac{n^{\frac{1}{2}}(T-\mu)}{\sigma}$ is normally distributed.
+\begin{align*}
+&P(-z_{\alpha/2}<U<z_{\alpha/2})=1-\alpha\Rigtharrow P(T-z_{\alpha/2}n^{-1/2}\sigma<U<T+z_{\alpha/2}n^{-1/2}\sigma)=1-\alpha
+&
+\end{align*}
+\end{frame}
 
 \begin{wordonframe}{Esempi intervalli di confidenza e credibilit\'a}
 \begin{block}{Limite superiore Poisson con $k=0$}
