@@ -492,14 +492,29 @@ $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \subsection{Binned GOF}\label{binnedgof}
 
 \begin{frame}{Pearson $\chi^2$ GOF (histograms with k bins)}
-Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\sigma_i^2}$, $\sigma_i^2=\var{n_i}$.
-\begin{itemize}
-\item $\sum_in_i=N$ fixed: $\sum_jp_j=1$, $\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}$, parameter space $\Omega=\{(p_1,\ldots,p_{k-1}\})\in \real{k}$. $H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$:
-statistica $Q_n=\sum_j^{k}\frac{(Y_j-n\pi_j)^2}{n\pi_j}\to\frac{1}{N}\sum^{k}\frac{n_i^2}{p_i}-N$ ha asintotic. pdf $\chi^2(k-1)$, quindi se $c_{k-1,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k-1)$ il test che rifiuta H quando $Q_n>c_{k-1,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
-\item $n_i=Pois(\nu_i)$: $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\nu_i}$. $n_i=G(\nu_i,\sigma_i^2)$ (Poisson with $\nu_i\gg1$): Pearson-$\chi^2$ follow chi-squared pdf with k-dof.
-\end{itemize}
-\[p=\int_{\chi^2_{data}}^{\infty}f_{\chi^2}(z)\,dz\]
+Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ $\sum_in_i=N$ fixed with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\sigma_i^2}$, $\sigma_i^2=\var{n_i}$, parameter space $\Omega=\{(p_1,\ldots,p_{k-1}\})$, $\sum_jp_j=1$.
+
+$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
+
+\begin{align*}
+&\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}\\
+&Q_N=\sum_j^{k}\frac{(Y_j-n\pi_j)^2}{n\pi_j}=\sum_j\frac{(O_j-E_j)^2}{E_j}\\
+&\to\frac{1}{N}\sum^{k}\frac{n_i^2}{\pi_i}-N\\
+&f(Q_N)\approx\chi^2(k-1)
+\end{align*}
+
+$c_{k-1,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k-1)$ il test che rifiuta H quando $Q_n>c_{k-1,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
 \end{frame}
+
+\begin{frame}{Pearson' $\chi^2$ for Poisson and Gaussian data}
+\begin{itemize}
+\item Limite $n_i\ll N$: $n_i=Pois(\nu_i)$, $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\nu_i}$
+\item $n_i=G(\nu_i,\sigma_i^2)$ (Poisson with $\nu_i\gg1$): Pearson-$\chi^2$ follow chi-squared pdf with k-dof.
+\[p=\int_{\chi^2_{data}}^{\infty}f_{\chi^2}(z)\,dz\]
+\end{itemize}
+
+\end{frame}
+
 
 \begin{frame}{Power against local alternatives}
 	\begin{itemize}
