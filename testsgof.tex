@@ -314,6 +314,37 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 \end{itemize}
 \end{wordonframe}
 
+\subsection{Wilks theorem: asymptotic pdf of LR}\linkdest{wilks}
+
+\begin{frame}{Teorema di Wilks}\linkdest{wilks}\frameintoc
+	$p(x;\theta)$ due volte differenziabile con dominio indipendente da parametro $\Omega(x;\theta)=\Omega(x)$, $\iidrv[\theta][,][1][r],\iidrv[\theta][,][r+1][s+r]$
+	\begin{itemize}
+		\item $H_0$: $\theta_r=\theta_{r0}$, $\theta_s=\hat{\theta}_s$
+		\item $H_1$: $\theta_r\neq\theta_0$
+	\end{itemize}
+	\[\lambda(x;\theta)=2\log{[\frac{\sup_{\theta}{p(x;\theta)}}{p(x;\theta)}]}=-2\log{[\frac{p(x;\theta)}{p(x;\hat{\theta})}]}\] (log-likelihood ratio statistics) ha asintoticamente pdf universale e indipendente da $\theta$: distribuzione di $\chi^2$ centrale con dof r sotto $H_0$ (sotto $H_1$ non centrale $\lambda=(\theta_r-\theta_{r0})^T\invers{V_r}(\theta_r-\theta_{r0})$).
+\end{frame}
+
+\begin{frame}{Sketch's proof Wilks theorem}
+	\begin{itemize}
+		\item MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
+		\begin{align*}
+		&\PDy{\vec{\theta}}{\ln{L}}=(\hat{\theta}-\theta)^T\invers{V},\ \invers{V}_{ij}=-\E{[\PtwoMDy{\theta_i}{\theta_j}{\ln{L}}]}\\
+		&L\propto\Exp{-\frac{1}{2}(\hat{\theta}-\vec{\theta})^T\invers{V}(\hat{\theta}-\vec{\theta})}
+		\end{align*}
+		\item When $H_0$ holds $\theta_s=\hat{\theta}_s$:
+		\[L(x;\theta_{r0},\theta_s)\propto\Exp{-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^T\invers{V_r}}(\hat{\theta}_r-\theta_{r0})\]
+		\item when $H_1$ holds $\vec{\theta}=\hat{\theta}$: $L(x|\hat{\theta}_r,\hat{\theta}_s)\propto1$
+		\item Distribuzione asintotica di
+		\begin{align*}
+		&\lambda=-2\log{\frac{L(x;\theta_{r0},\hat{\theta}_s)}{L(x;\hat{\theta}_r,\hat{\theta}_s)}}\\
+		&\lambda=(\hat{\theta}_r-\vec{\theta}_{r0})^T\invers{V_r}(\hat{\theta}_r-\vec{\theta}_{r0})
+		\end{align*}
+		$\prob{(\lambda)}=\chi^2_r$ with Non-Central parameter $\lambda$ if $H_0$ holds $\lambda$ has pdf central $\chi^2_r$
+	\end{itemize}
+	
+\end{frame}
+
 \subsection{Stusent's t-test}
 
 \begin{frame}{t statistics}

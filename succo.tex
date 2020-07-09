@@ -885,9 +885,10 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \subsection{2 numeri casuali da pdf uniformi (21/11/19)}
 
 \begin{frame}{Joint pdf, marginalization (and \keyword{integration limits})}
-	Scelti 2 numeri casuali da $U(0,m)$, con ipotesi provenienza da $U(0,x_1)$ ($x_+=\max{[x_1,x_2]}$, $x_-=\min{[x_1,x_2]}$)
+	Scelti 2 numeri casuali da $U(0,m)$, con ipotesi provenienza da $U(0,x_1)$ ($x_+=\max{[x_1,x_2]}$, $x_-=\min{[x_1,x_2]}$) - joint pdf $	P(x_-,x_+)=\frac{1}{m^2}$ per lálgoritmo giusto, 
 	\begin{align*}
-	&\prob{(x_-)}=\int\prob{(x_1,x_2)}\,dx_+=\int\frac{I(0\leq x_-\leq x_+\leq m)}{(m?)x_+}\,dx_+=\int_{x_2}^m\\
+	&\prob{(x_-)}=\int\prob{(x_-,x_+)}\,dx_+=\int\frac{I(0\leq x_-\leq x_+\leq m)}{(m?)x_+}\,dx_+\\
+	&=\int_{x_-}^m\frac{dx_+}{x_+m}=\frac{1}{m}\ln{\frac{m}{x_-}}\\
 	&\prob{(X_-<x_1|X_+=x_+)}\lbt{1:\ x_+<x_-}{\frac{x_-}{x_+}:\ x_-<x_+}\\
 	&\prob{(X_-<x_-)}=\int_{x_+=0}^{x_-}\,dx_++\int_{x_+=x_-}^1\frac{x_-}{x_+}\,dx_+\\
 	&P(x_+)=\frac{1}{m},\ P(x_-)=\frac{1}{m}\ln{\frac{m}{x_-}}

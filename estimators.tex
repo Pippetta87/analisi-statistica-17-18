@@ -496,7 +496,7 @@ Perdita informazione
 \end{itemize}
 \end{frame}
 
-\section{Stimatori puntuali}
+\section{Stimatori puntuali}\linkdest{poestim}
 
 \subsection{Caratteristiche stimatori puntuali e esempi}
 
@@ -1105,37 +1105,6 @@ Cauchy & $\frac{\pi^2}{4N}$ & & \\
 \end{block}
 \end{wordonframe}
 
-\subsection{Wilks theorem: asymptotic pdf of LR}
-
-\begin{frame}{Teorema di Wilks}\linkdest{wilks}\frameintoc
-$p(x;\theta)$ due volte differenziabile con dominio indipendente da parametro $\Omega(x;\theta)=\Omega(x)$, $\iidrv[\theta][,][1][r],\iidrv[\theta][,][r+1][s+r]$
-\begin{itemize}
-\item $H_0$: $\theta_r=\theta_{r0}$, $\theta_s=\hat{\theta}_s$
-\item $H_1$: $\theta_r\neq\theta_0$
-\end{itemize}
- \[\lambda(x;\theta)=2\log{[\frac{\sup_{\theta}{p(x;\theta)}}{p(x;\theta)}]}=-2\log{[\frac{p(x;\theta)}{p(x;\hat{\theta})}]}\] (log-likelihood ratio statistics) ha asintoticamente pdf universale e indipendente da $\theta$: distribuzione di $\chi^2$ centrale con dof r sotto $H_0$ (sotto $H_1$ non centrale $\lambda=(\theta_r-\theta_{r0})^T\invers{V_r}(\theta_r-\theta_{r0})$).
-\end{frame}
-
-\begin{frame}{Sketch's proof Wilks theorem}
-\begin{itemize}
-\item MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
-\begin{align*}
-&\PDy{\vec{\theta}}{\ln{L}}=(\hat{\theta}-\theta)^T\invers{V},\ \invers{V}_{ij}=-\E{[\PtwoMDy{\theta_i}{\theta_j}{\ln{L}}]}\\
-&L\propto\Exp{-\frac{1}{2}(\hat{\theta}-\vec{\theta})^T\invers{V}(\hat{\theta}-\vec{\theta})}
-\end{align*}
-\item When $H_0$ holds $\theta_s=\hat{\theta}_s$:
-\[L(x;\theta_{r0},\theta_s)\propto\Exp{-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^T\invers{V_r}}(\hat{\theta}_r-\theta_{r0})\]
-\item when $H_1$ holds $\vec{\theta}=\hat{\theta}$: $L(x|\hat{\theta}_r,\hat{\theta}_s)\propto1$
-\item Distribuzione asintotica di
-\begin{align*}
-&\lambda=-2\log{\frac{L(x;\theta_{r0},\hat{\theta}_s)}{L(x;\hat{\theta}_r,\hat{\theta}_s)}}\\
-&\lambda=(\hat{\theta}_r-\vec{\theta}_{r0})^T\invers{V_r}(\hat{\theta}_r-\vec{\theta}_{r0})
-\end{align*}
-$\prob{(\lambda)}=\chi^2_r$ with Non-Central parameter $\lambda$ if $H_0$ holds $\lambda$ has pdf central $\chi^2_r$
-\end{itemize}
-
-\end{frame}
-
 \section{Stima intervallare}\linkdest{interval}
 
 \begin{frame}{Short-coming of point-like estimators}
@@ -1351,34 +1320,45 @@ Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la dis
 \begin{align*}
 &f(x;\theta)=\invers{\theta}\exp{-\frac{x}{\theta}}I(x>0)\ \to\ g(u)=\exp{-u}I(u>0)\\
 &\prob{(a<u<b)}=1-\alpha\Rightarrow\prob{(\theta\in(\invers{b}x,\invers{a}x))}=1-\alpha\ (\alpha\leftrightarrow1-\alpha)
-%
 \end{align*}
 \end{frame}
 
 \begin{frame}[allowframebreaks]{Example of CI using Pivot}
-\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for exponential}
-\begin{align*}
-&f(x;\theta)=\frac{1}{\theta}\exp{-\frac{x}{\theta}}I(x>0)\\
-&U=\frac{X}{\theta}:\ g(u)=\exp{-u}I(u>0)\\
-&P(u<a)=\frac{1}{2}\alpha=P(u>b):\ P(a<u<b)=1-\alpha\\
-&\Rightarrow P_{\theta}[\theta\in(\invers{b}X,\invers{a}X)]=1-\alpha
-\end{align*}
-\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for U - $T=\max_iX_i$}
-\begin{align*}
-&U(0,\theta):\ U=\frac{\max X_i}{\theta},\ g(u)=nu^{n-1}I(0<u<1)\\
-&P(a<U<b)=1-\alpha\Rightarrow P_{\theta}[\theta\in(\invers{b}T,\invers{a}T)]=1-\alpha
-\end{align*}
-\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for exponential location param}
-\begin{align*}
-&f(x;\theta)=\invers{\sigma}\exp{-\frac{x-\theta}{\sigma}}I(x>0):\ T=\min_iX_i\\
-&U=\frac{n(T-\theta)}{\sigma}:\ g(u)=\exp{-u}I(u>0)\\
-&P(U>b)=\alpha: P(0<U<b)=1-\alpha\Rightarrow P_{\theta}(\theta\in(T-b\invers{n}\sigma,T))=1-\alpha
-\end{align*}
-\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for gaussian mean}: $T=\exv{X}$ minimal sufficient statistics and $f(t)=N(\mu\frac{\sigma^2}{n})$ hence pivot $U=\frac{n^{\frac{1}{2}}(T-\mu)}{\sigma}$ is normally distributed.
-\begin{align*}
-&P(-z_{\alpha/2}<U<z_{\alpha/2})=1-\alpha\Rigtharrow P(T-z_{\alpha/2}n^{-1/2}\sigma<U<T+z_{\alpha/2}n^{-1/2}\sigma)=1-\alpha
-&
-\end{align*}
+	\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for exponential}
+	\begin{align*}
+	&f(x;\theta)=\frac{1}{\theta}\exp{-\frac{x}{\theta}}I(x>0)\\
+	&U=\frac{X}{\theta}:\ g(u)=\exp{-u}I(u>0)\\
+	&P(u<a)=\frac{1}{2}\alpha=P(u>b):\ P(a<u<b)=1-\alpha\\
+	&\Rightarrow P_{\theta}[\theta\in(\invers{b}X,\invers{a}X)]=1-\alpha
+	\end{align*}
+	\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for U - $T=\max_iX_i$}
+	\begin{align*}
+	&U(0,\theta):\ U=\frac{\max X_i}{\theta},\ g(u)=nu^{n-1}I(0<u<1)\\
+	&P(a<U<b)=1-\alpha\Rightarrow P_{\theta}[\theta\in(\invers{b}T,\invers{a}T)]=1-\alpha
+	\end{align*}
+	\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for exponential location param}
+	\begin{align*}
+	&f(x;\theta)=\invers{\sigma}\exp{-\frac{x-\theta}{\sigma}}I(x>0):\ T=\min_iX_i\\
+	&U=\frac{n(T-\theta)}{\sigma}:\ g(u)=\exp{-u}I(u>0)\\
+	&P(U>b)=\alpha: P(0<U<b)=1-\alpha\Rightarrow P_{\theta}(\theta\in(T-b\invers{n}\sigma,T))=1-\alpha
+	\end{align*}
+	\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for gaussian mean}: $T=\exv{X}$ minimal sufficient statistics and $f(t)=N(\mu\frac{\sigma^2}{n})$ hence pivot $U=\frac{n^{\frac{1}{2}}(T-\mu)}{\sigma}$ is normally distributed.
+	\begin{align*}
+	&P(-z_{\alpha/2}<U<z_{\alpha/2})=1-\alpha\\
+	&\Rightarrow P(T-z_{\alpha/2}n^{-1/2}\sigma<U<T+z_{\alpha/2}n^{-1/2}\sigma)=1-\alpha\\
+	&\Rightarrow(\exv{X}-z_{\alpha/2}n^{-1/2}\sigma,\exv{X}+z_{\alpha/2}n^{-1/2}\sigma)
+	\end{align*}
+	\keyword{Pivot: $(1-\alpha)$ two-sided confidence interval for gaussian with unknown mean and variance}: $X_i$ N iid RV $G(\mu,\sigma^2)$ - $\exv{X}$ e $S^2=\invers{(n-1)}\sum_i^N(X_i-\exv{X})^2$ media e varianza campionaria - $T=(\exv{X},S)$ statistica suff. minima per parametri
+	\begin{align*}
+	&U=N^{1/2}\frac{\exv{X}-\mu}{S}\tag{Student's t with (N-1) dof}\\
+	&P(-t_{n-1,\alpha/2}<U<t_{n-1,\alpha/2})=1-\alpha\\
+	&\Rightarrow P_{\mu,\sigma}(\exv{X}-t_{n-1,\alpha/2}n^{-\frac{1}{2}}S<\mu<\exv{X}+t_{n-1,\alpha/2}n^{-\frac{1}{2}}S)=1-\alpha\\
+	&U=(n-1)\frac{S^2}{\sigma^2}\tag{$\chi^2$ with $(n-1) dof$}\\
+	&P(\chi^2_{n-1,1-\alpha/2}<U<\chi^2_{n-1,\alpha/2})=1-\alpha\\
+	&\Rightarrow P_{\mu\sigma}(\invers{(\chi^2_{n-1,\alpha/2})}(n-1)S^2<\sigma^2<\invers{(\chi^2_{n-1,1-\alpha/2})}(n-1)S^2)=1-\alpha
+	\end{align*}
+	$J_1$ intervallo di confidenza $1-\gamma$ per $\mu$ e $j_2$ intervallo di confidenza $1-\delta$: joint confidence interval for $\mu,\sigma^2$ is ${J_1,J_2}$ with confidenze coefficient at least $1-\alpha$:
+	\[P_{\mu\sigma^2}(\mu\in J_1\cap\sigma^2\in J_2)\geq P_{\mu\sigma^2}(\mu\in J_1)+P_{\mu\sigma^2}(\sigma^2\in J_2)-1=1-\gamma-\delta\]
 \end{frame}
 
 \begin{wordonframe}{Esempi intervalli di confidenza e credibilit\'a}
