@@ -523,32 +523,37 @@ $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \subsection{Binned GOF}\label{binnedgof}
 
 \begin{frame}{Pearson $\chi^2$ GOF (histograms with k bins)}
+\keyword{Histogram}: N events distributed in k bins with probability $p_i(\theta)=f(x_i;\theta)\Delta x$:
+\[\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}\]
 Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ $\sum_in_i=N$ fixed with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_j\frac{(O_j-E_j)^2}{E_j}$, parameter space $\Omega=\{(p_1,\ldots,p_{k-1}\})$, $\sum_jp_j=1$.
+
+Fit hist minimizing $Q_N$
 
 $H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
 
 \begin{align*}
-&\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}\\
-&Q_N=\sum_j^{k}\frac{(Y_j-n\pi_j)^2}{n\pi_j}=\\
-&\to\frac{1}{N}\sum^{k}\frac{n_i^2}{\pi_i}-N\\
-&f(Q_N)\approx\chi^2(k-1)
+&Q_N=\sum_j^{k}\frac{(Y_j-n\pi_j)^2}{n\pi_j}=\frac{1}{N}\sum^{k}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(k-1)$}\\
+&\sum_i\frac{(n_i-NP_i(\theta))^2}{n_i}\tag{Neyman $\chi^2$}
 \end{align*}
-
 $c_{k-1,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k-1)$ il test che rifiuta H quando $Q_n>c_{k-1,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
 \end{frame}
 
 \begin{frame}{Pearson' $\chi^2$ for Poisson and Gaussian data}
+\begin{align*}
+&\chi^2=\sum_i^N\frac{(Y_i-t_i)^2}{\delta_i^2}\\
+&t_i=\E{[Y_i]},\ \delta_i=\E{[(Y_i-t_i)^2]}
+\end{align*}
 \begin{itemize}
 \item Limite $n_i\ll N$: $n_i=Pois(\nu_i)$, $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\nu_i}$
-\item $n_i=G(\nu_i,\sigma_i^2)$ (Poisson with $\nu_i\gg1$): Pearson-$\chi^2$ follow chi-squared pdf with k-dof
+\item $n_i=G(\nu_i,\sigma_i^2)$ (Poisson with $\nu_i\gg1$): Pearson-$\chi^2$ follow chi-squared pdf with k-dof.
+Scaled sample variance chi-square distribution:
 \begin{align*}
-&\sum_i^k\frac{(n_i-\nu_i)^2}{\sigma_i^2?}\\
+&\iidrv{N}\in G(\mu,\sigma^2),\ s^2=\frac{1}{N-1}\sum_i^N(X_i-\exv{X})^2\\
+&\frac{(N-1)s^2}{\sigma^2}=\sum_i^N(\frac{X_i-\exv{X}}{\sigma})^2\in\chi^2_{N-1}
 \end{align*}
-\[p=\int_{\chi^2_{data}}^{\infty}f_{\chi^2}(z)\,dz\]
+vedi student pdf.
 \end{itemize}
-
 \end{frame}
-
 
 \begin{frame}{Power against local alternatives}
 	\begin{itemize}
@@ -565,7 +570,11 @@ $X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Div
 
 
 \begin{frame}{GOF for binned data with LR}
-
+Bin content as Poisson or multinomial - statistic to minimize:
+\begin{align*}
+&\chi^2_{\lambda}(\theta)=-2\log{\lambda(\theta)}=2\sum_i[\mu_i(\theta)-n_i+n_i\log{\frac{n_i}{\mu_i(\theta)}}]
+\end{align*}
+$\mu_i(\theta)=NP_i(\theta)$. Area conserving property: at minimum normalization is automatically correct $\sum\mu_i(\hat{\theta})=\sum_in_i$
 \end{frame}
 
 \subsection{UnBinned GOF}\label{unbinnedgof}
