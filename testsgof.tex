@@ -579,12 +579,13 @@ $\mu_i(\theta)=NP_i(\theta)$. Area conserving property: at minimum normalization
 
 \subsection{UnBinned GOF}\label{unbinnedgof}
 
-\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests}
-\begin{block}{Classes of EDF statistics}
+%\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests}
+\begin{frame}{Classes of EDF statistics}
 	Empirical distribution function (EDF): 
 	\begin{align*}
 	&\hat{F}_n(t)=\frac{\#\text{ elementi nel campione }\leq t}{n}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\\
-	&S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}
+	&S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\\
+	&X_{(1)}\leq X_{(2)}\leq\ldots\leq X_{(N)}
 	\end{align*}
 from LLN $\lim_{N\to\infty}\prob{[S_N(X)=F(X)]}=1$. For fixed X or t, $S_N(X)$ has binomial distribution since $I_{X(i)\leq x}$ is a bernoulli with $p=F(t)$ and moments:
 \begin{align*}
@@ -592,33 +593,53 @@ from LLN $\lim_{N\to\infty}\prob{[S_N(X)=F(X)]}=1$. For fixed X or t, $S_N(X)$ h
 &\E{[(S_N(X)-F(X))^2]}=\frac{1}{N}F(X)[1-F(X)]
 \end{align*}
 Any $d(\hat{F_n},F_0)$ metric on the space of distribution functions is EDF statistics.
-	\begin{align*}
-	&d_{KS}=\sup_t|F(t)-G(t)|\\
-	&T_n=\sup_tn\expy{1/2}|\hat{F}_n(t)-F_0|=n\expy{1/2}d_{KS}(\hat{F}_n,F_0)
-	\end{align*}
-	CvM statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2dF_0(x)$. 
-	AD statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2\frac{1}{F_0(1-F_0)}dF_0(x)$.
-\end{block}
 \end{frame}
+%\end{frame}
 
-\begin{frame}{Smirnov-Cramer-von Mises test for unbinned data ??}
-$H_0$ \'e identificato da $f(X)$: la pdf di  $W^2=\int[S_N(X)-F(X)]^2f(X)\,dX$ \'e indipendente da distribuzione di $X$: $Y=F(X)$ si ha $W^2=\int_0^1[S_N(Y)-Y]^2\,dY$. Ordering statistics, $X_{(1)}, X_{(2)}, \ldots X_{(N)}$, $S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}$
-
+\begin{frame}{Smirnov-Cramer-von Mises test for unbinned data}
+$H_0$ \'e identificato da $f(X)$:
+\begin{align*}
+&W^2=\int[S_N(X)-F(X)]^2f(X)\,dX\\
+&=\frac{1}{N}[\frac{1}{12N}+\sum_i^N(F(X_i)-\frac{2i-1}{2N})^2]
+\end{align*}
+Pdf di $W^2$ \'e indipendente da distribuzione di $X$: $Y=F(X)$ si ha
+$W^2=\int_0^1[S_N(Y)-Y]^2\,dY$.
+Per determinare il valore critico di $NW^2$ per $\alpha$ si pu\'o usare espressione asintotica della funzione caratteristica di $NW^2$
 \end{frame}
 
 \begin{frame}{Test di Kolmogorov-Smirnov}
-$H_0: F=F_0$, $H_1: F\neq F_0$. Stima campionaria della cumulante da campione iid $\iidrv{}$: \[S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\]
-tende in probabilit\'a a F: la distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $T_n=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$. Sia $s_{n,1-\alpha}$ il $1-\alpha$-quantile di $T_n$ per ogni $F$ continua: KS-test rejects H if $T_n>s_{n,1-\alpha}$
+$H_0: F=F_0$, $H_1: F\neq F_0$. Distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $D_N=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$:
 \[D_N=\max_{i}(F(Y_i)-\frac{i-1}{N},\frac{i}{N}-F(Y_i))\]
-\begin{block}{Limiting behaviour of KS test}
+Sia $d_{\alpha}$ il $\alpha$-quantile di $D_N$ per ogni $F$ continua: KS-test rejects $H_0$ if $D_N>d_{\alpha}$
+\begin{columns}[T]
+\begin{column}{0.7\textwidth}
+\begin{align*}
+&P(D_N=\max|S_N(X)-F_0(X)|>d_{\alpha})=1-\alpha\\
+&\Rightarrow P(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})=1-\alpha
+\end{align*}
+\end{column}
+\begin{column}{0.3\textwidth}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.99\textwidth]{figures/james/test/gof-kolmogo-critical}\label{fig:gof-kolmogo-critical}
+	\end{figure}
+\end{column}
+\end{columns}
+%\begin{block}{Limiting behaviour of KS test}
 \begin{itemize}
-\item Kolmogorov(33): comportamento asintotico del $1-\alpha$-quantile $s_{n,1-\alpha}$ \'e il quantile della distribuzione $\prob{(T_n>d)}\to2\sum_k^{\infty}(-1)\expy{k+1}\exp{-2k^2d^2}$ per $F_0$ continua.
-\item KS-test is pointwise consistent in power against any fixed $F\neq F_0$: $\lim_{n\to\infty}\prob_F{T_n>s_{n,1-\alpha}}\to1$.
+\item Kolmogorov(33): asintoticamente 
+$\prob{(\sqrt{N}D_N>z)}\to2\sum_k^{\infty}(-1)\expy{k-1}\exp{-2k^2z^2}$ per $F_0$ continua.
+\item KS-test is pointwise consistent in power against any fixed $F\neq F_0$. %$\lim_{n\to\infty}\prob_F{T_n>s_{n,1-\alpha}}\to1$.
 %\item $\lim_{N\to\infty}\prob{(\sqrt{N}D_N>z)}=2\sum_{r=1}^{\infty}(-1)^{r-1}\exp{-2r^2z^2}$: $\prob{(D_N>d_{\alpha})}=\alpha$ define $d_{\alpha}$ as $\alpha$-point of $D_N$, $\prob{(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})}$.
 \item Massey(50): KS-test is biased
 \end{itemize}
-\end{block}
+%\end{block}
 \end{frame}
+
+\begin{frame}{Confidence interval, test and needed observations}\frameintoc
+\keyword{2-sided CI to hypothesis test}. Suppose $(1-\alpha)$ Confidence Interval $J_3=[T_L(X),T_U(X)]$ for $\theta$, null $H_0:\ theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1:\ \theta\neq\theta_0$ iff $\theta_0$ falls outside $J_3$.
+\keyword{How much observation to get required accuracy?} accuracy $0.05$ ($\pm5\%$??) at $0.99$ CL: probability that $F(X)$ is with the belt $\pm d_{\alpha}$ from $S_N$ is $1-\alpha$, $D_N<0.05<\frac{1.628}{\sqrt{N}}$
+\end{frame}
+
+%AD statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2\frac{1}{F_0(1-F_0)}dF_0(x)$.
 
 \section{Search: stima+test}
 
