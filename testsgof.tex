@@ -570,14 +570,25 @@ $X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Div
 
 \subsection{UnBinned GOF}\label{unbinnedgof}
 
-\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests ??}
+\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests}
 \begin{block}{Classes of EDF statistics}
-	Empirical distribution function (EDF): $\hat{F}_n(t)=\frac{\#\text{ elementi nel campione }\leq t}{n}$. Any $d(\hat{F_n},F_0)$ metric on the space of distribution functions is EDF statistics.
+	Empirical distribution function (EDF): 
+	\begin{align*}
+	&\hat{F}_n(t)=\frac{\#\text{ elementi nel campione }\leq t}{n}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\\
+	&S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}
+	\end{align*}
+from LLN $\lim_{N\to\infty}\prob{[S_N(X)=F(X)]}=1$. For fixed X or t, $S_N(X)$ has binomial distribution since $I_{X(i)\leq x}$ is a bernoulli with $p=F(t)$ and moments:
+\begin{align*}
+&\E{[S_N(X)]}=F(X)\\
+&\E{[(S_N(X)-F(X))^2]}=\frac{1}{N}F(X)[1-F(X)]
+\end{align*}
+Any $d(\hat{F_n},F_0)$ metric on the space of distribution functions is EDF statistics.
 	\begin{align*}
 	&d_{KS}=\sup_t|F(t)-G(t)|\\
 	&T_n=\sup_tn\expy{1/2}|\hat{F}_n(t)-F_0|=n\expy{1/2}d_{KS}(\hat{F}_n,F_0)
 	\end{align*}
-	CvM statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2dF_0(x)$; AD statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2\frac{1}{F_0(1-F_0)}dF_0(x)$
+	CvM statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2dF_0(x)$. 
+	AD statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2\frac{1}{F_0(1-F_0)}dF_0(x)$.
 \end{block}
 \end{frame}
 
