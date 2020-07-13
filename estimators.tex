@@ -145,8 +145,10 @@ Distribuzione esponenziale in x: quale z?
 \begin{frame}{Statistiche sufficienti per il parametro dato}
 Statistica sufficiente $S$ per parametro $\Theta$: \keyword{sufficient statistic is a function $T(\vec{X})$ whose values contains all information needed to compute any estimate of the param}. Pdf di X data $T(X)$ non dipende da parametro $\theta$:
 \[\prob{(x;S,\theta)}=\prob{(x;S)}\]
-\begin{block}{Teorema di fattorizzazione}
-Probabilit\'a di osservare $X$ dato $\theta$ \'e probabilit\'a di $S(x)$ dato $\theta$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$. $\vec{x}=\{x_1,\ldots,x_n\}$: $T(\vec{x})$ sufficiente iff $L(\vec{x},\theta)=g(T,\theta)h(\vec{x})$ e dominio $\omega_{\theta}$ non dipende da $\theta$. Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
+\begin{block}{Teorema di fattorizzazione (iff)}
+$S(X)$ statistica sufficiente per $\theta$ iff probabilit\'a di osservare $X$ \'e probabilit\'a di $S(x)$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$.
+%$\vec{x}=\{x_1,\ldots,x_n\}$: $T(\vec{x})$ sufficiente iff $L(\vec{x},\theta)=g(T,\theta)h(\vec{x})$ e dominio $\omega_{\theta}$ non dipende da $\theta$
+Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
 \end{block}
 \begin{block}{Statistica sufficiente minimale}
 $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim({S})\leq\dim{(X)}$.
@@ -158,7 +160,8 @@ $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim(
 \item $T(x_1,\ldots,x_n)$ suf. per $\theta$ ($P_{\theta}(X=x|T(X)=t(x))$ non dipende da $\theta$):
 \begin{align*}
 &(A): X=x,\ (B): T(X)=t(x): A\subset B\\
-&L(\theta)=P_{\theta}(X=x)=P_{\theta}(X=x\cap T(X)=t(x))=P_{\theta}(T(X)=T(x))P_{\theta}(X=x|T(X)=T(x))
+&L(\theta)=P_{\theta}(X=x)=P_{\theta}(X=x\cap T(X)=t(x))\\
+&=P_{\theta}(T(X)=T(x))P_{\theta}(X=x|T(X)=T(x))
 \end{align*}
 \item $L(\theta)=g(T(x_1,\ldots,x_n);\theta)h(x_1,\ldots,x_n)$.
 \begin{align*}
@@ -567,7 +570,7 @@ Perdita informazione
 	\end{columns}
 \end{frame}
 
-\begin{wordonframe}{Esempi di stimatori}
+\begin{frame}[allowframebreaks, fragile]{Esempi di stimatori}
 	\begin{block}{Notazione}
 		$\exv{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
 	\end{block}
@@ -603,7 +606,7 @@ Perdita informazione
 			\end{column}
 		\end{columns}
 	\end{block}
-\end{wordonframe}
+\end{frame}
 
 
 \subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
@@ -1037,8 +1040,14 @@ Parametro di localizzazione e scala (sample mean and variance under normality as
 Per gaussiana confronto $S_N=\frac{\sum(x_i-\exv{x})^2}{N}$, $d_N=\frac{\sum|x_i-\exv{x}|}{N}$ ($\lim_{N\to\infty}\E{[d_N]}=\sqrt{\frac{2}{\pi}}\sigma$): $r=\lim_{N\to\infty}\frac{\var{[S_N]}}{\var{[d_N']}}=0.876$.
 \end{wordonframe}
 
-\begin{wordonframe}{Distribuzione di probabilit\'a della mediana campionaria}
-Per $2N+1$ misure la probabilit\'a che la misura $N+1$-esima misura sia $m_1$ \'e \[\prob{(m_1)}=\prob_x{(m_1)}F_x(m_1)^N(1-F_x(m_1)^N(2N+1)\binom{2N}{N}\] cio\'e la "densit\'a di probabilit\'a" che una misura cada in $m_1$ moltiplicata per $(2N+1)$ estrazioni, per la probabilit\'a che N misure stiano sotto e N sopra tenendo conto delle $\binom{2N}{N}=\frac{(2N)!}{(2N-N)!N!}$ ways to choose N elements between 2N (che coincide con disposizioni con ripetizioni). Per estrazioni con pdf di Cauchy:
+\subsection{Distribuzione di probabilit\'a della mediana campionaria}
+
+\begin{frame}{P mediana campionaria}
+Per $2N+1$ misure la probabilit\'a che la misura $N+1$-esima misura sia $m_1$ \'e \[\prob{(m_1)}=\prob_x{(m_1)}F_x(m_1)^N(1-F_x(m_1)^N(2N+1)\binom{2N}{N}\] cio\'e la "densit\'a di probabilit\'a" che una misura cada in $m_1$ moltiplicata per $(2N+1)$ estrazioni, per la probabilit\'a che N misure stiano sotto e N sopra tenendo conto delle $\binom{2N}{N}=\frac{(2N)!}{(2N-N)!N!}$ ways to choose N elements between 2N (che coincide con disposizioni con ripetizioni).
+\end{frame}
+
+\begin{frame}{Distribuzione mediana per estrazioni da cauchy}
+ Per estrazioni con pdf di Cauchy:
 \begin{align*}
 &\prob{(\hat{m}_1)}=\frac{1}{1+m^2}[\frac{1}{4}-\frac{\arctan{(m_1)}^2}{\pi^2}]^N\\
 &\var{\hat{m}_1}=\intsinf{}\frac{m^2}{m^{k+2}}\,dm
@@ -1052,7 +1061,7 @@ Cambio di variabile: $y=F(\hat{m}_1)$, con $F(m_1)=\frac{1}{2}$ e $y\approx\frac
 &\var{[x]}=\frac{mn}{(n+m+1)(n+m)^2},\ \var{[y]}=\frac{1}{4(2m+1)}\\
 &\var{[\hat{m}_1]}\approx\frac{1}{4(N+2)}\frac{1}{f^2(m_1)}
 \end{align*}
-\end{wordonframe}
+\end{frame}
 
 \begin{wordonframe}{Come capire se la pdf \'e asintoticamente gaussiana?}
 La distribuzione \'e asintoticamente gaussiana?? $\sqrt{N}(y-\E{[y]})\to N(0,\var{y})$.
@@ -1501,7 +1510,7 @@ Special case of $\Gamma$ distribution
 $\hat{\tau}=\frac{1}{n}\sum^nt_i$: ritrovo il valore di aspettazione
 \begin{align*}
 &\E{[\hat{\tau}]}=\intzi{}\ldots\intzi{}(\frac{1}{n}\sum^nt_i)\frac{1}{\tau}\exp{-\frac{t_1}{\tau}}\ldots\frac{1}{\tau}\exp{-\frac{t_n}{\tau}}\,dt_1\ldots\,dt_n\\
-&\E{[\hat{\tau}]}=\intzi{}\hat{\tau}g(\hat{\tau};n,\tau)\,d\hat{\tau}=\intzi{}\hat{\tau}\frac{n^n}{(n-1)!}\frac{\hat{\tau}\expy{n-1}}{\tau^n}\exp{-\frac{n\hat{\tau}}{\tau}}\,d\\hat{\tau}
+&\E{[\hat{\tau}]}=\intzi{}\hat{\tau}g(\hat{\tau};n,\tau)\,d\hat{\tau}=\intzi{}\hat{\tau}\frac{n^n}{(n-1)!}\frac{\hat{\tau}\expy{n-1}}{\tau^n}\exp{-\frac{n\hat{\tau}}{\tau}}\,d\,\hat{\tau}
 \end{align*}
 \end{block}
 \begin{block}{Costante di decadimento}

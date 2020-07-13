@@ -8,9 +8,8 @@
 \subsection{Assiomi di probabilit\'a}\linkdest{axioms}
 
 \begin{frame}{Assiomi probabilit\'a Kolmogorov: spazio di probabilit\'a $(\Omega,F,P)$}
-$\Omega$ spazio campionario (sample space: $\{1,2,3,4,5,6\}$) , $F$ (: (1), (dado pari), etc) 
 \begin{itemize}
-\item Spazio campionario: set enumerating each and every possible outcomes (simple events) of experiment. La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario.
+\item Spazio campionario: set enumerating each and every possible outcomes (simple events) of experiment. La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario. $\Omega$ spazio campionario (sample space: $\{1,2,3,4,5,6\}$) , $F$ (: (1), (dado pari), etc).
 \item La probabilit\'a degli eventi del sample space \'e 1.
 \item $\sigma$-additivit\'a: per ogni sequenza numerabile di insiemi disgiunti (eventi mutualmente esclusivi)
 \begin{equation*}
@@ -74,7 +73,8 @@ $\prob{(B|A)}=\frac{\prob{A\cap B}}{\prob{A}}=\frac{f(x,y)\,dx\,dy}{f_x(x)\,dx}$
 
 \begin{frame}{Interpretazioni del teorema di Bayes}
 \begin{itemize}
-\item Bayesian: For proposition A and evidence B: $\prob{(A)}$ is the initial degree of belief in A, $\prob{(A|B)}$ the posterior is  degree of belief having accounted for B, quotient $\frac{\prob{(A|B)}}{\prob{(B)}}$ is the support B provides for A
+\item Bayesian: For proposition A and evidence B: $\prob{(A)}$ is the initial degree of belief in A, $\prob{(A|B)}$ the posterior is  degree of belief having accounted for B, quotient $\frac{\prob{(A|B)}}{\prob{(B)}}$ is the support B provides for A.
+\[\overbrace{P(H|E)}^{Posterior}=\frac{\underbrace{P(E|H)}_{L}\underbrace{P(H)}_{Prior})}{P(E)}\]
 \item Frequentist. Suppose an experiment is performed many times, $\prob{(A)}$ is proportion of outcomes with property A, $\prob{(B|A)}$ is proportion of outcomes with B out of those with A, and $\prob{(A|B)}$ is proportion of those with A out of those with B
 \end{itemize}
 \end{frame}
@@ -86,8 +86,9 @@ Indipendence: $\prob{(A\cap B)}=\prob{(A)}\prob{(B)}$.
 Disjoint: $\prob{(A\cap B)}=0$.
 T.Bayes: $\frac{P(B|A)P(A)}{P(B)}=P(A|B)=\frac{P(B|A)P(A)}{P(B)}=\frac{P(B\cap A)P(A)}{P(A)P(B)}$
 \end{block}
-\begin{block}{Chebychev Inequality}
+\begin{block}{Expectation value and indicator. Chebychev Inequality}
 \begin{align*}
+&\E{[X]}=\int_{\Omega}X(\omega)\,dP(\omega),\ \E{[1_A]}=1*P(A)+0*P(\Omega/A)=P(A)\\
 &\prob{(|X-\mu|\geq k\sigma)}=\E{[I_{|X-\mu|\geq k\sigma}]}=\E{[I_{\frac{|X-\mu|}{k\sigma}\geq 1}]}\\
 &\leq\E{[(\frac{X-\mu}{k\sigma})^2]}\leq\E{[(\frac{X-\mu}{k\sigma})^2]}=\frac{1}{k^2}\frac{\E{[(X-\mu)^2]}}{\sigma^2}\\
 &(\sigma^2=\E{[(X-\mu)^2]}\geq\int_{-\infty}^{\mu-\epsilon}+\int_{\mu+\epsilon}^{\infty}())
@@ -194,14 +195,13 @@ Subjective probability can be associated with value of unknown constants (mass o
 \begin{frame}{Funzioni di RV}
 \begin{figure}
 	\centering
-	\includegraphics[width=0.99\textwidth,keepaspectratio]{figures/cowan/probability/RVfunc}
+	\includegraphics[width=0.85\textwidth,keepaspectratio]{figures/cowan/probability/RVfunc}
 	\label{fig:RVfunc}
 \end{figure}
 %Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
 \begin{align*}
 %&g(a)=f(x(a))|\TDy{a}{x}|\tag*{g(a)\,da=f(x)\,dx}\\
-&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\\
-&\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|\\
+&g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|\\
 &g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
 &\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
 \end{align*}
@@ -413,8 +413,10 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 	\end{block}
 \end{wordonframe}
 
-\begin{frame}[allowframebreaks]{Esempi probabilit\'a condizionata: double layered detector}
-\begin{block}{Double layered detector}
+\subsection{Esempi probabilit\'a condizionata: double layered detector}
+	
+	
+\begin{frame}{Double layered detector}
 	\begin{columns}[T]
 		\begin{column}{0.5\textwidth}
 			Detector a due strati attraversato da fascio di particelle (\num{e-4} elettroni e il resto fotoni); la probabilit\'a di un segnale in zero, uno o entrambi gli strati \'e:
@@ -434,11 +436,9 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 			\end{align*}
 		\end{column}
 	\end{columns}
-\end{block}
 \end{frame}
 
-\begin{frame}[allowframebreaks]{Esempi probabilit\'a condizionata: dadi Dungeons\& Dragon, ammo}
-\begin{block}{Dadi Dungeons\& Dragons}
+\begin{frame}{Dadi Dungeons\& Dragons}
 	Sei dadi $D_i$ con numero di facce $i=\{4,6,8,10,12,20\}$.
 	\begin{align*}
 	&\prob{(1)}=\sum\prob{(1|D_i)}\prob{(D_i)}=\sum_i\frac{1}{i}\frac{1}{6}\approx0.129\tag{\keyword{T. probabilit\'a totale}}\\
@@ -447,30 +447,30 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 	&=\sum\frac{1}{i}\prob{(D_i|1)}=\sum\frac{1/i^2}{\sum1/i}\approx0.161\\
 	&(\prob{(D_i|1)}=\frac{\prob{(1|D_i)}\prob{(D_i)}}{\prob{(1)}})
 	\end{align*}
-\end{block}
-\begin{block}{Casse di munizioni}
-	Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una frazione di proiettili danneggiati $f_D=0=q$, nel $10\%$ dei casi $f_D=0.05=q$ ($\prob{(q)}=0.9\delta(q)+0.1\delta(q-0.05)$). Quante munizioni devo testare per cassa e con quale $f_D$ per avere percentuale casse danneggiate minore del $5\%$?
+\end{frame}
+
+\begin{frame}{Casse di munizioni}
+	Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una frazione di proiettili danneggiati $f_D=0=q$, nel $10\%$ dei casi $f_D=0.05=q$ ($\prob{(q)}=0.9\delta(q)+0.1\delta(q-0.05)$: dove ho usato la funzione delta). Quante munizioni devo testare per cassa e con quale $f_D$ per avere percentuale casse danneggiate minore del $5\%$?
 	\begin{align*}
 	&\prob{(q|k)}=\frac{\prob{(k|q)}\prob{q}}{\prob{k}}\\
 	&\prob{(k|q)}=\binom{n}{k}q^k(1-q)^{n-k}\\
 	&\prob{(q|k)}=\frac{\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}{\int\,dq\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}\\
 	&\prob{(q=0|k=0)}\geq0.96,\ n=20
 	\end{align*}
-\end{block}
 \end{frame}
 
 \subsection{Propagazione errori}
 
 \begin{frame}{\todo{Propagazione errori: da succo}}
 \begin{align*}
-&S(\vec{x})\approx y(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
-&\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_i}{y}{\vec{\mu}}\cov{x_ix_j}
+&S(\vec{x})\approx S(\vec{\mu})+\left.\sum_i^n\PDy{x_i}{S}\right|_{\vec{\mu}}(x_i-\mu_i)+o(|\vec{x}-\vec{\mu}|)\\
+&\var{(S)}=\E{[(S(\vec{x})-\E{[S]})^2]}\approx\sum_{ij}\PDyat{x_i}{S}{\vec{\mu}}\PDyat{x_j}{S}{\vec{\mu}}\cov{x_ix_j}
 \end{align*}
 \begin{block}{Covarianza e correlazione}
 	\begin{columns}[T]
 		\begin{column}{0.5\textwidth}
 			\begin{align*}
-			&\cov{x_ix_j}=\E{[(x-\mu_x)(y-\mu_y)]}=\E{[xy]}-\mu_x\mu_y
+			&\cov{x_ix_j}=\E{[(x_i-\mu_i)(x_j-\mu_j)]}=\E{[x_ix_j]}-\mu_i\mu_j
 			\end{align*}
 		\end{column}
 		\begin{column}{0.5\textwidth}
@@ -610,27 +610,6 @@ Per gaussiana: $\phi_{\overline{X}}(t)=\exp{-\frac{t^2}{4}}$, $\sigma^2\to\frac{
 \end{block}
 \end{wordonframe}
 
-\begin{wordonframe}{FGM pdf uniforme}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&p(x)=\frac{1}{m}\ 0<x<m\ (\int_0^mp(x)d\,x=1)\\
-&\E{[\exp{tx}]}=\int_0^m\frac{\exp{tx}}{m}d\,x=\frac{\exp{mt}-1}{mt}\\
-&=\frac{1}{m}[m+\frac{m^2t}{2}+\frac{m^3t^2}{6}+\frac{m^4t^3}{4!}+\ldots]
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\mu'_2=\frac{m^2}{3}=\sigma^2+\mu^2\\
-&\sigma^2=\mu_2'-(\frac{m^2}{2})^2=\frac{m^2}{12}
-\end{align*}
-\end{column}
-\end{columns}
-\begin{block}{Somma RV con pdf uniforme fra 0 e 1}
-$y=x_1+\ldots+x_n$: $\MGF_y=(\frac{\exp{mt}-1}{mt})^n$
-\end{block}
-\end{wordonframe}
-
 \begin{frame}{\keyword{Teorema di Paul-Levy}}
 	\begin{columns}[T]
 		\begin{column}{0.3\textwidth}
@@ -735,6 +714,21 @@ Convoluzione e prodotto:
 \end{align*}
 \end{wordonframe}
 
+\begin{frame}{Integrali}\frameintoc
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\keyword{Integrazione su $C$}:
+\begin{align*}
+&\oint_{\gamma}f(z)\,dz=2\pi i\sum I(\gamma,a_k)Res(f,a_k)\\
+&\Res{(f, a_k)}=\frac{1}{(n-1)!}\lim_{z\to a_k}\TxDof{z}{n-1}[(z-a_k)^nf(z)]
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+	contenu...
+\end{column}
+\end{columns}
+\end{frame}
+
 \section{Legge grandi numeri - Teorema limite centrale}\linkdest{lln}
 
 \begin{frame}{Legge grandi numeri: sample mean converges to expected value}
@@ -760,7 +754,11 @@ Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$ (Probability con
 \begin{frame}{Teorema limite centrale (CLT): asymptotically gaussian}\linkdest{clt}
 \begin{itemize}
 \item Se esistono $\mu_1, \mu_2$ finiti vale LLN: $\overline{x}_n-\mu\xrightarrow{P}0$ e
-\[\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\]%\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
+\begin{align*}
+&\var{(\overline{x}_n-\mu)}=\var{(\frac{S_N}{N})}=\frac{1}{N^2}\var{(S_N)}=\frac{\sigma^2}{N}\\
+&\var{[S_N]}=\E{[(\sum(X_i-\mu))^2]}
+%&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
+\end{align*}
 \item Cambio RV: $Y_i=\sqrt{\frac{1}{\sigma^2}}(\overline{X}_i-\mu)$, $\E{[Y_i]}=0$, $\var{Y_i]}=1$
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
@@ -840,7 +838,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \begin{itemize}
 \item $n!$: permutazioni - modi distinti di prendere n oggetti
 \item Permutazioni senza ripetizioni - Arrengements of n objects taken k at a time: $P_{nk}=\frac{n!}{(n-k)!}$.
-\item Combinazioni senza ripetizioni $C_{nk}=\frac{n!}{k!(n-k)!}$
+\item Combinazioni senza ripetizioni (non conta l'ordine) $C_{nk}=\frac{n!}{k!(n-k)!}$
 \end{itemize}
 \end{wordonframe}
 
