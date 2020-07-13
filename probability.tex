@@ -281,13 +281,12 @@ $X=G(\mu_X,\sigma_X^2)$, $Y=G(\mu_Y,\sigma_Y^2)$, $Z=X+Y$: $Z=G(\mu_X+\mu_Y,\sig
 \item C. function: $\phi_{X+Y}(t)=\E{[\exp{it(X+Y)}]}$
 \[\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)=\exp{it\mu_X-\frac{\sigma_X^2t^2}{2}}\exp{it\mu_Y-\frac{\sigma_Y^2t^2}{2}}\]
 \item Convolution $f_Z(z)=\intsinf{}f_Y(z-x)f_X(x)\,dx$:
-\[f_Z(z)=\intsinf{}\frac{1}{2\pi\sigma_Z\frac{\sigma_X\sigma_Y}{\sigma_Z}}\exp{-\frac{x^2-2x\frac{\sigma_X^2(z-\mu_Y)+\sigma_Y^2\mu_X}{\sigma_Z^2}+\frac{\sigma_X^2(z^2+\mu_Y^2-2z\mu_Y)+\sigma_Y^2\mu_X^2}{\sigma_Z^2}}{2(\frac{\sigma_X\sigma_Y}{\sigma_Z})^2}}\]
+\[f_Z(z)=\intsinf{}\frac{1}{2\pi\sigma_Z\frac{\sigma_X\sigma_Y}{\sigma_Z}}\exp{-\frac{x^2-2x\frac{\sigma_X^2(z-\mu_Y)+\sigma_Y^2\mu_X}{\sigma_Z^2}+\frac{\sigma_X^2(z^2+\mu_Y^2-2z\mu_Y)+\sigma_Y^2\mu_X^2}{\sigma_Z^2}}{2(\frac{\sigma_X\sigma_Y}{\sigma_Z})^2}}\,dx\]
 \item Convolution T. : $f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}[\FT{[f_X]}\FT{[f_Y]}]$
 \[=\invers{\FT{}}[\exp{-i\omega(\mu_X+\mu_Y)}\exp{-\frac{(\sigma_X^2+\sigma_Y^2)\omega^2}{2}}]\]
 \item Geometrical: $F(z)=\int_{x+y\leq z}f(x)g(y)\,dxdy$ and after rotation
 \[F(z)=\int_{x'\leq c(z)}f(x')g(y')\,dx'dy'\]
 $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}{2})^2}$: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, ie $Z=X+Y=N(0,2)$
-
 \end{itemize}
 \end{frame}
 
