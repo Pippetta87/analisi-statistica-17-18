@@ -280,11 +280,15 @@ $X=G(\mu_X,\sigma_X^2)$, $Y=G(\mu_Y,\sigma_Y^2)$, $Z=X+Y$: $Z=G(\mu_X+\mu_Y,\sig
 \begin{itemize}
 \item C. function: $\phi_{X+Y}(t)=\E{[\exp{it(X+Y)}]}$
 \[\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)=\exp{it\mu_X-\frac{\sigma_X^2t^2}{2}}\exp{it\mu_Y-\frac{\sigma_Y^2t^2}{2}}\]
-\item Convolution $f_Z(z)=\intsinf{}f_Y(z-x)f_X(x)\,dx$:
-\[f_Z(z)=\intsinf{}\frac{1}{2\pi\sigma_Z\frac{\sigma_X\sigma_Y}{\sigma_Z}}\exp{-\frac{x^2-2x\frac{\sigma_X^2(z-\mu_Y)+\sigma_Y^2\mu_X}{\sigma_Z^2}+\frac{\sigma_X^2(z^2+\mu_Y^2-2z\mu_Y)+\sigma_Y^2\mu_X^2}{\sigma_Z^2}}{2(\frac{\sigma_X\sigma_Y}{\sigma_Z})^2}}\,dx\]
+\item Convolution
+\begin{align*}
+%\invers{(2\pi\sigma_x\sigma_y)}
+&f_Z(z)=\intsinf{}f_Y(z-x)f_X(x)\,dx\propto\intsinf{}\Exp{[\ldots]},\ \zeta=x-\mu_x,\ a=z-(\mu_x+\mu_y):\\ &[\ldots=-\frac{1}{2}[\{\frac{\sigma_x^2+\sigma_y^2}{\sigma_x\sigma_y}\zeta^2-\frac{2a}{\sigma_y^2}\zeta+\frac{\sigma_x^2a}{\sigma_y^2(\sigma_x^2+\sigma_y^2)}\}+\{\frac{a^2}{\sigma_y^2}-\frac{\sigma_x^2a^2}{\sigma_y^2(\sigma_x^2+\sigma_y^2)}\}]]
+\end{align*}
+%\[f_Z(z)=\intsinf{}\frac{1}{2\pi\sigma_Z\frac{\sigma_X\sigma_Y}{\sigma_Z}}\exp{-\frac{x^2-2x\frac{\sigma_X^2(z-\mu_Y)+\sigma_Y^2\mu_X}{\sigma_Z^2}+\frac{\sigma_X^2(z^2+\mu_Y^2-2z\mu_Y)+\sigma_Y^2\mu_X^2}{\sigma_Z^2}}{2(\frac{\sigma_X\sigma_Y}{\sigma_Z})^2}}\,dx\]
 \item Convolution T. : $f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}[\FT{[f_X]}\FT{[f_Y]}]$
 \[=\invers{\FT{}}[\exp{-i\omega(\mu_X+\mu_Y)}\exp{-\frac{(\sigma_X^2+\sigma_Y^2)\omega^2}{2}}]\]
-\item Geometrical: $F(z)=\int_{x+y\leq z}f(x)g(y)\,dxdy$ and after rotation
+\item[(*)] Geometrical: $F(z)=\int_{x+y\leq z}f(x)g(y)\,dxdy$ and after rotation
 \[F(z)=\int_{x'\leq c(z)}f(x')g(y')\,dx'dy'\]
 $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}{2})^2}$: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, ie $Z=X+Y=N(0,2)$
 \end{itemize}
@@ -421,15 +425,15 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 			Detector a due strati attraversato da fascio di particelle (\num{e-4} elettroni e il resto fotoni); la probabilit\'a di un segnale in zero, uno o entrambi gli strati \'e:
 			\begin{align*}
 			&\prob{(0|e)}=0.001,\ \prob{(0|\gamma)}=0.99899\\
-			&\prob{(1|e)}=0.01\ \prob{(0|\gamma)}=0.001\\
-			&\prob{(2|e)}=0.989\ \prob{(0|\gamma)}=\num{e-5}\\
+			&\prob{(1|e)}=0.01\ \prob{(1|\gamma)}=0.001\\
+			&\prob{(2|e)}=0.989\ \prob{(2|\gamma)}=\num{e-5}\\
 			\end{align*}
 		\end{column}
 		\begin{column}{0.5\textwidth}
 			Probabilit\'a che particella rivelata in solo uno strato sia fotone:
 			\begin{align*}
 			&\prob{(\gamma|1)}=\frac{\prob{(1|\gamma)}\prob{(\gamma)}}{\prob{(1)}}\\
-			&=\frac{\num{e-3}(1-\num{e-4})}{\num{e-2}(1-\num{e-4})+\num{e-2}\num{e-4}}\\
+			&=\frac{\num{e-3}(1-\num{e-4})}{\num{e-3}(1-\num{e-4})+\num{e-2}\num{e-4}}\\
 			&(\prob{(1)}=\prob{(1|e)}\prob{(e)}+\prob{(1|\gamma)}\prob{(\gamma)})\\
 			&\prob{(0)}\approx 1,\ \prob{(1)}\approx\num{e-3},\ \prob{(2)}\approx\num{e-4}
 			\end{align*}
@@ -451,7 +455,7 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 \begin{frame}{Casse di munizioni}
 	Dopo tempo T in deposito delle casse di munizioni hanno nel $90\%$ dei casi una frazione di proiettili danneggiati $f_D=0=q$, nel $10\%$ dei casi $f_D=0.05=q$ ($\prob{(q)}=0.9\delta(q)+0.1\delta(q-0.05)$: dove ho usato la funzione delta). Quante munizioni devo testare per cassa e con quale $f_D$ per avere percentuale casse danneggiate minore del $5\%$?
 	\begin{align*}
-	&\prob{(q|k)}=\frac{\prob{(k|q)}\prob{q}}{\prob{k}}\\
+	&\prob{(q|k)}=\frac{\prob{(k|q)}\prob{(q)}}{\prob{(k)}}\\
 	&\prob{(k|q)}=\binom{n}{k}q^k(1-q)^{n-k}\\
 	&\prob{(q|k)}=\frac{\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}{\int\,dq\binom{n}{k}q^k(1-q)^{n-k}[0.9\delta(q)+0.1\delta(q-0.05)]}\\
 	&\prob{(q=0|k=0)}\geq0.96,\ n=20
@@ -488,10 +492,10 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 		\begin{align*}
-		&M_X(t)=\E{[\exp{tX}]}\\
+		&M_X(t)=\E{[\exp{tX}]}(=\phi_X(-it))\\
 		&\phi_X(t)=\E{[\exp{itX}]}=\int\exp{itx}\,d\mu_X(x)\\
 		&\exp{itx_0}\phi(t)=\exv{\exp{-ik(x-x_0)}}\\
-		&=\sum_{n=0}^{\infty}\frac{(-it)^n}{n!}\exv{(x-x_0)^n}\\
+		&=\sum_{n=0}^{\infty}\frac{(it)^n}{n!}\exv{(x-x_0)^n}\\
 		&\phi(0)=1,\ |\phi(t)|\leq1\\
 		&\phi_X(t)=1+i\mu t+\frac{1}{2}(\sigma^2+\mu^2)(it)^2
 		\end{align*}
