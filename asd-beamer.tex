@@ -36,11 +36,15 @@
 \definecolor{todo}{rgb}{0.75, 0.0, 0.2}
 \definecolor{must}{rgb}{1.0, 0.31, 0.0}
 
-\definecolor{greenhp}{rgb}{0.0, 0.8, 0.6}
-\DeclareRobustCommand{\hypo}[1]{{\sethlcolor{greenhp}\hl{#1}}}
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% importa pacchetti
 \usepackage{usepkg}
 %%
+
+\definecolor{greenhp}{rgb}{0.0, 0.8, 0.6}
+\newcommand*{\hypo}[1]{\tikz[baseline=(X.base)] \node[fill=greenhp] (X) {#1};}
+%\DeclareRobustCommand{\hypo}[1]{{\sethlcolor{greenhp}\hl{#1}}}
+
 \renewbibmacro*{cite}{%
   \iffieldundef{shorthand}
     {\ifnameundef{labelname}
