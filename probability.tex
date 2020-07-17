@@ -309,7 +309,24 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 \end{frame}
 
 \begin{wordonframe}{\keyword{Sum m iid RV exponentially}}
+$\iidrv$ with exponential pdf, $Y=\iidrv$:
+\begin{align*}
+&f_Y(y)=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_1)f_2(x_2)\ldots f_m(x_m)\,dx_2\ldots\,dx_m\\
+&=\intsinf{}\ldots\intsinf f_2(y-x_n-\ldots-x_2)f_1(x_2)\ldots f_m(x_m)\,dx_1\,dx_3\ldots\,dx_m=\ldots\\
+&\int_a^bf_Y(y)\,dy=\prob{(a\leq Y\leq b)}\\
+&=\prob{(-\infty\leq X_1\leq+\infty\cap\ldots\cap a-x_{n-1}-\ldots-x_1\leq x_n\leq b-x_{n-1}-\ldots-x_1)}\\
+&=\intsinf{}\ldots\int_{a-x_{m-1}-\ldots-x_1}^{b-x_{m-1}-\ldots-x_1}f_1(x_1)\ldots f_n(x_n)\,dx_1\ldots\,dx_n,\ x_n\to y-x_{n-1}-\ldots-x_1\\
+&\int_0^y\int_0^{y-x_2}\ldots\int_0^{y-\sum_{k=2}^nx_k}dx_n\ldots\,dx_{2}=\frac{y^{m-1}}{(m-1)!}
+\end{align*}
+\end{wordonframe}
 
+\begin{wordonframe}{Sum m iid RV exponentially: $n=4$}
+	\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{figures/internet/sumRV-integration}\label{fig:sumRV-integration}
+	\end{figure}
+	\begin{align*}
+	&f_Y(y)=\intsinf{}f_1(y-x_4-x_3-x_2)f_2(x_2)f_3(x_3)f_4(x_4)dx_2\ldots dx_4\tag{$n=4$}\\
+	&=\lambda^4\exp{-\lambda y}\int_0^y\int_0^{y-x_2}\int_0^{y-x_2-x_3}\,dx_4dx_3dx_2\\
+	\end{align*}
 \end{wordonframe}
 
 \begin{wordonframe}{Somma di 2 RV uniformi $U([0,1])$}
