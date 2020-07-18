@@ -1538,4 +1538,13 @@ perfissati $\alpha,\beta$, indipendentemente dal vero $\xi$. Per $n\to\infty$ $g
 \begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,height=0.4\textheight]{figures/cowan/estimators/intestclt}\label{fig:intestclt}\end{figure}
 \end{frame}
 
+\begin{frame}{Confidence interval in tests hypothesys}
+$H_0: \theta=\theta_0$ against $H_1$ which could be $\theta>\theta_0$, upper bound $\theta<\theta$ or $\theta\neq\theta_0$:
+\begin{itemize}
+    \item If we have a $(1-\alpha)$ lower confidence interval estimator $J_1=(T_L(X),\infty)$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1:\theta>\theta_0$ iff $\theta_0$ non \'e contenuto in $J_1$
+\item If we have a $(1-\alpha)$ upper confidence interval estimator $J_2=(-\infty,T_U/X))$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1: \theta<\theta_0$ iff $\theta_0$ non \'e contenuto in $J_1$
+\item If we have a $(1-\alpha)$ two-sided confidence interval estimator $J_3=(T_L(X),T_U(X))$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1: \theta\neq\theta_0$ iff $\theta_0$ non \'e contenuto in $J_3$
+\end{itemize}
+\end{frame}
+
 \end{document}

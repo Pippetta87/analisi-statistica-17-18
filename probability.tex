@@ -253,7 +253,7 @@ $\{X_n\}, X$ RV e $\{F_n\}, F$ cumulanti: $F_n\to F$
 \begin{block}{Convergenza in probabilit\'a}
 $\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
 \end{block}
-\begin{block}{Teorema di Paul-Levy}
+\begin{block}{\keyword{Teorema di Paul-Levy}}
 \begin{columns}[T]
 	\begin{column}{0.3\textwidth}
 		Se conosco tutti i momenti di una distribuzione conosco la distribuzione? wtf
@@ -271,6 +271,20 @@ $\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
 \begin{block}{Slutsky theorem}
 $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}\xrightarrow{P}c$, quindi $\{X_n\}+\{Y_n\}\xrightarrow{D}X+c$, $\{X_nY_n\}\xrightarrow{D}c\{X_n\}$, $\{X_n/Y_n\}\xrightarrow{D}\{X_n/c\}$
 \end{block}
+\end{frame}
+
+\begin{frame}{Law uncoscious statistician}
+	\begin{equation*}
+	\E{[g(x)]}=\intsinf{}g(x)\,dF_X(x)(=\sum_xg(x)f_X(x))
+	\end{equation*}
+	$Y=g(X)$, \hypo{g diff., $\invers{g}$ monotonic}:
+	\begin{align*}
+	&\TDof{y}(\invers{g}(y))=\frac{1}{g'(\invers{g}(y))}\\
+	&x=\invers{g}(y)\Rightarrow dx=\frac{1}{g'(\invers{g}(y))}\\
+	&\Rightarrow \intsinf{}g(x)f_X(x)\,dx=\intsinf{}y\invers{g}(y)\frac{dy}{g'(\invers{g}(y))}\\
+	&F_Y(y)=\prob{(Y\leq y)}\Rightarrow F_Y(y)=f_X(\invers{g}(y))\Rightarrow f_Y(y)=f_X(\invers{g})(y)\frac{1}{g'(\invers{g}(y))}\\
+	&\Rightarrow \intsinf{}g(x)f_X(x)\,dx=\intsinf yf_Y(y)\,dy
+	\end{align*}
 \end{frame}
 
 \subsection{RV changes examples}
@@ -293,6 +307,27 @@ $X=G(\mu_X,\sigma_X^2)$, $Y=G(\mu_Y,\sigma_Y^2)$, $Z=X+Y$: $Z=G(\mu_X+\mu_Y,\sig
 $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}{2})^2}$: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, ie $Z=X+Y=N(0,2)$
 \end{itemize}
 \end{frame}
+
+\begin{wordonframe}{\keyword{Sum m iid RV exponentially}}
+$\iidrv$ with exponential pdf, $Y=\iidrv$:
+\begin{align*}
+&f_Y(y)=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_1)f_2(x_2)\ldots f_m(x_m)\,dx_2\ldots\,dx_m\\
+&=\intsinf{}\ldots\intsinf f_2(y-x_n-\ldots-x_2)f_1(x_2)\ldots f_m(x_m)\,dx_1\,dx_3\ldots\,dx_m=\ldots\\
+&\int_a^bf_Y(y)\,dy=\prob{(a\leq Y\leq b)}\\
+&=\prob{(-\infty\leq X_1\leq+\infty\cap\ldots\cap a-x_{n-1}-\ldots-x_1\leq x_n\leq b-x_{n-1}-\ldots-x_1)}\\
+&=\intsinf{}\ldots\int_{a-x_{m-1}-\ldots-x_1}^{b-x_{m-1}-\ldots-x_1}f_1(x_1)\ldots f_n(x_n)\,dx_1\ldots\,dx_n,\ x_n\to y-x_{n-1}-\ldots-x_1\\
+&\int_0^y\int_0^{y-x_2}\ldots\int_0^{y-\sum_{k=2}^nx_k}dx_n\ldots\,dx_{2}=\frac{y^{m-1}}{(m-1)!}
+\end{align*}
+\end{wordonframe}
+
+\begin{wordonframe}{Sum m iid RV exponentially: $n=4$}
+	\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{figures/internet/sumRV-integration}\label{fig:sumRV-integration}
+	\end{figure}
+	\begin{align*}
+	&f_Y(y)=\intsinf{}f_1(y-x_4-x_3-x_2)f_2(x_2)f_3(x_3)f_4(x_4)dx_2\ldots dx_4\tag{$n=4$}\\
+	&=\lambda^4\exp{-\lambda y}\int_0^y\int_0^{y-x_2}\int_0^{y-x_2-x_3}\,dx_4dx_3dx_2\\
+	\end{align*}
+\end{wordonframe}
 
 \begin{wordonframe}{Somma di 2 RV uniformi $U([0,1])$}
 	\begin{columns}[T]
@@ -524,10 +559,6 @@ $c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}
 \end{columns}
 \end{frame}
 
-\begin{frame}{Law uncoscious statistician}
-
-\end{frame}
-
 \begin{wordonframe}{FGM pdf uniforme}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -573,22 +604,22 @@ Per gaussiana: $\phi_{\overline{X}}(t)=\exp{-\frac{t^2}{4}}$, $\sigma^2\to\frac{
 \end{block}
 \end{wordonframe}
 
-\begin{frame}{\keyword{Teorema di Paul-Levy}}
-	\begin{columns}[T]
-		\begin{column}{0.3\textwidth}
-			Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
-		\end{column}
-		\begin{column}{0.7\textwidth}
-			\begin{itemize}
-				\item $F_n$ successione di funzioni cumulanti
-				\item $\phi_n\to\phi$ per ogni $t\in I(0)$
-				\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
-			\end{itemize}
-			quindi $F_n(x)\to F(x)$.
-		\end{column}
-	\end{columns}
-Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
-\end{frame}
+%\begin{frame}{\keyword{Teorema di Paul-Levy}}
+%	\begin{columns}[T]
+%		\begin{column}{0.3\textwidth}
+%			Se conosco tutti i momenti di una distribuzione conosco la distribuzione?
+%		\end{column}
+%		\begin{column}{0.7\textwidth}
+%			\begin{itemize}
+%				\item $F_n$ successione di funzioni cumulanti
+%				\item $\phi_n\to\phi$ per ogni $t\in I(0)$
+%				\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
+%			\end{itemize}
+%			quindi $F_n(x)\to F(x)$.
+%		\end{column}
+%	\end{columns}
+%Determina completamente pdf: se $F(X)$ continua, $dF(X)=f(X)dX$ allora $f(X)=\frac{1}{2\pi}\intsinf{}\phi_X(t)\exp{-iXt}\,dt$.
+%\end{frame}
 
 \begin{wordonframe}{Funzioni caratteristiche}
 \begin{columns}[T]
@@ -683,7 +714,9 @@ Convoluzione e prodotto:
 \keyword{Integrazione su $C$}:
 \begin{align*}
 &\oint_{\gamma}f(z)\,dz=2\pi i\sum I(\gamma,a_k)Res(f,a_k)\\
-&\Res{(f, a_k)}=\frac{1}{(n-1)!}\lim_{z\to a_k}\TxDof{z}{n-1}[(z-a_k)^nf(z)]
+&\Res{(f, a_k)}=\frac{1}{(n-1)!}\lim_{z\to a_k}\TxDof{z}{n-1}[(z-a_k)^nf(z)]\\
+&\Res{(f(z),\infty)}=-\Res{(\frac{1}{z^2}f(\frac{1}{z}),0)}\\
+&(\lim_{|z|\to0}f(z)=0\Rightarrow\Res{(f,\infty)}=--\lim_{|z|\to\infty}zf(z))
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
