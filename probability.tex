@@ -1046,6 +1046,15 @@ $\{x_1,\ldots,x_n\}$ iid from $U(a,b)$: $x_{(k)}\to\frac{x_{(k)}-a}{b-a}$ make t
 \end{align*}
 \end{frame}
 
+\begin{frame}{Student's t}
+$Y\sim\chi^2_n$, $Z\sim N(0,1)$:
+\begin{align*}
+&X=\frac{Z}{\sqrt{\frac{Y}{n}}}\\
+&f(t_n=x)=\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}}\\
+&\E{[X]}=0: n>1, \var{[X]}=\frac{n}{n-2}: n>2, \infty: 1<n\leq2
+\end{align*}
+\end{frame}
+
 \begin{frame}{Landau distribution}
 pdf for energy loss $\Delta$ of charged particle when traversing given thickness of matter.
 \begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{figures/cowan/probability/landautails}\label{fig:landautails}\end{figure}
