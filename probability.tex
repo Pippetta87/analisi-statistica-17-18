@@ -152,23 +152,6 @@ Subjective probability can be associated with value of unknown constants (mass o
 	\end{columns}
 \end{wordonframe}
 
-\begin{frame}{Momenti RV}
-\begin{columns}[T]\begin{column}{0.4\textwidth}
-\begin{align*}
-&\mu=\E{[(X-\mu)^n]}\\
-&
-\end{align*}
-\end{column}\begin{column}{0.6\textwidth}
-
-\begin{align*}
-&Y=X_1+\ldots+X_n:\ \E{[Y]}=n\E{X_1}\\
-&\mu_1=\E{[\sum X_i-\mu]}=\sum_i\E{[X_i]}-\mu\\
-&\var{[Y]}=\sum\var{[X_i]}+2\sum_i^{n-1}\sum_{j=i}\cov{(X_i,X_j)}\\
-&=n\sigma^2\tag{$X_i$ iid RV}
-\end{align*}
-\end{column}\end{columns}
-\end{frame}
-
 \subsection{Order Statistics}
 
 \begin{frame}{Density function for order statistics}
@@ -634,8 +617,20 @@ Poissoniana: $\Phi_X(t)=\exp{\lambda(\exp{it}-1)}$
 
 \section{Math tools}\linkdest{math}
 
-\begin{wordonframe}{Taylor and others}
-$(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k$
+\begin{wordonframe}{Binomials coeff.}\frameintoc
+	\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}\\
+&\sum_{j=0}^n\binom{n}{j}\binom{m}{k-j}=\binom{n+m}{k}
+\end{align*}
+\end{column}
+	\end{columns}
 \end{wordonframe}
 
 \begin{wordonframe}{Propriet\'a Trasformata di Fourier}
@@ -672,7 +667,7 @@ Convoluzione e prodotto:
 &(f*g)(x)\FT{}\sqrt{2\pi}\hat{f}(\omega)\hat{g}(\omega)\\
 &\hat{f}(\nu)\hat{g}(\nu)\\
 &f(x)g(x)\FT{}\frac{1}{\sqrt{2\pi}}(\hat{f}*\hat{g})(\omega)\\
-&\FT{}\frac{1}{2\pi}(\hat{f}*\hat{g})(\nu)
+&\FT{}\frac{1}{2\pi}(\hat{f}*\hat{g})(\nu)\\
 &f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}{[\FT{[f_X]}\FT{[f_Y]}]}
 \end{align*}
 
@@ -682,15 +677,15 @@ Convoluzione e prodotto:
 
 \begin{wordonframe}{Trasformata di Fourier notevoli}
 \begin{align*}
-& 1 & \sqrt{2\pi}\delta(\omega) & 2\pi\delta(\nu)\delta(x)\\
-& \delta(x) & \frac{1}{\sqrt{2\pi}} & 1\\
-& \exp{iax} & \sqrt{2\pi}\delta(\omega-a) & 2\pi\delta(\nu-a)\\
-& x^n & i^n\sqrt{2\pi}\delta^{(n)}(\omega) & 2\pi i^n\delta^{(n)}(\nu)\\
-& \frac{1}{x^n} & -i\sqrt{\frac{\pi}{2}}\frac{(-i\omega)^{n-1}}{(n-1)!}\sgn{(\omega)} & -i\pi\frac{(-i\nu)^{n-1}}{(n-1)!}\sgn{(\nu)}\\
-& |x|^{\alpha} & \frac{-2}{\sqrt{2\pi}}\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\omega|^{\alpha+1}} & -2\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\nu|^{\alpha+1}}\\
-& \frac{1}{\sqrt{|x|}} & \frac{1}{\sqrt{|\omega|}} & \sqrt{\frac{2\pi}{\nu}}\\
-& \sgn{x} & \sqrt{\frac{2}{\pi}}\frac{1}{i\omega} & \frac{2}{i\nu}\\
-& \rect{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\sinc{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\sinc{(\frac{\nu}{2\pi a})}\sinc{(ax)}\\
+& 1 & &\sqrt{2\pi}\delta(\omega) & &2\pi\delta(\nu)\\
+& \delta(x) & &(2\pi)^{-\frac{1}{2}} & &1\\
+& \exp{iax} & &\sqrt{2\pi}\delta(\omega-a) & &2\pi\delta(\nu-a)\\
+& x^n & &i^n\sqrt{2\pi}\delta^{(n)}(\omega) & &2\pi i^n\delta^{(n)}(\nu)\\
+& \frac{1}{x^n} & &-i\sqrt{\frac{\pi}{2}}\frac{(-i\omega)^{n-1}}{(n-1)!}\sgn{(\omega)} & &-i\pi\frac{(-i\nu)^{n-1}}{(n-1)!}\sgn{(\nu)}\\
+& |x|^{\alpha} & &\frac{-2}{\sqrt{2\pi}}\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\omega|^{\alpha+1}} & &-2\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\nu|^{\alpha+1}}\\
+& \frac{1}{\sqrt{|x|}} & &{|\omega|}^{-\frac{1}{2}} & &\sqrt{2\pi}\nu^{-\frac{1}{2}}\\
+& \sgn{x} & &\sqrt{\frac{2}{\pi}}\frac{1}{i\omega} & &\frac{2}{i\nu}\\
+& \rect{(ax)} & &\frac{1}{\sqrt{2\pi a^2}}\sinc{(\frac{\omega}{2\pi a})} & &\frac{1}{|a|}\sinc{(\frac{\nu}{2\pi a})}\sinc{(ax)}\\
 \end{align*}
 
 \end{wordonframe}
@@ -716,7 +711,7 @@ Convoluzione e prodotto:
 &\oint_{\gamma}f(z)\,dz=2\pi i\sum I(\gamma,a_k)Res(f,a_k)\\
 &\Res{(f, a_k)}=\frac{1}{(n-1)!}\lim_{z\to a_k}\TxDof{z}{n-1}[(z-a_k)^nf(z)]\\
 &\Res{(f(z),\infty)}=-\Res{(\frac{1}{z^2}f(\frac{1}{z}),0)}\\
-&(\lim_{|z|\to0}f(z)=0\Rightarrow\Res{(f,\infty)}=--\lim_{|z|\to\infty}zf(z))
+&(\lim_{|z|\to0}f(z)=0\Rightarrow\Res{(f,\infty)}=-\lim_{|z|\to\infty}zf(z))
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -872,12 +867,12 @@ Unbiased estimators:
 \begin{frame}{Bernoulli, binomiale}
 \begin{block}{Bernoulli: 2 possibili outcomes}
 	\begin{columns}[T]
-	\begin{column}{0.65\textwidth}
+	\begin{column}{0.6\textwidth}
 	\begin{align*}
 	&\prob{(X=1)}=p=1-\prob{(X=0)}=1-q
 	\end{align*}
 	\end{column}
-	\begin{column}{0.35\textwidth}
+	\begin{column}{0.4\textwidth}
 	\begin{align*}
 	&\E{[X]}=p,\ \var{[X]}=qp
 	\end{align*}

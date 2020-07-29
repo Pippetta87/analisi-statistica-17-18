@@ -155,19 +155,36 @@ $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim(
 \end{block}
 \end{frame}
 
+\begin{frame}{Proof Neyman Factorization Theorem (multi-dimensional)}
+	$\iidrv$ iid RV $f_{\theta}(x)$, $Y_i=u_i(x_1,\ldots,x_n)$ statistics whose pdf is $g_i(y_i;\theta)$
+\begin{itemize}
+	\item[$\Leftarrow$] \hypo{$\prod_if(X_i;\theta)=g_1[u_1(x_1,\ldots,x_n);\theta]H(x_1,\ldots,x_n)$} -
+	Transformation: $y_i=u_i(X_1,\ldots,X_n)$ e inversa $x_i=w_i(Y_1,\ldots,Y_n)$ con matrice Jacobiana $J=[w_i/y_j]$ - we have joint pdf of $Y_i=u_i(X_1,\ldots,X_n)$:
+	\begin{align*}
+	&\underbrace{g(Y_1,\ldots,Y_n;\theta)}_{\prod_if(w_i(\iidrv{N}{Y});\theta)}=|J|g_1(Y_1;\theta)H(w_1(Y_1,\ldots,Y_n),\ldots,w_n(Y_1,\ldots,Y_n))
+	\end{align*}
+	$g_1$ is pdf of $Y_1$ so $|J|H(\ldots)=\frac{g}{g_1}$ which is conditional pdf $h(Y_2,\ldots,Y_N|Y_1;\theta)$ of $Y_2,\ldots,Y_N$ given $Y_1=y_1$. $H(\iidrv{})$ and $H(\iidrv{N}{W})$ don't dep. on $\theta$, quindi $h(Y_2,\ldots,Y_N|Y_1;\theta)$ don't deps on $\theta$ e $Y_1$ \'e stat. suff. per $\theta$.
+	\item[$\Rightarrow$] \hypo{$Y_1$ stat. suff. for $\theta$}. $g(Y_1,\ldots,Y_n;\theta)=g_1(y_1;\theta)h(y_2,\ldots,y_n|y_1)$ where $h(Y_2,\ldots,Y_N|Y_1;\theta)$ don't deps on $\theta$ ($Y_2,\ldots,Y_N$ dep, only on $X_i$s which are indep of $\theta$ when conditioned by $Y_1$ - sufficient stat. by HP):
+	\begin{align*}
+	&\frac{g(u_1(\iidrv{}),\ldots,u_N(\iidrv{}))}{|J'|}=g_1(u_1(\iidrv{});\theta)\underbrace{\frac{h(u_2,\ldots,u_N|u_1)}{|J'|}}_{H(\iidrv{})}
+	\end{align*}
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Proof Neyman Factorization Theorem}
 \begin{itemize}
-\item $T(x_1,\ldots,x_n)$ suf. per $\theta$ ($P_{\theta}(X=x|T(X)=t(x))$ non dipende da $\theta$):
+\item[$\Rightarrow$] $T(x_1,\ldots,x_n)$ suf. per $\theta$ ($P_{\theta}(X=x|T(X)=t(x))$ non dipende da $\theta$):
 \begin{align*}
 &(A): X=x,\ (B): T(X)=t(x): A\subset B\\
 &L(\theta)=P_{\theta}(X=x)=P_{\theta}(X=x\cap T(X)=t(x))\\
 &=P_{\theta}(T(X)=T(x))P_{\theta}(X=x|T(X)=T(x))
 \end{align*}
-\item $L(\theta)=g(T(x_1,\ldots,x_n);\theta)h(x_1,\ldots,x_n)$.
+\item[$\Leftarrow$] $L(\theta)=g(T(x_1,\ldots,x_n);\theta)h(x_1,\ldots,x_n)$.
 \begin{align*}
-&p(t;\theta)=P_{\theta}(T(X)=t)=\sum_{\vec{y}:T(\vec{y})=t}\prod_if(y_i;\theta)=\sum_{\vec{y}:T(\vec{y})=t}L(\theta)\\
+&g=P_{\theta}(T(X)=t)=\sum_{\vec{y}:T(\vec{y})=t}\prod_if(y_i;\theta)=\sum_{\vec{y}:T(\vec{y})=t}L(\theta)\\
 &P_{\theta}(X=x|T(X)=t)=g(t;\theta)h(x)/(g(t;\theta)\sum_{\vec{y}:T(\vec{y})=t}h(\vec{y}))
 \end{align*}
+above expression. don't depends on $\theta$ so T \'e suff.
 \end{itemize}
 \end{frame}
 
@@ -207,16 +224,22 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 \end{block}
 \end{wordonframe}
 
-\begin{frame}{Statistiche suff. Gaussiana}
-\begin{block}{Gaussiana: media ignota, varianza nota}
+
+\begin{frame}{Gaussiana: media ignota, varianza nota}
 	\begin{align*}
-	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
+	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\\
+	&\sum_i^n(x_i-\exv{x})(\exv{x}-\mu)=0\\
+	&\frac{f(\vec{x}|\theta)}{q(T(\vec{x}|\theta))}=\frac{(2\pi\sigma^2)^{-\frac{n}{2}}\Exp{[-\frac{\sum_i^n(x_1-\exv{x})^2+n(\exv{x}-\mu)^2}{2\sigma^2}]}}{(2\pi\sigma^2/n)^{-\frac{1}{2}}\Exp{[-\frac{n(\exv{x}-\mu)^2}{2\sigma^2}]}}\\
+	&=
 	\end{align*}
-	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica})
-\end{block}
-\begin{block}{Gaussiana: media nota, varianza ignota}
-	$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
-\end{block}
+	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica} - $N(\mu,\frac{\sigma^2}{n})$)
+\end{frame}
+
+\begin{frame}{Gaussiana: media ignota, varianza ignota}
+	%$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
+	\begin{align*}
+	&
+	\end{align*}
 \end{frame}
 
 \begin{wordonframe}{Distribuzione uniforme: \keyword{$x_{max}$ statistica sufficiente}.}
