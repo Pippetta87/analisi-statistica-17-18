@@ -227,10 +227,9 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 
 \begin{frame}{Gaussiana: media ignota, varianza nota}
 	\begin{align*}
-	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\\
+	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\tag{NFT}\\
 	&\sum_i^n(x_i-\exv{x})(\exv{x}-\mu)=0\\
-	&\frac{f(\vec{x}|\theta)}{q(T(\vec{x}|\theta))}=\frac{(2\pi\sigma^2)^{-\frac{n}{2}}\Exp{[-\frac{\sum_i^n(x_1-\exv{x})^2+n(\exv{x}-\mu)^2}{2\sigma^2}]}}{(2\pi\sigma^2/n)^{-\frac{1}{2}}\Exp{[-\frac{n(\exv{x}-\mu)^2}{2\sigma^2}]}}\\
-	&=
+	&\frac{f(\vec{x}|\theta)}{q(T(\vec{x}|\theta))}=\frac{(2\pi\sigma^2)^{-\frac{n}{2}}\Exp{[-\frac{\sum_i^n(x_1-\exv{x})^2+n(\exv{x}-\mu)^2}{2\sigma^2}]}}{(2\pi\sigma^2/n)^{-\frac{1}{2}}\Exp{[-\frac{n(\exv{x}-\mu)^2}{2\sigma^2}]}}
 	\end{align*}
 	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica} - $N(\mu,\frac{\sigma^2}{n})$)
 \end{frame}
