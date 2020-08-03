@@ -436,7 +436,6 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 
 \subsection{Esempi probabilit\'a condizionata: double layered detector}
 	
-	
 \begin{frame}{Double layered detector}
 	\begin{columns}[T]
 		\begin{column}{0.5\textwidth}
@@ -718,6 +717,24 @@ Convoluzione e prodotto:
 	contenu...
 \end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{Sums}
+	\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		contenu...
+	\end{column}
+	\begin{column}{0.5\textwidth}
+	\keyword{Variance symmetric formula}
+	\begin{align*}
+	&\frac{1}{n-1}\sum_i^n(X_i-\exv{X}_n)^2=\frac{1}{n-1}(\sum_i^nX_i^2-n\exv{X}_n^2)\\
+	&=\frac{1}{n-1}\sum_i^nX_i^2-\frac{1}{n(n-1)}(n\exv{X}_n)^2\\
+	&=\frac{1}{n(n-1)}\frac{2n\sum_i^nX_i^2}{2}-\frac{1}{n(n-1)}\sum_{i,j}X_iX_j\\
+	&=\frac{1}{n(n-1)}\sum_{i,j}^n\frac{X_i^2+X_j^2-2X_iX_j}{2}\\
+	&=\frac{1}{n(n-1)}\sum_{i\neq j}\frac{(X_i-X_j)^2}{2}
+	\end{align*}
+	\end{column}
+	\end{columns}
 \end{frame}
 
 \section{Legge grandi numeri - Teorema limite centrale}\linkdest{lln}
