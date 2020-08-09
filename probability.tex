@@ -96,6 +96,8 @@ T.Bayes: $\frac{P(B|A)P(A)}{P(B)}=P(A|B)=\frac{P(B|A)P(A)}{P(B)}=\frac{P(B\cap A
 \end{block}
 \end{wordonframe}
 
+
+
 \subsection{Significato di probabilit\'a}\linkdest{axiomsmplementation}
 
 \begin{frame}{Interpretazioni di probabilit\'a}
@@ -851,34 +853,63 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \end{wordonframe}
 
 \begin{frame}{Gaussian}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\prob{[x]}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
-&\E{[(\sigma Z+\mu)^n]}=\sum_{i=0}^n\binom{n}{i}\sigma^i\E{[Z^i]}\mu^{n-i}\\
-&=\sum_{i=0}^{\lfloor n/2\rfloor}\binom{n}{2j}(2j-1)!!\sigma^{2j}\mu^{n-2j}\\
-&F(x)=\frac{1}{2}[1+\Erf([\frac{x-\mu}{\sqrt{2}\sigma}])
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-\phi_X(t)=\exp{\mu it-\sigma^2\frac{t^2}{2}}
-\end{align*}
-Moments:
-\begin{align*}
-&\mu_0'=1\\
-&\mu_1'=\mu\ \mu=0\\
-&\mu_2'=\mu^2+\sigma^2\ \mu_2=\sigma^2\\
-&\mu_3'=\mu(\mu^2+3\sigma^2)\ \mu_3=0
-\end{align*}
-Unbiased estimators:
-\begin{align*}
-&\hat{\sigma}^2=\frac{N}{N-1}s^2\\
-&\frac{N}{N-1}\frac{1}{N}\sum(x_i-\overline{x})^2
-\end{align*}
-\end{column}
-\end{columns}
-\todo{Somma N gaussiane?}
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			&\prob{[x]}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
+			&\E{[(\sigma Z+\mu)^n]}=\sum_{i=0}^n\binom{n}{i}\sigma^i\E{[Z^i]}\mu^{n-i}\\
+			&=\sum_{i=0}^{\lfloor n/2\rfloor}\binom{n}{2j}(2j-1)!!\sigma^{2j}\mu^{n-2j}\\
+			&F(x)=\frac{1}{2}[1+\Erf([\frac{x-\mu}{\sqrt{2}\sigma}])
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+			\phi_X(t)=\exp{\mu it-\sigma^2\frac{t^2}{2}}
+			\end{align*}
+			Moments:
+			\begin{align*}
+			&\mu_0'=1\\
+			&\mu_1'=\mu\ \mu=0\\
+			&\mu_2'=\mu^2+\sigma^2\ \mu_2=\sigma^2\\
+			&\mu_3'=\mu(\mu^2+3\sigma^2)\ \mu_3=0
+			\end{align*}
+			Unbiased estimators:
+			\begin{align*}
+			&\hat{\sigma}^2=\frac{N}{N-1}s^2\\
+			&\frac{N}{N-1}\frac{1}{N}\sum(x_i-\overline{x})^2
+			\end{align*}
+		\end{column}
+	\end{columns}
+	\todo{Somma N gaussiane?}
+\end{frame}
+
+\begin{frame}[fragile,allowframebreaks]{Independence of sample mean/variance iff RV iid Gaussian}
+	$\iidrv$: joint pdf $f(\iidrv)=\prod_i^nf(x_i)$.
+	\begin{align*}
+	&\ln{(\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2))}\\
+	&=\ln{(\int\exp{it_1\exv{X}_n+it_2S_n^2}\prod_i^nf(x_i)\,dx_i)}\tag{c.f. of joint RV $(\exv{X}_n,S_n^2)$}\\
+	&\ln{(\phi_{\exv{X}_n}(t_1))}=\ln{(\int\exp{it_1\exv{X}_n}\prod_i^nf(x_i)\,dx_i)}\tag{c.f. of RV $\exv{X}_n$}\\
+	&\ln{(\phi_{S_n^2}(t_2))}=\ln{(\int\exp{it_2S_n^2}\prod_i^nf(x_i)\,dx_i)}\tag{c.f. of RV $S_n^2$}\\
+	&\ln{(\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2))}=\ln{(\phi_{S_n^2}(t_2))}+\ln{(\phi_{\exv{X}_n}(t_1))}\tag{ConIndep ($\exv{X}_n, S_n^2$)}\\
+	&\frac{1}{\phi_{\exv{X}_n}(t_1)}\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2)}|_{t_2=0}=\PDy{t_2}{\phi_{S_n^2}(t_2)}|_{t_2=0}
+	\end{align*}
+	%newframe
+	\begin{align*}
+	&S_n^2=\frac{1}{n(n-1)}\sum_{i\neq j}\frac{(X_i-X_j)^2}{2}=\frac{1}{n(n-1)}((n-1)\sum_i^nX_i^2-\sum_{i\neq j}X_iX_j)\\
+	&\phi_{\exv{X}_n}(t_1)=\prod_i^n\int\exp{it_1x_i/n}f(x_i)\,dx_i=[\phi_X(\frac{t_1}{n})]^n\\
+	&\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2)}|_{t_2=0}=\int iS_n^2\prod_i^n\exp{it_1x_i/n}f(x_i)\,dx_i\\
+	&=i[\phi_X(\frac{t_1}{n})]^{n-2}[\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x_i/n}f(x)\,dx-(\int x^2\exp{it_1x_i/n}f(x)\,dx)^2]\\
+	&\PDy{t_2}{\phi_{S_n^2}(t_1,t_2)}|_{t_2=0}=\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(0,t_2)}|_{t_2=0}=i\sigma^2\\
+	&\frac{\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x/n}f(x)\,dx-(\int x^2\exp{it_1x/n}f(x)\,dx)^2}{[\phi_X(\frac{t_1}{n})]^2}=\sigma^2\tag{ConIndep}\\
+	&\frac{-\phi(u)\PtwoDy{y}{\phi}(u)+(\PDy{u}{\phi})^2}{\phi(u)^2}=\sigma^2
+	\end{align*}
+	%newframe
+	\begin{align*}
+	&(u=\frac{t_1}{n},\ \PDy{u}{\phi_x}=\int ix\exp{iux}f(x)\,dx)\\
+	&(\psi(u)=\ln{\phi(u)},\ \phi(u)=\E{[\exp{iuX}]},\ \PDy{u}{\psi}=\frac{1}{\phi(u)}\PDy{u}{\phi(u)},\ \PtwoDy{u}{\psi}=\frac{1}{\phi}\PtwoDy{u}{\phi}-\frac{1}{\phi^2}(\PDy{u}{\phi})^2)\\
+	&\PtwoDy{u}{\psi}=-\sigma^2,\ \psi(0)=0,\ \psi'(0)=i\E{[X]}=i\mu:\\
+	&\psi(u)=i\mu u-\frac{\sigma^2u^2}{2}
+	\end{align*}
 \end{frame}
 
 \begin{frame}{Bernoulli, binomiale}

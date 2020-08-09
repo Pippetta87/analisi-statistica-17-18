@@ -146,9 +146,9 @@ Distribuzione esponenziale in x: quale z?
 Statistica sufficiente $S$ per parametro $\Theta$: \keyword{sufficient statistic is a function $T(\vec{X})$ whose values contains all information needed to compute any estimate of the param}. Pdf di X data $T(X)$ non dipende da parametro $\theta$:
 \[\prob{(x;S,\theta)}=\prob{(x;S)}\]
 \begin{block}{Teorema di fattorizzazione (iff)}
-$S(X)$ statistica sufficiente per $\theta$ iff probabilit\'a di osservare $X$ \'e probabilit\'a di $S(x)$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$.
+$S(X)$ statistica sufficiente per $\theta$ iff probabilit\'a di osservare $X$ \'e probabilit\'a di $S(x)$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$. Probabilit\'a congiunta delle RV's fattorizza in una parte che dipende dai parametri e dalle RV's tramite le statistiche e una che non dipende dai parametri.
 %$\vec{x}=\{x_1,\ldots,x_n\}$: $T(\vec{x})$ sufficiente iff $L(\vec{x},\theta)=g(T,\theta)h(\vec{x})$ e dominio $\omega_{\theta}$ non dipende da $\theta$
-Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
+%Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
 \end{block}
 \begin{block}{Statistica sufficiente minimale}
 $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim({S})\leq\dim{(X)}$.
@@ -161,9 +161,9 @@ $S$ sufficiente e esiste una funzione $f$ per ogni $s_i$ con $S=f(s_i)$ e $\dim(
 	\item[$\Leftarrow$] \hypo{$\prod_if(X_i;\theta)=g_1[u_1(x_1,\ldots,x_n);\theta]H(x_1,\ldots,x_n)$} -
 	Transformation: $y_i=u_i(X_1,\ldots,X_n)$ e inversa $x_i=w_i(Y_1,\ldots,Y_n)$ con matrice Jacobiana $J=[w_i/y_j]$ - we have joint pdf of $Y_i=u_i(X_1,\ldots,X_n)$:
 	\begin{align*}
-	&\underbrace{g(Y_1,\ldots,Y_n;\theta)}_{\prod_if(w_i(\iidrv{N}{Y});\theta)}=|J|g_1(Y_1;\theta)H(w_1(Y_1,\ldots,Y_n),\ldots,w_n(Y_1,\ldots,Y_n))
+	&\underbrace{g(Y_1,\ldots,Y_n;\theta)}_{\prod_if(w_i(\iidrv[Y]);\theta)}=|J|g_1(Y_1;\theta)H(w_1(Y_1,\ldots,Y_n),\ldots,w_n(Y_1,\ldots,Y_n))
 	\end{align*}
-	$g_1$ is pdf of $Y_1$ so $|J|H(\ldots)=\frac{g}{g_1}$ which is conditional pdf $h(Y_2,\ldots,Y_N|Y_1;\theta)$ of $Y_2,\ldots,Y_N$ given $Y_1=y_1$. $H(\iidrv{})$ and $H(\iidrv{N}{W})$ don't dep. on $\theta$, quindi $h(Y_2,\ldots,Y_N|Y_1;\theta)$ don't deps on $\theta$ e $Y_1$ \'e stat. suff. per $\theta$.
+	$g_1$ is pdf of $Y_1$ so $|J|H(\ldots)=\frac{g}{g_1}$ which is conditional pdf $h(Y_2,\ldots,Y_N|Y_1;\theta)$ of $Y_2,\ldots,Y_N$ given $Y_1=y_1$. $H(\iidrv{})$ and $H(\iidrv[W])$ don't dep. on $\theta$, quindi $h(Y_2,\ldots,Y_N|Y_1;\theta)$ don't deps on $\theta$ e $Y_1$ \'e stat. suff. per $\theta$.
 	\item[$\Rightarrow$] \hypo{$Y_1$ stat. suff. for $\theta$}. $g(Y_1,\ldots,Y_n;\theta)=g_1(y_1;\theta)h(y_2,\ldots,y_n|y_1)$ where $h(Y_2,\ldots,Y_N|Y_1;\theta)$ don't deps on $\theta$ ($Y_2,\ldots,Y_N$ dep, only on $X_i$s which are indep of $\theta$ when conditioned by $Y_1$ - sufficient stat. by HP):
 	\begin{align*}
 	&\frac{g(u_1(\iidrv{}),\ldots,u_N(\iidrv{}))}{|J'|}=g_1(u_1(\iidrv{});\theta)\underbrace{\frac{h(u_2,\ldots,u_N|u_1)}{|J'|}}_{H(\iidrv{})}
@@ -211,7 +211,7 @@ e poich\'e le $X_i$ sono indipendenti si ha
 \begin{wordonframe}{n RV iid Poisson$(\lambda)$}
 $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 \begin{align*}
-&\prob{(X_1=x_1\cap\ldots X_n=x_n|T=t)}=\prob{(\cap_iX_i=x_i|T=t)}\\
+&\prob{(X_1=x_1\cap\ldots \capX_n=x_n|T=t)}=\frac{\prob{(\cap_iX_i=x_i\cap T=t)}}{\prob{(T=t)}}\\
 &\frac{\prob{((\cap_iX_i=x_i)\cap(T=t))}}{\prob{(T=t)}}=\frac{\prob{(\cap_iX_i=x_i)}}{\prob{(T=t)}},\ t=\sum x_i\\
 &=\frac{\prod_i[\frac{\exp{-\lambda}\lambda^{x_i}}{x_i!}]}{\frac{\exp{-n\lambda}(n\lambda)^t}{t!}}=\frac{t!}{\prod x_i!}n^{-t}
 \end{align*}
@@ -223,7 +223,6 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 	\end{align*}
 \end{block}
 \end{wordonframe}
-
 
 \begin{frame}{Gaussiana: media ignota, varianza nota}
 	\begin{align*}
@@ -241,35 +240,6 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 	&\frac{\Exp{-[\sum_i^n(x_i-\exv{X}_n)^2+n(\exv{x_n}-\mu)^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}\tag{$T=(\exv{X_n},S_n^2)$}\\
 	&=\frac{\Exp{-[(n-1)S_n^2+(\exv{X}_n-\mu)^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}
 	\end{align*}
-\end{frame}
-
-\begin{frame}[fragile,allowframebreaks]{Independence of sample mean/variance iff RV iid Gaussian}
-$\iidrv$: joint pdf $f(\iidrv)=\prod_i^nf(x_i)$.
-\begin{align*}
-&\ln{(\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2))}\\
-&=\ln{(\int\exp{it_1\exv{X}_n+it_2S_n^2}\prod_i^nf(x_i)\,dx_i)}\tag{c.f. of joint RV $(\exv{X}_n,S_n^2)$}\\
-&\ln{(\phi_{\exv{X}_n}(t_1))}=\ln{(\int\exp{it_1\exv{X}_n}\prod_i^nf(x_i)\,dx_i)}\tag{c.f. of RV $\exv{X}_n$}\\
-&\ln{(\phi_{S_n^2}(t_2))}=\ln{(\int\exp{it_2S_n^2}\prod_i^nf(x_i)\,dx_i)}\tag{c.f. of RV $S_n^2$}\\
-&\ln{(\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2))}=\ln{(\phi_{S_n^2}(t_2))}+\ln{(\phi_{\exv{X}_n}(t_1))}\tag{ConIndep ($\exv{X}_n, S_n^2$)}\\
-&\frac{1}{\phi_{\exv{X}_n}(t_1)}\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2)}|_{t_2=0}=\PDy{t_2}{\phi_{S_n^2}(t_2)}|_{t_2=0}
-\end{align*}
-%newframe
-\begin{align*}
-&S_n^2=\frac{1}{n(n-1)}\sum_{i\neq j}\frac{(X_i-X_j)^2}{2}=\frac{1}{n(n-1)}((n-1)\sum_i^nX_i^2-\sum_{i\neq j}X_iX_j)\\
-&\phi_{\exv{X}_n}(t_1)=\prod_i^n\int\exp{it_1x_i/n}f(x_i)\,dx_i=[\phi_X(\frac{t_1}{n})]^n\\
-&\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2)}|_{t_2=0}=\int iS_n^2\prod_i^n\exp{it_1x_i/n}f(x_i)\,dx_i\\
-&=i[\phi_X(\frac{t_1}{n})]^{n-2}[\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x_i/n}f(x)\,dx-(\int x^2\exp{it_1x_i/n}f(x)\,dx)^2]\\
-&\PDy{t_2}{\phi_{S_n^2}(t_1,t_2)}|_{t_2=0}=\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(0,t_2)}|_{t_2=0}=i\sigma^2\\
-&\frac{\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x/n}f(x)\,dx-(\int x^2\exp{it_1x/n}f(x)\,dx)^2}{[\phi_X(\frac{t_1}{n})]^2}=\sigma^2\tag{ConIndep}\\
-&\frac{-\phi(u)\PtwoDy{y}{\phi}(u)+(\PDy{u}{\phi})^2}{\phi(u)^2}=\sigma^2
-\end{align*}
-%newframe
-\begin{align*}
-&(u=\frac{t_1}{n},\ \PDy{u}{\phi_x}=\int ix\exp{iux}f(x)\,dx)\\
-&(\psi(u)=\ln{\phi(u)},\ \phi(u)=\E{[\exp{iuX}]},\ \PDy{u}{\psi}=\frac{1}{\phi(u)}\PDy{u}{\phi(u)},\ \PtwoDy{u}{\psi}=\frac{1}{\phi}\PtwoDy{u}{\phi}-\frac{1}{\phi^2}(\PDy{u}{\phi})^2)\\
-&\PtwoDy{u}{\psi}=-\sigma^2,\ \psi(0)=0,\ \psi'(0)=i\E{[X]}=i\mu:\\
-&\psi(u)=i\mu u-\frac{\sigma^2u^2}{2}
-\end{align*}
 \end{frame}
 
 \begin{wordonframe}{Distribuzione uniforme: \keyword{$x_{max}$ statistica sufficiente}.}
