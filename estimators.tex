@@ -211,7 +211,7 @@ e poich\'e le $X_i$ sono indipendenti si ha
 \begin{wordonframe}{n RV iid Poisson$(\lambda)$}
 $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 \begin{align*}
-&\prob{(X_1=x_1\cap\ldots \capX_n=x_n|T=t)}=\frac{\prob{(\cap_iX_i=x_i\cap T=t)}}{\prob{(T=t)}}\\
+&\prob{(X_1=x_1\cap\ldots \cap X_n=x_n|T=t)}=\frac{\prob{(\cap_iX_i=x_i\cap T=t)}}{\prob{(T=t)}}\\
 &\frac{\prob{((\cap_iX_i=x_i)\cap(T=t))}}{\prob{(T=t)}}=\frac{\prob{(\cap_iX_i=x_i)}}{\prob{(T=t)}},\ t=\sum x_i\\
 &=\frac{\prod_i[\frac{\exp{-\lambda}\lambda^{x_i}}{x_i!}]}{\frac{\exp{-n\lambda}(n\lambda)^t}{t!}}=\frac{t!}{\prod x_i!}n^{-t}
 \end{align*}
