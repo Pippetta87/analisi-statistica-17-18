@@ -35,14 +35,17 @@
 \medmuskip=0mu
 \makeatletter
 \g@addto@macro\normalsize{%
-  \setlength\abovedisplayskip{-0pt}
-  \setlength\belowdisplayskip{0pt}
-  \setlength\abovedisplayshortskip{-0pt}
-  \setlength\belowdisplayshortskip{0pt}
-  \setlength{\parindent}{0em}
-\setlength{\parskip}{0em}
-\setlength{\jot}{1ex}
-\setlength{\mathindent}{0pt}
+\thinmuskip=0mu
+\medmuskip= 0mu plus 0mu minus 0mu
+\thickmuskip=0mu plus 0mu
+\setlength\abovedisplayskip{0pt plus 0pt minus 0pt}
+\setlength\belowdisplayskip{0pt plus 0pt minus 0pt}
+\setlength\abovedisplayshortskip{0pt plus 0pt minus 0pt}
+\setlength\belowdisplayshortskip{0pt plus 0pt minus 0pt}
+\setlength{\parindent}{0pt plus 0pt minus 0pt}
+\setlength{\parskip}{0pt plus 0pt minus 0pt}
+\setlength{\jot}{0pt plus 0pt minus 0pt}
+\setlength{\mathindent}{0pt plus 0pt minus 0pt}
 }
 \setlist[itemize,0]{%leftmargin=\dimexpr 26pt-.5in
 align=left, leftmargin=-5pt,label=*,labelwidth=10pt

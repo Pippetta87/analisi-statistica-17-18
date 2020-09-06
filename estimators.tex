@@ -710,20 +710,18 @@ Metodo momenti: $a(X_i,\theta)\to a(X_i)-\E{[a(X)]}$.
 Condizione necessaria per massimo di $L(\vec{X},\theta)$ se non si ha sul bordo di $\Theta$: una radice \'e stimatore consistente se $f$ \'e  2-differenziabile risp $\theta$, le medie delle due prime derivate esistono e l'integrazione risp $\vec{X}$ e la derivata risp $\theta$ commutano. The quantity $\PDof{\theta}\ln{L(\vec{X},\theta)}\to G(0,NI_{X_1}(\theta))$: massimo assoluto (asintotico) \'e consistente.
 \end{frame}
 
-\begin{wordonframe}{Radice equazione di likelihood \'e stimatore consistente}
+\begin{wordonframe}{Zero likelihood eq. is stimatore consistente}
 \begin{align*}
 &\E{[\PDof{\theta}\ln{f(X,\theta)}]}|_{\theta=\theta_0}=0\tag{normalizzazione}\\
 &\int\PtwoDy{\theta}{\ln{f}}f\,dX+\int(\PDy{\theta}{\ln{f}})^2f\,dX=0\tag{differenziando ancora}
 \end{align*}
-Differenziando la grandezza sperimentale $K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\xi(X_i,\theta)$
+Differenzio la statistica $K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\xi(X_i,\theta)$
 \begin{align*}
-&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
+%&\E{[\PDy{\theta}{\xi}|_{\theta_0}]}=\E{[\frac{1}{N}\PtwoDy{\theta}{\ln{L(\vec{X},\theta)}}|_{\theta_0}]}\\
 &\E{[\PDy{\theta}{\xi}|_{\theta_0}]}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{f(X,\theta)}}|_{\theta_0}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0\\
 %&\E{[\PDy{\theta}{K}]}=\E{[\PtwoDy{\theta}{\log{L}}]}=-\E{[(\PDy{\theta}{\ln{f(X,\theta)}})^2]}=-I_X<0
-\end{align*}
-\begin{align*}
 &\int f(X,\theta_0)\ln{[\frac{f(X,\theta)}{f(X,\theta_0)}]}\,dX\\
-&<\ln{\int f(X,\theta_0)\frac{f(X,\theta)}{f(X,\theta_0)}\,dX}=0:\ \theta\neq\theta_0\tag{ln strictly concave}\\
+&<\ln{\int f(X,\theta_0)\frac{f(X,\theta)}{f(X,\theta_0)}\,dX}=0: \theta\neq\theta_0\tag{$\ln$ strict concave}\\
 &\lim_{N\to\infty}\frac{1}{N}\sum_i^N\ln{f(X_i,\hat{\theta}_N')}=\E{[\ln{f(X_i,\lim_{N\to\infty}\hat{\theta}_N')}]}\tag{$\hat{\theta}_N'$ non-C sols.}\\
 &<\E{[\ln{f(X,\theta_0)}]}=\lim_{N\to\infty}\frac{1}{N}\sum_i^N\ln{f(X_i,\hat{\theta}_N)}
 \end{align*}
@@ -760,39 +758,66 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 %&\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
 %&\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
 %\end{align*}
-\begin{block}{Multinomial model of data}
+\begin{block}{Multinomial model of data: numero totale eventi fissato}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
 \begin{align*}
-&\vec{n}=(n_1,\ldots,n_N),\ n_T=\sum^Nn_i\\
+&\vec{n}=(n_1,\ldots,n_N)\tag{Statistica}\\
+&n_T=\sum^Nn_i\\
 &\vec{\nu}=(\nu_1,\ldots,\nu_N),\ \nu_T=\sum^N\nu_i\\
-&\nu_i(\theta)=\nu_T\int_{bin i}f(x;\theta)\,dx\\
-&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
-&L(\theta)=\sum^Nn_i\ln{\nu_i(\theta)}
+&\nu_i(\theta)=\nu_T\int_{bin_i}f(x;\theta)\,dx\\
+&p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
+&\ln{L}\to\ln{N!}+N\ln{\Delta}+\sum_j\ln{p_j(x,\theta)}\tag{piccoli bin}
 \end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+%&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
+%&\ln{L(\theta)}=\sum^Nn_i\ln{\nu_i(\theta)}
+&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
+&\ln{L(\theta)}=\sum^Nn_i\ln{p_i(\theta)}-\sum^N\ln{k_i!}+\ln{N!}\\
+&\TDof{\theta}\sum_i^Nn_i\ln{p_i(\hat{\theta})}=0\tag{MLE}
+\end{align*}
+\end{column}
+\end{columns}
 \end{block}
+\end{frame}
+
 \begin{block}{Poissonian model of data}
-Extended Likelihood
+	Extended Likelihood
 \end{block}
 
 Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
-\end{frame}
 
-\begin{frame}{\keyword{Extended likelihood}}
-La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson
+\begin{frame}{\keyword{Extended likelihood}: Caso N non fissato.}
+La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson - N fa parte delle osservabili, se i $k_i$ sono indipendenti la joint pdf \'e prodotto di Poisson:
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&p(\{k_i\};\theta)=\prod_i\frac{\exp{-\mu_i(\theta)\mu_i(\theta)^{k_i}}}{k_i!}\\
+&\mu_i(\theta)=\E{[k_i(\theta)]}=\mu p_i(\theta)\\
+&\mu=\E{[\sum_ik_i]}=\E{[N]}\\
+&\PDy{\theta}{\mu}=0\Rightarrow\hat{\mu}=N
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{align*}
+	&\ln{L}=\sum_ik_i\ln{\mu_i(\theta)}-\sum\mu_i(\theta)-\sum\ln{k_i!}\\
+	&=\sum k_i\ln{p_i(\theta)}+\sum k_i\ln{\mu}-\mu-\sum\ln{k_i}\\
+	&=\sum k_i\ln{p_i(\theta)}-\sum\ln{k_i!}+(N\ln{\mu}-\mu)
+	\end{align*}
+\end{column}
+\end{columns}
 %\begin{align*}
 %&\mu_i=\mu_TP_i(\theta)\\	&\prob{(k_i;\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
 %&\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\	&-\mu_TP_i-\bcancel{\log{k!}}\\
 %&\left\{\begin{matrix}\mkern-240mu\PDy{\theta_i}{\log{L}}=0\\\PDy{\mu_T}{\log{L}}=0\ (:L(\bcancel{\mu_T}),\mu_T(\bcancel{\theta_i}) \Rightarrow\ \mu_T=N)\\\end{matrix}\right.
 %\end{align*}
-$\Delta x$ such that 0/1 event per bin: Poisson statistics say that $P_0(x)=\exp{-\Delta xP(x)}$, $P_1(x)=\Delta xP(x)\exp{-\Delta xP(x)}$; inlimit $\Delta x\to dx$
+$\Delta x$ such that 0/1 event per bin: Poisson statistics say that $P_0(x)=\exp{-\Delta xP(x)}$, $P_1(x)=\Delta xP(x)\exp{-\Delta xP(x)}$; in limit $\Delta x\to dx$:
 \begin{align*}
-&L=\prod_{bin i: 1}\Delta xP(x_i)\prod_j\exp{-\Delta xP(x_j)}\to\prod_iP(x_i)d^Nx\exp{-\mathcal{N}}\\
-&\ln{L}=\sum\ln{P(x_i)}-\mathcal{N}(\theta)
+&L=\prod_{bin_i: 1}\Delta xP(x_i)\prod_j\exp{-\Delta xP(x_j)}\to\prod_iP(x_i)d^Nx\exp{-\mathcal{N}}\Rightarrow\ln{L}=\sum\ln{P(x_i)}-\mathcal{N}(\theta)
 \end{align*}
-oppure
-\begin{align*}
-&L=\prod_i(x_i)\exp{-\mathcal{N}}\frac{\mathcal{N}^N}{N!}\\
-&L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))
-\end{align*}
+oppure: $L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))$
 \end{frame}
 
 \begin{wordonframe}{Esempi di stimatori di massima likelihood}
@@ -1027,6 +1052,14 @@ contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$
 
 \subsection{Robustezza}
 
+\begin{frame}{General remarks}
+\begin{itemize}
+\item ''Robustness of what?'' Defines type of a statistical procedure.
+\item ''Robustness against what?'' define supermodel.
+\item ''Robustness in what sense?'' Criterion of quality of a statistical procedure.
+\end{itemize}
+\end{frame}
+
 \begin{frame}{Outliers. Incertezza sistematica.}
 I dati seguono una pdf a meno di $\epsilon$: $p_{tot}=(1-\epsilon)p_{th}+\epsilon q_{sys}()$
 All'aumentare del numero di eventi di un rivelatore di particelle l'incertezza statistica diminuisce quindi diventa rilevante incertezza sistematica: si considerano stimatori del tipo $\min\sum|x_i-\hat{m}_p|^p$
@@ -1047,6 +1080,15 @@ Parametro di localizzazione e scala (sample mean and variance under normality as
 \item Moda:	$\lim_{p\to-\infty}\min\sum|x_i-\hat{m}_{-\infty}|^p$ seleziona coppia di dati pi\'u vicini.
 \item Dispersion estimator (MAD): $c\med{}_i|x_i-\med{}_jx_j|$
 \end{itemize}
+\end{frame}
+
+\begin{frame}{Huber minimax approach. M-estimators of location}
+	Minimax aims at worst situation to which gives best solution - applied at location parameter estimation yield a robust modification of ML principle: $\hat{\theta}_n=\argmin_{\theta}\sum_i^n\rho(x_i-\theta)$, the contrast function $\rho(u)$ is even non negative ($\rho(u)=u^2$: LS method with sample mean as estimator, $\rho(u)=|u|$: LAV with sample median as estimator, for given $f$ $\rho(u)=-\log{f(u)}$: MLE). $\psi(u)=\rho'(u)$ is score function: M-estimator is solution of implicit equation $\sum_i^n\psi(x_i-\hat{\theta}_n)$.
+	Under rather generel condition imposed on class of $\psi$ and $f$ M-estimators are consistent, asympt. normal, with asympt. variance
+	\[\var{n^{1/2}\hat{\theta}_n}=V(\psi,f)=\frac{\E{[\psi^2]}}{(\E[\psi'])^2}\]
+	and satisfies minimax property $V(\psi^*,f)\leq V(\psi^*,f^*)=\sup_{\mathcal{F}}\inf_{\Psi}V(\psi,f)$: the least favorable (informative) $f$ minimize Fisher Information over class $\mathcal{F}$:
+	\[f^*=\argmin_{\mathcal{F}}I(f),\ I(f)=\E{[(\frac{f'}{f})^2]}\]
+	whereas contrast and score function are given by ML method: $\rho^*=-\log{f}$, $\psi^*=-\frac{\psi^{*'}}{f^*}$
 \end{frame}
 
 \begin{wordonframe}{Ex: Inferenza probabilistica}
