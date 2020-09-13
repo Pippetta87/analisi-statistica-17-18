@@ -882,6 +882,103 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \tableofcontents[currentsection,sectionstyle=show/hide,subsectionstyle=show/show/hide]
 \end{frame}
 
+\subsection{Dadi D\&D (28/05/18): 4,6,8,10,12,20 facce - T. prob. tot, Bayes T., stima interv.}
+
+\begin{frame}{Probabilit\'a estrazione 1 dopo selezione dado a caso da cui \'e uscito 1}
+\begin{itemize}
+\item Probabilit\'a 1:
+\begin{align*}
+&P(1)=\sum_i^6\prob{(1|D_i)}\prob{(D_i)}=\frac{1}{6}(\frac{1}{4}+\frac{1}{6}+\frac{1}{8}+\frac{1}{10}+\frac{1}{12}+\frac{1}{20})\approx0.129\tag{T. Prob. Tot.}
+\end{align*}
+\item Prob. di ottenere 1 quando nella prima estrazione \'e uscito 1, $\prob{(1|1)}$:
+\begin{align*}
+&\prob{(1|1)}=\sum_i^6\prob{(1|D_i,1)}\prob{(D_i|1)}\tag{T. prob. Tot.}\\
+&\prob{(1|1)}=\sum_i^6\frac{1}{i}\frac{\prob{(1|D_i)\prob{(D_i)}}}{\prob{(1)}}\tag{T. Bayes}
+\end{align*}
+Indipendenza dei due lanci: non sono indipendenti, $\prob{(1|1)}\neq\prob{(1)}$; i due eventi casuali in $\prob{(1|1)}$ il primo ''estrazione dado e lancio'', il secondo ''lancio'' - nella sommatoria entrano funzioni fattorizzabili delle variabili corr. ai risultati dei due lanci, ma la somma non \'e fattorizz.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Stime intervallari su numero facce freq./Bayes.}
+\begin{itemize}
+\item Limiti Bayesiani al $\cred=90\%$ avendo 1 al primo lancio. Posterior ordering: $\prob{(D_i|1=\frac{1}{i\sum_j^61/j})}$ decrescente con $i$ e si hanno limiti superiori - $4\leq i\leq12$
+\item Limiti frequentisti al $\cl=90\%$ sul numero di facce - \keyword{Scelta algoritmo ordinamento per costruzione banda di Neyman}: prob. ottenere n dal lancio di qualunque dado $\prob{(n|D_i)}=\frac{1}{i},\ n\leq i$ - per limiti superiori si sceglie ord. decrescente in osservabile n ($n=1\Rightarrow i\leq10$ al $\cl=90\%$)
+\begin{figure}
+	\centering
+	\includegraphics[angle=90,origin=c, width=0.99\textwidth,keepaspectratio]{figures/compiti/201805Neymandecreasing}
+	\label{fig:201805Neymandecreasing}
+\end{figure}
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Banda di Neyman con LR ordering a l\'a FC}
+Ordinamento in base al Rapporto di Likelihood $O(D_i,n)=\lr(n)=\frac{\prob{(n;D_i)}}{\sup_{D_i'}\prob{(n;D_i')}}$: tabella 2 mostra a sinistra banda di confidenza e a destra i valori di LR.
+\begin{figure}
+	\centering
+	\includegraphics[angle=90,origin=c, width=0.99\textwidth,keepaspectratio]{figures/compiti/201805NeymanLR}
+	\label{fig:201805NeymanLR}
+\end{figure}
+\end{frame}
+
+\subsection{N numeri casuali da uniforme: stime di m da statistica minimo}
+
+\begin{frame}{Propriet\'a statistica $x_{min}$}
+	$X_{(1)}<X_{(2)}<\ldots<X_{(n)}$: pdf $\prob{(X_{(k)}\in[x,x+dx])}$
+\begin{block}{Maximum/minimum statistics}
+	\begin{align*}
+	&\prob{(X_{(1)}<x)}=1-\prob{(X_{(1)}>x)}\\
+	&=1-\prob{(X_1>x)}\ldots\prob{(X_n>x)}=1-[1-F(x)]^n\\
+	&\prob{(X_{(n)}<x)}=\prob{(X_1<x,\ldots,X_n<x)}=F(x)^n
+	\end{align*}
+\end{block}
+Pdf di $x_m$ derivando cumulante o usando simmetria pdf uniforme sotto trasformazione $x\to m-x$: $\prob{(x_m)}=\frac{N}{m}(1-\frac{x_m}{m})^{N-1}$:
+\begin{align*}
+&\E{[x_m]}=\int\delta_{[0,m]}x_m\frac{N}{m}(1-\frac{x_m}{m})^{N-1}\,dx_m=\frac{N}{m}[-\frac{m}{N}(1-\frac{x_m}{m})^{N-1}x_m|_0^m+\int\frac{m}{N}(1-\frac{x_m}{m})^N\,dx_m]\\
+&=\frac{N}{m}\frac{m}{N}[-\frac{m}{N+1}(1-\frac{x_m}{m})^{N+1}]|_0^m=\frac{m}{N+1}\\
+&\var{[x]}=\E{[(x-\mu)^2]}=\E{[x^2]}-\mu^2=\int_0^mx_m^2\frac{N}{m}(1-\frac{x_m}{m})^{N-1}\,dx_m-(\frac{m}{N+1})^2=\frac{N}{(N+1)^2(N+2)}m^2
+&\E{[X^2]}-(\E{[X]})^2\geq0\tag{Jensen ineq.}
+\end{align*}
+\keyword{$x_m$ non \'e stat. suff per $U([0,m])$}: mentre fissando $x_m$ le altre osservazioni sono indipendenti da m, per il minimo l'estremo superiore rimane ignoto.
+\end{frame}
+
+\begin{frame}{Stimatore estremo superiore U da minimo campionario}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\hat{m}=Nx_m\\
+&\E{[\hat{m}]}\to m\tag{asynt.unbias.}\\
+&\hat{m}'=\frac{N+1}{N}\hat{m}=(N+1)x_m\tag{unbias.}\\
+&\var{\hat{m}'}=\frac{N}{N+2}m^2
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+$\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\theta)$
+\begin{align*}
+&\prob{\hat{m};m}=\frac{N}{m}(1-\frac{\hat{m}}{(N)m})^{N-1}\frac{d\hat{m}}{N}\to\frac{1}{m}\exp{-\frac{\hat{m}}{m}}
+\end{align*}
+''non diventa piccata attorno al valore vero m per N grandi'': lo stimatore \'e inconsistente
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{limit di confidenza frequentisti da $x_m$}
+Limiti superiori: ordinamento $x_m\geq x_1$
+\def\myscale{0.4}
+\begin{tikzpicture}[myscalar]
+\begin{axis}[title={Banda confidenza $U([0,m])$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
+	tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
+\addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};
+\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {x};
+\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,black] gnuplot[domain=0:8] {0.3};
+\path[name intersections={of={bp and meas},name=i},name intersections={of={bm and meas},name=j}] (i-1) (j-1);
+\pgfplotsextra{\path (i-1) \pgfextra{\markxof{i-1}\xdef\myfirsttick{\pgfmathresult}}(j-1); \pgfextra{\markxof{j-1}\xdef\mysecondtick{\pgfmathresult}};
+}
+\end{axis}
+\draw[ultra thin, draw=gray] (i-1 |- {rel axis cs:0,0}) node[fill=yellow,yshift=-1ex]{\pgfmathprintnumber[fixed,precision=5]\myfirsttick} -- (i-1);
+\draw[ultra thin, draw=gray] (j-1 |- {rel axis cs:0,0}) node[fill=red,below]{\pgfmathprintnumber[fixed,precision=5]\mysecondtick} -- (j-1);
+\end{tikzpicture}
+\end{frame}
+
 \subsection{2 numeri casuali da pdf uniformi (21/11/19)}
 
 \begin{frame}{Joint pdf, marginalization (and \keyword{integration limits})}

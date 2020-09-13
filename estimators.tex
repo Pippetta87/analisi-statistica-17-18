@@ -309,7 +309,7 @@ p(x|\theta)=\Exp{[\sum_i^n\alpha_i(x)a_i(\theta)+\beta(x)+\gamma(\theta)}
 \begin{equation*}
 S_j=\sum_i\alpha_j(x_i)
 \end{equation*}
-$\vec{S}$ is jointly sufficient for $\theta$
+$\vec{S}$ is jointly sufficient for $\theta$ ($\vec{S}$ ha pdf esponenziale??)
 \end{block}
 \end{frame}
 
@@ -765,9 +765,7 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 &\vec{n}=(n_1,\ldots,n_N)\tag{Statistica}\\
 &n_T=\sum^Nn_i\\
 &\vec{\nu}=(\nu_1,\ldots,\nu_N),\ \nu_T=\sum^N\nu_i\\
-&\nu_i(\theta)=\nu_T\int_{bin_i}f(x;\theta)\,dx\\
-&p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
-&\ln{L}\to\ln{N!}+N\ln{\Delta}+\sum_j\ln{p_j(x,\theta)}\tag{piccoli bin}
+&\nu_i(\theta)=\nu_T\int_{bin_i}f(x;\theta)\,dx
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
@@ -780,14 +778,12 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \end{align*}
 \end{column}
 \end{columns}
+\begin{align*}
+&p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
+&\ln{L}\to\ln{N!}+N\ln{\Delta}+\sum_j\ln{p_j(x,\theta)}\tag{piccoli bin}
+\end{align*}
 \end{block}
 \end{frame}
-
-\begin{block}{Poissonian model of data}
-	Extended Likelihood
-\end{block}
-
-Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 
 \begin{frame}{\keyword{Extended likelihood}: Caso N non fissato.}
 La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson - N fa parte delle osservabili, se i $k_i$ sono indipendenti la joint pdf \'e prodotto di Poisson:
@@ -819,6 +815,17 @@ $\Delta x$ such that 0/1 event per bin: Poisson statistics say that $P_0(x)=\exp
 \end{align*}
 oppure: $L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))$
 \end{frame}
+
+\begin{frame}{Risoluzione di un ''fit di likelihood''}\frameintoc
+MLE applicato numericamente: \keyword{fit di likelihood} - Nel limite asintotico si pu\'o contare su CR, se I \'e lineare: $\var{\theta}=\invers{NI_1}$; spesso I \'e difficile da calcolare e si ricorre a
+\begin{align*}
+&NI_1=-N\E{[\PtwoDy{\theta}{\log{L}}]}=-N\PtwoDof{\theta}\log{L}\\
+&NI_1\gets-N\PtwoDof{\theta}\frac{\sum_i\log{p(x_i;\theta)}}{N}\to-\PtwoDy{\theta}{\log{L_T(\hat{\theta})}}\tag{LLN}
+\end{align*}
+Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j})}=\invers{[\frac{\partial^2\log{L(\hat{\theta})}}{\partial\theta_i\partial\theta_j}]}$
+\end{frame}
+
+%Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 
 \begin{wordonframe}{Esempi di stimatori di massima likelihood}
 \keyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
@@ -985,14 +992,14 @@ I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\
 	\end{align*}
 \end{wordonframe}
 
-\begin{frame}{Best unbiased estimator}\frameintoc\linkdest{cramerrao}
+\begin{frame}{Best unbiased estimator - \keyword{minimum variance bound}}\frameintoc\linkdest{cramerrao}
 	\begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
 		$X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 		\begin{align*}
 		&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
 		&\E{[T-\tau(\theta)]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
 		\end{align*}
-		(\keyword{minimum variance bound})
+Parametri multipli: $\cov{[s(x)]}_{ij}\geq(1+\PDy{\mu_k}{b_i})\invers{I}_{kl}(1+\PDy{\mu_j}{b_l})$.
 	\end{block}
 	\begin{block}{Best unbiased estimator}
 		Uniformly minimum variance unbiased estimator such that $V_{\Theta}[T]\leq V_{\Theta}[T*]$ for all estimator $T^*$ unbiased.
@@ -1008,6 +1015,29 @@ I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\
 	&\tau'^2=\cov^2{(T,Y)}=(\E{[TY]}-\E{[T]}\cancelto{0}{\E{[Y]}})^2\leq \var{[T]}\var{[Y]}\\
 	&\var{[Y]}=\E{[Y^2]}=n\E{[(\PDof{\theta}\log{f(X_i;\theta)})^2]}
 	\end{align*}
+\end{frame}
+
+\begin{frame}{Dim II CR Inequality}
+Score di Fisher $S=\PDy{\mu}{\log{L}}$ esiste - $\E{[]}$ commuta con $\PDof{\mu}$ - $s(x)$ stimatore di $\mu$.
+Dim.:
+\begin{align*}
+&\var{[s(x)]}I_s=\E{[(s-\E{(s)})^2]}\E{[s^2]}\geq(\E{[(s-\E{[s]})\PDy{\mu}{\log{p(s;\mu)}}]})^2:\tag{Schwartz}\\
+&\E{[s(x)\PDy{\mu}{\log{p(s;\mu)}}]}=\int s(x)\PDy{\mu}{\log{p(s;\mu)}}p(s;\mu)\,ds\\
+&\PDof{\mu}\int s(x)p(s;\mu)\,ds=\PDof{\mu}\E{[s(x)]}=(1+)?\PDy{\mu}{b}\tag{I}\\
+&\E{[-\E{[s]}\PDy{\mu}{\log{p(s;\mu)}}]}=-\E{[s(x)]}\int\PDy{\mu}{\log{p(s;\mu)}}p(s;\mu)\,ds\\
+&=-\E{[s(x)]}\PDof{\mu}1\tag{II}\\
+&\Rightarrow\var{[s(x)]}\geq(1+\PDy{\mu}{b})^2\invers{I_s}\geq(1+\PDy{\mu}{b})^2\invers{I_x}
+\end{align*}
+\end{frame}
+
+\begin{frame}{Minimum Variance solo per pdf esponenziale}
+Efficienza: $\epsilon_s(\mu)=(1+\PDy{\mu}{b})^2\invers{I}_x\invers{\var{}[s]}$; se $I_s$ \'e lineare: $\var{[s]}\geq\frac{c}{N}$ (e $L$ regolare?).
+Per $\var{[s(x)]}=(1+\PDy{\mu}{b})^2\invers{I}_s$:
+\begin{align*}
+&(s-\E{[s]})\parallel\PDy{\mu}{\log{p(s;\mu)}}\Rightarrow\PDy{\mu}{\log{p(s;\mu)}}=f(\mu)[s-\mu-b(\mu)]\\
+&\Rightarrow\log{p(s;\mu)}=s\int f(\mu)\,d\mu-\int[\mu+b(\mu)]f(\mu)\,d\mu+c\\
+&\Rightarrow p(s;\mu)=\Exp{[\alpha(\mu)s+\beta\mu+c]}
+\end{align*}
 \end{frame}
 
 \begin{frame}{Best Linear Uniform Estimators (\keyword{BLUE})}
@@ -1104,6 +1134,15 @@ Parametro di localizzazione e scala (sample mean and variance under normality as
 \begin{wordonframe}{Confronto fra stimatori per pdf contaminata}
 Per gaussiana confronto $S_N=\frac{\sum(x_i-\exv{x})^2}{N}$, $d_N=\frac{\sum|x_i-\exv{x}|}{N}$ ($\lim_{N\to\infty}\E{[d_N]}=\sqrt{\frac{2}{\pi}}\sigma$): $r=\lim_{N\to\infty}\frac{\var{[S_N]}}{\var{[d_N']}}=0.876$.
 \end{wordonframe}
+
+\begin{frame}{Robust location estimators: Hodges-Lehman}
+Faccio la media di tutte le $n(n+1)$ coppie di misure - la mediana del campione ha le propriet\'a:
+\begin{itemize}
+\item location estimator robusto
+\item Per pdf simmetriche \'e stimatore consistente di $m_1$
+\item Pi\'u robusto e efficiente della mediana	
+\end{itemize}
+\end{frame}
 
 \subsection{Distribuzione di probabilit\'a della mediana campionaria}
 
