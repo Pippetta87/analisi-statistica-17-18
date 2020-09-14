@@ -69,12 +69,14 @@ Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
 \end{block}
 \end{frame}
 
-\begin{frame}{Consistenza e bias}
+\begin{frame}{Properties of tests}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 \begin{itemize}
 	\item \keyword{Consistenza}: $\lim_{N\to\infty}\prob{(\vec{X}\in  S_1|H_1)}=1$ non \'e detto che sia uniforme.
 	\item \keyword{unbiasedness} $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
+	\item $X\in f(x;\theta)$ con $\theta\in\Omega$; g trasformazione 1-1 dello spazio campionario in se: $gX$ denota RV con valore $gx$ quando $X=x$ con pdf $f(x;\theta')$ cos\'i definisco $\overline{g}\theta=\theta'\in\Omega$. Lo spazio dei parametri \'e invariqante sotto g se $\overline{g}\Omega=\Omega$.
+	\keyword{Invariant test under G:} $\phi(gx)=\phi(x)$ per ogni $x\in X$ e $g\in G$ inoltre $\overline{g}\Omega_H=\Omega_H$ e lo stesso $\Omega_K$
 \end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
@@ -86,6 +88,7 @@ Test B can't distinguish between $\theta_0$, $\theta_1$.
 \end{columns}
 \end{frame}
 
+\begin{comment}
 \begin{frame}{Properties of tests}
 \begin{block}{Test Unbiased}
 Hypothesis $H: \theta\in\Omega_H$ vs $K:\theta\in\Omega_K$. Unbiasedness: for no alternatives in K probability of rejection is less then size of test
@@ -99,15 +102,17 @@ $X\in f(x;\theta)$ con $\theta\in\Omega$; g trasformazione 1-1 dello spazio camp
 \keyword{Invariant test under G:} $\phi(gx)=\phi(x)$ per ogni $x\in X$ e $g\in G$ inoltre $\overline{g}\Omega_H=\Omega_H$ e lo stesso $\Omega_K$
 \end{block}
 \end{frame}
+\end{comment}
 
 \subsection{Ipotesi semplici}\linkdest{Hsimple}
 
 \begin{frame}{Testing simple hypothesis}
-\begin{block}{Test: funzione dallo spazio delle osservabili in H.}
-	Un'ipotesi \'e un'affermazione sui parametri che caratterizzano lo stato della natura; se l'ipotesi non \'e sufficienta a determinare distribuzione di probabilit\'a della nostra osservabile l'ipotesi \'e composta: se ipotesi da falsificare \'e non esistenza higgs ($m=0$) semplice, ma alternativa \'e composta da $m>0$
-\end{block}
-\begin{block}{Ratio statistics}
-Discrete distribution $P_i[X=x]=P_i(x)$: optimum test is defined as critical region S satisfying
+%\begin{block}{Test: funzione dallo spazio delle osservabili in H.}
+%Un'ipotesi \'e un'affermazione sui parametri che caratterizzano lo stato della natura; 
+\keyword{Ipotesi semplice}: se l'ipotesi non \'e sufficiente a determinare distribuzione di probabilit\'a della nostra osservabile l'ipotesi \'e composta - se ipotesi da falsificare \'e non esistenza higgs ($m=0$) semplice, ma alternativa \'e composta da $m>0$
+%\end{block}
+%\begin{block}{Ratio statistics}
+\keyword{Ratio statistics}: discrete distribution $P_i[X=x]=P_i(x)$: optimum test is defined as critical region S satisfying
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
@@ -120,7 +125,7 @@ Most valuable points x are those with highest \[r(x)=\frac{P_1(x)}{P_0(x)}\]
 \end{column}
 \end{columns}
 S is the set of x points $x: r(x)>c$ where c is determined by \[P_0[X\in S]=\sum_{x: r(x)>c}P_0(x)=\alpha\]
-\end{block}
+%\end{block}
 \end{frame}
 
 \begin{frame}{Lemma di Neyman-Pearson (Test di NP)}\frameintoc\linkdest{NPtest}
