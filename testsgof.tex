@@ -191,7 +191,7 @@ UMP test (one-sided) per distinguere $H_0: \mu=\mu_0$, $H_{\mu}: \mu>\mu_0$; app
 
 \[\frac{F^N(x)G^N(\overline{\mu})}{F^N(x)G^N(\overline{\mu}_0)}\Exp{[\sum_iA(x_i)](B(\overline{\mu})-B(\overline{\mu}_0))}\gtrless c_{\alpha}\]
 $F,G>0$.
-Se il likelihood ratio \'e funzione monotona (non-decrescente) di una statistica $T(\vec{X})=\sum_iA(x_i)$ e scelgo $\alpha$ e $k_{\alpha}$ tali che $\prob{[\lr{(T(x))}\geq c_{\alpha}]}=\alpha$  allora la regione critica per un test UMP unilaterale $H_0$ vs $H_1$ \'e $C=\{x:T(x)\geq k_{\alpha}\}$.
+Se il likelihood ratio \'e funzione monotona (non-decrescente) di una statistica $T(\vec{X})=\sum_iA(x_i)$ e scelgo $\alpha$ e $k_{\alpha}$ tali che $\prob{[\lr{(T(x))}\geq c_{\alpha}]}=\alpha$, $\lr{(k_{\alpha})}=c_{\alpha}$,  allora la regione critica per un test UMP unilaterale $H_0$ vs $H_1$ \'e $C=\{x:T(x)\geq k_{\alpha}\}$.
 
 \cite[5]{lrtmptumpt}; \cite[445]{inferencemukhopadhyay2000}; \cite[sec 3.6]{lehmann2006testing}
 \end{frame}
@@ -208,7 +208,6 @@ $1+$ \'e il power per UMP test per $\theta>\theta_0$, $1-$ \'e il power per UMP 
 \includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{figures/james/test/oneone2sided}
 \label{fig:oneone2sided}
 \end{figure}
-
 \end{wordonframe}
 
 \begin{frame}{Locally most powerfull (LMP) tests}\frameintoc\linkdest{LMP}
@@ -218,7 +217,7 @@ Applico NP a $H_0$ vs $H_1$:
 &\ln{L(\vec{X},\theta_1)}-\ln{L(\vec{X},\theta_0)}\gtrless c_{\alpha} \Rightarrow \PDy{\theta}{\ln{L}}\gtrless q_{\alpha}\\
 &\E{[\PDy{\theta}{\ln{L}}|_{\theta_0}]}=0,\ \E{[(\PDy{\theta}{\ln{L}})^2]}=NI
 \end{align*}
-score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{?1-\alpha}\sqrt{NI}$.
+score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{?1-\alpha}\sqrt{NI}$ (prob. rifiutare $H_0$ vera \'e $\alpha$).
 \end{frame}
 
 \begin{frame}{Likelihood ratio test (LRT)}\frameintoc\linkdest{LRT}
