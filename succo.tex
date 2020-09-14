@@ -962,21 +962,31 @@ $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\t
 \end{frame}
 
 \begin{frame}{limit di confidenza frequentisti da $x_m$}
-Limiti superiori: ordinamento $x_m\geq x_1$
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		Limiti superiori: ordinamento $x_m\geq x_1$
+		\begin{align*}
+		&\int_{x_1}^{m}\frac{N}{m}(1-\frac{x_m}{m})^{N-1}\,dx_m=\cl\\
+		&m\leq\frac{x_m}{1-\cl^{\frac{1}{N}}}
+		\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
 \def\myscale{0.4}
 \begin{tikzpicture}[myscalar]
-\begin{axis}[title={Banda confidenza $U([0,m])$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
+\begin{axis}[title={Banda confidenza: $o:x_m\geq x_1$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
 	tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
 \addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};
-\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {x};
-\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,black] gnuplot[domain=0:8] {0.3};
-\path[name intersections={of={bp and meas},name=i},name intersections={of={bm and meas},name=j}] (i-1) (j-1);
-\pgfplotsextra{\path (i-1) \pgfextra{\markxof{i-1}\xdef\myfirsttick{\pgfmathresult}}(j-1); \pgfextra{\markxof{j-1}\xdef\mysecondtick{\pgfmathresult}};
-}
+%\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {x};
+%\addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,black] gnuplot[domain=0:8] {0.3};
+%\path[name intersections={of={bp and meas},name=i},name intersections={of={bm and meas},name=j}] (i-1) (j-1);
+%\pgfplotsextra{\path (i-1) \pgfextra{\markxof{i-1}\xdef\myfirsttick{\pgfmathresult}}(j-1); \pgfextra{\markxof{j-1}\xdef\mysecondtick{\pgfmathresult}};
+%}
 \end{axis}
-\draw[ultra thin, draw=gray] (i-1 |- {rel axis cs:0,0}) node[fill=yellow,yshift=-1ex]{\pgfmathprintnumber[fixed,precision=5]\myfirsttick} -- (i-1);
-\draw[ultra thin, draw=gray] (j-1 |- {rel axis cs:0,0}) node[fill=red,below]{\pgfmathprintnumber[fixed,precision=5]\mysecondtick} -- (j-1);
+%\draw[ultra thin, draw=gray] (i-1 |- {rel axis cs:0,0}) node[fill=yellow,yshift=-1ex]{\pgfmathprintnumber[fixed,precision=5]\myfirsttick} -- (i-1);
+%\draw[ultra thin, draw=gray] (j-1 |- {rel axis cs:0,0}) node[fill=red,below]{\pgfmathprintnumber[fixed,precision=5]\mysecondtick} -- (j-1);
 \end{tikzpicture}
+	\end{column}
+\end{columns}
 \end{frame}
 
 \subsection{2 numeri casuali da pdf uniformi (21/11/19)}
