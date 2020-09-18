@@ -223,58 +223,51 @@ score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrles
 \begin{frame}{Likelihood ratio test (LRT)}\frameintoc\linkdest{LRT}
 Sia $H_0: \vec{\theta}\in\nu$, $H_1: \vec{\theta}\in\overline{\nu}$
 \begin{columns}[T]
-\begin{column}{0.4\textwidth}
+\begin{column}{0.3\textwidth}
 \begin{align*}
 &H_0: \theta_i=\theta_{i0}, i=1,\ldots,r\\
 &\theta_j, j=1,\ldots,s\\
-\end{align*}
-\end{column}
-\begin{column}{0.6\textwidth}
-\begin{align*}
 &H_1: \theta_i\neq\theta_{i0}, i=1,\ldots,r\\
 &\theta_j, j=1,\ldots,s
 \end{align*}
+\end{column}
+\begin{column}{0.7\textwidth}
+Regione critica: small $\lr$ is evidence against $H_0$ - critical region $\{\vec{x}:\lr{(\vec{x})}\leq k\}$ ($\prob{(\lr{(\vec{X})}\leq k_{\alpha};\theta)}\leq\alpha$, $\forall\theta\in\Theta_0$) - $\lambda$ funzione decrescente: $\lambda>\chi^2_{\alpha}(r)$.
 \end{column}
 \end{columns}
 %\begin{block}{test statistic maximum likelihood ratio}
 Test statistic maximum likelihood ratio
 \begin{align*}
-&\lambda=\frac{\max_{\vec{\theta}\in\nu}L(\vec{X},\theta)}{\max_{\vec{\theta}\in\overline{\nu}}L(\vec{X},\theta)}=\frac{\max_{\vec{\theta}_s}L(\vec{X}|\vec{\theta}_{r0},\vec{\theta}_s)}{\max_{\vec{\theta}_r, \vec{\theta}_s}L(\vec{X}|\vec{\theta}_r,\vec{\theta}_s)}
+&\lr=\frac{\max_{\vec{\theta}\in\nu}L(\vec{X},\theta)}{\max_{\vec{\theta}\in\overline{\nu}}L(\vec{X},\theta)}=\frac{\max_{\vec{\theta}_s}L(\vec{X}|\vec{\theta}_{r0},\vec{\theta}_s)}{\max_{\vec{\theta}_r, \vec{\theta}_s}L(\vec{X}|\vec{\theta}_r,\vec{\theta}_s)},\ \lambda=-2\ln{\lr}
 \end{align*}
-Asymptotic pdf of $\hat{\theta}=(\hat{\theta}_r,\hat{\theta}_s)$ is $(r+s)$-D Normal with covariance matrix $\invers{I}$
+Asymptotic pdf of $\hat{\theta}=(\hat{\theta}_r,\hat{\theta}_s)$ is $(r+s)$-D Normal with covariance matrix $\invers{I}$.
 %\end{block}
 	%$\alpha=\sup{\prob{(\lambda(\vec{X})\leq k;\theta\in\theta_0)}}$.
-	Se $H_0$ impone r vincoli sugli $r+s$ parametri di $H_0$, $H_1$:
+	Se $H_0$ impone r vincoli sugli $r+s$ parametri di $H_0$, $H_1$ ($d_{Alt}-d_{Nul}=(r+s)-s=r$):
 \begin{align*}
-&\forall\theta\in H_0:\ -2\log{\lambda}\to\chi^2_{r}\\
-&\forall\theta\in H_1:\ -2\log{\lambda}\to\chi^2_{NC,r}\tag{non centrale}\\
-&K_1=(\vec{\theta}_r-\vec{\theta}_{r0})^TI_r(\vec{\theta}_r-\vec{\theta}_{r0})\tag{par. non c.}
+&\forall\theta\in H_0:\ -2\log{\lr}\to\chi^2_{r}\\
+&\forall\theta\in H_1:\ -2\log{\lr}\to\chi^2_{NC,r}\tag{non centrale}\\
+&K_1=(\vec{\theta}_r-\vec{\theta}_{r0})^TI_r(\vec{\theta}_r-\vec{\theta}_{r0})\tag{par. non c.}\\
+&1-\beta=\int_{\chi_{\alpha}^2(r)}^{\infty}dF_1[\chi^2(r,K_1)]\approx\int_{(\frac{r+K_1}{r+2K_1})\chi^2_{\alpha}(r)}^{\infty}dF_2[\chi^2(r+\frac{K_1^2}{r+2K_1})]\tag{power}
 \end{align*}
-Regione critica: $-2\ln{\lambda}>\chi^2_{\alpha}(r)$, power:
-\begin{equation*}
-p=1-\beta=\int_{\chi_{\alpha}^2(r)}^{\infty}dF_1[\chi^2(r,K_1)]\approx\int_{(\frac{r+K_1}{r+2K_1})\chi^2_{\alpha}(r)}^{\infty}dF_2[\chi^2(r+\frac{K_1^2}{r+2K_1})]
-\end{equation*}
 \end{frame}
 
 %\begin{frame}{LR test: critical region, significance level and power for continuus families of Hypotheses}
 %\end{frame}
 
-\begin{wordonframe}{LRT: }
-\begin{block}{Likelihood asymptotic expression}
+\begin{wordonframe}{Likelihood asymptotic expression and LRT}
+%\begin{block}{Likelihood asymptotic expression}
 Asymptotically MLE $\hat{\theta}$ attains MVB:
 \begin{align*}
-&L(\vec{X}|\theta)=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}-\theta)\\
+&\ln{L(\vec{X}|\theta)}-\ln{L(\vec{X}|\hat{\theta})}=\frac{1}{2}\PtwoDy{\theta}{\ln{L}}|_{\theta=\hat{\theta}}(\hat{\theta}-\theta)^2+O(N^{-3})\\
+&\PtwoDy{\theta}{\ln{L}}|_{\theta=\hat{\theta}}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{L}}]}=-I_X\\
 &L(\vec{X},\vec{\theta})=L(\vec{X},\vec{\theta}_r,\vec{\theta}_s)\propto\Exp{[-\frac{1}{2}(\hat{\theta}-\vec{\theta})^TI(\hat{\theta}-\vec{\theta})]}\\
 &\lambda=\frac{L(\vec{X}|\theta_r,\hat{\theta}_s)}{L(\vec{X}|\hat{\theta_r},\hat{\theta}_s)}=\Exp{[-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^TI_r(\hat{\theta}_r-\theta_{r0})]}
 \end{align*}
-\end{block}
-\begin{block}{Espansione in $\hat{\theta}-\theta_0$ per $\theta=\theta_0$}
-	Usually the critical region is determined via asymptotic pdf of LR:
-	$l(\theta_0)=-\log{L}=l(\hat{\theta})+\frac{1}{2}l''(\hat{\theta})(\hat{\theta}-\theta_0)^2$ $L(\vec{X}|\vec{\theta})\propto\exp{-\frac{1}{2}\E{(\PtwoDy{\theta}{\ln{L}})}(\hat{\theta}-\theta)^2}=\exp{-\frac{1}{2}(\hat{\theta}-\theta)^TI(\hat{\theta}-\theta)}$ (pdf asintoticamente normale con matrice covarianza $\invers{I}$). Quindi $I(\theta_0)(\hat{\theta}-\theta)^2\xrightarrow{D}\chi_1^2$.
-\end{block}
-\begin{block}{Asymptotic properties of MLE}
-
-\end{block}
+%\end{block}
+%\begin{block}{Espansione in $\hat{\theta}-\theta_0$ per $\theta=\theta_0$}
+Asymptotic normality: $\sqrt{n}(\hat{\theta}-\theta)\xrightarrow{d}N(0,\frac{1}{I(\theta)})$ quindi $I(\theta_0)(\hat{\theta}-\theta)^2\xrightarrow{D}\chi_1^2$.
+%\end{block}
 \end{wordonframe}
 
 \begin{wordonframe}{Test of some theories with different dof}
@@ -283,17 +276,13 @@ Maximum likelihood ratio for A vs generale case: $\lambda_a=\frac{L(0)}{L(d)}$, 
 \end{wordonframe}
 
 \begin{wordonframe}{Is data normally distributed (unknown variance)}
-$X_1,,X_N$ iid $N(\mu,\sigma^2)$, $H_0: \mu=0,\sigma^2$, $H_1: \mu\neq0,\sigma^2$. Likelihood function is: 
+\begin{columns}[T]
+	\begin{column}{0.55\textwidth}
+$X_1,,X_N$ iid $N(\mu,\sigma^2)$, $H_0: \mu=0,\sigma^2$, $H_1: \mu\neq0,\sigma^2$.
+Likelihood function is: 
 \begin{equation*}
 L(\mu,\sigma^2)=\frac{1}{(2\pi)\expy{N/2}\sigma^N}\exp{-\frac{1}{2}\sum^N\frac{(X_i-\mu)^2}{\sigma^2}}
 \end{equation*}
-Maximum likelihood estimators:
-\begin{align*}
-&H_0: \hat{\sigma}^2=\frac{1}{N}\sum_iX_i^2\\
-&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_iX_i/N)\expy{N/2}}\\
-&H_1: \hat{\mu}=\exv{X},\ S^2=\frac{1}{N}\sum^N(X_i-\exv{X})^2\\
-&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_i(X_i-\exv{X})^2/N)\expy{N/2}}\\
-\end{align*}
 Likelihood ratio:
 \begin{align*}
 &\lambda=(\frac{\sum^N(X_i-\exv{X})^2}{\sum_iX_i^2})\expy{N/2}\\
@@ -301,6 +290,18 @@ Likelihood ratio:
 &t=\frac{\sqrt{N}\exv{X}}{\sqrt{\frac{1}{N-1}}\sum(X_i-\exv{X})^2}=\sqrt{N}\frac{\exv{X}}{s}
 \end{align*}
 Test based on $\lambda$ is equivalent to test based on two-sided t-test: the critical region correspond to small $\lambda$.
+	\end{column}
+	\begin{column}{0.45\textwidth}
+Maximum likelihood estimators:
+\begin{align*}
+&H_0: \hat{\sigma}^2=\frac{1}{N}\sum_iX_i^2\\
+&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_iX_i/N)\expy{N/2}}\\
+&H_1: \hat{\mu}=\exv{X},\ S^2=\frac{1}{N}\sum^N(X_i-\exv{X})^2\\
+&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_i(X_i-\exv{X})^2/N)\expy{N/2}}\\
+\end{align*}
+	\end{column}
+\end{columns}
+
 \end{wordonframe}
 
 \begin{wordonframe}{Test whether Poissonian data have same mean}
@@ -327,7 +328,7 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 
 \subsection{Wilks theorem: asymptotic pdf of LR}\linkdest{wilks}
 
-\begin{frame}{Teorema di Wilks}\linkdest{wilks}\frameintoc
+\begin{frame}{Teorema di Wilks}\frameintoc
 	$p(x;\theta)$ due volte differenziabile con dominio indipendente da parametro $\Omega(x;\theta)=\Omega(x)$, $\iidrv[\theta][,][1][r],\iidrv[\theta][,][r+1][s+r]$
 	\begin{itemize}
 		\item $H_0$: $\theta_r=\theta_{r0}$, $\theta_s=\hat{\theta}_s$
@@ -344,7 +345,7 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 		&L\propto\Exp{-\frac{1}{2}(\hat{\theta}-\vec{\theta})^T\invers{V}(\hat{\theta}-\vec{\theta})}
 		\end{align*}
 		\item When $H_0$ holds $\theta_s=\hat{\theta}_s$:
-		\[L(x;\theta_{r0},\theta_s)\propto\Exp{-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^T\invers{V_r}}(\hat{\theta}_r-\theta_{r0})\]
+		\[L(x;\theta_{r0},\theta_s)\propto\Exp{-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^T\invers{V_r}(\hat{\theta}_r-\theta_{r0})}\]
 		\item when $H_1$ holds $\vec{\theta}=\hat{\theta}$: $L(x|\hat{\theta}_r,\hat{\theta}_s)\propto1$
 		\item Distribuzione asintotica di
 		\begin{align*}
@@ -355,18 +356,28 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 	\end{itemize}	
 \end{frame}
 
-\subsection{Stusent's t-test}
+\subsection{Student's t-test}
 
 \begin{frame}{t statistics}
-$\overline{x}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\overline{x}$ normally distributed around $\hat{x}$, $y=\frac{\overline{x}-\hat{x}}{\sigma(\overline{x})}$ standard normal G. Estimate for variance:
-\[s_x^2=\frac{1}{N-1}\sum_i^N(x_i-\hat{x})^2\to s_{\overline{x}}^2=\frac{1}{N(N-1)}\sum_i^N(x_i-\overline{x})^2\]
-$(N-1)s_x^2=fs_x^2$ follow $\chi^2$ with $f=N-1$ dof and we define
+$\exv{x}=\frac{1}{N}\sum_iX_i=\hat{\mu}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\exv{x}$ normally distributed around $\mu$, $y=\frac{\exv{x}-\mu}{\sigma(\exv{x})}=\sqrt{N}\frac{\exv{x}-\mu}{\sigma(x)/\sqrt{N}}$ standard normal G. The ''corrected'' sample variance $S_x=\frac{1}{N-1}\sum_i^N(X_i-\mu{x})^2$ is distrib. indep. of $\exv{X}$: $(N-1)S^2/\sigma^2$ distrib as $\chi^2_{N-1}$.
+%$\gets\frac{1}{N(N-1)}\sum_i^N(X_i-\exv{x})^2
+%$(N-1)s_x^2=fs_x^2$ follow $\chi^2$ with $f=N-1$ dof and we define
 \begin{align*}
-&t=\frac{\overline{x}}{s_{\overline{x}}}=\frac{\overline{x}\sqrt{Nf}}{\chi}\\
-&t_f=\frac{Z}{\sqrt{k/f}}:\ Z=G(0,1),\ k=\chi^2(f)\\
-&P(|t|\leq t)=2F(|t|)-1\\
-&\int_0^{t_{\alpha}'}f(t)\,dt=\frac{1}{2}(1-\alpha),\ t_{\alpha}'=t_{1-\frac{1}{2}\alpha}
+&t=\frac{\exv{x}-\mu}{s_{\exv{x}}}=\frac{(\exv{x}-\mu)\sqrt{Nf}}{\chi}=\frac{Z}{\sqrt{k/f}}:\ Z=G(0,1),\ k=\chi^2(f),\ f=N-1\\
+&P(|t|\leq t)=2F(|t|)-1:\ \int_0^{t_{\alpha}'}f(t)\,dt=\frac{1}{2}(1-\alpha),\ t_{\alpha}'=t_{1-\frac{1}{2}\alpha},\ t_{1-\alpha}=-t_{\alpha}
 \end{align*}
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\begin{itemize}
+	\item two-sided: find $t_{1-\frac{\alpha}{2}}$ point and reject $H_0$ if $|t|>t_{1-\frac{\alpha}{2}}$
+	\item Upper/Lower one-sided: find $t_{1-\alpha}$ point and reject $H_0$ if $t\gtrless \pm t_{1-\alpha}$
+\end{itemize}
+\end{column}
+\begin{column}{0.4\textwidth}
+	\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.8\textwidth]{figures/mukhopadhyay/tests/studenttpercpoint}\label{fig:studenttpercpoint}
+	\end{figure}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Student's t test}
@@ -407,19 +418,34 @@ Sample quantity compared with quantile of t with $f=N_1+N_2-2$ with sign. level 
 
 \begin{wordonframe}{Normal theory tests: NP vs sign test}
 $H_0$: $N(\mu=\mu_0,\sigma^2)$, $H_1$: $N(\mu=\mu_1,\sigma^2)$.
-MP test is based on $t=\frac{\Exp{-\frac{1}{2\sigma^2}\sum_i^N(X_i-\mu_i)^2}}{\Exp{-\frac{1}{2\sigma^2}\sum_i^N(X_i-\mu_0)^2}}$: $\sigma^2\ln{t}$ \'e una funzione monotona di $z=\frac{\exv{X}-\mu_0}{\frac{\sigma}{\sqrt{N}}}\xrightarrow{pdf}\begin{array}{c}N(\mu_1-\mu_0,1) \text{: se $H_1$ \'e vera}\\
+MP test is based on $t=\frac{\Exp{-\frac{1}{2\sigma^2}\sum_i^N(X_i-\mu_i)^2}}{\Exp{-\frac{1}{2\sigma^2}\sum_i^N(X_i-\mu_0)^2}}$: $\sigma^2\ln{t}$ \'e una funzione monotona di $z=\frac{\exv{X}-\mu_0}{\frac{\sigma}{\sqrt{N}}}\xrightarrow{pdf}\left\{\begin{array}{c}N(\mu_1-\mu_0,1) \text{: se $H_1$ \'e vera}\\
 N(0,1) \text{: se $H_0$ \'e vera}
-\end{array}$
+\end{array}\right.$
 $\alpha$ livello di significativit\'a: la regione critica C si definisce tramite taglio $z>\lambda_{\alpha}$ con $\lambda_{\alpha}$ $\alpha$-point of standard normal distribution; power $1-\beta$:
 \begin{align*}
 &1-\beta=\prob{(z>\lambda_{\alpha})|X_i\in N(\mu_1,\sigma^2)}=\prob{(z>\lambda_{\alpha})|z\in N(d,1)}\\
-&d=\frac{\sqrt{N}}{\sigma}(\mu_1-\mu_0)\\
-&=\int_{\lambda_{\alpha}}^{\infty}\frac{1}{2\pi}\exp{-\frac{(z-d)^2}{2}}\,dz
+&d=\frac{\sqrt{N}}{\sigma}(\mu_1-\mu_0)=\int_{\lambda_{\alpha}}^{\infty}\frac{1}{2\pi}\exp{-\frac{(z-d)^2}{2}}\,dz
 \end{align*}
 Sign test:
 $H_0$: N measures with mean $\mu_0$ and symmetric distribution, $H_1$: N distribution have mean $\mu_1$. $N_+$ times $(X_i-\mu_0)>0$, $N_-=N-N_+$: under $H_0$ $N_+$ is distributed as $\prob{(N_+=r)}=\binom{N}{r}(\frac{1}{2})^N$. Supponiamo $N_-\leq2$, il livello di significativit\'a  (loss) $\alpha=\frac{1}{2\expy{10}}[\binom{10}{0}+\binom{10}{1}+\binom{10}{2}]=0.0547$; quindi $q_{\pm}$ probabilit\'a di segno $\pm$ ($q_++q_-=1$): $q_-=\phi(\frac{\mu=\mu_1-\mu_0}{\sigma})=\int_0^{\infty}\frac{1}{2\pi}\exp{-\frac{(z-\frac{\mu}{\sigma})^2}{2}}\,dz$, power $1-\beta=q_+\expy{10}+10q_+^9q_-+45q_+^8q_-$.
 
 NP is UMP: given $\alpha, N$: power di NP maggiore/uguale ad ogni altro test.
+\end{wordonframe}
+
+\begin{wordonframe}{P-value examples for gaussians}
+	X RV $N(\xi,\sigma^2)$, $\sigma^2$ known. Null hypothesis $\xi=0$, alternative $\xi=\xi_1>0$.
+	\begin{equation*}
+	\lr=\frac{p_1(x)}{p_0(x)}=\exp{\frac{\xi_1x}{\sigma^2}-\frac{\xi_1^2}{2\sigma^2}}
+	\end{equation*}
+	funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ con $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
+	Regione di confidenza:
+	\begin{equation*}
+	S_{\alpha}=\{X: X>\sigma z_{1-\alpha}\}=\{X: \Phi(\frac{X}{\sigma})>1-\alpha\}
+	\end{equation*}
+	osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regione critica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
+	\begin{equation*}
+	P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})\geq 1-u\}
+	\end{equation*}
 \end{wordonframe}
 
 \begin{frame}{Separation of two class of events: elastic vs inelastic pp scattering}
@@ -470,9 +496,9 @@ Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$: misurazione 
 	&\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\
 	&x=-\frac{1}{\lambda}\ln{(1-F(x))}\tag{inverse CDF exponential}\\
 	&x=-\frac{1}{\lambda}\ln{P},\ P\in U([0,1])\tag{exponential distribution rate 1}\\
-&P(\chi^2_2)=\frac{\exp{-\frac{x^2}{2}}}{2}\tag{$\chi^2$ pdf with 2 dof}\\
-	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{Erlang $\lambda=1/2$}\\
-	&\approx\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N}\Gamma(2N)}x\expy{2N-1}\exp{-x/2}\tag{sum N $\chi^2_2$}\\
+&P(\chi^2_2)=\frac{\exp{-\frac{x^2}{2}}}{2}\tag{$\chi^2$ with dof 2 is exponential with $\lambda=\frac{1}{2}$}\\
+	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{$*2$ we have sum of N $\chi_2^2$}\\%Erlang $\lambda=1/2$
+	&\approx\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N}\Gamma(2N)}x\expy{2N-1}\exp{-x/2}\tag{sum N $\chi^2_2$ is $\chi^2_{2N}$}\\
 	&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
 	\end{align*}
 \end{frame}
@@ -486,22 +512,6 @@ $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \end{block}
 \end{wordonframe}
 
-\begin{wordonframe}{P-value examples for gaussians}
-		X RV $N(\xi,\sigma^2)$, $\sigma^2$ known. Null hypothesis $\xi=0$, alternative $\xi=\xi_1>0$.
-		\begin{equation*}
-		\lr=\frac{p_1(x)}{p_0(x)}=\exp{\frac{\xi_1x}{\sigma^2}-\frac{\xi_1^2}{2\sigma^2}}
-		\end{equation*}
-		funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ con $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
-		Regione di confidenza:
-		\begin{equation*}
-		S_{\alpha}=\{X: X>\sigma z_{1-\alpha}\}=\{X: \Phi(\frac{X}{\sigma})>1-\alpha\}
-		\end{equation*}
-		osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regione critica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
-		\begin{equation*}
-		P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})\geq 1-u\}
-		\end{equation*}
-\end{wordonframe}
-
 \begin{frame}{Distribution free Tests}
 \keyword{Distribution-free test}: the distribution of the statistic t is known independently of $H_0$.
 \begin{columns}[T]
@@ -509,10 +519,10 @@ $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 \begin{block}{Binned data}
 \begin{itemize}
 \item \keyword{Pearson-$\chi^2$ test}.
-\item \keyword{GOF con LR}
+\item \keyword{(GOF con LR)}: not good (James)
 \begin{align*}
 &\ln{L(\mu)}-\ln{L(\hat{\mu})}=-\frac{1}{2}\invers{F}_{\chi_n^2}(1-\alpha)\\
-&p_{\mu}=\int_{t_{\mu,obs}}^{\infty}f_{\chi^2_N}(t_{\mu}|\mu)\,t_{\mu}
+&p_{\mu}=\int_{t_{\mu,obs}}^{\infty}f_{\chi^2_N}(t_{\mu}|\mu)\,dt_{\mu}
 \end{align*}
 \todo{think about p-value formula for GOF-LR}
 \end{itemize}
@@ -542,10 +552,10 @@ Fit hist minimizing $Q_N$
 $H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
 
 \begin{align*}
-&Q_N=\sum_j^{k}\frac{(Y_j-n\pi_j)^2}{n\pi_j}=\frac{1}{N}\sum^{k}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(k-1)$}\\
-&\sum_i\frac{(n_i-NP_i(\theta))^2}{n_i}\tag{Neyman $\chi^2$}
+&Q_N=\sum_i^{N}\frac{(Y_i-n\pi_i)^2}{n\pi_i}=\frac{1}{N}\sum^{N}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(N-1)$}\\
+&\sum_i\frac{(n_i-NP_i(\theta))^2}{Np_i}\tag{Pearson $\chi^2$}
 \end{align*}
-$c_{k-1,1-\alpha}$ $1-\alpha$-quantile di $\chi^2(k-1)$ il test che rifiuta H quando $Q_n>c_{k-1,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
+$c_{N-1,1-\alpha}$ is $1-\alpha$-quantile di $\chi^2(k-1)$: test rifiuta $H_0$ quando $Q_N>c_{N-1,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
 \end{frame}
 
 \begin{frame}{Pearson' $\chi^2$ for Poisson and Gaussian data}
@@ -593,8 +603,8 @@ $\mu_i(\theta)=NP_i(\theta)$. Area conserving property: at minimum normalization
 \begin{frame}{Classes of EDF statistics}
 	Empirical distribution function (EDF): 
 	\begin{align*}
-	&\hat{F}_n(t)=\frac{\#\text{ elementi nel campione }\leq t}{n}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\\
-	&S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}=\frac{1}{n}\sum_i^nI_{X(i)\leq x}\\
+	&\hat{F}_N(t)=\frac{\#\text{ elementi nel campione }\leq t}{N}=\frac{1}{N}\sum_i^NI_{X(i)\leq x}\\
+	&S_N=\left\{\begin{array}{l}0:\ X<X_{(1)}\\i/N:\ X_{(i)}<X<X_{(i+1)}\\1:\ X>X_{(N)}\end{array}\right.=\frac{1}{N}\sum_i^NI_{X(i)\leq x}\\
 	&X_{(1)}\leq X_{(2)}\leq\ldots\leq X_{(N)}
 	\end{align*}
 from LLN $\lim_{N\to\infty}\prob{[S_N(X)=F(X)]}=1$. For fixed X or t, $S_N(X)$ has binomial distribution since $I_{X(i)\leq x}$ is a bernoulli with $p=F(t)$ and moments:
@@ -602,7 +612,7 @@ from LLN $\lim_{N\to\infty}\prob{[S_N(X)=F(X)]}=1$. For fixed X or t, $S_N(X)$ h
 &\E{[S_N(X)]}=F(X)\\
 &\E{[(S_N(X)-F(X))^2]}=\frac{1}{N}F(X)[1-F(X)]
 \end{align*}
-Any $d(\hat{F_n},F_0)$ metric on the space of distribution functions is EDF statistics.
+Any $d(\hat{F_N},F_0)$ metric on the space of distribution functions is EDF statistics.
 \end{frame}
 %\end{frame}
 
@@ -618,7 +628,7 @@ Per determinare il valore critico di $NW^2$ per $\alpha$ si pu\'o usare espressi
 \end{frame}
 
 \begin{frame}{Test di Kolmogorov-Smirnov}
-$H_0: F=F_0$, $H_1: F\neq F_0$. Distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $D_N=\sup_{t\in\real}{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$:
+$H_0: F=F_0$, $H_1: F\neq F_0$. Distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $D_N=\sup_t{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$:
 \[D_N=\max_{i}(F(Y_i)-\frac{i-1}{N},\frac{i}{N}-F(Y_i))\]
 Sia $d_{\alpha}$ il $\alpha$-quantile di $D_N$ per ogni $F$ continua: KS-test rejects $H_0$ if $D_N>d_{\alpha}$
 \begin{columns}[T]

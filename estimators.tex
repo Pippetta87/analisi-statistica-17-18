@@ -35,7 +35,7 @@
 \end{wordonframe}
 
 \begin{frame}{Principio di sufficienza}
-E modello statistico per osservabile X con parametro $\theta$, $t(x)$ stat. suff. iff $\prob{(X|t)}$ non dipende da $\theta$; sia $E'$ modello statistico di $t(x)$. Inferences on $\theta$ are same from $(E,X)$ or $E',t(x)$
+E modello statistico per osservabile X con parametro $\theta$, $t(x)$ stat. suff. iff $\prob{(X|t)}$ non dipende da $\theta$; sia $E'$ modello statistico di $t(x)$. Inferences on $\theta$ are same from $(E,X)$ or $(E',t(x))$
 	%Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
 	\keyword{Principio di sufficienza}: per ogni x $Ev(E,x)=Ev(E',t)$.
 \end{frame}
@@ -268,9 +268,9 @@ extra x tick style={xticklabel style={yshift=-10}}]
 \begin{align*}
 &\prob{(x_{max}<x_0)}=F_M(x_0)=\prod_i\prob{(x_i<x_0)}=\prod_i\int_0^{x_0}\frac{1}{m}\,dx=(\frac{x_0}{m})^N\\
 &\prob{(x_M;m)}=\TDof{x_0}\left.F_M(x_0)\right|_{x_M}=\frac{N}{m}(\frac{x_M}{m})^{N-1}I(x_M<m)\\
-&L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
+%&L_{\vec{x}}(m)=\frac{N}{m^N}x_M^{N-1}\frac{1}{Nx_M^{N-1}}=\prob{(x_M;m)}\frac{1}{Nx_M^{N-1}}\ m>x_M
 \end{align*}
-$\prob{(x;S,\theta)}=\prob{(x;S)}$!
+$\prob{(x;x_M,\theta)}=\prob{(x;x_M)}$: il massimo \'e limite superiore degli $x_i$ estratti da $U(0,m)$
 \end{wordonframe}
 
 \begin{wordonframe}{Minimo campionario per distribuzione uniforme}
@@ -307,7 +307,7 @@ Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: pdf appartiene alla \keyword{famigl
 p(x|\theta)=\Exp{[\sum_i^n\alpha_i(x)a_i(\theta)+\beta(x)+\gamma(\theta)}
 \end{equation*}
 \begin{equation*}
-S_j=\sum_i\alpha_j(x_i)
+S_i=\sum_j\alpha_i(x_j)
 \end{equation*}
 $\vec{S}$ is jointly sufficient for $\theta$ ($\vec{S}$ ha pdf esponenziale??)
 \end{block}
@@ -374,7 +374,7 @@ $\hat{\sigma}^2=\frac{\sum_i^N(x_i-\mu)^2}{N}$ \'e sufficiente per $\sigma^2$ (p
 \begin{column}{0.33\textwidth}
 \begin{align*}
 &\prob{(x)}=\lambda\exp{-\lambda x}\intd{argomento di exp}
-&-\lambda x-\mu+\log{\lambda}\\
+&-\lambda x+\log{\lambda}\\
 &(\alpha(x)a(\lambda)+\beta(x)\\
 &+c(\lambda))\\
 &S=\sum_ix_i
@@ -388,7 +388,7 @@ $\hat{\sigma}^2=\frac{\sum_i^N(x_i-\mu)^2}{N}$ \'e sufficiente per $\sigma^2$ (p
 
 \subsection{Informazione}\linkdest{informazione}
 
-\begin{frame}{Informazione di Fischer}
+\begin{frame}{Informazione di Fischer (Score Variance)}\frameintoc
 Informazione contenuta nei dati su un parametro $\Theta$
 \begin{align*}
 &\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
@@ -397,16 +397,15 @@ Per due parametri:
 \begin{align*}
 &I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
 \end{align*}
-\begin{block}{Score statistics}
-	\begin{columns}[T]\begin{column}{0.5\textwidth}
-			
-		\end{column}\begin{column}{0.5\textwidth}
-			
-	\end{column}\end{columns}
-\end{block}
+If Score is twice deriv. resp. $\theta$ and under regularity conditions:
+\begin{align*}
+&\PtwoDof{\theta}\log{f(X;\theta)}=\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}-(\frac{\PDof{\theta}f(X;\theta)}{f(X;\theta)})^2\\
+&=-(\PDof{\theta}\log{f(X;\theta)})^2\\
+&\E{[\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}]}=\PtwoDof{\theta}\int f(X;\theta)=0
+\end{align*}
 \end{frame}
 
-\begin{frame}{Qualcosa su Informazione}
+\begin{frame}{Propriet\'a dell'informazione per trasformazioni}
 \begin{block}{Informazione e statistiche}
 $I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
 \end{block}
@@ -418,7 +417,7 @@ $I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Th
 \end{align*}
 \end{frame}
 
-\begin{wordonframe}{Esempi Informazione}
+\begin{frame}[allowframebreaks,fragile]{Esempi Informazione}
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 	\begin{block}{pdf Poisson}
@@ -511,7 +510,7 @@ $I_s=I_k$ poich\'e $S$ \'e statistica sufficiente.
 \end{align*}
 $\hat{m}$ non \'e consistente: non converge in probabilit\'a al parametro.
 \end{block}
-\end{wordonframe}
+\end{frame}
 
 \begin{frame}{Come ridurre i dati se statistica sufficiente non \'e disponibili}
 Perdita informazione
@@ -529,9 +528,11 @@ Perdita informazione
 \begin{frame}{Propriet\'a generali stiamatori}
 	\begin{itemize}
 		\item Consistenza (LGN): $\hat{\theta}\xrightarrow{P}\theta_0$
-		\item Mean Square Error:
+		\item \keyword{Estimator mean square error}:
 		\[\E{[(T-\tau(\theta))^2]}=\var{[T]}+[\E{[T]}-\tau(\theta)]^2\]
-		\item Bias: $B(T)=\E{[T]}-\tau(\theta)$; scuola soggettivista: bias non esiste.
+		\item \keyword{estimator bias}: $B(T)=\E{[T]}-\tau(\theta)$; scuola soggettivista: bias non esiste.
+		\item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
+		\item : $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
 		\item Varianza $\var{\vec{X}}\propto\frac{1}{N}$, bias $b(\vec{x})$ non diminuisce all'aumentare delle misure.
 		\item distribuzione semplice
 	\end{itemize}
@@ -574,63 +575,7 @@ Perdita informazione
 			\end{align*}
 		\end{column}
 	\end{columns}
-	
 \end{frame}
-
-\begin{frame}{Stimatori puntuali: Caratteristiche stimatori}
-	\begin{columns}[T]
-		\begin{column}{0.4\textwidth}
-			Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$.
-		\end{column}
-		\begin{column}{0.6\textwidth}
-			\begin{itemize}
-				\item \keyword{unbiased estimator}: $\E_{\Theta}[T]=\tau(\Theta)$
-				\item \keyword{estimator bias}: $B_{\Theta}(T)=\E_{\Theta}[T]-\tau(\Theta)$
-				\item \keyword{Estimator mean square error}: $\E{[(T-\tau(\Theta))^2]}=V_{\Theta}[T]+(\E{[T]}-\tau(\Theta))^2$
-				\item \keyword{Stimatori consistenti}: $\lim_{n\to\infty}T_n(X_1,\ldots,X_n)\overset{P}{=}\tau(\Theta)$
-			\end{itemize}
-		\end{column}
-	\end{columns}
-\end{frame}
-
-\begin{frame}[allowframebreaks, fragile]{Esempi di stimatori}
-	\begin{block}{Notazione}
-		$\exv{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
-	\end{block}
-	\begin{block}{Stimatore per $\sigma^2$ di n iid gaussiane}
-		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. La varianza campionaria definita come $S^2=\frac{1}{n-1}\sum_i^n(x_i-\exv{X})^2$ \'e stimatore unbiased di $T(\Theta)=\sigma^2$
-	\end{block}
-	\begin{block}{Stimatore per $\mu$ di n iid gaussiane: CRLB per $\sigma$ noto}
-		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. $\exv{X}\to T(\mu)=\mu$; dato che $I_{X_1}=\sigma\expy{-2}$ la media campionaria \'e CRLB $\frac{\sigma^2}{n}=V_{\mu}[\exv{X}]$.
-	\end{block}
-	\begin{block}{Stimatore per $\lambda$ di n iid poissoniane}
-		$X_1,\ldots,X_n$ n RV iid con pdf $P(\lambda)$. $\exv{X}$ \'e stimatore di $T(\lambda)=\lambda$, $V_{\lambda}[\exv{X}]=\frac{\lambda}{n}$ quindi si raggiunge CRLB $\frac{\lambda}{n}$ ($I_{X_1}(\lambda)=\invers{\lambda}$).
-	\end{block}
-	\begin{block}{Stimatore per $p$ di n iid Bernoulli}
-		$X_1,\ldots,X_n$ n RV iiir has received mainly positive reviews. d con pdf $B(p)$. $\exv{X}$ \'e unbiased estimator of $\tau(p)=p$; dato che $I_{X_1}(p)=\frac{1}{p(1-p)}$, con $X_p[\exv{X}]=\frac{p(1-p)}{n}$ siamo al CRLB $\frac{p(1-p)}{n}$.
-	\end{block}
-	\begin{block}{Stimatori upper limit pdf uniforme: media aritmetica vs $x_{max}$.}
-		\begin{columns}[T]
-			\begin{column}{0.4\textwidth}
-				\begin{align*}
-				&\hat{m}_1=\frac{S_N}{N}=2\exv{X}\\
-				&b=\E{[\hat{m}_1]}-m=0\\
-				&\var{[\hat{m}_1]}=\frac{4Nm^2}{12N^2}
-				\end{align*}
-			\end{column}
-			\begin{column}{0.6\textwidth}
-				\begin{align*}
-				&p(x_{max};m)=\frac{N}{m^N}x_m^{N-1}\\
-				&\E{[x_{max}]}=\int_0^m\frac{N}{m^N}x_m^N\,dx_m=\frac{N}{N+1}\frac{m^{N+1}}{m^N}\intu{asintoticamente unbiased}
-				&\E{[x_{max}^2]}=\frac{N}{N+2}m^2-\frac{N^2}{(N+1)^2}m^2\\
-				&\var{[x_m]}=\E{[x_m^2]}-\E^2{[x_m]}\to0\\
-				&b(x_m)=-\frac{1}{N+1}m
-				\end{align*}
-			\end{column}
-		\end{columns}
-	\end{block}
-\end{frame}
-
 
 \subsection{Metodi costruzione stimatori consistenti}\linkdest{methodsestimators}
 
@@ -773,14 +718,14 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 %&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
 %&\ln{L(\theta)}=\sum^Nn_i\ln{\nu_i(\theta)}
 &f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
-&\ln{L(\theta)}=\sum^Nn_i\ln{p_i(\theta)}-\sum^N\ln{k_i!}+\ln{N!}\\
+&\ln{L(\theta)}=\sum^Nn_i\ln{p_i(\theta)}-\sum^N\ln{n_i!}+\ln{N_T!}\\
 &\TDof{\theta}\sum_i^Nn_i\ln{p_i(\hat{\theta})}=0\tag{MLE}
 \end{align*}
 \end{column}
 \end{columns}
 \begin{align*}
 &p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
-&\ln{L}\to\ln{N!}+N\ln{\Delta}+\sum_j\ln{p_j(x,\theta)}\tag{piccoli bin}
+&\ln{L}\to\ln{N_T!}+N_T\ln{\Delta}+\sum_j\ln{p_j(x,\theta)}\tag{piccoli bin}
 \end{align*}
 \end{block}
 \end{frame}
@@ -790,7 +735,7 @@ La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: g
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 \begin{align*}
-&p(\{k_i\};\theta)=\prod_i\frac{\exp{-\mu_i(\theta)\mu_i(\theta)^{k_i}}}{k_i!}\\
+&p(\{k_i\};\theta)=\prod_i\frac{\exp{-\mu_i(\theta)}\mu_i(\theta)^{k_i}}{k_i!}\\
 &\mu_i(\theta)=\E{[k_i(\theta)]}=\mu p_i(\theta)\\
 &\mu=\E{[\sum_ik_i]}=\E{[N]}\\
 &\PDy{\theta}{\mu}=0\Rightarrow\hat{\mu}=N
@@ -817,7 +762,7 @@ oppure: $L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))$
 \end{frame}
 
 \begin{frame}{Risoluzione di un ''fit di likelihood''}\frameintoc
-MLE applicato numericamente: \keyword{fit di likelihood} - Nel limite asintotico si pu\'o contare su CR, se I \'e lineare: $\var{\theta}=\invers{NI_1}$; spesso I \'e difficile da calcolare e si ricorre a
+MLE applicato numericamente: \keyword{fit di likelihood} - Nel limite asintotico si pu\'o contare su CR, se I \'e lineare: $\var{\theta}=\invers{(NI_1)}$; spesso I \'e difficile da calcolare e si ricorre a
 \begin{align*}
 &NI_1=-N\E{[\PtwoDy{\theta}{\log{L}}]}=-N\PtwoDof{\theta}\log{L}\\
 &NI_1\gets-N\PtwoDof{\theta}\frac{\sum_i\log{p(x_i;\theta)}}{N}\to-\PtwoDy{\theta}{\log{L_T(\hat{\theta})}}\tag{LLN}
@@ -827,7 +772,7 @@ Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j}
 
 %Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 
-\begin{wordonframe}{Esempi di stimatori di massima likelihood}
+\begin{frame}[allowframebreaks,fragile]{Esempi di stimatori di massima likelihood}
 \keyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
 \begin{align*}
 &\log{(L(\vec{k},p))}=\log{[\prod_i^N\binom{n}{k_i}p^{k_i}(1-p)^{n-k_i}]}\\
@@ -837,7 +782,6 @@ Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j}
 &\var{[\hat{p}]}=\var{[\frac{1}{nN}\sum k_i]}=\frac{1}{n^2N^2}Nnp(1-p)\\
 &I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
 \end{align*}
-
 \keyword{Gaussiana}
 Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
 \begin{columns}[T]
@@ -864,7 +808,6 @@ Maximum of $\log{L}$ for $\mu, \sigma^2$
 \end{column}
 \end{columns}
 $\E{[\hat{\sigma^2}]}=\frac{N-1}{N}\sigma^2$ quindi definisco lo stimatore unbiassato $\hat{\sigma^2}'=\frac{\sum(x_i-\exv{x})^2}{N-1}$.
-
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
 \keyword{Esponenziale: cambio di parametro.} $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
@@ -908,7 +851,6 @@ $\log{L}=N\log{\lambda}-\lambda\sum_ix_i$, $\TDy{\lambda}{\log{\lambda}}=0$. $\h
 &z\to\frac{z}{N}=\exv{x}=\hat{\tau}\\
 &\exv{x}\to\frac{1}{\exv{x}}=\hat{\lambda}
 \end{align*}
-
 \keyword{Ex: MLE per $x_{max}$ e $x_{min}$ per pdf uniforme}
 Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{min}\in[0,m]$,
 \begin{align*}
@@ -917,13 +859,11 @@ Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{m
 &\hat{m}_{MLE}=Nx_{min}:\ \E{[\hat{m}]}=\frac{N}{N+1}m,\ \var{\hat{m}}=\frac{N^3}{(N+1)^2(N+2)}m^2
 \end{align*}
 lo stimatore non \'e consistente.
-
 \keyword{MLE per poissoniana}
 \begin{align*}
-&P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}\\
-&
+&P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}
 \end{align*}
-\end{wordonframe}
+\end{frame}
 
 %\begin{wordonframe}{MLS refs}
 %(se $W_{ij}>0$: $\PDy{\theta}{\mu_i}W_{ij}\PDy{\theta}{\mu_j}\geq0$??)
@@ -962,7 +902,7 @@ first term vanish as $N\to\infty$
 \end{columns}
 \end{frame}
 
-\begin{frame}{Massima likelihood e metodo minimi quadrati: gaussiane}
+\begin{frame}{Massima likelihood e metodo minimi quadrati: gaussiane}\frameintoc
 %Se i conteggi (binned case) sono distribuiti in maniera normale attorno al valore $\mu_TP_i$ la minimizzazione del $\chi^2$ \'e equivalente alla massimizzazione della likelihood
 N gaussiane iid con media $\mu$ ($\mu_TP_i$ nel caso Poissoniano: $P_i=\prob{[k_i]}$) ignota e varianza $\sigma_i$ nota
 \begin{align*}
@@ -997,6 +937,7 @@ I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\
 		$X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 		\begin{align*}
 		&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
+		&=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\tag{$\tau(\theta)=\theta+b(\theta)$}\\
 		&\E{[T-\tau(\theta)]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
 		\end{align*}
 Parametri multipli: $\cov{[s(x)]}_{ij}\geq(1+\PDy{\mu_k}{b_i})\invers{I}_{kl}(1+\PDy{\mu_j}{b_l})$.
@@ -1080,6 +1021,44 @@ contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$
 \end{itemize}
 \end{frame}
 
+\begin{frame}[allowframebreaks,fragile]{Esempi di stimatori}
+	\begin{block}{Notazione}
+		$\exv{X}=\frac{S_N}{N}$. Lo stimatore \'e un RV, la stima \'e un numero determinato sulla base della misura concreta.
+	\end{block}
+	\begin{block}{Stimatore per $\sigma^2$ di n iid gaussiane}
+		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. La varianza campionaria definita come $S^2=\frac{1}{n-1}\sum_i^n(x_i-\exv{X})^2$ \'e stimatore unbiased di $T(\Theta)=\sigma^2$
+	\end{block}
+	\begin{block}{Stimatore per $\mu$ di n iid gaussiane: CRLB per $\sigma$ noto}
+		$X_1,\ldots,X_n$ n RV iid con pdf $N(\mu,\sigma^2)$. $\exv{X}\to T(\mu)=\mu$; dato che $I_{X_1}=\sigma\expy{-2}$ la media campionaria \'e CRLB $\frac{\sigma^2}{n}=V_{\mu}[\exv{X}]$.
+	\end{block}
+	\begin{block}{Stimatore per $\lambda$ di n iid poissoniane}
+		$X_1,\ldots,X_n$ n RV iid con pdf $P(\lambda)$. $\exv{X}$ \'e stimatore di $T(\lambda)=\lambda$, $V_{\lambda}[\exv{X}]=\frac{\lambda}{n}$ quindi si raggiunge CRLB $\frac{\lambda}{n}$ ($I_{X_1}(\lambda)=\invers{\lambda}$).
+	\end{block}
+	\begin{block}{Stimatore per $p$ di n iid Bernoulli}
+		$\exv{X}$ \'e unbiased estimator of $\tau(p)=p$; dato che $I_{X_1}(p)=\frac{1}{p(1-p)}$, con $X_p[\exv{X}]=\frac{p(1-p)}{n}$ siamo al CRLB $\frac{p(1-p)}{n}$.
+	\end{block}
+	\begin{block}{Stimatori upper limit pdf uniforme: media aritmetica vs $x_{max}$.}
+	\begin{columns}[T]
+	\begin{column}{0.4\textwidth}
+	\begin{align*}
+	&\hat{m}_1=(2?)\frac{S_N}{N}=2\exv{X}\\
+	&b=\E{[\hat{m}_1]}-m=0\\
+	&\var{[\hat{m}_1]}=\frac{4Nm^2}{12N^2}
+	\end{align*}
+	\end{column}
+	\begin{column}{0.6\textwidth}
+	\begin{align*}
+	&p(x_{max};m)=\frac{N}{m^N}x_m^{N-1}\\
+	&\E{[x_{max}]}=\int_0^m\frac{N}{m^N}x_m^N\,dx_m=\frac{N}{N+1}\frac{m^{N+1}}{m^N}\intu{asintoticamente unbiased}
+	&\E{[x_{max}^2]}=\frac{N}{N+2}m^2-\frac{N^2}{(N+1)^2}m^2\\
+	&\var{[x_m]}=\E{[x_m^2]}-\E^2{[x_m]}\to0\\
+	&b(x_m)=-\frac{1}{N+1}m
+	\end{align*}
+	\end{column}
+	\end{columns}
+	\end{block}
+\end{frame}
+
 \subsection{Robustezza}
 
 \begin{frame}{General remarks}
@@ -1150,7 +1129,7 @@ Faccio la media di tutte le $n(n+1)$ coppie di misure - la mediana del campione 
 Per $2N+1$ misure la probabilit\'a che la misura $N+1$-esima misura sia $m_1$ \'e \[\prob{(m_1)}=\prob_x{(m_1)}F_x(m_1)^N(1-F_x(m_1)^N(2N+1)\binom{2N}{N}\] cio\'e la "densit\'a di probabilit\'a" che una misura cada in $m_1$ moltiplicata per $(2N+1)$ estrazioni, per la probabilit\'a che N misure stiano sotto e N sopra tenendo conto delle $\binom{2N}{N}=\frac{(2N)!}{(2N-N)!N!}$ ways to choose N elements between 2N (che coincide con disposizioni con ripetizioni).
 \end{frame}
 
-\begin{frame}{Distribuzione mediana per estrazioni da cauchy}
+\begin{frame}[allowframebreaks,fragile]{Distribuzione mediana per estrazioni da cauchy}
  Per estrazioni con pdf di Cauchy:
 \begin{align*}
 &\prob{(\hat{m}_1)}=\frac{1}{1+m^2}[\frac{1}{4}-\frac{\arctan{(m_1)}^2}{\pi^2}]^N\\
@@ -1167,7 +1146,7 @@ Cambio di variabile: $y=F(\hat{m}_1)$, con $F(m_1)=\frac{1}{2}$ e $y\approx\frac
 \end{align*}
 \end{frame}
 
-\begin{wordonframe}{Come capire se la pdf \'e asintoticamente gaussiana?}
+\begin{frame}[allowframebreaks,fragile]{Come capire se la pdf \'e asintoticamente gaussiana?}
 La distribuzione \'e asintoticamente gaussiana?? $\sqrt{N}(y-\E{[y]})\to N(0,\var{y})$.
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1181,9 +1160,7 @@ La distribuzione \'e asintoticamente gaussiana?? $\sqrt{N}(y-\E{[y]})\to N(0,\va
 z ha pdf binomiale w $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4n}$: utilizzando espansione di $y$ trovo espressione asintotica $\var{\hat{m}_1}=\frac{1}{4n^2}f^2(m_1)$, per $p\neq\frac{1}{2}$ $\var{(m_{\%})}=\frac{p(1-p)}{nf^2(\hat{m_{\%}})}$
 \end{column}
 \end{columns}
-
 \keyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.
-
 \keyword{Ex: Efficienza stimatori. Mediana vs MLE per pdf di Cauchy.}
 pdf $f(x)=\frac{1}{\pi\gamma[1+(\frac{x-x_0}{\gamma})^2]}$:
 \begin{columns}[T]
@@ -1199,7 +1176,6 @@ MLE:
 \end{align*}
 \end{column}
 \end{columns}
-
 \keyword{Confronto Stimatori: $L_P(\alpha)=\sum^N|x_i-\alpha|^P$}
 \begin{tabular}{c|ccc}
 Unif & $\frac{1}{4N}$ & $\frac{1}{12N}$ & $\frac{1}{2(N^2+6N+4)}$\\
@@ -1207,7 +1183,8 @@ Triang & & $\frac{1}{6N}$ & $4-\frac{\pi}{4N}$\\
 Norm & $\frac{\pi}{2N}$ & $\frac{1}{N}$ & $\frac{\pi^2}{12\ln{N}}$\\
 DE & $\frac{1}{2N}$ & $\frac{2}{N}$ & $\frac{\pi^2}{12}$\\
 Cauchy & $\frac{\pi^2}{4N}$ & & \\
-\end{tabular}\end{wordonframe}
+\end{tabular}
+\end{frame}
 
 \begin{wordonframe}{Alcune propriet\'a dei parametri di localizzazione}
 \begin{block}{Relazioni tra media, mediana e moda}
@@ -1381,7 +1358,7 @@ $+x$ - upper limit - $m<\frac{x_M}{1-\cl}$, $-x$ - lower limit $m>\cl{}x_M$, pro
 \end{columns}
 \end{wordonframe}
 
-\begin{wordonframe}{Ordinamento su LR per bande confidenza pdf uniforme}
+\begin{frame}[allowframebreaks,fragile]{Ordinamento su LR per bande confidenza pdf uniforme}
 LR: upper limit - $m<\frac{x_M}{1-\cl{}}$
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
@@ -1416,7 +1393,7 @@ N>1:\ m\in[1,\frac{1}{\sqrt[N-1]{1-\cl}}]x_M (B)\\
 \right.
 \end{align*}
 \keyword{Ex: Credibility LR-ordering $U$}
-\end{wordonframe}
+\end{frame}
 
 %% banda di confidenza per distribuzione uniforme
 
@@ -1474,7 +1451,7 @@ Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la dis
 	\[P_{\mu\sigma^2}(\mu\in J_1\cap\sigma^2\in J_2)\geq P_{\mu\sigma^2}(\mu\in J_1)+P_{\mu\sigma^2}(\sigma^2\in J_2)-1=1-\gamma-\delta\]
 \end{frame}
 
-\begin{wordonframe}{Esempi intervalli di confidenza e credibilit\'a}
+\begin{frame}[allowframebreaks,fragile]{Esempi intervalli di confidenza e credibilit\'a}
 \begin{block}{Limite superiore Poisson con $k=0$}
 $\prob{(k|\mu)}=\frac{\mu^k\exp{-\mu}}{k!}$: registro $k=0$ conteggi, ricavo limite superiore frequentista e bayesiano per $\mu$
 \end{block}
@@ -1574,7 +1551,7 @@ limiti di confidenza frequentisti: costruzione banda di confidenza prendendo ord
 \end{column}
 \end{columns}
 \keyword{Ex: Dadi D\&D CI frequentista con LR ordering}
-\end{wordonframe}
+\end{frame}
 
 \subsection{Examples of estimator - exponential decay: MLE, distribution of estimator, change of variable, confidence interval}
 %cowan 10.4
@@ -1646,7 +1623,7 @@ perfissati $\alpha,\beta$, indipendentemente dal vero $\xi$. Per $n\to\infty$ $g
 $H_0: \theta=\theta_0$ against $H_1$ which could be $\theta>\theta_0$, upper bound $\theta<\theta$ or $\theta\neq\theta_0$:
 \begin{itemize}
     \item If we have a $(1-\alpha)$ lower confidence interval estimator $J_1=(T_L(X),\infty)$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1:\theta>\theta_0$ iff $\theta_0$ non \'e contenuto in $J_1$
-\item If we have a $(1-\alpha)$ upper confidence interval estimator $J_2=(-\infty,T_U/X))$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1: \theta<\theta_0$ iff $\theta_0$ non \'e contenuto in $J_1$
+\item If we have a $(1-\alpha)$ upper confidence interval estimator $J_2=(-\infty,T_U(X))$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1: \theta<\theta_0$ iff $\theta_0$ non \'e contenuto in $J_1$
 \item If we have a $(1-\alpha)$ two-sided confidence interval estimator $J_3=(T_L(X),T_U(X))$ for $\theta$ then any null hypothesys $H_0: \theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1: \theta\neq\theta_0$ iff $\theta_0$ non \'e contenuto in $J_3$
 \end{itemize}
 \end{frame}
