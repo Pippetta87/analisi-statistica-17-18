@@ -9,7 +9,7 @@
 
 \begin{frame}{Assiomi probabilit\'a Kolmogorov: spazio di probabilit\'a $(\Omega,F,P)$}
 \begin{itemize}
-\item Spazio campionario: set enumerating each and every possible outcomes (simple events) of experiment. La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario. $\Omega$ spazio campionario (sample space: $\{1,2,3,4,5,6\}$) , $F$ (: (1), (dado pari), etc).
+\item Spazio campionario: set enumerating each and every possible outcomes (simple events) of experiment. La probabilit\'a di un evento \'e $\prob{(E)}\geq0$ per ogni $E\in S$ spazio campionario. $\Omega$ spazio campionario (sample space: $\{1,2,3,4,5,6\}$) , $F$ event space: tutti sottoinsiemi del sample space (: (1), (dado pari), etc).
 \item La probabilit\'a degli eventi del sample space \'e 1.
 \item $\sigma$-additivit\'a: per ogni sequenza numerabile di insiemi disgiunti (eventi mutualmente esclusivi)
 \begin{equation*}
@@ -28,7 +28,7 @@
 \begin{block}{Teorema probabilit\'a totale}
 $B_n$ partition of sample space
 \begin{align*}
-&\prob{(A)}=\sum_i\prob{(A\cup B_i)}\\
+&\prob{(A)}=\sum_i\prob{(A\cap B_i)}\\
 &=\sum_i\prob{(A|B_i)}\prob{(B_i)}
 \end{align*}
 \end{block}
@@ -846,7 +846,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 
 \begin{wordonframe}{Combinazioni e permutazioni}
 \begin{itemize}
-\item $n!$: permutazioni - modi distinti di prendere n oggetti
+\item $n!$: permutazioni - modi distinti di prendere n oggetti - se $m<n$ identici si hanno $\frac{n!}{m!}$ modi
 \item Permutazioni senza ripetizioni - Arrengements of n objects taken k at a time: $P_{nk}=\frac{n!}{(n-k)!}$.
 \item Combinazioni senza ripetizioni (non conta l'ordine) $C_{nk}=\frac{n!}{k!(n-k)!}$
 \end{itemize}
@@ -933,11 +933,23 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 &\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}
 \end{align*}
 \begin{align*}
-&\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np\\
+&\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np,\ \var{[k]}=Np(1-p)\\
 &\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
 &\phi_X(t)=\E{[\exp{itX}]}=\sum_k\exp{itk}\binom{n}{k}p^k(1-p)^{n-k}=\phi_B^n(t)
 \end{align*}
 \end{block}
+\end{frame}
+
+\begin{frame}{\keyword{Mean/Var of Bino}}
+\begin{align*}
+&\E{[k]}=\sum_{k=0}^Nk\binom{N}{k}p^k(1-p)^{n-k}=\sum_{k=0}^Nk\frac{N!}{k!(N-k)!}p^k(1-p)^{n-k}\\
+&=\sum_{k=1}^N\frac{N!}{(x-1)!(N-k)!}p^k(1-p)^{n-k}\xrightarrow{\begin{array}{l}k=l+1\\N=M+1\\\end{array}}\sum_{y=0}^M\frac{(M+1)!}{y!(M-y)!}p^{y+1}(1-p)^{m-y}\\
+&=Np\sum_{l=0}^M\frac{M!}{l!(M-l)!}p^l(1-p)^{M-l}=np(p+1-p)^M=Np\\
+&\Rightarrow\E{[k]}=Np\\
+&\E{[k(k-1)]}=\sum_{x=0}^Nx(x-1)\binom{N}{k}p^k(1-p)^{N-k}=\sum_{k=2}^N\frac{N!}{(k-2)!(n-x)!}p^k(1-p)^{N-k}\\
+&\xrightarrow{\begin{array}{l}k=l+2\\N=M+2\\\end{array}}n(n-1)\sum_{l=0}^M\frac{M!}{l!(m-l)!}p^l(1-p)^{M-l}=n(n-1)p^2\\
+&\Rightarrow\E{[X^2]}-\E{[X]}^2=\E{[X(X-1)]}+\E{[X]}-\E{[X]}^2=np(1-p)
+\end{align*}
 \end{frame}
 
 \begin{frame}{Multinomiale: n trials with one success between k categories}
@@ -1016,7 +1028,7 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 	\begin{column}{0.5\textwidth}
 \keyword{Poissoniana come limite piccoli p binomiale}
 \[\prob{(k;n,p)}=\binom{n}{k}p^k(1-p)^{n-k}\]
-Nel limite piccolo $p=c\Delta t=\frac{\lambda T}{n}$:
+Nel limite piccolo $p=c\Delta t=\frac{\lambda}{n}$ ($n\to\infty$ whilst $\lambda=np$ constant)
 \begin{align*}
 &\underbrace{[\frac{n}{n}\ldots\frac{n-k+1}{n}]}_{1}\frac{1}{k!}[\frac{\lambda T}{1-\frac{\lambda T}{n}}]^k(1-\frac{\lambda T}{n})^n\\
 &\to\frac{(\lambda T)^k}{k!}\exp{-\lambda T}\\

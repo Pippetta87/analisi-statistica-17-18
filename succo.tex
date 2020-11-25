@@ -216,55 +216,37 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 
 \section{Data analysis}
 
-\begin{frame}{Funzione di Likelihood}
-\begin{columns}[T]
-	\begin{column}{0.5\textwidth}
-		$L_{x_0}(m)=p(x_0;m)$, se x,y eventi indipendenti: $L_{(x_0,y_0)}(m)=L_{x_0}(m)L_{y_0}(m)$. Definita a meno di costante moltiplicativa ($\log{L}$): invariante per cambiamento di osservabile (funzione solo dei dati)
-		$L_{f(t_0)}(m)=|J(t_0)|L_{t_0}(m)$
-	\end{column}
-	\begin{column}{0.5\textwidth}
-		\begin{block}{T di Bayes e likelihood}
-			Prior $p(\theta)$ contiene belief su parametro fino al nostro esperimento:
-			\begin{align*}
-			&p(\theta|x_0)=\frac{p(x_0|\theta)p(\theta)}{p(x_0)}\\
-			&\posterior{}=\frac{\likelihood{}\prior{}}{\int p(x_0|\theta)p(\theta)\,d\theta}
-			\end{align*}
-			
-			Posterior ratio (Degree of belief): $\frac{\Pi(\theta_1|x_0)}{\Pi(\theta_2|x_0)}=\frac{L_{x_0}(\theta_2)}{L_{x_0}(\theta_1)}\frac{\Pi(\theta_2)}{\Pi(\theta_1)}$.
-		\end{block}
-	\end{column}
-\end{columns} 
-\begin{columns}[T]
-	\begin{column}{0.5\textwidth}
-		\begin{block}{Metodo di massima likelihood}
-			Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
-		\end{block}
-	\end{column}
-	\begin{column}{0.5\textwidth}
-		
-	\end{column}
-\end{columns}
+\begin{frame}{Inference's tools}
+\begin{itemize}
+\item Likelihood $L_{x_0}(m)=p(x_0;m)$, se x,y eventi indipendenti: $L_{(x_0,y_0)}(m)=L_{x_0}(m)L_{y_0}(m)$, Ripetendo gli esperimenti la likelihood diventa pi\'u piccata.
+\item Definita a meno di costante moltiplicativa ($\log{L}$): invariante per cambiamento di osservabile (funzione solo dei dati)
+$L_{f(t_0)}(m)=|J(t_0)|L_{t_0}(m)$
+\item Bayes theorem and Likelihood - Posterior ratio (Degree of belief): $\frac{\Pi(\theta_1|x_0)}{\Pi(\theta_2|x_0)}=\frac{L_{x_0}(\theta_2)}{L_{x_0}(\theta_1)}\frac{\Pi(\theta_2)}{\Pi(\theta_1)}$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Esempi di likelihood}
 \begin{columns}[T]
 \begin{column}{0.3\textwidth}
-	Likelihood per Bernoulli:
-	\begin{align*}
-	&L_0=1-p\\
-	&L_1=p
-	\end{align*}
-	L per $U(0,m)$:
-	\[\frac{1}{m}:\ x<m\]
+\begin{itemize}
+\item Bernoulli:
+\begin{align*}
+&L_0=1-p\\
+&L_1=p
+\end{align*}
+\item L per $U(0,m)$:
+\[\frac{1}{m}:\ x<m\]
+\end{itemize}
 \end{column}
 \begin{column}{0.7\textwidth}
-	\begin{block}{N RV iid con pdf esponenziale}
-		\begin{align*}
-		&\prob{(t,\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}\\
-		&L_{(t_1,\ldots,t_n)}(\tau)=\prod_i^n\frac{1}{\tau}\exp{-\frac{t_i}{\tau}}\\
-		&=\frac{1}{\tau^n}\exp{-\frac{\sum t_i}{\tau}}=\frac{1}{\tau^n}\exp{-\frac{n\overline{t}}{\tau}}
-		\end{align*}
-	\end{block}
+\begin{itemize}
+\item N RV iid con pdf esponenziale
+\begin{align*}
+&\prob{(t,\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}\\
+&L_{(t_1,\ldots,t_n)}(\tau)=\prod_i^n\frac{1}{\tau}\exp{-\frac{t_i}{\tau}}\\
+&=\frac{1}{\tau^n}\exp{-\frac{\sum t_i}{\tau}}=\frac{1}{\tau^n}\exp{-\frac{n\overline{t}}{\tau}}
+\end{align*}
+\end{itemize}
 \end{column}
 \end{columns}
 \end{frame}
@@ -880,6 +862,12 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \begin{frame}[allowframebreaks]{Section TOC}
 %currentsection,hideallsubsections,subsubsectionstyle=hide
 \tableofcontents[currentsection,sectionstyle=show/hide,subsectionstyle=show/show/hide]
+\end{frame}
+
+\subsection{Passaggio a livello (17/09/2020)}
+
+\begin{frame}{Tempo medio chiusura da numero di volte che \'e chiuso}
+
 \end{frame}
 
 \subsection{Dadi D\&D (28/05/18): 4,6,8,10,12,20 facce - T. prob. tot, Bayes T., stima interv.}
