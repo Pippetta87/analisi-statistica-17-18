@@ -497,8 +497,8 @@ Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$: misurazione 
 	&x=-\frac{1}{\lambda}\ln{(1-F(x))}\tag{inverse CDF exponential}\\
 	&x=-\frac{1}{\lambda}\ln{P},\ P\in U([0,1])\tag{exponential distribution rate 1}\\
 &P(\chi^2_2)=\frac{\exp{-\frac{x^2}{2}}}{2}\tag{$\chi^2$ with dof 2 is exponential with $\lambda=\frac{1}{2}$}\\
-	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{$*2$ we have sum of N $\chi_2^2$}\\%Erlang $\lambda=1/2$
-	&\approx\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N}\Gamma(2N)}x\expy{2N-1}\exp{-x/2}\tag{sum N $\chi^2_2$ is $\chi^2_{2N}$}\\
+	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{(sum of N $\chi_2^2$)Erlang with $\lambda=\frac{1}{2}$ is $\chi^2_{2N}$}\\%Erlang $\lambda=1/2$
+	&\approx\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N/2}\Gamma(2N/2)}x\expy{2N/2-1}\exp{-x/2}\tag{sum N $\chi^2_2$ is $\chi^2_{2N}$}\\
 	&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
 	\end{align*}
 \end{frame}
@@ -542,20 +542,30 @@ $0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
 
 \subsection{Binned GOF}\label{binnedgof}
 
-\begin{frame}{Pearson $\chi^2$ GOF (histograms with k bins)}
-\keyword{Histogram}: N events distributed in k bins with probability $p_i(\theta)=f(x_i;\theta)\Delta x$:
-\[\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}\]
-Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ $\sum_in_i=N$ fixed with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_j\frac{(O_j-E_j)^2}{E_j}$, parameter space $\Omega=\{(p_1,\ldots,p_{k-1}\})$, $\sum_jp_j=1$.
-
-Fit hist minimizing $Q_N$
-
-$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
-
+\begin{frame}{Pearson $\chi^2$ GOF (histograms with k bins): asynt. normality}
+\keyword{Histogram}: N events distributed in k bins with probability
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
 \begin{align*}
-&Q_N=\sum_i^{N}\frac{(Y_i-n\pi_i)^2}{n\pi_i}=\frac{1}{N}\sum^{N}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(N-1)$}\\
+&p_i(\theta)=f(x_i;\theta)\Delta x\\
+&\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&(\vec{n}-N\vec{p})^T\invers{V}(\vec{n}-N\vec{p})\\
+&V\xrightarrow{(k-1)\times(k-1)}W:\ N\invers{W}_{ij}=\frac{1}{p_i}\delta_{ij}+\frac{1}{p_k}
+\end{align*}
+\end{column}
+\end{columns}
+Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ $\sum_in_i=N$ fixed with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_j\frac{(O_j-E_j)^2}{E_j}$, parameter space $\Omega=\{(p_1,\ldots,p_{k-1}\})$, $\sum_jp_j=1$.
+%Fit hist minimizing $Q_N$
+$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
+\begin{align*}
+&Q_N=\sum_i^{N}\frac{(Y_i-N\pi_i)^2}{N\pi_i}=\frac{1}{N}\sum^{N}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(N-1)$}\\
 &\sum_i\frac{(n_i-NP_i(\theta))^2}{Np_i}\tag{Pearson $\chi^2$}
 \end{align*}
-$c_{N-1,1-\alpha}$ is $1-\alpha$-quantile di $\chi^2(k-1)$: test rifiuta $H_0$ quando $Q_N>c_{N-1,1-\alpha}$ ha asintoticamente valore critico $\alpha$.
+$c_{N-1,1-\alpha}$ is $1-\alpha$-quantile di $\chi^2(k-1)$: test di livello $\alpha$ rifiuta $H_0$ se $Q_N>c_{N-1,1-\alpha}$.
 \end{frame}
 
 \begin{frame}{Pearson' $\chi^2$ for Poisson and Gaussian data}
@@ -630,7 +640,7 @@ Per determinare il valore critico di $NW^2$ per $\alpha$ si pu\'o usare espressi
 \begin{frame}{Test di Kolmogorov-Smirnov}
 $H_0: F=F_0$, $H_1: F\neq F_0$. Distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $D_N=\sup_t{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$:
 \[D_N=\max_{i}(F(Y_i)-\frac{i-1}{N},\frac{i}{N}-F(Y_i))\]
-Sia $d_{\alpha}$ il $\alpha$-quantile di $D_N$ per ogni $F$ continua: KS-test rejects $H_0$ if $D_N>d_{\alpha}$
+Sia $d_{1-\alpha}$ il $(1-\alpha)$-quantile di $D$ per ogni $F$ continua: KS-test rejects $H_0$ if $\sqrt{N}D_N>d_{1-\alpha}$
 \begin{columns}[T]
 \begin{column}{0.7\textwidth}
 \begin{align*}
