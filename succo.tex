@@ -33,27 +33,55 @@ $\prob{(A\cap B)}=f(x,y)\,dx\,dy$
 
 \begin{frame}{Trasformazione pdf per cambio variabile}
 \begin{columns}[T]
-\begin{column}{0.5\textwidth}
+\begin{column}{0.45\textwidth}
 \begin{figure}
 	\centering
 	\includegraphics[width=0.99\textwidth,keepaspectratio]{figures/cowan/probability/RVfunc}
 	\label{fig:RVfunc}
 \end{figure}
 \end{column}
-\begin{column}{0.5\textwidth}
+\begin{column}{0.55\textwidth}
 \begin{align*}
 %&g(a)=f(x(a))|\TDy{a}{x}|\tag*{g(a)\,da=f(x)\,dx}\\
 &g(a)\,da=|\int_{x(a)}^{x(a+da)}f(x')\,dx'|\\
-&=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\\
-&\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|
+&=\int_{x(a)}^{x(a)+|\TDy{a}{x}|da}f(x')\,dx'\Rightarrow g(a)=f(x(a))|\TDy{a}{x}|
 \end{align*}
 \end{column}
 \end{columns}
 %Distribuzione di probabilit\'a di $a(X)$ funzione di variabile casuale X con PDF $f(x)$:
 \begin{align*}
-&g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x\\
-&\prob{(y_1,\ldots,y_n)}=\frac{\prob{(x_1,\ldots,x_n)}}{|\left.\frac{\partial(y_1,\ldots,y_n)}{\partial(x_1,\ldots,x_n)}\right|_{x_1,\ldots,x_n=X_1(\vec{y}),\ldots,X_n(\vec{y})}|}\ (g(\vec{a})=f(\vec{x})|\underset{\PDy{\vec{a}}{\vec{x}}}{J}|)
+&g(a')d\,a'=\int_{dS=\{a'\leq a(\vec{x})\leq a'+d\,a'\}}f(x_1,\ldots,x_n)d^n\,x,\ g(\vec{a})=f(\vec{x})/|\overset{\PDy{\vec{x}}{\vec{a}}}{J}|
 \end{align*}
+\begin{columns}[T]
+\begin{column}{0.45\textwidth}
+$\prob{(x)}=g(x)$, $\prob{(y)}=h(y)$, $z'=z'(x,y)$: $F_z(Z)=\int_Dp_{xy}(x,y)\,dx\,dy\ D=\{(x,y):z'(x,y)<z\}$
+\begin{align*}
+	&F_Z(a)=\prob{(Z=X+Y\leq a)}\\
+	&=\iint_{X+Y\leq a}f_{XY}(x,y)\,dx\,dy\\
+	&=\int_{X+Y\leq a}f_X(x)f_Y(y)\,dx\,dy\\
+	&=\intsinf{}\int_{-\infty}^{a-y}f_X(x)\,dxf_Y(y)\,dy\\
+	&=\intsinf{}F_X(a-y)f_Y(y)\,dy:\ f_Z(a)=\TDof{a}F_Z(a)
+\end{align*}
+\end{column}
+\begin{column}{0.55\textwidth}
+		\begin{columns}[T]
+			\begin{column}{0.3\textwidth}
+				\begin{figure}
+					\centering
+					\includegraphics[keepaspectratio,width=0.9\textwidth]{figures/cowan/probability/RVprod}
+					\label{fig:RVprod}
+				\end{figure}
+			\end{column}
+			\begin{column}{0.7\textwidth}
+				\begin{align*}
+					&f(z)d\,z=\int_{d\,S}g(x)h(y)d\,xd\,y\\
+					&=\intsinf{}g(x)d\,x\int_{\frac{z}{|x|}}^{\frac{z+d\,s}{|x|}}h(y)d\,y\\
+					&f(z)=\intsinf{}g(\frac{z}{y})h(y)\frac{d\,y}{|y|}
+				\end{align*}
+			\end{column}
+		\end{columns}
+\end{column}
+\end{columns}
 \end{frame}
 
 \begin{frame}{Somma di RV: Convoluzione e funzione caratteristica}
@@ -867,7 +895,9 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \subsection{Passaggio a livello (17/09/2020)}
 
 \begin{frame}{Tempo medio chiusura da numero di volte che \'e chiuso}
-
+\begin{itemize}
+\item Attraversamento N volte di passaggio a livello di cui k volte \'e chiuso: \keyword{k segue pdf Poisson o binom? Poisson limite grandi N, piccola probabilit\'a p e successi per unit\'a di tempo/spazio dati!}. \keyword{Quali presupposti per $p=\frac{T_c}{T_{day}}$ parametro binom con $T_c$ tempo chiuso} - ci siamo ridotti a stimare p: $\hat{p}_{MLE}=\frac{k}{N}$, $\var{\hat{p}}=\frac{Np(1-p)}{N^2}$
+\end{itemize}
 \end{frame}
 
 \subsection{Dadi D\&D (28/05/18): 4,6,8,10,12,20 facce - T. prob. tot, Bayes T., stima interv.}

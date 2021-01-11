@@ -34,14 +34,26 @@
 \end{block}
 \end{wordonframe}
 
-\begin{frame}{Principio di sufficienza}
-E modello statistico per osservabile X con parametro $\theta$, $t(x)$ stat. suff. iff $\prob{(X|t)}$ non dipende da $\theta$; sia $E'$ modello statistico di $t(x)$. Inferences on $\theta$ are same from $(E,X)$ or $(E',t(x))$
-	%Sia $E$ un esperimento con spazio campionario definito da $X$ e $S(X)$ una statistica sufficiente; sia $E'$ l'\keyword{esperimento derivato} con stesso spazio dei parametri e tale che quando in $E$ \'e osservato x in $E'$ \'e osservato $t=t(x)$.
-	\keyword{Principio di sufficienza}: per ogni x $Ev(E,x)=Ev(E',t)$.
+\begin{frame}{SP, CP, LP}
+	\begin{itemize}
+	\item \keyword{Principio di sufficienza}. Se per esperimento E ho statistica sufficiente $T$ allora le inferenze sui parametri osservando $X=x_1$ o $X=x_2$ sono le stesse se $T(x_1)=T(x_2)$.
+	\item \keyword{Principio di condizionalit\'a}: considero due esperimenti $E_1$, $E_2$ i cui risultati seguono distribuzione determinate da parametro comune $\theta$, quindi da esperimento $E^*$, che consiste nel selezionare $E_i$ con stessa probabilit\'a e poi eseguire esperimento $E_i$, si traggono stesse inferenze che da $E_i$, e possiamo ignorare l'esistenza dell'altro esperimento non realizzato.
+	\item \keyword{Principio di likelihood} (Fisher Barnard). Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
+	\item \keyword{Birnbuam's theorem}: LP iff SP+CP
+	\end{itemize}
 \end{frame}
 
-\begin{frame}{\keyword{Principio di likelihood} (Fisher Barnard)}
-	Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
+\begin{frame}{When LP is violated?}
+\begin{itemize}
+\item $\theta$ fraction of student supporting bill: Jerzy surveys $N=18$ students and finds $X=k=12$ supporters (model $X\in\bino{(k;18,\theta)}$), while Ergon surveys until finds 6 non-supporters (numero di supporters $Y\in\nbino{(k;18,\theta)}$ - \keyword{Negative binomials}: number of success before r failures $\prob{(k;r,p)}=\binom{k+r-1}{k}(1-p)^rp^k$ last of $k+r$ samples is a success)
+\item $L^J_{12}\propto L^E_{12}$ and LP demands J. and E. draw same conclusion about p (if prior beliefs were the same)\[L^J_{12}(\theta)=\binom{18}{12}\theta^{12}(1-\theta)^6,\ L^E_{12}(\theta)=\binom{17}{5}\theta^{12}(1-\theta)^6\]
+\item Both families are MLR and their UMP test will reject for large X, Y.
+\begin{align*}
+&\max_{p\leq0.5}\prob{(X\geq12|p)}=\prob{(X\geq12|p=0.5)}=1-\bino{(X=11,N=18,p=0.5)}=0.12\tag{J. p-value}\\
+&\max_{p\leq0.5}\prob{(Y\geq12|p)}=\prob{(Y\geq12|p=0.5)}=1-\nbino{(Y=11,N=6,p=0.5)}=0.07\tag{E. p-value}
+\end{align*}
+\keyword{LP is violated}: p-value is probability under $H_0$ observing more extreme evidence against $H_0$ than what observed - care about data not observed!
+\end{itemize}
 \end{frame}
 
 %\subsection{Principio di condizionalit\'a}
@@ -146,7 +158,9 @@ Distribuzione esponenziale in x: quale z?
 Statistica sufficiente $S$ per parametro $\Theta$: \keyword{sufficient statistic is a function $T(\vec{X})$ whose values contains all information needed to compute any estimate of the param}. Pdf di X data $T(X)$ non dipende da parametro $\theta$:
 \[\prob{(x;S,\theta)}=\prob{(x;S)}\]
 \begin{block}{Teorema di fattorizzazione (iff)}
-$S(X)$ statistica sufficiente per $\theta$ iff probabilit\'a di osservare $X$ \'e probabilit\'a di $S(x)$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\] e $\omega_{\theta}$ non dipende da $\theta$. Probabilit\'a congiunta delle RV's fattorizza in una parte che dipende dai parametri e dalle RV's tramite le statistiche e una che non dipende dai parametri.
+$S(X)$ statistica sufficiente per $\theta$ iff probabilit\'a di osservare $X$ \'e probabilit\'a di $S(x)$ per funzione sole osservabili: \[\prob{(x;\theta)}=\prob{(S(x);\theta)}h(x)\]
+% e $\omega_{\theta}$ non dipende da $\theta$.
+Probabilit\'a congiunta delle RV's fattorizza in una parte che dipende dai parametri e dalle RV's tramite le statistiche e una che non dipende dai parametri.
 %$\vec{x}=\{x_1,\ldots,x_n\}$: $T(\vec{x})$ sufficiente iff $L(\vec{x},\theta)=g(T,\theta)h(\vec{x})$ e dominio $\omega_{\theta}$ non dipende da $\theta$
 %Statistiche: media campionaria $\overline{x}=\frac{\sum x_i}{N}$, varianza campionaria, etc
 \end{block}
@@ -237,8 +251,8 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 	%$\hat{\sigma}^2=\frac{\sum x_i^2-\mu}{N}$ \'e sufficiente per $\sigma^2$ (pdf di $\hat{\sigma}^2\propto g$ e dominio gaussiana non dipende da $\sigma$). (\keyword{Ex: statistica sufficiente $\sigma$ gaussiana})
 	\begin{align*}
 	&f(\vec{X}|\theta)=\frac{\Exp{-[\sum_i^nx_i^2-2\mu\sum_ix_i+n\mu^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}\tag{$T=(\sum_iX_i,\sum_iX_i^2)$}\\
-	&\frac{\Exp{-[\sum_i^n(x_i-\exv{X}_n)^2+n(\exv{x_n}-\mu)^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}\tag{$T=(\exv{X_n},S_n^2)$}\\
-	&=\frac{\Exp{-[(n-1)S_n^2+(\exv{X}_n-\mu)^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}
+	&\frac{\Exp{-[\sum_i^n(x_i-\exv{X}_n)^2+N(\exv{x}_n-\mu)^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}\tag{$T=(\exv{X_n},S_n^2)$}\\
+	&=\frac{\Exp{-[(n-1)S_n^2+n_?(\exv{X}_n-\mu)^2]}}{(2\pi\sigma^2)^{\frac{n}{2}}}
 	\end{align*}
 \end{frame}
 
@@ -938,7 +952,7 @@ I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\
 		\begin{align*}
 		&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
 		&=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\tag{$\tau(\theta)=\theta+b(\theta)$}\\
-		&\E{[T-\tau(\theta)]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
+		&\E{[(T-\tau(\theta))^2]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
 		\end{align*}
 Parametri multipli: $\cov{[s(x)]}_{ij}\geq(1+\PDy{\mu_k}{b_i})\invers{I}_{kl}(1+\PDy{\mu_j}{b_l})$.
 	\end{block}
@@ -953,7 +967,7 @@ Parametri multipli: $\cov{[s(x)]}_{ij}\geq(1+\PDy{\mu_k}{b_i})\invers{I}_{kl}(1+
 	&\tau'(\theta)=\int_{\chi}T(X_1,\ldots,X_n)\underbrace{[\PDof{\theta}\prod_if(X_i;\theta)]}_{\sum_i\PDof{\theta}[\log{f(X_i;\theta)}]\prod_if(X_i;\theta)}\prod_i\,dx_i\\
 	&=\E{[TY]},\ Y=\sum_i\PDof{\theta}[\log{f(X_i;\theta)}]\\
 	&\E{[Y]}=\E{[\sum_i\PDof{\theta}(\log{f(X_i;\theta)})]}=0=\sum_i\PDof{\theta}\int_{\chi}f(X_i;\theta)\,dx\\
-	&\tau'^2=\cov^2{(T,Y)}=(\E{[TY]}-\E{[T]}\cancelto{0}{\E{[Y]}})^2\leq \var{[T]}\var{[Y]}\\
+	&\tau'^2=\E{(T-\E{[T]})(Y-\E{[Y]}))}=\cov{(T,Y)}=(\E{[TY]}-\E{[T]}\cancelto{0}{\E{[Y]}})^2\leq \var{[T]}\var{[Y]}\\
 	&\var{[Y]}=\E{[Y^2]}=n\E{[(\PDof{\theta}\log{f(X_i;\theta)})^2]}
 	\end{align*}
 \end{frame}
@@ -962,11 +976,11 @@ Parametri multipli: $\cov{[s(x)]}_{ij}\geq(1+\PDy{\mu_k}{b_i})\invers{I}_{kl}(1+
 Score di Fisher $S=\PDy{\mu}{\log{L}}$ esiste - $\E{[]}$ commuta con $\PDof{\mu}$ - $s(x)$ stimatore di $\mu$.
 Dim.:
 \begin{align*}
-&\var{[s(x)]}I_s=\E{[(s-\E{(s)})^2]}\E{[s^2]}\geq(\E{[(s-\E{[s]})\PDy{\mu}{\log{p(s;\mu)}}]})^2:\tag{Schwartz}\\
+&\var{[s(x)]}I_s=\E{[(s-\E{(s)})^2]}\E{[S^2]}\geq(\E{[(s-\E{[s]})\PDy{\mu}{\log{p(s;\mu)}}]})^2:\tag{Schwartz}\\
 &\E{[s(x)\PDy{\mu}{\log{p(s;\mu)}}]}=\int s(x)\PDy{\mu}{\log{p(s;\mu)}}p(s;\mu)\,ds\\
 &\PDof{\mu}\int s(x)p(s;\mu)\,ds=\PDof{\mu}\E{[s(x)]}=(1+)?\PDy{\mu}{b}\tag{I}\\
 &\E{[-\E{[s]}\PDy{\mu}{\log{p(s;\mu)}}]}=-\E{[s(x)]}\int\PDy{\mu}{\log{p(s;\mu)}}p(s;\mu)\,ds\\
-&=-\E{[s(x)]}\PDof{\mu}1\tag{II}\\
+&=-\E{[s(x)]}\PDof{\mu}1=0\tag{II}\\
 &\Rightarrow\var{[s(x)]}\geq(1+\PDy{\mu}{b})^2\invers{I_s}\geq(1+\PDy{\mu}{b})^2\invers{I_x}
 \end{align*}
 \end{frame}
