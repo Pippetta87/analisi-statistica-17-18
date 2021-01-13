@@ -85,12 +85,17 @@
 %\pgfplotsset{every axis/.append style={}}'
 \setcounter{tocdepth}{2}
 %\let\mybibcat\noexpand\currfilebase
-\tikzset{myscalar/.style={%%scale plot even cs axis: \def\myscale{}
+%\tikzset{myscale/.style={%%scale plot even cs axis: \def\myscale{}
+\pgfplotsset{myscalar/.style={
 		node distance=\myscale cm and \myscale cm,
-		every node/.style={scale=\myscale},
-		every axis/.append style={
+		every node/.append style={scale=\myscale},
+		every major tick/.append style={
 			major tick length=0.15*\myscale cm,
-			minor tick length=0.1*\myscale cm,
+        }
+		every minor tick/.append style={
+			minor tick length=0.1*\myscale cm
+        }
+            every axis/.append style={
 			mark options={scale=\myscale},
 			scale=\myscale
 		}
