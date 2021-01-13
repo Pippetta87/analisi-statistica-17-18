@@ -43,9 +43,10 @@
 \usepackage{calc}
 %\usepackage{color}
 \usepackage{pgfplots}
+\pgfkeys{/pgf/plot/gnuplot call={cd build && gnuplot}}%build-dir=build
 %\pgfplotsset{compat=1.15}
 \pgfplotsset{compat=newest}
-\usepgfplotslibrary{fillbetween,patchplots}
+\usepgfplotslibrary{fillbetween,patchplots,units}
 \pgfplotscreateplotcyclelist{ColorListBar}{
 	{grey},
 	{coolgrey}

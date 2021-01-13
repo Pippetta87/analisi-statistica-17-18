@@ -972,7 +972,7 @@ Pdf di $x_m$ derivando cumulante o usando simmetria pdf uniforme sotto trasforma
 \begin{column}{0.5\textwidth}
 $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\theta)$
 \begin{align*}
-&\prob{\hat{m};m}=\frac{N}{m}(1-\frac{\hat{m}}{(N)m})^{N-1}\frac{d\hat{m}}{N}\to\frac{1}{m}\exp{-\frac{\hat{m}}{m}}
+&\prob{(\hat{m};m)}=\frac{N}{m}(1-\frac{\hat{m}}{(N)m})^{N-1}\frac{d\hat{m}}{N}\to\frac{1}{m}\exp{-\frac{\hat{m}}{m}}
 \end{align*}
 ''non diventa piccata attorno al valore vero m per N grandi'': lo stimatore \'e inconsistente
 \end{column}
@@ -990,8 +990,8 @@ $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\t
 	\end{column}
 	\begin{column}{0.5\textwidth}
 \def\myscale{0.4}
-\begin{tikzpicture}[myscale]
-\begin{axis}[title={Banda confidenza: $o:x_m\geq x_1$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
+\begin{tikzpicture}[]
+\begin{axis}[myscalar,title={Banda confidenza: $o:x_m\geq x_1$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
 	tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
 \addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};
 %\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {x};
