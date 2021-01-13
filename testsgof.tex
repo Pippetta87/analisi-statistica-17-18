@@ -13,21 +13,21 @@ Choose hypothesis with maximum a posteriori probability: $\prob{(H_i|Y=y)}$
 
 \begin{frame}{Bayesian Adaptive psychometric function}
     \begin{itemize}
-        \item \keyword{Psychometric function}:  Describe relation between some physical measure of a stimulus and probability of particular psycho-physical response. Psychometric procedure: testing observer to gain info about psychometric function.
+        \item \keyword{Psychometric function}: Describe relation between some physical measure of a stimulus and probability of particular psycho-physical response. Psychometric procedure: testing observer to gain info about psychometric function.
         \item Informations:Previous trials (data), prior knowledge (shape, threshold of psychometric function)
-        \item Assumptions: Psychometric functi on has same shape under all conditions when expressed as function of log intensity, changing conditions changes only position set by parameter T: $P_T(x)=\psi(x-T)$; parameter T is constant from trial2trial; Indiviadual trial are independent.
-        \item Algorithm: Prior $f_T(T)$; Post erior $f_{T|D}(T|D)=\frac{f_T(T)\overbrace{f_{D|T}(D|T)}^L}{f_D(D)}$, $T_{post}$ mode of the posterior, $\hat{T}$ maximum of the likelihood, prior+dato(trials placement), Likelihood(Experiment termination, T estimate); Placement rule - ideal at minimum of $\frac{P_T(x)[1-P_T(x)]}{\TDy{x}{P_T(x)}}^2$ in x (ratio of bino standard deviation to slope of psychometric function squared) - QUEST set next trial at current best estimate of T: $T_P$  posterior mode.
-        \item QUEST function: $Q(T)=\ln{f_T( T)}+\ln{f_{D|T}(D|T)}$, $D=(x_i,r_i)$, $r_i=0/1$; probability of success at log(intensity) is $P_{S|T}(x)=P_T(x)$, failure $P_{F|T}(x)=1-P_T(x)$
+        \item Assumptions: Psychometric function has same shape under all conditions when expressed as function of log intensity, changing conditions changes only position set by parameter T: $P_T(x)=\psi(x-T)$; parameter T is constant from trial2trial; Indiviadual trial are independent.
+        \item Algorithm: Prior $f_T(T)$; Posterior $f_{T|D}(T|D)=\frac{f_T(T)\overbrace{f_{D|T}(D|T)}^L}{f_D(D)}$, $T_{post}$ mode of the posterior, $\hat{T}$ maximum of the likelihood, prior+dato(trials placement), Likelihood(Experiment termination, T estimate); Placement rule - ideal at minimum of $\frac{P_T(x)[1-P_T(x)]}{\TDy{x}{P_T(x)}}^2$ in x (ratio of bino standard deviation to slope of psychometric function squared) - QUEST set next trial at current best estimate of T: $T_P$  posterior mode.
+        \item QUEST function: $Q(T)=\ln{f_T(T)}+\ln{f_{D|T}(D|T)}$, $D=(x_i,r_i)$, $r_i=0/1$; probability of success at log(intensity) is $P_{S|T}(x)=P_T(x)$, failure $P_{F|T}(x)=1-P_T(x)$
         \item computing posterior: Likelihood of sequence on n trials
             \begin{align*}
                 &f_{D|T}(D|T)=\prod_i^nP_{r_i|T}(x_i)\\
-                &Q_n(T)=\ln{f_T}+\sum_i^{n-1}\ln{P_{r_i|T}(x_i)}+\begin{array}{l}
+                &Q_n(T)=\ln{f_T}+\sum_i^{n-1}\ln{P_{r_i|T}{x_i}}+\begin{array}{l}
                     \ln{P_T(x_n)}\\\ln{(1-P_T(x_n))}\\
                 \end{array}
             \end{align*}
         \item Success/Failuire function: $S(X)=\ln{\psi(-X)}$, $F(X)=\ln{(1-\psi(-X))}$ - $Q_n(T)=Q_{n-1}(T)+\begin{array}{l}S(T-x_n)\\F(T-x_n)\\
             \end{array}$, $Q_0=\ln{f_T(T)}$ ($Q_n(j)=Q_{n-1}(j)+\begin{array}{l}S(j-k)\\F(j-k)\\\end{array}$, $[]$ sampled at interval $\Delta x$ where $T=T_j$, $x=x_k$)
-        \item Termination r ule: when CI for location of threshold is smaller than given size - $L_n(T)=Q_n(T)-Q_0(T)$, to test $T=T_j$ we can use LR-test $L(\hat{T}_{MLE})-L(T_j)\geq0.5\chi^2_{\alpha,dof=1}$, outside the interval $T=T_j$ is rejected - T equals peak of $L(T)$ folowing last trials.
+        \item Termination rule: when CI for location of threshold is smaller than given size - $L_n(T)=Q_n(T)-Q_0(T)$, to test $T=T_j$ we can use LR-test $L(\hat{T}_{MLE})-L(T_j)\geq0.5\chi^2_{\alpha,dof=1}$, outside the interval $T=T_j$ is rejected - T equals peak of $L(T)$ folowing last trials.
     \end{itemize}
 \end{frame}
 
@@ -507,7 +507,7 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
         &U=\sum_i^n\sum_j^mS(X_i,Y_j),\ S(X,Y)=\left\{\begin{array}{l}
             1\ Y<X\\\frac{1}{2}\ Y=X\\0\ Y>X
         \end{array}\right.
-    \end{align*}
+     \end{align*}
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
             Large samples:
@@ -525,7 +525,7 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
         \end{column}
     \end{columns}
 \end{frame}
-
+ 
 \section{Goodness of fit}\linkdest{gof}
 
 \begin{wordonframe}{GOF Refs}
