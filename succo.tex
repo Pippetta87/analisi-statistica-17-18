@@ -989,9 +989,10 @@ $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\t
 		\end{align*}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-\def\myscale{0.4}
-\begin{tikzpicture}[]
-\begin{axis}[myscalar,title={Banda confidenza: $o:x_m\geq x_1$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
+		
+\tikzscale{0.4}
+\begin{tikzpicture}[myscalar]
+\begin{axis}[title={Banda confidenza: $o:x_m\geq x_1$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
 	tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
 \addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};
 %\addplot[name path global=bm, no marks] gnuplot[id=lowerbound,domain=0:8] {x};

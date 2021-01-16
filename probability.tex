@@ -1182,6 +1182,63 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 
 \section{come lo utilizzo}
 
+\begin{frame}[allowframebreaks,fragile]{Distribuzione mediana per estrazioni da cauchy}
+	Per estrazioni con pdf di Cauchy:
+	\begin{align*}
+		&\prob{(\hat{m}_1)}=\frac{1}{1+m^2}[\frac{1}{4}-\frac{\arctan{(m_1)}^2}{\pi^2}]^N\\
+		&\var{\hat{m}_1}=\intsinf{}\frac{m^2}{m^{k+2}}\,dm
+	\end{align*}
+	Cambio di variabile: $y=F(\hat{m}_1)$, con $F(m_1)=\frac{1}{2}$ e $y\approx\frac{1}{2}+f(\hat{m}_1)(\hat{m}_1-m)$
+	\begin{align*}
+		&p(y)=\frac{(2n+1)!}{n!n!}y^n(1-y)^ndy,\ dy=f(m_1)dm_1\intd{usando le funzioni $\beta$ e $\Gamma$}
+		&\Gamma=\intzi{}t^{x-1}\exp{-t}\,dt,\ \beta(x,y)=\int_0^1t^{x-1}(1-t)^{y-1},\ \Gamma(x)\Gamma(y)=\Gamma(x+y)\beta(x,y)\\
+		&\prob{(y)}\propto\frac{x^{m-1}(1-y)^{n-1}}{\beta(m,n)}\\
+		&\E{[x]}\propto\int_0^1\frac{x^m(1-x)^{n-1}}{B(m,n)}\,dx=\frac{m}{m+n},\ \E{[x^2]}=\frac{\beta(m+2,n)}{\beta(n,m)}\\
+		&\var{[x]}=\frac{mn}{(n+m+1)(n+m)^2},\ \var{[y]}=\frac{1}{4(2m+1)}\\
+		&\var{[\hat{m}_1]}\approx\frac{1}{4(N+2)}\frac{1}{f^2(m_1)}
+	\end{align*}
+\end{frame}
+
+\begin{frame}[allowframebreaks,fragile]{Come capire se la pdf \'e asintoticamente gaussiana?}
+	La distribuzione \'e asintoticamente gaussiana?? $\sqrt{N}(y-\E{[y]})\to N(0,\var{y})$.
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			\begin{align*}
+				&x_i\to z_i\to y=\frac{1}{N}\sum z_i\\
+				&z_i=\left\{\begin{matrix}1\ x<\hat{m}_1\\0\ x>\hat{m}_1\\\end{matrix}\right.\\
+				&\sqrt{N}(y-\var{(y)})\xrightarrow{\prob{}}N(0,\var{(y)})
+			\end{align*}
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			z ha pdf binomiale w $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4n}$: utilizzando espansione di $y$ trovo espressione asintotica $\var{\hat{m}_1}=\frac{1}{4n^2}f^2(m_1)$, per $p\neq\frac{1}{2}$ $\var{(m_{\%})}=\frac{p(1-p)}{nf^2(\hat{m_{\%}})}$
+		\end{column}
+	\end{columns}
+	\keyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.
+	\keyword{Ex: Efficienza stimatori. Mediana vs MLE per pdf di Cauchy.}
+	pdf $f(x)=\frac{1}{\pi\gamma[1+(\frac{x-x_0}{\gamma})^2]}$:
+	\begin{columns}[T]
+		\begin{column}{0.5\textwidth}
+			Mediana
+			$\E{[\hat{m}_1]}=x_0, \var{(\hat{m}_1)}=\frac{\pi^2\gamma}{4n}$
+		\end{column}
+		\begin{column}{0.5\textwidth}
+			MLE:
+			\begin{align*}
+				&\sum^N\frac{\gamma^2}{\gamma^2+(x_i-x_0)^2}-\frac{h}{2}=0\\
+				&\var{(\hat{MLE})}=\frac{2}{N}\gamma^2:\ \epsilon=\frac{8}{\pi^2}\approx81\%
+			\end{align*}
+		\end{column}
+	\end{columns}
+	\keyword{Confronto Stimatori: $L_P(\alpha)=\sum^N|x_i-\alpha|^P$}
+	\begin{tabular}{c|ccc}
+		Unif & $\frac{1}{4N}$ & $\frac{1}{12N}$ & $\frac{1}{2(N^2+6N+4)}$\\
+		Triang & & $\frac{1}{6N}$ & $4-\frac{\pi}{4N}$\\
+		Norm & $\frac{\pi}{2N}$ & $\frac{1}{N}$ & $\frac{\pi^2}{12\ln{N}}$\\
+		DE & $\frac{1}{2N}$ & $\frac{2}{N}$ & $\frac{\pi^2}{12}$\\
+		Cauchy & $\frac{\pi^2}{4N}$ & & \\
+	\end{tabular}
+\end{frame}
+
 \begin{wordonframe}{PDF distanza stelle distribuite uniformemente in x,y,z}
 	\begin{block}{Generazione pdf da distribuzione uniforme}
 		

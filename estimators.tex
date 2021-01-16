@@ -240,9 +240,9 @@ $X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 
 \begin{frame}{Gaussiana: media ignota, varianza nota}
 	\begin{align*}
-	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\tag{NFT}\\
+	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N_?}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N_?}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}\tag{NFT}\\
 	&\sum_i^n(x_i-\exv{x})(\exv{x}-\mu)=0\\
-	&\frac{f(\vec{x}|\theta)}{q(T(\vec{x}|\theta))}=\frac{(2\pi\sigma^2)^{-\frac{n}{2}}\Exp{[-\frac{\sum_i^n(x_i-\exv{x})^2+n(\exv{x}-\mu)^2}{2\sigma^2}]}}{(2\pi\sigma^2/n)^{-\frac{1}{2}}\Exp{[-\frac{n(\exv{x}-\mu)^2}{2\sigma^2}]}}
+	&\frac{f(\vec{x}|\theta)}{q(T(\vec{x}|\theta))}=\frac{(2\pi\sigma^2)^{-\frac{n}{2}}\Exp{[-\frac{\sum_i^n(x_i-\exv{x})^2+N_?(\exv{x}-\mu)^2}{2\sigma^2}]}}{(2\pi\sigma^2/n)^{-\frac{1}{2}}\Exp{[-\frac{n(\exv{x}-\mu)^2}{2\sigma^2}]}}
 	\end{align*}
 	La statistica ''media aritmetica'' \'e sufficiente per parametro $\mu$ della gaussiana (dominio gaussiana non dipende da $\mu$) (\keyword{Ex: pdf della media aritmetica} - $N(\mu,\frac{\sigma^2}{n})$)
 \end{frame}
@@ -407,14 +407,14 @@ Informazione contenuta nei dati su un parametro $\Theta$
 \begin{align*}
 &\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
 \end{align*}
-Per due parametri:
-\begin{align*}
-&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
-\end{align*}
+%Per due parametri:
+%\begin{align*}
+%&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
+%\end{align*}
+MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
 If Score is twice deriv. resp. $\theta$ and under regularity conditions:
 \begin{align*}
-&\PtwoDof{\theta}\log{f(X;\theta)}=\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}-(\frac{\PDof{\theta}f(X;\theta)}{f(X;\theta)})^2\\
-&=-(\PDof{\theta}\log{f(X;\theta)})^2\\
+&\PtwoDof{\theta}\log{f(X;\theta)}=\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}-(\frac{\PDof{\theta}f(X;\theta)}{f(X;\theta)})^2=-(\PDof{\theta}\log{f(X;\theta)})^2\\
 &\E{[\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}]}=\PtwoDof{\theta}\int f(X;\theta)=0
 \end{align*}
 \end{frame}
@@ -1143,63 +1143,6 @@ Faccio la media di tutte le $n(n+1)$ coppie di misure - la mediana del campione 
 Per $2N+1$ misure la probabilit\'a che la misura $N+1$-esima misura sia $m_1$ \'e \[\prob{(m_1)}=\prob_x{(m_1)}F_x(m_1)^N(1-F_x(m_1)^N(2N+1)\binom{2N}{N}\] cio\'e la "densit\'a di probabilit\'a" che una misura cada in $m_1$ moltiplicata per $(2N+1)$ estrazioni, per la probabilit\'a che N misure stiano sotto e N sopra tenendo conto delle $\binom{2N}{N}=\frac{(2N)!}{(2N-N)!N!}$ ways to choose N elements between 2N (che coincide con disposizioni con ripetizioni).
 \end{frame}
 
-\begin{frame}[allowframebreaks,fragile]{Distribuzione mediana per estrazioni da cauchy}
- Per estrazioni con pdf di Cauchy:
-\begin{align*}
-&\prob{(\hat{m}_1)}=\frac{1}{1+m^2}[\frac{1}{4}-\frac{\arctan{(m_1)}^2}{\pi^2}]^N\\
-&\var{\hat{m}_1}=\intsinf{}\frac{m^2}{m^{k+2}}\,dm
-\end{align*}
-Cambio di variabile: $y=F(\hat{m}_1)$, con $F(m_1)=\frac{1}{2}$ e $y\approx\frac{1}{2}+f(\hat{m}_1)(\hat{m}_1-m)$
-\begin{align*}
-&p(y)=\frac{(2n+1)!}{n!n!}y^n(1-y)^ndy,\ dy=f(m_1)dm_1\intd{usando le funzioni $\beta$ e $\Gamma$}
-&\Gamma=\intzi{}t^{x-1}\exp{-t}\,dt,\ \beta(x,y)=\int_0^1t^{x-1}(1-t)^{y-1},\ \Gamma(x)\Gamma(y)=\Gamma(x+y)\beta(x,y)\\
-&\prob{(y)}\propto\frac{x^{m-1}(1-y)^{n-1}}{\beta(m,n)}\\
-&\E{[x]}\propto\int_0^1\frac{x^m(1-x)^{n-1}}{B(m,n)}\,dx=\frac{m}{m+n},\ \E{[x^2]}=\frac{\beta(m+2,n)}{\beta(n,m)}\\
-&\var{[x]}=\frac{mn}{(n+m+1)(n+m)^2},\ \var{[y]}=\frac{1}{4(2m+1)}\\
-&\var{[\hat{m}_1]}\approx\frac{1}{4(N+2)}\frac{1}{f^2(m_1)}
-\end{align*}
-\end{frame}
-
-\begin{frame}[allowframebreaks,fragile]{Come capire se la pdf \'e asintoticamente gaussiana?}
-La distribuzione \'e asintoticamente gaussiana?? $\sqrt{N}(y-\E{[y]})\to N(0,\var{y})$.
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&x_i\to z_i\to y=\frac{1}{N}\sum z_i\\
-&z_i=\left\{\begin{matrix}1\ x<\hat{m}_1\\0\ x>\hat{m}_1\\\end{matrix}\right.\\
-&\sqrt{N}(y-\var{(y)})\xrightarrow{\prob{}}N(0,\var{(y)})
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-z ha pdf binomiale w $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4n}$: utilizzando espansione di $y$ trovo espressione asintotica $\var{\hat{m}_1}=\frac{1}{4n^2}f^2(m_1)$, per $p\neq\frac{1}{2}$ $\var{(m_{\%})}=\frac{p(1-p)}{nf^2(\hat{m_{\%}})}$
-\end{column}
-\end{columns}
-\keyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.
-\keyword{Ex: Efficienza stimatori. Mediana vs MLE per pdf di Cauchy.}
-pdf $f(x)=\frac{1}{\pi\gamma[1+(\frac{x-x_0}{\gamma})^2]}$:
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-Mediana
-$\E{[\hat{m}_1]}=x_0, \var{(\hat{m}_1)}=\frac{\pi^2\gamma}{4n}$
-\end{column}
-\begin{column}{0.5\textwidth}
-MLE:
-\begin{align*}
-&\sum^N\frac{\gamma^2}{\gamma^2+(x_i-x_0)^2}-\frac{h}{2}=0\\
-&\var{(\hat{MLE})}=\frac{2}{N}\gamma^2:\ \epsilon=\frac{8}{\pi^2}\approx81\%
-\end{align*}
-\end{column}
-\end{columns}
-\keyword{Confronto Stimatori: $L_P(\alpha)=\sum^N|x_i-\alpha|^P$}
-\begin{tabular}{c|ccc}
-Unif & $\frac{1}{4N}$ & $\frac{1}{12N}$ & $\frac{1}{2(N^2+6N+4)}$\\
-Triang & & $\frac{1}{6N}$ & $4-\frac{\pi}{4N}$\\
-Norm & $\frac{\pi}{2N}$ & $\frac{1}{N}$ & $\frac{\pi^2}{12\ln{N}}$\\
-DE & $\frac{1}{2N}$ & $\frac{2}{N}$ & $\frac{\pi^2}{12}$\\
-Cauchy & $\frac{\pi^2}{4N}$ & & \\
-\end{tabular}
-\end{frame}
-
 \begin{wordonframe}{Alcune propriet\'a dei parametri di localizzazione}
 \begin{block}{Relazioni tra media, mediana e moda}
 \begin{align*}
@@ -1320,8 +1263,8 @@ Confidence interval: $R(m_1)=R(m_2)$
 
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\def\myscale{0.4}
-\begin{tikzpicture}[]
+\tikzscale{0.15}
+\begin{tikzpicture}
 \begin{axis}[myscalar,title={Banda di credenza per $U([0,m])$},name=uniformcredence,ymin=0,xmin=0,xmax=6,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
 tick label style={yshift=-4mm}},
 %extra x tick labels={$x\exp{1-\alpha}$},extra x tick labels={$x\exp{1-\alpha}$},
@@ -1331,8 +1274,8 @@ extra y ticks={0.5},extra y tick labels={measure $x_0$}]
 \addplot[name path global=meas,dash pattern=on 4pt off 3pt,no marks,samples=10,black,thin] gnuplot[domain=0:6] {0.5};
 \end{axis}
 \end{tikzpicture}
-\def\myscale{0.4}
-\begin{tikzpicture}[]
+\tikzscale{0.15}
+\begin{tikzpicture}
 \begin{axis}[myscalar,title={Banda confidenza $U([0,m])$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
 tick label style={yshift=0mm}},extra y ticks={0.3},extra y tick labels={measure $x_0$}]
 \addplot[name path global=bp, no marks] gnuplot[id=upperbound,domain=0:8] {x*(1-0.9)};

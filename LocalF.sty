@@ -1,6 +1,24 @@
 \ProvidesPackage{LocalF}
 \newcommandx{\iidrv}[4][1=X, 2=, 3=1, 4=N]{#1_{#3}\if\relax\detokenize{#2}\relax{,}\else#2\fi\ldots\if\relax\detokenize{#2}\relax{,}\else#2\fi#1_{#4}}
 
+\newcommand{\tikzscale}[1]{
+\tikzset{myscalar/.style={
+		node distance=#1 cm and #1 cm,
+		every node/.append style={scale=#1},
+		every major tick/.append style={
+			major tick length=0.15*#1 cm,
+		}
+		every minor tick/.append style={
+			minor tick length=0.1*#1 cm
+		}
+		%every axis/.append style={
+		mark options={scale=#1},
+		scale=#1
+		%}
+	}
+}
+}%closin newcommand
+
 \newcounter{columneqc}
 \stepcounter{equation}
 \newcommand\Label[1]{&\refstepcounter{columneqc}\ (\theequation.\thecolumneqc)\ltx@label{#1}&}
