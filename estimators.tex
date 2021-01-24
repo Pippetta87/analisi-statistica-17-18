@@ -1,5 +1,4 @@
-%! TEX root = asd-beamer.tex
-\documentclass[asd-beamer.tex]{subfiles}
+\documentclass[asd-beamer.tex]{subfiles}%! TEX root = asd-beamer.tex
 
 \begin{document}
 
@@ -41,6 +40,12 @@
 	\item \keyword{Principio di likelihood} (Fisher Barnard). Se osservo x tutta informazione statistica in $L_x$: $L_x=L_y$ allora stesse inferenze da x e y. (Se $E$ e $E'$ hanno stesso spazio dei parametri e $x$, $y$ sono due misure le cui likelihood soddisfano $f(x,\theta)=cg(y,\theta)$ per ogni $\theta$ allora $Ev(E,x)=Ev(E',y)$
 	\item \keyword{Birnbuam's theorem}: LP iff SP+CP
 	\end{itemize}
+    \keyword{Ancillary statistics} - Esempio: $\prob{(X\leq x)}$ where $X\in G(\mu,1)$ if $(H)$ or $X\in G(\mu,4)$ if $(T)$
+    \begin{align*}
+        &\prob{(X\leq x)}=\frac{1}{2}\Phi{(x-\mu)}+\frac{1}{2}\Phi(\frac{x-\mu}{2})\tag{N-P(frequentist)}\\
+        &\lbt{\prob{(X\leq x|H)}=\Phi(x-\mu)}{\prob{(X\leq x|T)}=\Phi(\frac{x-\mu}{2})}\tag{Fisher(conditional)}
+    \end{align*}
+Frequentist POV: what is the relevant replica of experiment? A sequence of observations from same normal pdf or a sequence of coin tosses each followed by observation from appropriate pdf?
 \end{frame}
 
 \begin{frame}{When LP is violated?}

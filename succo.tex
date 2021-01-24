@@ -1,5 +1,4 @@
-%! TEX root = asd-beamer.tex
-\documentclass[asd-beamer.tex]{subfiles}
+\documentclass[asd-beamer.tex]{subfiles}%! TEX root = asd-beamer.tex
 
 \begin{document}
 
@@ -167,7 +166,7 @@ $\phi_{\overline{X}_n}(t)=[\phi_X(t)]^n=[1+it\mu+\ldots]^n\to\exp{i\mu t}$
 \begin{frame}{Legge grandi numeri}
 \begin{itemize}
 \item Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$
-\item Probability convergence: 	Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}$=0
+\item Probability convergence: 	Una sequenza di RV $\{X_n\}\to X$ in probabilit\'a se $\lim_{n\to\infty}\prob{(|X_n-X|)>\epsilon}=0$
 \item LLN: $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora $\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}$, infatti
 \begin{align*}
 &\var{\overline{X}_n}=\var{\frac{1}{n}(X_1+\ldots+X_n)}\\
@@ -313,7 +312,7 @@ Statistica sufficiente minimale
 \end{block}
 \end{frame}
 
-\begin{frame}[allowframebreaks,fragile]{Dimostrazioni S sufficiente}
+\begin{frame}[allowframebreaks]{Dimostrazioni S sufficiente}
 n RV iid con pdf bernoulli p:
 	$X_1,\ldots,X_n$: iid con pdf di Bernoulli, supporto pdf $\chi=\{0,1\}$, parametro p nell'intervallo $(0,1)$:
 	\begin{align*}
@@ -326,7 +325,6 @@ n RV iid con pdf bernoulli p:
 	\begin{align*}
 	&\frac{\prod\prob{(X_i=x_i)}}{\prob{(T=t)}}=\frac{p^{\sum x_i}(1-p)^{n-\sum x_i}}{\binom{n}{t}p^t(1-p)^{n-t}}
 	\end{align*}
-
 n RV iid Poisson$(\lambda)$:
 	$X_1,\ldots,X_n$: iid con pdf di Poisson con parametro ignoto $\lambda$:
 	\begin{align*}
@@ -334,7 +332,6 @@ n RV iid Poisson$(\lambda)$:
 	&\frac{\prob{((\cap_iX_i=x_i)\cap(T=t))}}{\prob{(T=t)}}=\frac{\prob{(\cap_iX_i=x_i)}}{\prob{(T=t)}},\ t=\sum x_i\\
 	&=\frac{\prod_i[\frac{\exp{-\lambda}\lambda^{x_i}}{x_i!}]}{\frac{\exp{-\lambda}(n\lambda)^t}{t!}}=\frac{t!}{\prod x_i!}n^{-t}
 	\end{align*}
-
 %Gaussiana: media ignota, varianza nota:
 %	\begin{align*}
 %	&L(\overline{x};\mu)=\prod_iL(x_i;\mu,\sigma)=(\frac{1}{\sqrt{2\pi}\sigma})^N\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(\overline{x}-\mu)^2}{\sigma^2}}}_{g(T,\theta)}\underbrace{\exp{-\frac{N}{2}\frac{\sum_i(x_i-\overline{x})^2}{\sigma^2}}}_{h(\vec{x})}
@@ -348,7 +345,6 @@ n RV iid Poisson$(\lambda)$:
 %	&\prob{(k)}=\frac{\mu^k\exp{-\mu}}{k!}\\
 %	&\prob{(x)}=\lambda\exp{-\lambda x}
 %	\end{align*}
-
 Distribuzione uniforme: $x_{max}$ statistica sufficiente:
 \begin{align*}
 &\prob{(x;m)}=\left\{\begin{matrix}\frac{1}{m}\ x\in[0,m]\\0\\\end{matrix}\right.&\intertext{estraggo N $x_1,\ldots,x_n$}\\
@@ -381,7 +377,7 @@ Spazio dei parametri della Gaussiana:
 	\end{align*}
 \end{frame}
 
-\section{Stima puntuale}
+\section {Stima puntuale}
 
 \begin{frame}{Propriet\'a generali stiamatori}
 Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei parametri $\tau(\Theta)$
@@ -393,14 +389,14 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 \begin{columns}[T]
 	\begin{column}{0.45\textwidth}
 	Riduzione del bias:
-		\begin{align*}
+		\begin{align*} 
 	&\E{[S(x)]}=\theta+b(\theta)\\
 	&\to\ S'(x)=S(x)-b(\hat{\theta})-\hat{b}(x)\\
 	&\E{[\hat{b}(x)]}=b(\hat{\theta})\\
 	&\var{[S']}=\var{[S]}+\var{[b]}
 	\end{align*}
 	Metodo empirico
-	\begin{align*}
+	\begin{align*} 
 	&S_N'(x)=2S_N(x)\\
 	&-\frac{1}{2}[S_{\frac{N}{2}}(x_1,\ldots,x_{\frac{N}{2}})+S_{\frac{N}{2}}(x_{\frac{N}{2}},\ldots,x_N)]
 	\end{align*}
@@ -418,11 +414,11 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 
 \begin{frame}{Informazione di Fischer}
 	Informazione contenuta nei dati su un parametro $\Theta$: la condizione di massimo su log L da lo stimatore, la curvatura determina la massima precisione dello stimatore
-	\begin{align*}
+	\begin{align*} 
 	&\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
 	\end{align*}
 	Per due parametri:
-	\begin{align*}
+	\begin{align*} 
 	&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
 	\end{align*}
 	\begin{block}{Score statistics}
@@ -440,7 +436,7 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 	N RV iid: $I_X(\Theta)=nI_{X_1}(\Theta)$;
 	N RV gaussiane $N(\mu,\sigma^2)$: matrice informazione
 	$\vec{X}=(X_1,\ldots,X_n)$ e $\vec{\Theta}=(\mu,\sigma^2)$
-	\begin{align*}
+	\begin{align*} 
 	&I_{11}=\E{[(\PDof{\mu}\log{f})^2]}=\sigma\expy{-2}\ I_{22}=\E{[(\PDof{\sigma^2}\log{f})^2]}=\frac{1}{2}\sigma\expy{-4}\\
 	&I_{12}=I_{21}=\frac{1}{2\sigma^2}\E{[\sigma\expy{-3}(X_1-\mu)^3-(X_1-\mu)]}=0
 	\end{align*}
@@ -448,7 +444,7 @@ Statistica $\hat{\Theta}(X_1,\ldots,X_n)$ che fornisce stima di funzione dei par
 
 \begin{frame}{Best unbiased estimator: Disuguaglianza di Cramer-Rao (CRLB)}
 $X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
-\begin{align*}
+\begin{align*} 
 &V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
 &\left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
 \end{align*}
@@ -458,7 +454,7 @@ minimum variance bound
 \section{Costruzione stimatori consistenti}
 
 \begin{frame}{Logica stimatori consistenti - Stimatori impliciti}
-\begin{align*}
+\begin{align*} 
 &\xi(\theta)=\invers{N}\sum_ia(X_i,\theta)\xrightarrow{N\to\infty}\E{[a(X,\theta)]}=\int a(X,\theta)f(X;\theta)\,dX=h(\theta)
 \end{align*}
 \hypo{$a$ ha varianza finita}, \hypo{$h(\theta_0)=0$}: per LLN uno zero di $\xi(\theta)$ converge a $\theta_0$, $\xi(\hat{\theta})=0$ \keyword{stimatore implicito}.
@@ -467,34 +463,32 @@ minimum variance bound
 One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
 \end{column}
 \begin{column}{0.4\textwidth}
-\begin{figure}
+\begin{figure} 
 	\centering
 	\includegraphics[width=0.99\textwidth,keepaspectratio]{figures/james/estimators/estimpl}
 	\label{fig:estimpl}
 \end{figure}
 \end{column}
 \end{columns}
-
 In practice one find $a(X,\theta)$ extremizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$: a root of $\xi{\theta}=\invers{N}\sum_i^Ng(X_i,\theta)=0$ is C-estimator of $\theta_0$: hp are meet if
-\begin{align*}
+\begin{align*} 
 &a(X_i,\theta_0)=\PDy{\theta}{[g(X_i,\theta)-\E{[g(X_i,\theta)]}]}|_{\theta_0},\ \E{(a(X_i,\theta_0))}=0
 \end{align*}
 and $\E{\PDy{\theta}{g(X_i,\theta)}}$ don't depends on $\theta_0$.
 \end{frame}
 
 \begin{frame}{Moment method as implicit estimator}
-\begin{align*}
+\begin{align*} 
 &a(X_i,\theta)\to a(X_i)-\E{[a(X)]}, g(X_i,\theta)=a(X_i)\theta-\int_{\theta_0}^{\theta}\int a(X)f(X,\theta)\,dX\,d\theta
 \end{align*}
 Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$ quindi il valore di aspettazione dipende dal valore vero del parametro:
-\begin{align*}
+\begin{align*} 
 &\E{[a_k(X)]}=\int a_k(x)f(x;\theta)\,dx=e_k(\theta):\ \E{[X^k]}=\frac{\sum_i\E{[x_i^k]}}{N}\xrightarrow{P}\mu'_k\\
 &\hat{\theta}=\invers{e}[\invers{N}\sum_i^Na(X_i)]
 \end{align*}
-
 \begin{columns}[T]
 \begin{column}{0.65\textwidth}
-	\begin{align*}
+	\begin{align*} 
 	&\cov{(x_i,x_j)}=\E{[x_ix_j]-\E{[x_i]}\E{[x_j]}}\\
 	&=\frac{\mu'_{i+j}-\mu_i'\mu_j'}{N}\\
 	&\cov{[\hat{\theta}_i,\hat{\theta}_j]}=\sum_{k,l}\PDy{\hat{e}_k}{\hat{\theta}_i}\PDy{\hat{e}_l}{\hat{\theta}_j}\cov{[\hat{e}_k,\hat{e}_l]}
@@ -502,7 +496,7 @@ Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\th
 	Co-var matrix of estimators (error propagation formula)
 \end{column}
 \begin{column}{0.35\textwidth}
-	\begin{align*}
+	\begin{align*} 
 	&m_1=\mu_1'(\theta_1,\ldots,\theta_n)\\
 	&\vdots\\
 	&m_n=\mu_n'(\theta_1,\ldots,\theta_n)\intd{Invertendo il sistema sopra si trovano gli stimatori:}
@@ -517,7 +511,7 @@ Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\th
 \begin{wordonframe}{Examples moment estimators}
 \begin{columns}[T]\begin{column}{0.5\textwidth}
 	\begin{block}{Uniforme $U(a,b)$}
-		\begin{align*}
+		\begin{align*} 
 		&\mu_1=\E{[X]}=\frac{1}{2}(a+b)\\
 		&\mu_2=\E{[X^2]}=\frac{1}{3}(a^2+ab+b^2)\\
 		&\hat{a}=\mu_1\pm\sqrt{3(\mu_2-\mu_1^2)}\\
@@ -530,7 +524,7 @@ Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\th
 \end{wordonframe}
 
 \begin{frame}{Stimatori di massima likelihood (as stimatori impliciti)}
-\begin{align*}
+\begin{align*} 
 &a(X,\theta)=\PDy{\theta}{\log{L}}=\PDof{\theta}g(X_i,\theta)\\ %&K_N=\xi=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\frac{1}{N}\sum_i\PDy{\theta}{\log{(L(x_i,\theta))}}=0\tag{}\\
 &K_N=\xi=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)\PDof{\theta}\sum_i^N\ln{f(X_i,\theta)}=\PDof{\theta}\ln{L(\vec{X},\theta)}=0 \tag*{(Likelihood equation)}\\
 %&K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=0:\\
@@ -550,7 +544,7 @@ $\tau(\lambda)=\frac{1}{\lambda}$: $\hat{\tau}=\frac{1}{\hat{\lambda}}$
 \begin{block}{Asintoticamente un-biased}
 \end{block}
 \begin{block}{Asintoticamente efficente: $\var{[\hat{\theta}]}\to\frac{1}{NI_{X_1}}$}
-\begin{align*}
+\begin{align*} 
 &K_N(\hat{\theta)}=K(\theta_0)+\PDy{\theta}{K_N}(\hat{\theta}-\theta_0)+o(\hat{\theta}-\theta_0)^2\intd{prendendo il valore di aspettazione}
 &0=\sum_i\frac{\PDy{\theta}{\log{(L(x_i))}}}{N}-I(\hat{\theta}-\theta_0)+(\var{[\hat{\theta}]})\\
 &\hat{\theta}-\theta_0\propto N(0,\frac{1}{NI})+\frac{\const{}}{N}: \lim_{N\to\infty}b(\hat{\theta})\propto\frac{1}{N}
@@ -568,7 +562,7 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
 N fissato
-\begin{align*}
+\begin{align*} 
 &\prob{(\vec{k},\theta)}=\frac{N!}{\prod_ik_i!}\prod_i{\underbrace{\prob{(i)}}_{\int_{S_i}\prob{(x|\theta)}\,dx}}\mkern-20mu^{k_i}\\
 &\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
 &\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
@@ -576,7 +570,7 @@ N fissato
 \end{column}
 \begin{column}{0.5\textwidth}
 N variabile: Extended likelihood, normalizzazione varia
-\begin{align*}
+\begin{align*} 
 &\mu_i=\mu_TP_i(\theta)\\
 &\prob{(k_i\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
 &\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\
@@ -586,10 +580,10 @@ N variabile: Extended likelihood, normalizzazione varia
 \end{column}
 \end{columns}
 \end{block}
-
 \begin{block}{Fit resolution of histogram (??)}
 $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
-\end{block}\end{wordonframe}
+\end{block}
+\end{wordonframe}
 
 \begin{frame}[allowframebreaks]{Esempi di stimatori di massima likelihood}
 Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$
@@ -601,7 +595,6 @@ Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$
 &\var{[\hat{p}]}=\var{[\frac{1}{nN}\sum k_i]}=\frac{1}{n^2N^2}Nnp(1-p)\\
 &I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
 \end{align*}
-
 Gaussiana:
 Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
 \begin{columns}[T]
@@ -628,7 +621,6 @@ Maximum of $\log{L}$ for $\mu, \sigma^2$
 \end{column}
 \end{columns}
 $\E{[\hat{\sigma^2}]}=\frac{N-1}{N}\sigma^2$ quindi definisco lo stimatore unbiassato $\hat{\sigma^2}'=\frac{\sum(x_i-\exv{x})^2}{N-1}$.
-
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
 Esponenziale: cambio di parametro. $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
@@ -684,8 +676,7 @@ Per $x_{min}$: \[p(x_{min},m)=\frac{N}{m}[1-\frac{x_{min}}{m}]^{N-1}\] con $x_{m
 lo stimatore non \'e consistente.
 MLE per poissoniana
 \begin{align*}
-&P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}\\
-&
+&P(k;\mu)=\frac{\mu^k\exp{-\mu}}{k!}
 \end{align*}
 \end{frame}
 
@@ -731,11 +722,10 @@ above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gauss
 
 \section{Stima intervallare}
 
-\begin{frame}[fragile]{Bayesian credibility Interval}
+\begin{frame}{Bayesian credibility Interval}
 \begin{block}{Credibility (della posterior)}
 	\begin{align*}
-	&\cred{(x)}=\int_{\mu\in\inf(x)}\Pi(\mu|x)\,d\mu=\int_{\mu\inf(x)}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}\\
-	&
+	&\cred{(x)}=\int_{\mu\in\inf(x)}\Pi(\mu|x)\,d\mu=\int_{\mu\inf(x)}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}
 	\end{align*}
 \end{block}
 \end{frame}
@@ -872,7 +862,6 @@ $X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Div
  Ordering statistics, $X_{(1)}, X_{(2)}, \ldots X_{(N)}$, $S_N=\left\{\begin{array}{c}0\ X<X_{(1)}\\i/N\ X_{(i)}<X<X_{(i+1)}\\1\ X>X_{(N)}\end{array}\right\}$
 \end{block}
 %Smirnov-Cramer-von Mises test for unbinned data
-
 \begin{block}{Test di Kolmogorov-Smirnov }
 La statistica \'e massima deviazione di $S_N$ osservato da distribuzione $F(X)$ sotto $H_0$:
 \begin{align*}
@@ -884,10 +873,9 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \end{block}
 \end{frame}
 
-
 \section{Compiti}\linkdest{compiti}
 
-\begin{frame}[allowframebreaks]{Section TOC}
+\begin{frame}[allowframebreaks,fragile]{Section TOC}
 %currentsection,hideallsubsections,subsubsectionstyle=hide
 \tableofcontents[currentsection,sectionstyle=show/hide,subsectionstyle=show/show/hide]
 \end{frame}
@@ -979,7 +967,7 @@ $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\t
 \end{columns}
 \end{frame}
 
-\begin{frame}{limit di confidenza frequentisti da $x_m$}
+\begin{frame}[fragile]{limit di confidenza frequentisti da $x_m$}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 		Limiti superiori: ordinamento $x_m\geq x_1$
@@ -989,7 +977,6 @@ $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\t
 		\end{align*}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-		
 \tikzscale{0.4}
 \begin{tikzpicture}[myscalar]
 \begin{axis}[title={Banda confidenza: $o:x_m\geq x_1$},name=uniformconfidence,ymin=0,xmin=0,xmax=8,xlabel={$m$},ylabel={$x$},y label style={rotate=-90, at={(-0.1,1.)}},extra x tick style={% changes for extra x ticks
@@ -1010,7 +997,7 @@ $\hat{m}'$ non \'e consistente: $\lim_{n\to\infty}T_n(X_i)\xrightarrow{P}\tau(\t
 
 \subsection{2 numeri casuali da pdf uniformi (21/11/19)}
 
-\begin{frame}{Joint pdf, marginalization (and \keyword{integration limits})}
+\begin{frame}[fragile]{Joint pdf, marginalization (and \keyword{integration limits})}
 	Scelti 2 numeri casuali da $U(0,m)$, con ipotesi provenienza da $U(0,x_1)$ ($x_+=\max{[x_1,x_2]}$, $x_-=\min{[x_1,x_2]}$) - joint pdf $	P(x_-,x_+)=\frac{1}{m^2}$ per lálgoritmo giusto, 
 	\begin{align*}
 	&\prob{(x_-)}=\int\prob{(x_-,x_+)}\,dx_+=\int\frac{I(0\leq x_-\leq x_+\leq m)}{(m?)x_+}\,dx_+\\
@@ -1037,10 +1024,10 @@ Considero $H_0$: $x_-\in U(0,m)$, $H_1$: $x_-\in U(0,x_+)$. Statistica di test e
 &T(\vec{X})=\prod_i^N\frac{m}{x_{+i}}I(0\leq x_{-i}\leq x_{+i})\tag{NP}
 \end{align*}
 Pdf asintotica statistica, soglia regione critica e power per $\alpha=0.1$.
-
 \end{frame}
+ 
+\subsection{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}
 
-\subsection{{Combinazione p-value per 10 osservabili indipendenti (16/07/18)}}
 \begin{frame}{Valori $\chi^2$ per 10 osservabili binned}
 	Fit di massima likelihood per le 10 osservabili (binned) basandosi su teoria: istogrammi suff. popolati per GOF test di Pearson con 30 dof (31 bins?)
 	\begin{table}[h!]
@@ -1054,14 +1041,15 @@ Pdf asintotica statistica, soglia regione critica e power per $\alpha=0.1$.
 	\end{table}
 	Impressione che ci siano troppi valori alti del $\chi^2$: come risolvere il dubbio in maniera rigorosa?
 \end{frame}
+
 \begin{frame}{Additivit\'a $\chi^2$ e GOF test}
 	\begin{itemize}
 	\item \keyword{additivit\'a del $\chi^2$}: somma quadrati di RV normali standard.
 			Sommando $\chi^2$ in tab si ottiene RV con pdf $\chi^2_{300}$ approssimabile con gaussiana con $\sigma=\sqrt{2N}\approx24.5$.
-			$\sum_i\chi^2_i=359.3$, siamo a $1.21\sigma$
-	\item KS test: campione di 10 valori in accordo con pdf $\chi^2_{30}$ (cumulante $\prob{(\chi^2_{30}<x)}$ in tabella). Calcolo $F_n(x_{k-1})-F_n(x_k)$ e $F_n(x_k)-F_n(x_k)$:  $|0-0.096|$, $|0.1-0.57|$, $|0.2-0.648|$, $|0.3-0.82|$, $|0.4-0.822|$, $|0.5-0.859|$, $|0.6-0.894|$, $|0.7-0.914|$, $|0.8-0.918|$, $|0.9-0.926|$; $\Delta=0.52$??
+ 			$\sum_i\chi^2_i=359.3$, siamo a $1.21\sigma$
+ 	\item KS test: campione di 10 valori in accordo con pdf $\chi^2_{30}$ (cumulante $\prob{(\chi^2_{30}<x)}$ in tabella). Calcolo $F_n(x_{k-1})-F_n(x_k)$ e $F_n(x_k)-F_n(x_k)$:  $|0-0.096|$, $|0.1-0.57|$, $|0.2-0.648|$, $|0.3-0.82|$, $|0.4-0.822|$, $|0.5-0.859|$, $|0.6-0.894|$, $|0.7-0.914|$, $|0.8-0.918|$, $|0.9-0.926|$; $\Delta=0.52$??
 	\item Combinazione diretta p-values: $p_i=1-\prob{(\chi^2_{30}<x)}$, pdf somma log p-values $-2\log{(\prod^Np_i)}$ ha pdf $\chi^2_{2N}$
-	\item Test binned: hist of p-values (3-4) e considero LR con pdf uniforme (pdf p-value) e quindi usarlo per test basato su pdf asintotica (esatta, calcolandola)
+ 	\item Test binned: hist of p-values (3-4) e considero LR con pdf uniforme (pdf p-value) e quindi usarlo per test basato su pdf asintotica (esatta, calcolandola)
 	\item Considerare max(min) dei p-values e usare pdf $x_M$ per test
 	\item Test della mediana
 	\item Test basato su propriet\'a pdf $\chi^2_{30}$: test varianza $2N$; test secondo momento attorno a media nominale 30.
@@ -1081,7 +1069,7 @@ x RV $U(0,m)$; $2k+1=3$ misura la mediana $x_2=3.4$
 &\var{[\hat{m}]}=\sigma^2_{\hat{m}}=\frac{9}{4}\var{\mu}=\frac{9}{4}\sigma_{\mu}^2\\
 &\var{[\hat{m}']}=\sigma^2_{\hat{m}'}=4\var{\mu}=4\sigma_{\mu}^2\\
 &\sigma^2_{\mu}=\exv{\mu^2}-\exv{\mu}^2=\frac{m^2}{20}
-\end{align*}
+\ end{align*}
 Le varianze sono funzione del valore di m: le stimo usando $\hat{m}$
 \end{block}
 \end{column}\begin{column}{0.5\textwidth}
@@ -1150,7 +1138,8 @@ LR \'e unimodale: un intervallo con $\lambda(m_1)=\lambda(m_2)$, mentre il cover
 
 \begin{frame}{$2k+1$ misure: propriet\'a statistica mediana per costruzione estimatori}
 pdf per mediana campionaria
-\begin{equation*}	\prob{(\mu;m)}=\frac{1}{m}(\frac{\mu}{m})^k(1-\frac{\mu}{m})^k\frac{(2k+1)!}{k!k!1!}
+\begin{equation*}
+    \prob{(\mu;m)}=\frac{1}{m}(\frac{\mu}{m})^k(1-\frac{\mu}{m})^k\frac{(2k+1)!}{k!k!1!}
 \end{equation*}
 stimatore massima likelihood:
 \begin{align*}
@@ -1237,7 +1226,6 @@ Likelihood ratio test:
 \begin{equation*}
 \lambda(x_1',x_2'')=-2\log{\frac{\sup_m{p(x_2',x_2'';m)}}{\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}}}
 \end{equation*}
-
 \begin{align*}
 &\hat{m}=f(N)x_2\Rightarrow p(x_2',\hat{m})=G(N)/x_2',\ p(x_2'',\hat{m})=G(N)/x_2''\\
 &\sup_{m_1,m_2}{p(x_2',x_2'';m_1,m_2)}\propto\frac{1}{x_2'x_2''},\ p(x_2',x_2'';m)\propto(m-x_2')(m-x_2'')(x_2'x_2'')^{N-2}\\
@@ -1250,7 +1238,6 @@ Monotone LR in statistic $T(x)$ and Karlin-Rubin theorem
 \subsection{Stima di tempo medio tra eventi di onde gravitazionali - problema 2 Compito $09/11/18$}
 
 \begin{frame}{Pdf tempo tra eventi Poissoniani: MLE per eventi che generano onde gravitazionali - propriet\'a dello stimatore per numero eventi annuali}
-
 Conteggi generati da eventi casuali statisticamente indipendenti: distribuzione del tempo tra due eventi (Poissoniana con $n\approx1$) esponenziale $\prob{(t;\tau)}=\frac{1}{\tau}\exp{-\frac{t}{\tau}}$. Il massimo della likelihood ci fornisce stimatore $\hat{t}=t_m=\SI{39}{\day}$ quindi ha la stessa distribuzione esponenziale dei tempi t: $\E{[\hat{\tau}]}=\tau$, $\var{[\tau]}=\tau^2$ quindi $\hat{\tau}=\SI{0.107+-107}{\year}$.
 Il MLE trasforma in modo banale sotto cambio di variabile: $\hat{\lambda}=\hat{\frac{1}{\tau}}=\SI{9.3}{\counts\per\year}$; usando formula per propagazione errori si ha
 \begin{equation*}
@@ -1265,7 +1252,6 @@ Momenti di ordine $>0$ non esistono: $\var{[\lambda]}=\infty$.
 \end{frame}
 
 \begin{frame}{Limiti di confidenza su numero eventi annuali: p-ordering, limite inferiore, LR-ratio di $\lambda$}
-
 Stima intervallare di $\lambda=\frac{1}{\tau}$ e $\prob{(t;\lambda)}=\lambda\exp{-\lambda t}$: pdf \'e monotona decrescente in t quindi p-ordering equivale a $o(t)=-t$, $t\leq t_{max}(\lambda)$
 \begin{align*}
 &\int_0^{t_{max}}\lambda\exp{-\lambda t}\,dt=\cl{}:\ t_{max}(\lambda)=-\frac{\log{(1-\cl{})}}{\lambda}
@@ -1368,7 +1354,6 @@ si ricavano i 2 parametri uguagliando i valori attesi e osservati:
 \section{Math tools}
 
 \begin{frame}{algebra basic}
-
 \begin{align*}
 &4a(ax^2+bx+c)=0\\
 &4a^2x^2+4abx+4ac+b^2-b^2=0\\
@@ -1386,10 +1371,7 @@ si ricavano i 2 parametri uguagliando i valori attesi e osservati:
 \end{wordonframe}
 
 \begin{frame}{Integrals}
-\begin{columns}[T]\begin{column}{0.5\textwidth}
-
-\end{column}\begin{column}{0.5\textwidth}
-\end{column}\end{columns}
+%\begin{columns}[T]\begin{column}{0.5\textwidth}\end{column}\begin{column}{0.5\textwidth}\end{column}\end{columns}
 \end{frame}
 
 \end{document}
