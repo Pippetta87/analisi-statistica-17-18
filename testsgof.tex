@@ -25,7 +25,7 @@ Choose hypothesis with maximum a posteriori probability: $\prob{(H_i|Y=y)}$
                 \end{array}
             \end{align*}
         \item Success/Failuire function: $S(X)=\ln{\psi(-X)}$, $F(X)=\ln{(1-\psi(-X))}$ - $Q_n(T)=Q_{n-1}(T)+\begin{array}{l}S(T-x_n)\\F(T-x_n)\\
-            \end{array}$, $Q_0=\ln{f_T(T)}$ ($Q_n(j)=Q_{n-1}(j)+\begin{array}{l}S(j-k)\\F(j-k)\end{array}$, $[]$ sampled at interval $\Delta x$ where $T=T_j$, $x=x_k$)
+            \end{array}$, $Q_0=\ln{f_T(T)}$ ($Q_n(j)=Q_{n-1}(j)+\begin{array}{l}S(j-k)\\F(j-k)\\\end{array}$, $[]$ sampled at interval $\Delta x$ where $T=T_j$, $x=x_k$)
         \item Termination rule: when CI for location of threshold is smaller than given size - $L_n(T)=Q_n(T)-Q_0(T)$, to test $T=T_j$ we can use LR-test $L(\hat{T}_{MLE})-L(T_j)\geq0.5\chi^2_{\alpha,dof=1}$, outside the interval $T=T_j$ is rejected - T equals peak of $L(T)$ folowing last trials.
     \end{itemize}
 \end{frame}
