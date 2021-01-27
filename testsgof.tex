@@ -2,9 +2,207 @@
 
 \begin{document}
 	
+\section{Test ipotesi Bayesiano}
 
+\begin{frame}{MAP Test}
+Choose hypothesis with maximum a posteriori probability: $\prob{(H_i|Y=y)}$
+\end{frame}
 
+\subsection{Quest Algorithm}
 
+\begin{frame}[allowframebreaks]{Bayesian Adaptive psychometric function}
+    \begin{itemize}
+        \item \keyword{Psychometric function}: Describe relation between some physical measure of a stimulus and probability of particular psycho-physical response. Psychometric procedure: testing observer to gain info about psychometric function.
+        \item Informations:Previous trials (data), prior knowledge (shape, threshold of psychometric function)
+        \item Assumptions: Psychometric function has same shape under all conditions when expressed as function of log intensity, changing conditions changes only position set by parameter T: $P_T(x)=\psi(x-T)$; parameter T is constant from trial2trial; Indiviadual trial are independent.
+        \item Algorithm: Prior $f_T(T)$; Posterior $f_{T|D}(T|D)=\frac{f_T(T)\overbrace{f_{D|T}(D|T)}^L}{f_D(D)}$, $T_{post}$ mode of the posterior, $\hat{T}$ maximum of the likelihood, prior+dato(trials placement), Likelihood(Experiment termination, T estimate); Placement rule - ideal at minimum of $\frac{P_T(x)[1-P_T(x)]}{\TDy{x}{P_T(x)}}^2$ in x (ratio of bino standard deviation to slope of psychometric function squared) - QUEST set next trial at current best estimate of T: $T_P$  posterior mode.
+        \item QUEST function: $Q(T)=\ln{f_T(T)}+\ln{f_{D|T}(D|T)}$, $D=(x_i,r_i)$, $r_i=0/1$; probability of success at log(intensity) is $P_{S|T}(x)=P_T(x)$, failure $P_{F|T}(x)=1-P_T(x)$
+        \item computing posterior: Likelihood of sequence on n trials
+            \begin{align*}
+                &f_{D|T}(D|T)=\prod_i^nP_{r_i|T}(x_i)\\
+                &Q_n(T)=\ln{f_T}+\sum_i^{n-1}\ln{P_{r_i|T}{x_i}}+\begin{array}{l}
+                    \ln{P_T(x_n)}\\\ln{(1-P_T(x_n))}
+                \end{array}
+            \end{align*}
+        \item Success/Failuire function: $S(X)=\ln{\psi(-X)}$, $F(X)=\ln{(1-\psi(-X))}$ - $Q_n(T)=Q_{n-1}(T)+\begin{array}{l}S(T-x_n)\\F(T-x_n)\\
+            \end{array}$, $Q_0=\ln{f_T(T)}$ ($Q_n(j)=Q_{n-1}(j)+\begin{array}{l}S(j-k)\\F(j-k)\end{array}$, $[]$ sampled at interval $\Delta x$ where $T=T_j$, $x=x_k$)
+        \item Termination rule: when CI for location of threshold is smaller than given size - $L_n(T)=Q_n(T)-Q_0(T)$, to test $T=T_j$ we can use LR-test $L(\hat{T}_{MLE})-L(T_j)\geq0.5\chi^2_{\alpha,dof=1}$, outside the interval $T=T_j$ is rejected - T equals peak of $L(T)$ folowing last trials.
+    \end{itemize}
+\end{frame}
+
+\section{Test di ipotesi frequentista}\linkdest{testfreq}
+
+%\begin{frame}[allowframebreaks]{List of things}
+%\printbibliography[keyword={inference},heading=beamer]
+%\printbibliography[keyword={\mybibcat},heading=beamer]
+%\listofkeywords
+%\end{frame}
+
+\subsection{Accepting or rejecting hypothesis}\linkdest{Htest}
+	
+\begin{frame}{Formulazione matematica test tra ipotesi alternative}\frameintoc
+\begin{block}{Specifico 2 ipotesi alternative}
+Verifico validit\'a di ipotesi $H_0$ risp. a $H_1$ nella misura in cui la pdf di RV X $P_{\theta}$ che appartiene a una classe di pdf $\mathcal{P}=\{P_{\theta}, \theta\in\Omega\}$: le due ipotesi identificano classi mutualmente esclusive di pdf rel a 2 regioni dello spazio dei parametri con $\Omega=\Omega_H\cup\Omega_K$ (se il parametro \'e noto sappiamo con certezza se vera/falsa). Se indico $d_0/d_1$ la decisione di accettare/rifiutare assegno ogni $x\in X$ a regioni complementari $S_0/S_1$ regione di accettanza/critica.
+\end{block}
+\begin{block}{Partizione di X in \keyword{regione di accettanza/critica}}
+Scelgo la staristica del test: la pdf della statistica determina la regione critica sullo spazio campionario $\vec{X}$: la regione critica \'e fissata da livello significativit\'a $\alpha$ ($\prob{(H_1|H_0)}$: scarto $H_0$ quando \'e vera)
+Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected when $X=x$ is observed, power $Q(\theta)=\E_{\theta}[\psi(X)]$.
+%Fissato $\cl=1-\alpha$ impongo la condizione
+%P_{\theta}[\delta(X)=d_1]=
+%\[P_{\theta}[X\in S_1]\leq\alpha,\quad \forall\theta\in\Omega_H\]
+%minimizzo $P_{\theta}[\delta(X)=d_0]$ $\forall\theta\in\Omega_K$ equiv. to maximize
+%P_{\theta}[\delta(X)=d_1]=
+%\[1-\beta=P_{\theta}[X\in S_1], \forall\theta\in\Omega_K\]
+%Di solito la condizione precedente implica size of test $\sup_{\Omega_H}{P_{\theta}[X\in S_1]}=\alpha$.
+\end{block}
+\end{frame}
+
+\begin{frame}{Errori: tipo I (rifiuto ipotesi vera), tipo II (accetto ipotesi falsa)}
+\begin{block}{ \keyword{Prob. Errore tipo I $\alpha$}}
+	scarto $H_0$ quando \'e vera: probabilit\'a di errore I $\alpha=\prob{(x\in S_1|H_0)}=\prob_0{(x\in S_1)}$: \keyword{livello di significativit\'a}. \keyword{Livello di confidenza} $1-\alpha=\prob{(x\in S_0|H_0)}$
+\end{block}
+\begin{block}{\keyword{Prob. Errore tipo II $\beta$}}
+	probabilit\'a di accettare erroneamente $H_0$ (falso negativo, contaminazione), $\prob{(x\in S_0|\non{H_0})}=\beta$. Potenza del test $1-\beta=\prob{(x\in S_1|H_1)}$ \'e la capacit\'a di distinguere ipotesi diverse da $H_0$ 
+\end{block}
+\end{frame}
+
+\begin{frame}{Symmetry between $\alpha$ and $\beta$}
+Unrealistic in experimental situation to keep $\alpha$ constant:$\alpha=p(\theta_0)$ $\beta=p(\theta_1)$ as function of $\alpha$, dotted line $\alpha=1-\beta$ below which: \keyword{unbiased tests} - prob. rifiutare erroneamente $H_0$ minore di rifiutarla giustamente.
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.5\textwidth]{figures/james/test/testabsym}\label{fig:testabsym}\end{figure}
+\end{frame}
+
+\begin{frame}{Comparison of tests: power}
+Ipotesi semplici: $H_0: \theta=\theta_0$, $H_1: \theta=\theta_1$. Power $1-\beta=p(\theta_1)$.
+Ipotesi composte: $p(\theta)=1-\beta(\theta)$.
+\begin{columns}[T]
+\begin{column}{0.4\textwidth}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.99\textwidth]{figures/james/test/mostpower}\label{fig:mostpower}
+\end{figure}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{block}{Ottimizzazione: power maggiore possibile.}
+	UMP test: power maggiore uguale a qualunque test per tutte le ipotesi: esiste?
+\end{block}
+\end{column}
+\end{columns}
+\begin{block}{Per ipotesi composte non esiste test UMP generale}
+	One family pdf $f(\vec{X},\theta)$: MP test of $H_0$ per $\theta<\theta_0$, $H_1$ per $\theta>\theta_1$ in general depends on $\theta_1$ thus not uniform
+\end{block}
+\end{frame}
+
+\begin{frame}{Properties of tests}
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+\begin{itemize}
+	\item \keyword{Consistenza}: $\lim_{N\to\infty}\prob{(\vec{X}\in  S_1|H_1)}=1$ non \'e detto che sia uniforme.
+	\item \keyword{unbiasedness} $\pow{}=1-\beta\geq\alpha, \forall i$, T consistente \'e asintoticamente unbiased.
+	\item $X\in f(x;\theta)$ con $\theta\in\Omega$; g trasformazione 1-1 dello spazio campionario in se: $gX$ denota RV con valore $gx$ quando $X=x$ con pdf $f(x;\theta')$ cos\'i definisco $\overline{g}\theta=\theta'\in\Omega$. Lo spazio dei parametri \'e invariqante sotto g se $\overline{g}\Omega=\Omega$.
+	\keyword{Invariant test under G:} $\phi(gx)=\phi(x)$ per ogni $x\in X$ e $g\in G$ inoltre $\overline{g}\Omega_H=\Omega_H$ e lo stesso $\Omega_K$
+\end{itemize}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+\begin{figure}[!ht]\begin{subfigure}[b]{0.99\textwidth}
+		\centering\includegraphics[trim={0cm 0 0 0},clip, width=0.99\textwidth]{figures/james/test/powerconsistent}\label{fig:powerconsistent}\end{subfigure}
+	\begin{subfigure}[b]{0.99\textwidth}\centering\includegraphics[trim={0cm 0 0 0},clip,width=0.99\textwidth]{figures/james/test/biasedtest}\label{fig:biasedtest}\end{subfigure}\end{figure} 
+Test B can't distinguish between $\theta_0$, $\theta_1$.
+	\end{column}
+\end{columns}
+\end{frame}
+
+\begin{comment}
+\begin{frame}{Properties of tests}
+\begin{block}{Test Unbiased}
+Hypothesis $H: \theta\in\Omega_H$ vs $K:\theta\in\Omega_K$. Unbiasedness: for no alternatives in K probability of rejection is less then size of test
+\begin{align*}
+&\pow{}=\E_{\theta}{[\phi(X)]}\leq\alpha\tag{$\theta\in\Omega_H$}\\
+&\pow{}=\E_{\theta}{[\phi(X)]}\geq\alpha\tag{$\theta\in\Omega_K$}
+\end{align*}
+\end{block}
+\begin{block}{Invarince and symmetry}
+$X\in f(x;\theta)$ con $\theta\in\Omega$; g trasformazione 1-1 dello spazio campionario in se: $gX$ denota RV con valore $gx$ quando $X=x$ con pdf $f(x;\theta')$ cos\'i definisco $\overline{g}\theta=\theta'\in\Omega$. Lo spazio dei parametri \'e invariqante sotto g se $\overline{g}\Omega=\Omega$.
+\keyword{Invariant test under G:} $\phi(gx)=\phi(x)$ per ogni $x\in X$ e $g\in G$ inoltre $\overline{g}\Omega_H=\Omega_H$ e lo stesso $\Omega_K$
+\end{block}
+\end{frame}
+\end{comment}
+
+\subsection{Ipotesi semplici}\linkdest{Hsimple}
+
+\begin{frame}{Testing simple hypothesis}
+%\begin{block}{Test: funzione dallo spazio delle osservabili in H.}
+%Un'ipotesi \'e un'affermazione sui parametri che caratterizzano lo stato della natura; 
+\keyword{Ipotesi semplice}: se l'ipotesi non \'e sufficiente a determinare distribuzione di probabilit\'a della nostra osservabile l'ipotesi \'e composta - se ipotesi da falsificare \'e non esistenza higgs ($m=0$) semplice, ma alternativa \'e composta da $m>0$
+%\end{block}
+%\begin{block}{Ratio statistics}
+\keyword{Ratio statistics}: discrete distribution $P_i[X=x]=P_i(x)$: optimum test is defined as critical region S satisfying
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\sum_{x\in S}P_0(x)\leq\alpha\\
+&\sum_{x\in S}P_1(x)=\max{}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+Most valuable points x are those with highest \[r(x)=\frac{P_1(x)}{P_0(x)}\]
+\end{column}
+\end{columns}
+S is the set of points $x: r(x)>c$ where c is determined by \[P_0[X\in S]=\sum_{x: r(x)>c}P_0(x)=\alpha\]
+%\end{block}
+\end{frame}
+
+\begin{frame}{Lemma di Neyman-Pearson (Test di NP)}\frameintoc\linkdest{NPtest}
+\begin{block}{Statistica di un test}
+Posso esprimere un test in funzione di una statistica: $T(\vec{x})=T(t(\vec{x}))$ (nel caso del lemma NP la statistica \'e il LR). 
+\end{block}
+\begin{block}{Test NP}
+%Lo spazio dei parametri \'e costituito da $\theta_0$, $\theta_1$: l'MP test \'e quello che mi da come regione critica gli x tali che $\frac{\prob_0{(x)}}{\prob_1{(x)}}<q(\alpha)$, $q$ \'e determinato da condizione $\prob{(C|H_0)}\leq\alpha$ (LR), questo \'e il test di massimo power.
+RV $\vec{X}$: pdf $f_N(\vec{X}|\theta)$, lo spazio dei parametri \'e $\theta_0,\theta_1$. Cerco la regione critica $w_{\alpha}$ che massimizza power $1-\beta$ (dato $\alpha$):
+\begin{align*}
+&\int_{w_{\alpha}}f_N(\vec{X}|\theta_0)\,dX=\alpha\\
+&\int_{w_{\alpha}}f_N(\vec{X}|\theta_1)\,dX=1-\beta\\
+&=\int_{w_{\alpha}}\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}f_N(\vec{X}|\theta_0)\,dX=\E_{w_{\alpha}}{[\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}|\theta_0]}\\
+&\Rightarrow l_N(\vec{X},\theta_0,\theta_1)=\frac{f_N(\vec{X}|\theta_1)}{f_N(\vec{X}|\theta_0)}\geq c_{\alpha}: H_1\ (\leq c_{\alpha}: H_0)
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{wordonframe}{Dimostrazione lemma Neyman-Pearson}
+Per ogni test alternativo $T'$ prendo $\alpha'\leq\alpha_{NP}$ allora $\beta'\geq\beta_{NP}$ ($\pow'\leq\pow_{NP}$, probabilit\'a errore tipo II \'e maggiore), dimostro $\beta'-\beta\geq0$ cio\'e $\prob{(\overline{C}'|H_1)}-\prob{(\overline{C}|H_1)}$:
+\begin{align*}
+&\prob{(C|H_1)}-\prob{(C'|H_1)}=\prob{(C\cap|H_1)}+\prob{(C\cap\overline{C}'|H_1)}-\prob{(C\cap C'|H_1)}\\
+&-\prob{(C'\cap\overline{C}|H_1)}=\prob{(C\cap\overline{C}'|H_1)}-\prob{(C'\cap\overline{C}|H_1)}\\
+&\prob{(C\cap C'|H_1)}=\int_{C\cap C'}\prob_1{(x)}\,dx\geq\int_{C\cap \overline{C}'}\frac{\prob_0{(x)}}{q}\,dx=\frac{1}{q}\prob{(C\cap\overline{C}'|H_0)}
+\end{align*}
+dove si \'e usata la relazione di de morgan per complementare di intersezioni e la disuguaglianza del lemma-NP
+\end{wordonframe}
+
+\subsection{Ipotesi composte}\linkdest{Hcomposite}
+
+\begin{frame}{Monotone Likelihood property}\frameintoc
+\begin{block}{\keyword{Monotone LR}}
+Real parameter family of density $p_{\theta}(x)$ is said to have Monotone LR if exists statistics $T(x)$ for $\theta<\theta'$ le distribuzioni sono distinte e $\frac{P_{\theta'}(x)}{P_{\theta}(x)}$ \'e funzione non-decrescente/non-crescente di $T(x)$: this results in placing rejection region in upper/lower tail of the distribution of test statistics under $H_0$
+\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+		Non-decreasing LR:
+		\begin{align*}
+		&\psi(X)=\lbt{1:\ T(X)>k}{0:\ T(X)<k}
+		\end{align*}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+		Non-increasing LR:
+		\begin{align*}
+		&\psi(X)=\lbt{1:\ T(X)<k}{0:\ T(X)>k}
+		\end{align*}
+	\end{column}
+\end{columns}
+\end{block}
+\begin{block}{One param exponential family}
+Sia $T(x)$ stat sufficiente per parametro $\theta$ e 
+\begin{equation*}
+g(t;\theta)=a(\theta)c(t)\exp{tb(\theta)}
+\end{equation*}
+con t del dominio di T. Le funzioni di questa famiglia godono del Monotone Likelihood Ratio property
+\end{block}
+\end{frame}
 
 \begin{frame}{Test UMP unilaterale per famiglia esponenziale}\frameintoc\linkdest{UMPtestexp}
 %Karlin-Rubin theorem
@@ -19,6 +217,10 @@ Se il likelihood ratio \'e funzione monotona (non-decrescente) di una statistica
 \cite[5]{lrtmptumpt}; \cite[445]{inferencemukhopadhyay2000}; \cite[sec 3.6]{lehmann2006testing}
 \end{frame}
 
+\begin{frame}{Test UMP parametro non contenuto nell'intervallo vs contenuto (ma non viceversa)}
+
+\cite[269]{james2006statistical}\cite[sec 3.7]{lehmann2006testing}
+\end{frame}
 
 \begin{wordonframe}{No UMP test for two-sided hypothesis}
 %insert-fig 10.9: oneone2sides
@@ -144,5 +346,392 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 \item Metodo empirico del LR. Uso stimatore ML $\hat{\mu}$: $t_{NP}=\frac{L(H_0)}{L(H_{\mu})}$. Introduco $\lambda=2\log{\frac{\sup_{\mu}}{L(\mu_0)}}$; Ipotesi complesse: $H_0: p(x;\mu_0,\nu)$ $H_{\mu}: p(x;\mu,\nu)$, $\prob{(\lambda)}\to \chi^2_{\dim{\mu-\nu}}$
 \end{itemize}
 \end{wordonframe}
+
+\subsection{Wilks theorem: asymptotic pdf of LR}\linkdest{wilks}
+
+\begin{frame}{Teorema di Wilks}\frameintoc
+	$p(x;\theta)$ due volte differenziabile con dominio indipendente da parametro $\Omega(x;\theta)=\Omega(x)$, $\iidrv[\theta][,][1][r],\iidrv[\theta][,][r+1][s+r]$
+	\begin{itemize}
+		\item $H_0$: $\theta_r=\theta_{r0}$, $\theta_s=\hat{\theta}_s$
+		\item $H_1$: $\theta_r\neq\theta_0$
+	\end{itemize}
+	\[\lambda(x;\theta)=2\log{[\frac{\sup_{\theta}{p(x;\theta)}}{p(x;\theta)}]}=-2\log{[\frac{p(x;\theta)}{p(x;\hat{\theta})}]}\] (log-likelihood ratio statistics) ha asintoticamente pdf universale e indipendente da $\theta$: distribuzione di $\chi^2$ centrale con dof r sotto $H_0$ (sotto $H_1$ non centrale $\lambda=(\theta_r-\theta_{r0})^T\invers{V_r}(\theta_r-\theta_{r0})$).
+\end{frame}
+
+\begin{frame}{Sketch's proof Wilks theorem}
+	\begin{itemize}
+		\item MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
+		\begin{align*}
+		&\PDy{\vec{\theta}}{\ln{L}}=(\hat{\theta}-\theta)^T\invers{V},\ \invers{V}_{ij}=-\E{[\PtwoMDy{\theta_i}{\theta_j}{\ln{L}}]}\\
+		&L\propto\Exp{-\frac{1}{2}(\hat{\theta}-\vec{\theta})^T\invers{V}(\hat{\theta}-\vec{\theta})}
+		\end{align*}
+		\item When $H_0$ holds $\theta_s=\hat{\theta}_s$:
+		\[L(x;\theta_{r0},\theta_s)\propto\Exp{-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^T\invers{V_r}(\hat{\theta}_r-\theta_{r0})}\]
+		\item when $H_1$ holds $\vec{\theta}=\hat{\theta}$: $L(x|\hat{\theta}_r,\hat{\theta}_s)\propto1$
+		\item Distribuzione asintotica di
+		\begin{align*}
+		&\lambda=-2\log{\frac{L(x;\theta_{r0},\hat{\theta}_s)}{L(x;\hat{\theta}_r,\hat{\theta}_s)}}\\
+		&\lambda=(\hat{\theta}_r-\vec{\theta}_{r0})^T\invers{V_r}(\hat{\theta}_r-\vec{\theta}_{r0})
+		\end{align*}
+		$\prob{(\lambda)}=\chi^2_r$ with Non-Central parameter $\lambda$ if $H_0$ holds $\lambda$ has pdf central $\chi^2_r$
+	\end{itemize}	
+\end{frame}
+
+\subsection{Student's t-test}
+
+\begin{frame}{t statistics}
+$\exv{x}=\frac{1}{N}\sum_iX_i=\hat{\mu}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\exv{x}$ normally distributed around $\mu$, $y=\frac{\exv{x}-\mu}{\sigma(\exv{x})}=\sqrt{N}\frac{\exv{x}-\mu}{\sigma(x)/\sqrt{N}}$ standard normal G. The ''corrected'' sample variance $S_x=\frac{1}{N-1}\sum_i^N(X_i-\mu{x})^2$ is distrib. indep. of $\exv{X}$: $(N-1)S^2/\sigma^2$ distrib as $\chi^2_{N-1}$.
+%$\gets\frac{1}{N(N-1)}\sum_i^N(X_i-\exv{x})^2
+%$(N-1)s_x^2=fs_x^2$ follow $\chi^2$ with $f=N-1$ dof and we define
+\begin{align*}
+&t=\frac{\exv{x}-\mu}{s_{\exv{x}}}=\frac{(\exv{x}-\mu)\sqrt{Nf}}{\chi}=\frac{Z}{\sqrt{k/f}}:\ Z=G(0,1),\ k=\chi^2(f),\ f=N-1\\
+&P(|t|\leq t)=2F(|t|)-1:\ \int_0^{t_{\alpha}'}f(t)\,dt=\frac{1}{2}(1-\alpha),\ t_{\alpha}'=t_{1-\frac{1}{2}\alpha},\ t_{1-\alpha}=-t_{\alpha}
+\end{align*}
+\begin{columns}[T]
+\begin{column}{0.6\textwidth}
+\begin{itemize}
+	\item two-sided: find $t_{1-\frac{\alpha}{2}}$ point and reject $H_0$ if $|t|>t_{1-\frac{\alpha}{2}}$
+	\item Upper/Lower one-sided: find $t_{1-\alpha}$ point and reject $H_0$ if $t\gtrless \pm t_{1-\alpha}$
+\end{itemize}
+\end{column}
+\begin{column}{0.4\textwidth}
+	\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.8\textwidth]{figures/mukhopadhyay/tests/studenttpercpoint}\label{fig:studenttpercpoint}
+	\end{figure}
+\end{column}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Student's t test}
+Hypothesis $\lambda_0$  for pop mean of normal distro: sample of size N yields sample mean $\overline{x}$, sample variance $s_x^2$: for given signficance level $\alpha$
+\[|t|=\frac{|\overline{x}-\lambda_0|\sqrt{N}}{s_x}>t_{1-\frac{1}{2}\alpha}\]
+hypothesis must be rejected.
+\begin{block}{Student difference test: $\hat{x}=\hat{y}$?}
+\begin{align*}
+&\sigma^2(\overline{x})=\frac{1}{N_1}\sigma^2(x)\ \sigma^2(\overline{y})=\frac{1}{N_2}\sigma^2(y)\\
+&\Delta=\overline{x}-\overline{y}\ \sigma^2(\Delta)=\sigma^2(x)+\sigma^2(y)\\
+&s_{\Delta}=s_{\overline{x}}^2+s_{\overline{y}}^2=\frac{N_1+N_2}{N_1N_2}s^2\\
+&|t|=\frac{|\Delta|}{s_{\Delta}}\geq t_{\alpha}'
+\end{align*}
+Sample quantity compared with quantile of t with $f=N_1+N_2-2$ with sign. level $\alpha$
+\end{block}
+\end{frame}
+
+\subsection{esempi di test}
+
+\begin{wordonframe}{Power}
+	plot power(i) parte da $\alpha$ e va a 1 al crescere di i (separazione ipotesi) e pi\'u rapidamente al crescer di N.
+	il grafico del power ($\prob{(\text{reject} H_0)| H_i}$) in funzione dell'indice i che identifica le ipotesi (per $H_0$ fa $\beta=1-\alpha$ quindi il power \'e $\alpha$) allontanandosi da $H_0$ deve essere il pi\'u grande possibile. 
+\begin{block}{grafico $\prob_0{(X)}$ vs $\prob_1{(X)}$ con definizione di regione critica}
+	\begin{picture}(100,130)
+	\put(20,20){
+		\begin{tikzpicture}[scale=0.3]
+		\begin{axis}[title={Regione critica/accettanza per $H_0$},name=testh0,samples=100,ymin=0,xmin=0,xmax=10,xlabel={$x$},ylabel={$\prob{(x)}$},extra x ticks={1.3},extra x tick style={% changes for extra x ticks
+			tick label style={yshift=-4mm}},
+		]
+		\addplot[id=aa] gnuplot {(sqrt(2*pi))^(-1)*exp(-(x-2)^2/(2))};
+		\addplot[id=bb,domain=0:10] gnuplot {(2*sqrt(2*pi))^(-1)*exp(-(x-6)^2/(2*4))}; 
+		\end{axis}
+		\end{tikzpicture}
+	}
+	\end{picture}
+\end{block}
+\end{wordonframe}
+
+\begin{wordonframe}{Normal theory tests: NP vs sign test}
+$H_0$: $N(\mu=\mu_0,\sigma^2)$, $H_1$: $N(\mu=\mu_1,\sigma^2)$.
+MP test is based on $t=\frac{\Exp{-\frac{1}{2\sigma^2}\sum_i^N(X_i-\mu_i)^2}}{\Exp{-\frac{1}{2\sigma^2}\sum_i^N(X_i-\mu_0)^2}}$: $\sigma^2\ln{t}$ \'e una funzione monotona di $z=\frac{\exv{X}-\mu_0}{\frac{\sigma}{\sqrt{N}}}\xrightarrow{pdf}\left\{\begin{array}{c}N(\mu_1-\mu_0,1) \text{: se $H_1$ \'e vera}\\
+N(0,1) \text{: se $H_0$ \'e vera}
+\end{array}\right.$
+$\alpha$ livello di significativit\'a: la regione critica C si definisce tramite taglio $z>\lambda_{\alpha}$ con $\lambda_{\alpha}$ $\alpha$-point of standard normal distribution; power $1-\beta$:
+\begin{align*}
+&1-\beta=\prob{(z>\lambda_{\alpha})|X_i\in N(\mu_1,\sigma^2)}=\prob{(z>\lambda_{\alpha})|z\in N(d,1)}\\
+&d=\frac{\sqrt{N}}{\sigma}(\mu_1-\mu_0)=\int_{\lambda_{\alpha}}^{\infty}\frac{1}{2\pi}\exp{-\frac{(z-d)^2}{2}}\,dz
+\end{align*}
+Sign test:
+$H_0$: N measures with mean $\mu_0$ and symmetric distribution, $H_1$: N distribution have mean $\mu_1$. $N_+$ times $(X_i-\mu_0)>0$, $N_-=N-N_+$: under $H_0$ $N_+$ is distributed as $\prob{(N_+=r)}=\binom{N}{r}(\frac{1}{2})^N$. Supponiamo $N_-\leq2$, il livello di significativit\'a  (loss) $\alpha=\frac{1}{2\expy{10}}[\binom{10}{0}+\binom{10}{1}+\binom{10}{2}]=0.0547$; quindi $q_{\pm}$ probabilit\'a di segno $\pm$ ($q_++q_-=1$): $q_-=\phi(\frac{\mu=\mu_1-\mu_0}{\sigma})=\int_0^{\infty}\frac{1}{2\pi}\exp{-\frac{(z-\frac{\mu}{\sigma})^2}{2}}\,dz$, power $1-\beta=q_+\expy{10}+10q_+^9q_-+45q_+^8q_-$.
+
+NP is UMP: given $\alpha, N$: power di NP maggiore/uguale ad ogni altro test.
+\end{wordonframe}
+
+\begin{wordonframe}{P-value examples for gaussians}
+	X RV $N(\xi,\sigma^2)$, $\sigma^2$ known. Null hypothesis $\xi=0$, alternative $\xi=\xi_1>0$.
+	\begin{equation*}
+	\lr=\frac{p_1(x)}{p_0(x)}=\exp{\frac{\xi_1x}{\sigma^2}-\frac{\xi_1^2}{2\sigma^2}}
+	\end{equation*}
+	funzione crescente di x per $\xi_1>0$ l'insieme $p_1/p_0(x)>k$ equivale a $x>k'$ determinata da $P_0[X>k']=\alpha$: $k'=\sigma z_{1-\alpha}$ con $z_{1-\alpha}$ is $1-\alpha$ quantile of standard normal pdf.
+	Regione di confidenza:
+	\begin{equation*}
+	S_{\alpha}=\{X: X>\sigma z_{1-\alpha}\}=\{X: \Phi(\frac{X}{\sigma})>1-\alpha\}
+	\end{equation*}
+	osservato X, il pi\'u piccolo $\alpha$ per cui X sia nella regione critica \'e $p=1-\Phi(\frac{X}{\sigma})$; oppure $\alpha$ \'e probabilit\'a di finire in regione critica dato H $P_0\{X\geq x\}$ dove x \'e il valore osservato quindi per $\xi=0$ la pdf di p \'e:
+	\begin{equation*}
+	P_0\{p\leq u\}=P_0\{1-\Phi(\frac{X}{\sigma})\leq u\}=P_0\{\Phi(\frac{X}{\sigma})\geq 1-u\}
+	\end{equation*}
+\end{wordonframe}
+
+\begin{frame}{Separation of two class of events: elastic vs inelastic pp scattering}
+james 10.1.2
+\end{frame}
+
+\begin{frame}{Test funzionamento centrale nucleare}\frameintoc
+Misurazione flusso di neutroni $\phi$ con contatore: $\phi_0$ flusso normale.
+\begin{block}{Statistica per rivelare crescita esponenziale dalle ultime N misure del flusso}
+
+\end{block}
+\begin{block}{Soglia da applicare alla statistica perch\'e test abbia probabilit\'a falsi positivi minore di \num{5e-5}}
+
+\end{block}
+\end{frame}
+
+\begin{frame}{Test parametrico one-sided: caso poissoniano con background}
+$H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
+\end{frame}
+
+\subsection{Principio di MinMax}
+
+\begin{frame}{}
+
+\end{frame}
+\subsection{Test non parametrici}
+
+\begin{frame}{Test di Mann-Whitney}
+    Non-parametric test of null hypo that randomly selected values from 2 population $X,Y$ have $\prob{X>Y}=\prob{Y>X}$
+    \begin{itemize}
+    \item All observations from both group are independent
+    \item Responses are ordinal
+    \item Under $H_0$ distro of both pop. are equal
+    \item Test is consistent if under $H_1:$ $\prob{(X>Y)}\neq\prob{(Y>X)}$
+    \end{itemize}
+    \begin{align*}
+        &U=\sum_i^n\sum_j^mS(X_i,Y_j),\ S(X,Y)=\left\{\begin{array}{l}
+            1\ Y<X\\\frac{1}{2}\ Y=X\\0\ Y>X
+        \end{array}\right.
+     \end{align*}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            Large samples:
+            \begin{itemize}
+                \item Assign nemuric rank: $(3,5,5,5,5,5,8)\to(1,3.5,3.5,3.5,3.5,3.5,6)$
+                \item Add rank for sample I: sum of ranks of sample II are determined since sum of all ranks is $\frac{N(N+1)}{2}$
+                \item $\frac{U-m_U}{\sigma_U}\sim N(0,1)$, $m_U=\frac{n_1n_2}{2}$, $\sigma_U^2=\frac{n_1n_2(n_1+n_2+1)}{12}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Small samples: THHHHHTTTTTH. We take each T and count how much H it beats, and same for H: $(6,1,1,1,1,1)$, $U=11$ and $(5,5,5,5,5,0)$, $U=25$.
+                \item Confronto valore critico per test bilaterale con size $\alpha$ con valore osservato
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+ 
+\section{Goodness of fit}\linkdest{gof}
+
+\begin{wordonframe}{GOF Refs}
+\cite{james2006statistical}: chap 11. \cite{lehmann2006testing}: chap 14.
+
+\end{wordonframe}
+
+\subsection{Distance between data and hypothesis: map statistic to p-value}\linkdest{pvalue}
+
+\begin{frame}{p-value: quantify agreement data/hypothesis}
+%Probabilit\'a della regione $C=\{t(x)>q_{\alpha}\}=\alpha$ il test di GOF ha significativit\'a $\alpha$. Considero una statistica con $\prob{(t(x))}=U([0,1])$ (per esempio una $F(X)$).
+Quantifico accordo tra dati e ipotesi senza riferimento esplicito a ipotesi alternative: definisco statistica t che misura distanza dati/ipotesi, l'ipotesi determina la pdf $f(t|H_0)$ della statistica. \keyword{p-value} \'e probabilit\'a di trovare t in regione di uguale/minore accordo con $H_0$ di quanto osservato: per esempio se grandi valori t sono in minore accordo con $H_0$ $p=\int_{t_{obs}}^{\infty}f(t|H_0)\,dt$; p-value is function of data and if $H_0$ is true per misure continue ha distribuzione $U(0,1)$: ''if $H_0$ were true and experiment were repeated many times one would obtain data as far away or further from $H_0$ as observed data with prob. $p$'', a small p-value is taken as evidence against $H_0$.
+p-value is smallest significance level at which hypothesis would be rejected for the given observation: $\alpha<\alpha'$ rejection region $S_{\alpha}\subset S_{\alpha'}$ $p=\sum_{x:t>t_0=t(X_0)}\prob{(x|H_0)}\to\inf\{\alpha: X\in S_1\}$
+\begin{block}{Unbiasedness}
+Unbiased: $\prob{(T(x)=H_0|\non{(H_0)})}\leq\prob{(T(x)=H_0|H_0)}$: misurazione potenza empirica (set arbitrario di distribuzioni).
+\end{block}
+\end{frame}
+
+\begin{frame}{Combinazione di pi\'u p-value \'a la Fisher}
+	%algoritmo ordinamento prodotto
+	\begin{align*}
+	&\prob{(p=p_1p_2<q)}=q-q\log{q}&\tag{complessa per $N>2$}\\
+	&x=-\frac{1}{\lambda}\ln{(1-F(x))}\tag{inverse CDF exponential}\\
+	&x=-\frac{1}{\lambda}\ln{P},\ P\in U([0,1])\tag{exponential distribution rate 1}\\
+&P(\chi^2_2)=\frac{\exp{-\frac{x^2}{2}}}{2}\tag{$\chi^2$ with dof 2 is exponential with $\lambda=\frac{1}{2}$}\\
+	&(p_1,\ldots,p_N)\to Q=\sum^N-2\log{p_i}\tag{(sum of N $\chi_2^2$)Erlang with $\lambda=\frac{1}{2}$ is $\chi^2_{2N}$}\\%Erlang $\lambda=1/2$
+	&\approx\prob{(\chi^2;\nu=2*N)}=\frac{1}{2\expy{2N/2}\Gamma(2N/2)}x\expy{2N/2-1}\exp{-x/2}\tag{sum N $\chi^2_2$ is $\chi^2_{2N}$}\\
+	&\prob{(Q)}=\prob{(\chi^2_{2N})}\tag*{sotto $H_0$}
+	\end{align*}
+\end{frame}
+
+\begin{wordonframe}{P-value examples for $H_0$ with discrete pdf}
+\begin{block}{Test theory predictin poisson pdf with $\mu=17.3$}
+Observed counts: $N=12$
+\[P_{12}=\sum_{n: |n-\mu|\geq5.3}\frac{\exp{-\mu}\mu^n}{n!}=\sum_{n=1}^{12}+\sum_{23}^{\infty}\]
+$P_{12}=0.229$ is the probability to observe event at least as far as the observed.
+$0.229$ minimo livello di confidenza perch\'e $N=12$ sia nella regione critica.
+\end{block}
+\end{wordonframe}
+
+\begin{frame}{Distribution free Tests}
+\keyword{Distribution-free test}: the distribution of the statistic t is known independently of $H_0$.
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{block}{Binned data}
+\begin{itemize}
+\item \keyword{Pearson-$\chi^2$ test}.
+\item \keyword{(GOF con LR)}: not good (James)
+\begin{align*}
+&\ln{L(\mu)}-\ln{L(\hat{\mu})}=-\frac{1}{2}\invers{F}_{\chi_n^2}(1-\alpha)\\
+&p_{\mu}=\int_{t_{\mu,obs}}^{\infty}f_{\chi^2_N}(t_{\mu}|\mu)\,dt_{\mu}
+\end{align*}
+\todo{think about p-value formula for GOF-LR}
+\end{itemize}
+\end{block}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{block}{UnBinned data}
+\begin{itemize}
+\item \keyword{Smirnov-Cramer-von Mises}
+\item \keyword{Test di Kolmogorov-Smirnov}
+\item \keyword{Unbinned likelihood}.
+\end{itemize}
+\end{block}
+\end{column}
+\end{columns}
+\end{frame}
+
+\subsection{Binned GOF}\label{binnedgof}
+
+\begin{frame}{Pearson $\chi^2$ GOF (histograms with k bins): asynt. normality}
+\keyword{Histogram}: N events distributed in k bins with probability
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&p_i(\theta)=f(x_i;\theta)\Delta x\\
+&\prob{(Y_1=y_1,\ldots,Y_{k}=y_{k})}=\frac{n!}{y_1!*\ldots*y_{k}!}p_1^{y_1}\ldots p_{k}^{y_{k}}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&(\vec{n}-N\vec{p})^T\invers{V}(\vec{n}-N\vec{p})\\
+&V\xrightarrow{(k-1)\times(k-1)}W:\ N\invers{W}_{ij}=\frac{1}{p_i}\delta_{ij}+\frac{1}{p_k}
+\end{align*}
+\end{column}
+\end{columns}
+Compare observed data $\vec{n}=(n_1,\ldots,n_k)$ $\sum_in_i=N$ fixed with predicted data $\vec{\nu}=(\nu_1,\ldots,\nu_k)$: $\chi^2=\sum_j\frac{(O_j-E_j)^2}{E_j}$, parameter space $\Omega=\{(p_1,\ldots,p_{k-1}\})$, $\sum_jp_j=1$.
+%Fit hist minimizing $Q_N$
+$H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
+\begin{align*}
+&Q_N=\sum_i^{N}\frac{(Y_i-N\pi_i)^2}{N\pi_i}=\frac{1}{N}\sum^{N}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(N-1)$}\\
+&\sum_i\frac{(n_i-NP_i(\theta))^2}{Np_i}\tag{Pearson $\chi^2$}
+\end{align*}
+$c_{N-1,1-\alpha}$ is $1-\alpha$-quantile di $\chi^2(k-1)$: test di livello $\alpha$ rifiuta $H_0$ se $Q_N>c_{N-1,1-\alpha}$.
+\end{frame}
+
+\begin{frame}{Pearson' $\chi^2$ for Poisson and Gaussian data}
+\begin{align*}
+&\chi^2=\sum_i^N\frac{(Y_i-t_i)^2}{\delta_i^2}\\
+&t_i=\E{[Y_i]},\ \delta_i=\E{[(Y_i-t_i)^2]}
+\end{align*}
+\begin{itemize}
+\item Limite $n_i\ll N$: $n_i=Pois(\nu_i)$, $\chi^2=\sum_i^k\frac{(n_i-\nu_i)^2}{\nu_i}$
+\item $n_i=G(\nu_i,\sigma_i^2)$ (Poisson with $\nu_i\gg1$): Pearson-$\chi^2$ follow chi-squared pdf with k-dof.
+Scaled sample variance chi-square distribution:
+\begin{align*}
+&\iidrv{N}\in G(\mu,\sigma^2),\ s^2=\frac{1}{N-1}\sum_i^N(X_i-\exv{X})^2\\
+&\frac{(N-1)s^2}{\sigma^2}=\sum_i^N(\frac{X_i-\exv{X}}{\sigma})^2\in\chi^2_{N-1}
+\end{align*}
+vedi student pdf.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Power against local alternatives}
+	\begin{itemize}
+		\item $H: p_j=\pi_j$, $j=1,\ldots,k+1$: $Q_n\xrightarrow{d}\chi^2(k)$
+		\item Under alternative hypothesis $K: p_j^{(n)}=\pi_j+n\expy{-1/2}h_j$, $\sum_jh_j=0$: $Q_n\xrightarrow{d}\chi^{2,\lambda}(k)$ and NC parameter $\lambda=\sum_j^{k+1}\frac{h_j^2}{\pi_j}$
+		\item Power of $\chi^2$ test based on $Q_n$ tends to a limit greater than critical value $\alpha$
+	\end{itemize}
+\end{frame}
+
+\begin{frame}{$\chi^2$ Test of uniformity}
+$X_1,\ldots,X_n$ iid RV con pdf $F$; $H: F=F_0(t)=t$ uniform cdf in $(0,1)$. Divido l'intervallo $(0,1)$ in $k+1$ sotto-intervalli di lunghezza $\frac{1}{k+1}$: pdf di $(Y_1,\ldots,Y_{k+1})$ \'e multinomiale e il test che rifiuta H per grandi $\sum_j^{k+1}\frac{(Y_j-\frac{n}{k+1})}{\frac{n}{k+1}}$.
+\end{frame}
+
+
+
+\begin{frame}{GOF for binned data with LR}
+Bin content as Poisson or multinomial - statistic to minimize:
+\begin{align*}
+&\chi^2_{\lambda}(\theta)=-2\log{\lambda(\theta)}=2\sum_i[\mu_i(\theta)-n_i+n_i\log{\frac{n_i}{\mu_i(\theta)}}]
+\end{align*}
+$\mu_i(\theta)=NP_i(\theta)$. Area conserving property: at minimum normalization is automatically correct $\sum\mu_i(\hat{\theta})=\sum_in_i$
+\end{frame}
+
+\subsection{UnBinned GOF}\label{unbinnedgof}
+
+%\begin{frame}{Kolmogorov-Smirnov and Cramer-von Mises tests}
+\begin{frame}{Classes of EDF statistics}
+	Empirical distribution function (EDF): 
+	\begin{align*}
+	&\hat{F}_N(t)=\frac{\#\text{ elementi nel campione }\leq t}{N}=\frac{1}{N}\sum_i^NI_{X(i)\leq x}\\
+	&S_N=\left\{\begin{array}{l}0:\ X<X_{(1)}\\i/N:\ X_{(i)}<X<X_{(i+1)}\\1:\ X>X_{(N)}\end{array}\right.=\frac{1}{N}\sum_i^NI_{X(i)\leq x}\\
+	&X_{(1)}\leq X_{(2)}\leq\ldots\leq X_{(N)}
+	\end{align*}
+from LLN $\lim_{N\to\infty}\prob{[S_N(X)=F(X)]}=1$. For fixed X or t, $S_N(X)$ has binomial distribution since $I_{X(i)\leq x}$ is a bernoulli with $p=F(t)$ and moments:
+\begin{align*}
+&\E{[S_N(X)]}=F(X)\\
+&\E{[(S_N(X)-F(X))^2]}=\frac{1}{N}F(X)[1-F(X)]
+\end{align*}
+Any $d(\hat{F_N},F_0)$ metric on the space of distribution functions is EDF statistics.
+\end{frame}
+%\end{frame}
+
+\begin{frame}{Smirnov-Cramer-von Mises test for unbinned data}
+$H_0$ \'e identificato da $f(X)$:
+\begin{align*}
+&W^2=\int[S_N(X)-F(X)]^2f(X)\,dX\\
+&=\frac{1}{N}[\frac{1}{12N}+\sum_i^N(F(X_i)-\frac{2i-1}{2N})^2]
+\end{align*}
+Pdf di $W^2$ \'e indipendente da distribuzione di $X$: $Y=F(X)$ si ha
+$W^2=\int_0^1[S_N(Y)-Y]^2\,dY$.
+Per determinare il valore critico di $NW^2$ per $\alpha$ si pu\'o usare espressione asintotica della funzione caratteristica di $NW^2$
+\end{frame}
+
+\begin{frame}{Test di Kolmogorov-Smirnov}
+$H_0: F=F_0$, $H_1: F\neq F_0$. Distanza tra la cumulante empirica e l'ipotesi \'e misurata da Statistic: $D_N=\sup_t{|\hat{F}_n(t)-F(t)|}$: largest of $|F_n(y_k)-F_0(y_k)|$, $|F_n(y_{k-1})-F_0(y_k)|$:
+\[D_N=\max_{i}(F(Y_i)-\frac{i-1}{N},\frac{i}{N}-F(Y_i))\]
+Sia $d_{1-\alpha}$ il $(1-\alpha)$-quantile di $D$ per ogni $F$ continua: KS-test rejects $H_0$ if $\sqrt{N}D_N>d_{1-\alpha}$
+\begin{columns}[T]
+\begin{column}{0.7\textwidth}
+\begin{align*}
+&P(D_N=\max|S_N(X)-F_0(X)|>d_{\alpha})=1-\alpha\\
+&\Rightarrow P(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})=1-\alpha
+\end{align*}
+\end{column}
+\begin{column}{0.3\textwidth}
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.99\textwidth]{figures/james/test/gof-kolmogo-critical}\label{fig:gof-kolmogo-critical}
+	\end{figure}
+\end{column}
+\end{columns}
+%\begin{block}{Limiting behaviour of KS test}
+\begin{itemize}
+\item Kolmogorov(33): asintoticamente 
+$\prob{(\sqrt{N}D_N>z)}\to2\sum_k^{\infty}(-1)\expy{k-1}\exp{-2k^2z^2}$ per $F_0$ continua.
+\item KS-test is pointwise consistent in power against any fixed $F\neq F_0$. %$\lim_{n\to\infty}\prob_F{T_n>s_{n,1-\alpha}}\to1$.
+%\item $\lim_{N\to\infty}\prob{(\sqrt{N}D_N>z)}=2\sum_{r=1}^{\infty}(-1)^{r-1}\exp{-2r^2z^2}$: $\prob{(D_N>d_{\alpha})}=\alpha$ define $d_{\alpha}$ as $\alpha$-point of $D_N$, $\prob{(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})}$.
+\item Massey(50): KS-test is biased
+\end{itemize}
+%\end{block}
+\end{frame}
+
+\begin{frame}{Confidence interval, test and needed observations}\frameintoc
+\keyword{2-sided CI to hypothesis test}. Suppose $(1-\alpha)$ Confidence Interval $J_3=[T_L(X),T_U(X)]$ for $\theta$, null $H_0:\ theta=\theta_0$ will be rejected at level $\alpha$ in favour of $H_1:\ \theta\neq\theta_0$ iff $\theta_0$ falls outside $J_3$.
+\keyword{How much observation to get required accuracy?} accuracy $0.05$ ($\pm5\%$??) at $0.99$ CL: probability that $F(X)$ is with the belt $\pm d_{\alpha}$ from $S_N$ is $1-\alpha$, $D_N<0.05<\frac{1.628}{\sqrt{N}}$
+\end{frame}
+
+%AD statistic: $V_n=n\intsinf{}[\hat{F}_n(x)-F_0(x)]^2\frac{1}{F_0(1-F_0)}dF_0(x)$.
+
+\section{Search: stima+test}
+
+\begin{frame}{Sensitivity region}
+Region of parameter m for which power of chosen test is greater equal confidence level chosen for limit in case of no discovery: $1-\beta_{\alpha}(m)>\cl{}$.
+\begin{itemize}
+\item If true m is inside sensitivity region there is probability at least $\cl{}$ that performing experiment will lead to discovery (with significance $\alpha$)
+\item If experiment don't lead to discovery the resulting limits will exclude (at least) entire region at $\cl{}$
+\end{itemize}
+\end{frame}
 
 \end{document}
