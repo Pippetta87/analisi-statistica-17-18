@@ -880,6 +880,28 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 \tableofcontents[currentsection,sectionstyle=show/hide,subsectionstyle=show/show/hide]
 \end{frame}
 
+\subsection{Probabilit\'a occorrenza crescente nel tempo: $R(t)=\alpha t+\beta t^2$ (30/11/2020)}
+
+\begin{frame}{Test per $H_0$: $\beta=0$, con $\alpha=22$ - $t=1,2,3s$, counts $20,45,76$ (my sol)}
+    \begin{itemize}
+        \item Test $H_0$ vs alternativa $\beta>0$ piccolo. Regione critica:
+            \[\PDy{\beta}{\ln{L}}|_{\beta=0}=-\sum_it_i^2+\sum_i\frac{k_it_i}{\alpha}>\lambda_a\]
+            con $a=0.05$ significativit\'a. Utilizzo normalit\'a asintotica dello score - $\PDy{\beta}{\ln{L}}|_{\beta_0}$ con $\beta_0=0$ sotto $H_0$ ha pdf $N(0,I(\beta_0))$: $\lambda_a=z_{1-a}\sqrt{I_{\beta_0}}$ (if interested in one sided-test values of $a$ are half thet on tables for area $a$ of tails outside $\pm\delta$).
+            \begin{align*}
+                &I(\beta_0=)=\E{[(\PDy{\beta}{\ln{L}}|_{\beta=0})^2]}=-\E{[\PtwoDy{\beta}{\ln{L}}|_0]}=\frac{t_i^2}{\alpha}\\
+                &z_{1-a}=1.64\sigma=1.64\sqrt{I(\beta_0=0)}
+            \end{align*}
+        \item Per quale $\beta$ $\pow{}=0.95$:
+            \begin{align*}
+                &\prob{(H_{\beta}|H_0)}=a=0.05=\int_{\lambda_a}^{\infty}G(0,\sigma_{\alpha})\Rightarrow\lambda_a=1.64\sigma_{\alpha}\tag{error I}\\
+                &\sigma_{\alpha}^2=I(\alpha,\beta=0),\ \sigma_{\beta}=I(\alpha,\beta)=\sigma_{\alpha}+\sum\frac{\beta}{\alpha^2}t_i^3\\
+                &\prob{(H_0|H_{\beta})}=b=\int_0^{\lambda_a}G(0,\sigma{\alpha\beta}),\ \pow=1-b\\
+                &F(x)=\frac{1}{2}[1+\erf{(\frac{x}{\sqrt{2}\sigma})}],\ \erf{(x)}=\frac{2x}{\sqrt{\pi}}\exp{-x^2}\sum_{n=0}^{\infty}\frac{(2x^2)^n}{1*3*\ldots*(2n+1)}\\
+                &\erf{(x)}=0.9\approx\underbrace{0.95}_{1-a}-\frac{\lambda_a}{\sqrt{2\pi}\sigma_{\alpha}}\frac{\sigma'^2}{\sigma_{\alpha}}=\underbrace{0.9}_{\erf(\pow=0.95)}
+            \end{align*}
+    \end{itemize}<++>
+\end{frame}
+
 \subsection{Passaggio a livello (17/09/2020)}
 
 \begin{frame}{Tempo medio chiusura da numero di volte che \'e chiuso}

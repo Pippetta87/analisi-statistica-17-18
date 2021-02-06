@@ -726,6 +726,12 @@ $\prob{(\sqrt{N}D_N>z)}\to2\sum_k^{\infty}(-1)\expy{k-1}\exp{-2k^2z^2}$ per $F_0
 
 \section{Search: stima+test}
 
+\begin{frame}{Search}
+    \begin{itemize}
+        \item Test $H_0$: present knowledge vs $H_{\mu}$: discovery - We want limit on $\mu$ even if $H_0$ is not rejected.
+            \item Example: conting experiment (Poisson with noise). $H_0: \pois{(k|B)}$, $H_{\mu}$: $\pois{(k|B+S)}$ - suppose $B(t)$, $S(t)$, how choose t? Discovery based: maximize $\frac{S(t)}{B(t)}$, $\frac{S(t)}{\sqrt{B(t)}}$ (''significance''), $\frac{S(t)}{\sqrt{B(t)+S(t)}}$. Limit based: minimize average expected upper limit on S (not invariant under transformation of observable), minimize median expected upper limit on S (exists only for 1D problem)
+\end{frame}
+
 \begin{frame}{Sensitivity region}
 Region of parameter m for which power of chosen test is greater equal confidence level chosen for limit in case of no discovery: $1-\beta_{\alpha}(m)>\cl{}$.
 \begin{itemize}

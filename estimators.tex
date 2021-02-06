@@ -401,36 +401,42 @@ $\hat{\sigma}^2=\frac{\sum_i^N(x_i-\mu)^2}{N}$ \'e sufficiente per $\sigma^2$ (p
 \keyword{Ex: pdf non della famiglia esponenziale}: Come procedo se pdf non esponenziale (LHC)?
 \end{frame}
 
-\section{Informazione, statistiche sufficienti}\linkdest{infandssuff}
+\section{Score e informazione di Fisher}\linkdest{infandssuff}
 
 \subsection{Informazione}\linkdest{informazione}
 
-\begin{frame}{Informazione di Fischer (Score Variance)}\frameintoc
+\begin{frame}{Definizione e Propriet\'a dell'informazione}
+Propriet\'a informazioni:
+\begin{itemize}
+        \item Informazione scala come numero di misure
+        \item Informazione \'e relativa a quello che vogliamo imparare da esperimento
+        \item Informazione \'e legata alla precisione dell'esperimento
+\end{itemize}
 Informazione contenuta nei dati su un parametro $\Theta$
 \begin{align*}
 &\overbrace{I_X(\Theta)}^{\text{n RV iid:}=nI_{X_1}}=\E_{\Theta}{[(\PDof{\Theta}\log{f(X;\Theta}))^2]}=\overbrace{-\E_{\Theta}{[\PtwoDof{\Theta}\log{f(X;\Theta)}]}}^{\text{se esistono finiti $\PtwoDof{\Theta}$ e $\E{}$}}
 \end{align*}
-%Per due parametri:
-%\begin{align*}
-%&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
-%\end{align*}
-MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
-If Score is twice deriv. resp. $\theta$ and under regularity conditions:
-\begin{align*}
-&\PtwoDof{\theta}\log{f(X;\theta)}=\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}-(\frac{\PDof{\theta}f(X;\theta)}{f(X;\theta)})^2=-(\PDof{\theta}\log{f(X;\theta)})^2\\
-&\E{[\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}]}=\PtwoDof{\theta}\int f(X;\theta)=0
-\end{align*}
-\end{frame}
-
-\begin{frame}{Propriet\'a dell'informazione per trasformazioni}
-\begin{block}{Informazione e statistiche}
 $I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Theta$.
-\end{block}
-\begin{align*}
+\begin{block}{Cambio di osservabile}
+\begin{align*} 
 &Y=h(X)\ 1-1 \Rightarrow I_X=I_Y\\
 &X\to f(X;\Theta)\ Y\to g(Y;\Theta)=f(\invers{h}(Y);\Theta)|\TDy{y}{\invers{h}(Y)}|\\
 &I_Y=\E_Y{[(\PDof{\Theta}\log{g(Y)})^2]}=\E_Y{[(\PDof{\Theta}\log{f(\invers{h}(Y)})^2]}\\
 &=\E_X{[(\PDof{\Theta}\log{f(X)})^2]}
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{frame}{Informazione di Fischer \'e lo Score Variance}\frameintoc
+%Per due parametri:
+%\begin{align*}
+%&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
+%\end{align*}
+    Lo score di Fisher $\PDy{\theta}{\ln{L}}$ \'e distribuito asintoticamente come $N(0,I(\theta_0))$
+If Score is twice deriv. resp. $\theta$ and under regularity conditions:
+\begin{align*}
+&\PtwoDof{\theta}\log{f(X;\theta)}=\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}-(\frac{\PDof{\theta}f(X;\theta)}{f(X;\theta)})^2=-(\PDof{\theta}\log{f(X;\theta)})^2\\
+&\E{[\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}]}=\PtwoDof{\theta}\int f(X;\theta)=0
 \end{align*}
 \end{frame}
 
@@ -706,6 +712,7 @@ $\PDy{\theta}{\log{L_{tot}}}=0$.
 \end{align*}
 \end{block}
 \begin{block}{Pdf dello stimatore tende asintoticamente ad gaussiana}
+MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
 \end{block}
 \begin{block}{MLE per pdf esponenziale}
 Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] il metodo di massima likelihood determina lo stimatore efficiente e senza bias $\hat{M}=\frac{1}{N}\sum_i\alpha(x_i)$ di $M(\theta)=-\frac{\TDy{\theta}{c(\theta)}}{\TDy{\theta}{a(\theta)}}$.
@@ -1018,13 +1025,14 @@ Per dati da gaussiana multi-dimensionale con $\vec{\mu}$ ignota ma covarianza $V
 above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gaussian distributed ($\log(L)=-\chi^2/2$)
 \end{frame}
 
-\begin{frame}{Espansione attorno al $\chi^2_{min}$ per gaussiane cn dipendenza lineare dai params}
-	\begin{figure}
+\begin{frame}{Standard error ellipse for $(\hat{\theta_i},t{\theta_j})$}
+%Espansione attorno al $\chi^2_{min}$ per gaussiane cn dipendenza lineare dai params
+    \begin{figure}
 	\centering
 	\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/james/estimators/estimatorvar}
 	\label{fig:estimatorvar}
 \end{figure}
-contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$: $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$.
+contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$ - expansion of $\chi^2(\theta)$ around $\hat{theta}$ $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$ (relazione approssimata per funzioni non lineari dei parametri - N gaussiane con media ignota e varianza nota).
 \end{frame}
 
 \begin{frame}{Esempi di LS estimators}
