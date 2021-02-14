@@ -236,7 +236,6 @@ pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$, $z=g(x,y)$:
         &\int_{-\infty}^0[\int_{xz}^{\infty}f_Y(y)\,dy]f_X(x)\,dx+\intzi{}[\int_{-\infty}^{zx}f_Y(y)\,dy]f_X(x)\,dx\\
         &f_Z(z)=\TDof{z}F_Z(z)=\intsinf{}|x|f_Y(xz)f_X(x)\,dx
     \end{align*}
-
 \end{frame}
 
 \begin{frame}{Sequenze di RV}\frameintoc
@@ -904,8 +903,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
             \end{align*}
         \item Cumulant of $G(0,\sigma)$:
             \[F(x)=\frac{1}{2}[1+\erf{\frac{x}{\sqrt{2}\sigma}}]\]
-
-    \end{itemize}<++>
+    \end{itemize}
 \end{frame}
 
 \begin{frame}[fragile,allowframebreaks]{Independence of sample mean/variance iff RV iid Gaussian}
@@ -977,12 +975,13 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \end{align*}
 \end{frame}
 
-\begin{frame}{Multinomiale: n trials with one success between k categories}
+\begin{frame}{Multinomiale: N trials, each trials gives one success between k categories}
 	\begin{align*}
-	&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{n!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}:\ \sum x_i=n\\
+	&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{N!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}:\ \sum x_i=N\\
 	&\E{[X_i]}=Np_i\ \var{[X_i]}=Np_i(1-p_i)\\
-	&CF: (\sum_j^kp_j\exp{it_j})^n
-	\end{align*}
+    &CF: (\sum_{j=1}^kp_j\exp{it_j})^N\\
+    &\cov{(k_i,k_j)}=-Np_ip_j
+\end{align*}
 \end{frame}
 
 \begin{wordonframe}{Derivazione pdf Bernoulli}
@@ -1203,6 +1202,17 @@ Funzione caratteristica: $y=\frac{(x_i-\mu_i)}{\sigma_i}$, $z=y^2$
 &\prob{(x=\chi^2_{\nu})}=\frac{1}{2\expy{\nu/2}\Gamma(\frac{\nu}{2})}x\expy{\frac{\nu}{2}-1}\exp{-\frac{x^2}{2}}\xrightarrow{\nu\to\infty}N(\nu,2\nu)
 \end{align*}
 Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
+\end{frame}
+
+\begin{frame}{Chi squared: exact or asymptotic?}
+    \begin{itemize}
+        \item Under multinomial assumption:
+            \[\sum_j^r\frac{(O_j-E_j)^2}{E_j}i=\sum_j^r\frac{(k_j-Np_j)^2}{Np_j}\]
+            is distributed asymptotically as $\chi^2_{r-1}$
+        \item For N RV iid $G(\mu,\sigma^2)$:
+            \[\frac{(N-1)s^2}{\sigma^2}=\frac{\sum_i^N(X_i-\smean{X})^2}{\sigma^2}=\sum_i^N(\frac{X_i-\smean{X}}{\sigma})\]
+            has pdf as $\chi^2_{N-1}$
+    \end{itemize}
 \end{frame}
 
 \section{come lo utilizzo}

@@ -194,6 +194,7 @@ Real parameter family of density $p_{\theta}(x)$ is said to have Monotone LR if 
 		\end{align*}
 	\end{column}
 \end{columns}
+$\psi(x)$ is probability with which null hypothesis is rejected when $X=x$.
 \end{block}
 \begin{block}{One param exponential family}
 Sia $T(x)$ stat sufficiente per parametro $\theta$ e 
@@ -283,7 +284,7 @@ Asymptotically MLE $\hat{\theta}$ attains MVB:
 &\ln{L(\vec{X}|\theta)}-\ln{L(\vec{X}|\hat{\theta})}=\frac{1}{2}\PtwoDy{\theta}{\ln{L}}|_{\theta=\hat{\theta}}(\hat{\theta}-\theta)^2+O(N^{-3})\\
 &\PtwoDy{\theta}{\ln{L}}|_{\theta=\hat{\theta}}\xrightarrow{N\to\infty}\E{[\PtwoDy{\theta}{\ln{L}}]}=-I_X\\
 &L(\vec{X},\vec{\theta})=L(\vec{X},\vec{\theta}_r,\vec{\theta}_s)\propto\Exp{[-\frac{1}{2}(\hat{\theta}-\vec{\theta})^TI(\hat{\theta}-\vec{\theta})]}\\
-&\lambda=\frac{L(\vec{X}|\theta_r,\hat{\theta}_s)}{L(\vec{X}|\hat{\theta_r},\hat{\theta}_s)}=\Exp{[-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^TI_r(\hat{\theta}_r-\theta_{r0})]}
+&\lr=\frac{L(\vec{X}|\theta_r,\hat{\theta}_s)}{L(\vec{X}|\hat{\theta_r},\hat{\theta}_s)}=\Exp{[-\frac{1}{2}(\hat{\theta}_r-\theta_{r0})^TI_r(\hat{\theta}_r-\theta_{r0})]}
 \end{align*}
 %\end{block}
 %\begin{block}{Espansione in $\hat{\theta}-\theta_0$ per $\theta=\theta_0$}
@@ -508,7 +509,7 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
         \end{array}\right.
      \end{align*}
     \begin{columns}[T]
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.55\textwidth}
             Large samples:
             \begin{itemize}
                 \item Assign nemuric rank: $(3,5,5,5,5,5,8)\to(1,3.5,3.5,3.5,3.5,3.5,6)$
@@ -516,7 +517,7 @@ $H_{\lambda}$: $\lambda>0$, $H_0$: $\lambda=0$
                 \item $\frac{U-m_U}{\sigma_U}\sim N(0,1)$, $m_U=\frac{n_1n_2}{2}$, $\sigma_U^2=\frac{n_1n_2(n_1+n_2+1)}{12}$
             \end{itemize}
         \end{column}
-        \begin{column}{0.5\textwidth}
+        \begin{column}{0.45\textwidth}
             \begin{itemize}
                 \item Small samples: THHHHHTTTTTH. We take each T and count how much H it beats, and same for H: $(6,1,1,1,1,1)$, $U=11$ and $(5,5,5,5,5,0)$, $U=25$.
                 \item Confronto valore critico per test bilaterale con size $\alpha$ con valore osservato
@@ -729,8 +730,9 @@ $\prob{(\sqrt{N}D_N>z)}\to2\sum_k^{\infty}(-1)\expy{k-1}\exp{-2k^2z^2}$ per $F_0
 \begin{frame}{Search}
     \begin{itemize}
         \item Test $H_0$: present knowledge vs $H_{\mu}$: discovery - We want limit on $\mu$ even if $H_0$ is not rejected.
-            \item Example: conting experiment (Poisson with noise). $H_0: \pois{(k|B)}$, $H_{\mu}$: $\pois{(k|B+S)}$ - suppose $B(t)$, $S(t)$, how choose t? Discovery based: maximize $\frac{S(t)}{B(t)}$, $\frac{S(t)}{\sqrt{B(t)}}$ (''significance''), $\frac{S(t)}{\sqrt{B(t)+S(t)}}$. Limit based: minimize average expected upper limit on S (not invariant under transformation of observable), minimize median expected upper limit on S (exists only for 1D problem)
-\end{frame}
+            \item Example: counting experiment (Poisson with noise). $H_0: \pois{(k|B)}$, $H_{\mu}$: $\pois{(k|B+S)}$ - suppose $B(t)$, $S(t)$, how choose t? Discovery based: maximize $\frac{S(t)}{B(t)}$, $\frac{S(t)}{\sqrt{B(t)}}$ (''significance''), $\frac{S(t)}{\sqrt{B(t)+S(t)}}$. Limit based: minimize average expected upper limit on S (not invariant under transformation of observable), minimize median expected upper limit on S (exists only for 1D problem)
+\end{itemize}
+            \end{frame}
 
 \begin{frame}{Sensitivity region}
 Region of parameter m for which power of chosen test is greater equal confidence level chosen for limit in case of no discovery: $1-\beta_{\alpha}(m)>\cl{}$.

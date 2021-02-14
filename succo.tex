@@ -899,7 +899,27 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
                 &F(x)=\frac{1}{2}[1+\erf{(\frac{x}{\sqrt{2}\sigma})}],\ \erf{(x)}=\frac{2x}{\sqrt{\pi}}\exp{-x^2}\sum_{n=0}^{\infty}\frac{(2x^2)^n}{1*3*\ldots*(2n+1)}\\
                 &\erf{(x)}=0.9\approx\underbrace{0.95}_{1-a}-\frac{\lambda_a}{\sqrt{2\pi}\sigma_{\alpha}}\frac{\sigma'^2}{\sigma_{\alpha}}=\underbrace{0.9}_{\erf(\pow=0.95)}
             \end{align*}
-    \end{itemize}<++>
+    \end{itemize}
+\end{frame} 
+
+\begin{frame}{Stima ML di $\beta$}
+    \begin{itemize}
+        \item Asintoticamente MLE \'e efficiente: $\var{(\beta)}=\invers{(I(\vec{x}))}$
+            \begin{align*}
+                &I=\E{[(\PDy{\beta}{\ln{L}}|_{\beta_0})^2]}=-\E{[\PtwoDy{\beta}{\ln{L}}|_{\beta_0}]}=\sum_i\E{[k_i]}t_i=\frac{(-t_i^2)}{(\alpha t_i+\beta t_i^2)}=\sum_i\frac{t_i^2}{\alpha}
+            \end{align*}
+                L'equazione di likelihood determina lo stimatore (massimo assoluto di $L$):
+                \[\PDof{\beta}\ln{L}=-\sum_it_i^2+\sum_i\frac{k_it_i^2}{\alpha t_i+\beta t_i^2}\]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Stima di $(\alpha,\beta)$ (metodo momenti?) e GOF}
+    \begin{itemize}
+            \item Stimatori metodo momenti (Equazione di likelihood ha calcoli complessi)
+                \begin{align*}
+                    &a
+                \end{align*}
+    \end{itemize}
 \end{frame}
 
 \subsection{Passaggio a livello (17/09/2020)}

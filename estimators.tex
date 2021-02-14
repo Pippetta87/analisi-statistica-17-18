@@ -31,7 +31,7 @@
 \end{block}
 \end{wordonframe}
 
-\begin{frame}{SP, CP, LP}
+\begin{frame}[allowframebreaks]{SP, CP, LP}
 	\begin{itemize}
 	\item \keyword{Principio di sufficienza}. Se per esperimento E ho statistica sufficiente $T$ allora le inferenze sui parametri osservando $X=x_1$ o $X=x_2$ sono le stesse se $T(x_1)=T(x_2)$.
 	\item \keyword{Principio di condizionalit\'a}: considero due esperimenti $E_1$, $E_2$ i cui risultati seguono distribuzione determinate da parametro comune $\theta$, quindi da esperimento $E^*$, che consiste nel selezionare $E_i$ con stessa probabilit\'a e poi eseguire esperimento $E_i$, si traggono stesse inferenze che da $E_i$, e possiamo ignorare l'esistenza dell'altro esperimento non realizzato.
@@ -432,7 +432,7 @@ $I_X(\Theta)\geq I_T(\Theta)$: l'uguaglianza vale iff T \'e sufficiente per $\Th
 %\begin{align*}
 %&I_X(\Theta)=\begin{pmatrix}I_{11}(\Theta)&I_{12}(\Theta)\\I_{21}(\Theta)&I_{22}(\Theta)\end{pmatrix}\ I_{ij}(\Theta)=-\E{[\frac{\partial^2}{\partial\Theta_i\partial\Theta_j}\log{f(X;\Theta)}]}
 %\end{align*}
-    Lo score di Fisher $\PDy{\theta}{\ln{L}}$ \'e distribuito asintoticamente come $N(0,I(\theta_0))$
+    Lo score di Fisher $\PDy{\theta}{\ln{L}}|_{\theta_0}$ \'e distribuito asintoticamente come $N(0,I(\theta_0))$
 If Score is twice deriv. resp. $\theta$ and under regularity conditions:
 \begin{align*}
 &\PtwoDof{\theta}\log{f(X;\theta)}=\frac{\PtwoDof{\theta}f(X,\theta)}{f(X;\theta)}-(\frac{\PDof{\theta}f(X;\theta)}{f(X;\theta)})^2=-(\PDof{\theta}\log{f(X;\theta)})^2\\
@@ -451,7 +451,7 @@ If Score is twice deriv. resp. $\theta$ and under regularity conditions:
 	\end{block}
 \end{column}
 \begin{column}{0.5\textwidth}
-	\begin{block}{pdf Gauss}
+	\begin{block}{pdf Gauss: $\sigma$ noto}
 		\begin{align*}
 		&\log{f}=-\frac{1}{2}\frac{(x-\mu)^2}{\sigma^2}-\log{(\sqrt{2\pi}\sigma)}\\
 		&I_X(\mu)=\sigma\expy{-2}
@@ -515,6 +515,7 @@ $I_s=I_k$ poich\'e $S$ \'e statistica sufficiente.
 \keyword{Ex: Informazione di binomiale e statistica suff.}
 \end{block}
 \begin{block}{Ex: Pdf uniforme e minimum variance bound per $x_M$}
+Ha senso definire informazione per pdf uniforme?
 \begin{align*}
 &I_{X_1}=I_{x_m}(m)=\frac{N^2}{m}\\
 &\var{[\hat{\theta},\theta]}=\frac{N}{(N+2)(N+1)^2}m\overset{??}{\geq}\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\theta}}(\theta)}=\frac{(1-\frac{1}{N+1})^2}{\frac{N^2}{m^2}}
@@ -605,20 +606,28 @@ Perdita informazione
 \begin{frame}{Utilizzo LLN per costruzione stimatori consistenti}\frameintoc
 Consistenza: $\hat{\theta}\xrightarrow{P}\theta_0$. Una quantit\'a con queste caratteristiche \'e
 \[\invers{N}\sum_ia(X_i)\xrightarrow{N\to\infty}\E{[a(X)]}=\int a(X)f(X;\theta)\,dX=h(\theta)\]
-dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. Se per $\theta_0$ esiste la funzione inversa $\invers{h}[h(\theta_0)]=\theta_0$ si ha $\hat{\theta}=\invers{h}[\invers{N}\sum_i^Na(X_i)]$
+dove $a(X)$ \'e qualsiasi funzione di X con varianza finita: per LLN sample mean is C-estimator of $a(X)$. Se per $\theta_0$ esiste la funzione inversa $\invers{h}[h(\theta_0)]=\theta_0$ quindi $\hat{\theta}=\invers{h}[\invers{N}\sum_i^Na(X_i)]$
 Most used methods making use of LLN:
+\begin{columns}[T]
+    \begin{column}{0.5\textwidth}
 \begin{itemize}
 \item Moments methods
 \item Maximum likelihood method
 \item Least square method
 \end{itemize}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        Stimatori Impliciti
+    \end{column}
+\end{columns}
+<++>
 \end{frame}
 
 \subsection{Metodo dei momenti}
 
 \begin{frame}{Stimatori Consistenti: Metodo dei Momenti (Cowan 128/James 131)}\frameintoc
-Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_i(X)$:
-\[\E{[a_i(x)]}=\int a_i(x)f(x;\theta)\,dx=h_i(\theta)\to\frac{\sum_i\E{[x_i^k]}}{N}\]
+Semplice computazionalmente - Ho N osservazioni $x_1,\ldots,x_n$ di RV iid con pdf $f(x,\theta)$, $\theta=(\theta_1,\ldots,\theta_m)$. Cerco m funzioni linindip $a_j(X)$:
+\[\E{[a_j(x)]}=\int a_j(x)f(x;\theta)\,dx=h_j(\theta)\to\frac{\sum_i\E{[x_i^j]}}{N}\]
 Se $a_j(X_i)=X^j$ $h_j(\theta)$ sono i momenti della distribuzione $\mu_j'(\theta)$.
 %\begin{columns}[T]
 %\begin{column}{0.65\textwidth}
@@ -648,7 +657,7 @@ Se $a_j(X_i)=X^j$ $h_j(\theta)$ sono i momenti della distribuzione $\mu_j'(\thet
 We find $a(X,\theta)$ in maniera che $h(\theta_0)=0$ per il valore vero di $\theta_0$
 \[\E{[a(X,\theta_0)]}=\int a(X,\theta_0)f(X,\theta_0)dX=h(\theta_0)=0\]
 Per LLN \[\xi(\theta_0)=\frac{1}{N}\sum_ia(X_i,\theta_0)\xrightarrow{N\to\infty}\E{a(X,\theta_0)}=0\]
-One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$, $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
+One of the root of $h(\theta)$ give consistent estimate of $\theta_0$ if $\xi$ is differentiable, mean of $\xi$ (!), $\PDy{\theta}{\xi}$ exist and $\lim_{N\to\infty}\E{[\PDy{\theta}{\xi(\theta)}]_{\theta=\theta_0}}\neq0$.
 In practice one find $a(X_i,\theta)$ minimizing other function g: $a(X_i,\theta)=\PDof{\theta}g(X_i,\theta)$ (maximum likelihood and minimum $\chi^2$).
 Metodo momenti: $a(X_i,\theta)\to a(X_i)-\E{[a(X)]}$.
 \end{frame}
@@ -749,7 +758,7 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \end{columns}
 \begin{align*}
 &p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
-&\ln{L}\to\ln{N_T!}+N_T\ln{\Delta}+\sum_j\ln{p_j(x,\theta)}\tag{piccoli bin}
+&\ln{L}\to\ln{N_T!}+N_T\ln{\Delta}+\sum_j\ln{p(x_j,\theta)}\tag{piccoli bin}
 \end{align*}
 \end{block}
 \end{frame}
@@ -758,7 +767,7 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson - N fa parte delle osservabili, se i $k_i$ sono indipendenti la joint pdf \'e prodotto di Poisson:
 \begin{columns}[T]
 \begin{column}{0.5\textwidth}
-\begin{align*}
+\begin{align*} 
 &p(\{k_i\};\theta)=\prod_i\frac{\exp{-\mu_i(\theta)}\mu_i(\theta)^{k_i}}{k_i!}\\
 &\mu_i(\theta)=\E{[k_i(\theta)]}=\mu p_i(\theta)\\
 &\mu=\E{[\sum_ik_i]}=\E{[N]}\\
@@ -766,9 +775,9 @@ La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: g
 \end{align*}
 \end{column}
 \begin{column}{0.5\textwidth}
-	\begin{align*}
+	\begin{align*} 
 	&\ln{L}=\sum_ik_i\ln{\mu_i(\theta)}-\sum\mu_i(\theta)-\sum\ln{k_i!}\\
-	&=\sum k_i\ln{p_i(\theta)}+\sum k_i\ln{\mu}-\mu-\sum\ln{k_i}\\
+	&=\sum k_i\ln{p_i(\theta)}+\sum k_i\ln{\mu}-\mu-\sum\ln{k_i!}\\
 	&=\sum k_i\ln{p_i(\theta)}-\sum\ln{k_i!}+(N\ln{\mu}-\mu)
 	\end{align*}
 \end{column}
@@ -796,7 +805,15 @@ Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j}
 
 %Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 
-\begin{frame}[allowframebreaks,fragile]{Esempi di stimatori di massima likelihood}
+\subsection{EML and ML: unknown signal + known background}
+
+\begin{frame}{EML analysis}
+    $P(x)=N_Ss(x;a)+N_Bb(x)$ where $N_B$ is known, $a, N_S$ are parameters to be found maximizin likelihood $L=\sum_i\ln{P(x_i;a)}-(N_S+N_B)$.
+\end{frame}
+
+\subsection{Esempi di stimatori di massima likelihood}
+
+\begin{frame}{Stimatore p binomiale}
 \keyword{Binomiale: $K_1,\ldots,K_N:\ f(k;n,p)=\binom{n}{p}p^k(1-p)^{n-k}$}
 \begin{align*}
 &\log{(L(\vec{k},p))}=\log{[\prod_i^N\binom{n}{k_i}p^{k_i}(1-p)^{n-k_i}]}\\
@@ -806,6 +823,9 @@ Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j}
 &\var{[\hat{p}]}=\var{[\frac{1}{nN}\sum k_i]}=\frac{1}{n^2N^2}Nnp(1-p)\\
 &I_{k_i}(p)=\frac{nN}{p(1-p)}\to\frac{1}{\var{}}: MVB
 \end{align*}
+\end{frame}
+
+\begin{frame}{Stimatori $\mu$, $\sigma^2$ per gaussiana}
 \keyword{Gaussiana}
 Ho N misure $x_i$ da RV con distro gaussiana: cerco MLE per $\mu, \sigma^2$.
 \begin{columns}[T]
@@ -832,6 +852,9 @@ Maximum of $\log{L}$ for $\mu, \sigma^2$
 \end{column}
 \end{columns}
 $\E{[\hat{\sigma^2}]}=\frac{N-1}{N}\sigma^2$ quindi definisco lo stimatore unbiassato $\hat{\sigma^2}'=\frac{\sum(x_i-\exv{x})^2}{N-1}$.
+\end{frame}
+
+\begin{frame}{Esponenziale}    
 \begin{columns}[T]
 \begin{column}{0.6\textwidth}
 \keyword{Esponenziale: cambio di parametro.} $p(x;\tau)=\frac{1}{\tau}\exp{-\frac{x}{\tau}}=\lambda\exp{-\lambda x}=p(x;\lambda)$:
@@ -869,7 +892,10 @@ $\log{L}=N\log{\lambda}-\lambda\sum_ix_i$, $\TDy{\lambda}{\log{\lambda}}=0$. $\h
 \end{align*}
 \end{column}
 \end{columns}
-\keyword{Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''}
+\end{frame}
+
+\begin{frame}{Altre cose}
+    \keyword{Ex: pdf di $\frac{1}{\sum x_i}$: funzione caratteristica o ''convoluzione''}
 \keyword{Ex: Cambiamento di variabile pdf Erlang}
 \begin{align*}
 &z\to\frac{z}{N}=\exv{x}=\hat{\tau}\\
@@ -960,9 +986,8 @@ I parametri che minimizzano $\chi^2$ are LS estimators  $\hat{\theta}_1,\ldots,\
 	\begin{block}{\keyword{Disuguaglianza di Cramer-Rao (CRLB)}}
 		$X_1,\ldots,X_n$ iid con pdf $f(x,\Theta)$: se supporto $\Omega_{\Theta}$ di $f(x,\Theta)$ non dipende da $\Theta$ e integrali in $dx$ sono invertibili con $\PDof{\Theta}$; esiste stimatore unbiased $T(\vec{X})\xrightarrow{\E{[\ ]}}\tau(\Theta)$ con $\PDy{\Theta}{\tau}$ esiste finito, allora:
 		\begin{align*}
-		&V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\\
-		&=\frac{[\tau'(\Theta)]^2}{nI_{X_1}(\Theta)}\tag{$\tau(\theta)=\theta+b(\theta)$}\\
-		&\E{[(T-\tau(\theta))^2]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2}: \left(\frac{(1+\TDy{\theta}{b})^2}{I_{\hat{\Theta}}(\theta)}\right)
+            &V_{\Theta}[T]\geq\frac{[\tau'(\Theta)]^2}{n\E_{\Theta}[(\PDof{\Theta}\log{f(X_1;\Theta)})^2]}=\frac{[1+\TDy{\theta}{b}]^2}{nI_{X_1}(\Theta)}\tag{$\tau(\theta)=\theta+b(\theta)$}\\
+		&(\E{[(T-\tau(\theta))^2]}=\var{[T]}+\overbrace{[\E{[T]}-\tau(\theta)]^2}^{b^2})
 		\end{align*}
 Parametri multipli: $\cov{[s(x)]}_{ij}\geq(1+\PDy{\mu_k}{b_i})\invers{I}_{kl}(1+\PDy{\mu_j}{b_l})$.
 	\end{block}
@@ -996,13 +1021,16 @@ Dim.:
 \end{frame}
 
 \begin{frame}{Minimum Variance solo per pdf esponenziale}
-Efficienza: $\epsilon_s(\mu)=(1+\PDy{\mu}{b})^2\invers{I}_x\invers{\var{}[s]}$; se $I_s$ \'e lineare: $\var{[s]}\geq\frac{c}{N}$ (e $L$ regolare?).
-Per $\var{[s(x)]}=(1+\PDy{\mu}{b})^2\invers{I}_s$:
-\begin{align*}
-&(s-\E{[s]})\parallel\PDy{\mu}{\log{p(s;\mu)}}\Rightarrow\PDy{\mu}{\log{p(s;\mu)}}=f(\mu)[s-\mu-b(\mu)]\\
-&\Rightarrow\log{p(s;\mu)}=s\int f(\mu)\,d\mu-\int[\mu+b(\mu)]f(\mu)\,d\mu+c\\
-&\Rightarrow p(s;\mu)=\Exp{[\alpha(\mu)s+\beta\mu+c]}
-\end{align*}
+    \keyword{Efficienza stimatore puntuale}: rapporto fra MVB raggiungibile e sua varianza -  $\epsilon_s(\mu)=(1+\PDy{\mu}{b})^2\invers{I}_x\invers{\var{}[s]}$; se $I_s$ \'e lineare: $\var{[s]}\geq\frac{c}{N}$ (e $L$ regolare?).
+    Stimatore $T(x)$ \'e efficiente iff score function $\PDy{\theta}{\ln{p(\vec{x};\theta)}}$ can be written as:
+    \[\PDy{\theta}{\ln{p(\vec{x};\theta)}}=I(\theta)[T(x)-\theta]\]
+    (vedi Kay App 3A)
+%Per $\var{[s(x)]}=(1+\PDy{\mu}{b})^2\invers{I}_s$:
+%\begin{align*}
+%&(s-\E{[s]})\parallel\PDy{\mu}{\log{p(s;\mu)}}\Rightarrow\PDy{\mu}{\log{p(s;\mu)}}=f(\mu)[s-\mu-b(\mu)]\\
+%&\Rightarrow\log{p(s;\mu)}=s\int f(\mu)\,d\mu-\int[\mu+b(\mu)]f(\mu)\,d\mu+c\\
+%&\Rightarrow p(s;\mu)=\Exp{[\alpha(\mu)s+\beta\mu+c]}
+%\end{align*}
 \end{frame}
 
 \begin{frame}{Best Linear Uniform Estimators (\keyword{BLUE})}
@@ -1241,7 +1269,7 @@ Otherwise, (or non gaussian estimators, physical boundary for parameters) one ha
 \end{column}
 \begin{column}{0.6\textwidth}
 	\begin{block}{Costruzione di Neyman}
-		\keyword{Coverage}: $\coverage{(\mu)}=\int_{x:\mu\in f(x)}\prob{(x;\mu)}\,dx$, $f(x)$ associa un intervallo nello spazio dei parametri a una misura; l'algoritmo ha livello di confidenza $\cl=\inf_{\mu\in A}C(\mu)$ cio\'e l'intervallo associato alla data misura ha probabilit\'a $\cl{}$ di contenere il parametro: con misure ripetute $\cl$ volte l'intervallo contiene il parametro.
+		\keyword{Coverage}: Coverage prob. of set $C(X)\subset\Theta$ is the prob. assuming true value is $\theta$ that $C(X)$ contains $\theta$ - $\coverage{(\mu)}=\int_{x:\mu\in f(x)}\prob{(x;\mu)}\,dx$, $f(x)$ associa un intervallo nello spazio dei parametri a una misura; l'algoritmo ha livello di confidenza $\cl=\inf_{\mu\in A}C(\mu)$ cio\'e l'intervallo associato alla data misura ha probabilit\'a $\cl{}$ di contenere il parametro: con misure ripetute $\cl$ volte l'intervallo contiene il parametro.
 	\end{block}
 	\begin{block}{Ordering}
 		''The way I integrate over the data''
@@ -1377,7 +1405,7 @@ Pivot: RV $U(T,\theta)$ funzione di statistica sufficiente e parametro ma la dis
 \keyword{Pivot. 2-sided CI for exponential}:
 \begin{align*}
 &f(x;\theta)=\invers{\theta}\exp{-\frac{x}{\theta}}I(x>0)\ \to\ g(u)=\exp{-u}I(u>0)\\
-&\prob{(a<u<b)}=1-\alpha\Rightarrow\prob{(\theta\in(\invers{b}x,\invers{a}x))}=1-\alpha\ (\alpha\leftrightarrow1-\alpha)
+&\prob{(a<u<b)}=1-\alpha\Rightarrow\prob{(\theta\in(\invers{b}x,\invers{a}x))}=1-\alpha
 \end{align*}
 \end{frame}
 
@@ -1596,8 +1624,8 @@ $H_0: \theta=\theta_0$ against $H_1$ which could be $\theta>\theta_0$, upper bou
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Confidence interval from test inversion}
-	contenu...
+\begin{frame}{Confidence interval from test inversion}\frameintoc
+For each $\theta_0\in\Theta$ testing $H_0:$ $\theta=\theta_0$ vs $H_a$: $\theta\neq\theta_0$ with size $\alpha$. Confidence set $C(X)$ containing $\theta_0\in\Theta$ such that $H_0$ is not rejected is of confidence level $\cl=1-\alpha$ and since test is of level $\alpha$ $\theta_0\in C(X)$ with prob. at least $1-\alpha$.
 \end{frame}
 
 \end{document}
