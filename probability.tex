@@ -35,6 +35,21 @@ $B_n$ partition of sample space
 \end{columns}
 \end{frame}
 
+
+\begin{frame}{Interpretazioni di probabilit\'a}\linkdest{axiomsmplementation}
+\begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
+RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili risultati di una misura/\keyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni). Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
+\[\E_Y{[\E_{XY|Y}{XY|Y}]}=\E_Y{[Y\E_{X|Y}{[X]}]}\]
+\end{block}
+\begin{block}{Probabilit\'a frequentista}
+Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
+\end{block}
+\begin{block}{Probabilit\'a bayesiana}
+Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
+Subjective probability can be associated with value of unknown constants (mass of electron, etc): probability of $95\%$ that electron mass is in given interval.
+\end{block}
+\end{frame}
+
 \begin{frame}{Eventi congiunti}
 \begin{columns}[T]
 \begin{column}{0.3\textwidth}
@@ -88,36 +103,78 @@ T.Bayes: $\frac{P(B|A)P(A)}{P(B)}=P(A|B)=\frac{P(B|A)P(A)}{P(B)}=\frac{P(B\cap A
 \begin{block}{Expectation value and indicator. Chebychev Inequality}
 \begin{align*}
 &\E{[X]}=\int_{\Omega}X(\omega)\,dP(\omega),\ \E{[1_A]}=1*P(A)+0*P(\Omega/A)=P(A)\\
-&\prob{(|X-\mu|\geq k\sigma)}=\E{[I_{|X-\mu|\geq k\sigma}]}=\E{[I_{\frac{|X-\mu|}{k\sigma}\geq 1}]}\\
-&\leq\E{[(\frac{X-\mu}{k\sigma})^2]}\leq\E{[(\frac{X-\mu}{k\sigma})^2]}=\frac{1}{k^2}\frac{\E{[(X-\mu)^2]}}{\sigma^2}\\
-&(\sigma^2=\E{[(X-\mu)^2]}\geq\int_{-\infty}^{\mu-\epsilon}+\int_{\mu+\epsilon}^{\infty}())
+&\prob{(|X-\mu|\geq k\sigma)}=\E{[I_{|X-\mu|\geq k\sigma}]}=\E{[I_{\frac{|X-\mu|}{k\sigma}\geq 1}]}\leq\E{[(\frac{X-\mu}{k\sigma})^2]}=\frac{1}{k^2}\frac{\E{[(X-\mu)^2]}}{\sigma^2}\\
+&(\sigma^2=\E{[(X-\mu)^2]}\geq\int_{-\infty}^{\mu-\epsilon}+\int_{\mu+\epsilon}^{\infty}())\tag{varianza finita}\\
+&\sigma^2=\E{(X-\mu)^2}=\E{[(X-\mu)^2|k\sigma\leq|X-\mu|]}P(k\sigma\leq|X-\mu|)\\
+&+\E{[(X-\mu)^2|k\sigma>|X-\mu|]}P(k\sigma\leq|X-\mu)\geq(k\sigma)^2P(k\sigma\leq|X-\mu|)\\
+&+0*P(k\sigma>|X-\mu|)=k^2\sigma^2P(k\sigma\leq|X-\mu|)
 \end{align*}
 \end{block}
 \end{wordonframe}
 
-
-
-\subsection{Significato di probabilit\'a}\linkdest{axiomsmplementation}
-
-\begin{frame}{Interpretazioni di probabilit\'a}
-\begin{block}{Una variabile casuale assume uno specifico valore per ogni elemento dello spazio campionario S.}
-RV: \sout{Deterministic} Stochastic phenomena (\keyword{frequentista} Possibili risultati di una misura/\keyword{soggettivista}: elementi del sample space sono ipotesi/proposizioni). Expectation value of product of RV:%https://en.wikipedia.org/wiki/Product_distribution:Expectation of product of random variables
-\[\E_Y{[\E_{XY|Y}{XY|Y}]}=\E_Y{[Y\E_{X|Y}{[X]}]}\]
+\begin{frame}{Sequenze di RV}\frameintoc
+\begin{block}{Convergenza in distribuzione}
+$\{X_n\}, X$ RV e $\{F_n\}, F$ cumulanti: $F_n\to F$
 \end{block}
-\begin{block}{Probabilit\'a frequentista}
-Gli elementi di S sono risultati di una misura, un sottoinsieme A corrisponde a qualsiasi risultato nel sottoinsieme: A \'e detto evento. Se A contiene solo un elemento \'e detto evento elementare: $\prob{(A)}=\lim_{n\to\infty}\frac{\text{number of occurrences of outcome A in n measurements}}{n}$.
+\begin{block}{Convergenza in probabilit\'a}
+$\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
 \end{block}
-\begin{block}{Probabilit\'a bayesiana}
-Include relative frequency interpretation: The statement that a measure will yield a given outcome a certain fraction of times can be regarded as a hypothesis.
-Subjective probability can be associated with value of unknown constants (mass of electron, etc): probability of $95\%$ that electron mass is in given interval.
+\begin{block}{\keyword{Teorema di Paul-Levy}}
+\begin{columns}[T]
+	\begin{column}{0.3\textwidth}
+		Se conosco tutti i momenti di una distribuzione conosco la distribuzione? wtf
+	\end{column}
+	\begin{column}{0.7\textwidth}
+	HP.: $\phi_n\to\phi$ quindi sono equivalenti:
+		\begin{itemize}
+			\item $X_n\xrightarrow{D}X$
+			\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
+		\end{itemize}
+		quindi $F_n(x)\to F(x)$.
+	\end{column}
+\end{columns}
 \end{block}
+\begin{block}{Slutsky theorem}
+$\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}\xrightarrow{P}c$, quindi $\{X_n\}+\{Y_n\}\xrightarrow{D}X+c$, $\{X_nY_n\}\xrightarrow{D}c\{X_n\}$, $\{X_n/Y_n\}\xrightarrow{D}\{X_n/c\}$
+\end{block}
+\end{frame}
+
+\begin{frame}{Law uncoscious statistician}
+	\begin{equation*}
+	\E{[g(x)]}=\intsinf{}g(x)\,dF_X(x)(=\sum_xg(x)f_X(x))
+	\end{equation*}
+	$Y=g(X)$, \hypo{g diff., $\invers{g}$ monotonic}:
+	\begin{align*}
+	&\TDof{y}(\invers{g}(y))=\frac{1}{g'(\invers{g}(y))}\\
+	&x=\invers{g}(y)\Rightarrow dx=\frac{1}{g'(\invers{g}(y))}\\
+	&\Rightarrow \intsinf{}g(x)f_X(x)\,dx=\intsinf{}y\invers{g}(y)\frac{dy}{g'(\invers{g}(y))}\\
+	&F_Y(y)=\prob{(Y\leq y)}\Rightarrow F_Y(y)=f_X(\invers{g}(y))\Rightarrow f_Y(y)=f_X(\invers{g})(y)\frac{1}{g'(\invers{g}(y))}\\
+	&\Rightarrow \intsinf{}g(x)f_X(x)\,dx=\intsinf yf_Y(y)\,dy
+	\end{align*}
+\end{frame}
+
+\subsection{Sample: biases}
+
+\begin{frame}[allowframebreaks]{Selection Biases}
+    \begin{itemize}
+        \item Sampling bias: systematic error due to a non-random sample of a population, causing some members of the population to be less likely to be included than others, resulting in a biased sample, defined as a statistical sample of a population in which all participants are not equally balanced or objectively represented.
+\item Time interval: Early termination of a trial at a time when its results support the desired conclusion.
+    A trial may be terminated early at an extreme value (often for ethical reasons), but the extreme value is likely to be reached by the variable with the largest variance, even if all variables have a similar mean.
+\item Exposure (Susceptibility bias): when one disease predisposes for a second disease, and the treatment for the first disease erroneously appears to predispose to the second disease. For example, postmenopausal syndrome gives a higher likelihood of also developing endometrial cancer, so estrogens given for the postmenopausal syndrome may receive a higher than actual blame for causing endometrial cancer.
+\item Data: Partitioning (dividing) data with knowledge of the contents of the partitions, and then analyzing them with tests designed for blindly chosen partitions.
+\item Studies: Selection of which studies to include in a meta-analysis. Performing repeated experiments and reporting only the most favorable results, perhaps relabelling lab records of other experiments as ''calibration tests'', ''instrumentation errors'' or ''preliminary surveys''.
+    Presenting the most significant result of a data dredge as if it were a single experiment (which is logically the same as the previous item, but is seen as much less dishonest).
+\item Attrition: kind of selection bias caused by attrition (loss of participants), discounting trial subjects/tests that did not run to completion. For example, in a test of a dieting program, the researcher may simply reject everyone who drops out of the trial, but most of those who drop out are those for whom it was not working.
+\item Observer selection: An example is the past impact event record of Earth: if large impacts cause mass extinctions and ecological disruptions precluding the evolution of intelligent observers for long periods, no one will observe any evidence of large impacts in the recent past (since they would have prevented intelligent observers from evolving).
+\item Volunteer Bias: Self-selection bias or a volunteer bias in studies offer further threats to the validity of a study as these participants may have intrinsically different characteristics from the target population of the study.
+    \end{itemize}
 \end{frame}
 
 \begin{wordonframe}{Esempio importanza ensamble (selection bias)}
 	%\tikz{\draw[->] (-3.5,0) -- (3.5,0) node [below] {};
 	%	\foreach \x/\d in {-2/T,-1/2T,0/3T,1/4T,2/5T}
 	%	\draw (\x, 0.1) -- (\x, -0.1) node [below] {\shortstack{\d}};}
-	Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia \keyword{pdf esponenziale} $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$.
+    Suppongo che l'intervallo di tempo tra mio arrivo alla fermata e passaggio autobus precedente sia distribuito uniformemente in $[0,T]$ e che la probabilit\'a di tempo $\Delta T$ fra 2 autobus sia \keyword{pdf esponenziale} $p(t;\lambda)=\lambda\exp{-\lambda t}$: $\E{(t_a)}=\E{(tx)}=\E{(t)}\E{(x)}=\frac{T}{2}$, dove $x=0$ impl. $t_a=0$, $x=1$ impl. $t_a=T$.
 	\begin{columns}[T]
 		\begin{column}{0.4\textwidth}
 			Tempo medio attesa, tempo medio ritardo e tempo medio attesa pi\'u ritardo sono uguali? A $\frac{\tau}{2}$?
@@ -233,50 +290,9 @@ pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$, $z=g(x,y)$:
 \begin{frame}{Rapporto di RV}
     \begin{align*}
         &Z=\frac{Y}{X}:\ F_Z(z)=\prob{(\frac{Y}{X}\leq z)}=\prob{(Y\geq zX,X\leq0)}+\prob{(Y\leq zX,X>0)}\\
-        &\int_{-\infty}^0[\int_{xz}^{\infty}f_Y(y)\,dy]f_X(x)\,dx+\intzi{}[\int_{-\infty}^{zx}f_Y(y)\,dy]f_X(x)\,dx\\
+        &\int_{-\infty}^0[\int_{xz}^{\infty}f_Y(y)\,dyf_X(x)]\,dx+\intzi{}[\int_{-\infty}^{zx}f_Y(y)\,dyf_X(x)]\,dx\\
         &f_Z(z)=\TDof{z}F_Z(z)=\intsinf{}|x|f_Y(xz)f_X(x)\,dx
     \end{align*}
-\end{frame}
-
-\begin{frame}{Sequenze di RV}\frameintoc
-\begin{block}{Convergenza in distribuzione}
-$\{X_n\}, X$ RV e $\{F_n\}, F$ cumulanti: $F_n\to F$
-\end{block}
-\begin{block}{Convergenza in probabilit\'a}
-$\prob{(|X_n-X|>\epsilon)}\xrightarrow{n\to\infty}0$
-\end{block}
-\begin{block}{\keyword{Teorema di Paul-Levy}}
-\begin{columns}[T]
-	\begin{column}{0.3\textwidth}
-		Se conosco tutti i momenti di una distribuzione conosco la distribuzione? wtf
-	\end{column}
-	\begin{column}{0.7\textwidth}
-	HP.: $\phi_n\to\phi$ quindi sono equivalenti:
-		\begin{itemize}
-			\item $X_n\xrightarrow{D}X$
-			\item $\Re{\phi}$ continua in $I(0)$ (implica pdf \'e FT di $\phi$?)
-		\end{itemize}
-		quindi $F_n(x)\to F(x)$.
-	\end{column}
-\end{columns}
-\end{block}
-\begin{block}{Slutsky theorem}
-$\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}\xrightarrow{P}c$, quindi $\{X_n\}+\{Y_n\}\xrightarrow{D}X+c$, $\{X_nY_n\}\xrightarrow{D}c\{X_n\}$, $\{X_n/Y_n\}\xrightarrow{D}\{X_n/c\}$
-\end{block}
-\end{frame}
-
-\begin{frame}{Law uncoscious statistician}
-	\begin{equation*}
-	\E{[g(x)]}=\intsinf{}g(x)\,dF_X(x)(=\sum_xg(x)f_X(x))
-	\end{equation*}
-	$Y=g(X)$, \hypo{g diff., $\invers{g}$ monotonic}:
-	\begin{align*}
-	&\TDof{y}(\invers{g}(y))=\frac{1}{g'(\invers{g}(y))}\\
-	&x=\invers{g}(y)\Rightarrow dx=\frac{1}{g'(\invers{g}(y))}\\
-	&\Rightarrow \intsinf{}g(x)f_X(x)\,dx=\intsinf{}y\invers{g}(y)\frac{dy}{g'(\invers{g}(y))}\\
-	&F_Y(y)=\prob{(Y\leq y)}\Rightarrow F_Y(y)=f_X(\invers{g}(y))\Rightarrow f_Y(y)=f_X(\invers{g})(y)\frac{1}{g'(\invers{g}(y))}\\
-	&\Rightarrow \intsinf{}g(x)f_X(x)\,dx=\intsinf yf_Y(y)\,dy
-	\end{align*}
 \end{frame}
 
 \subsection{RV changes examples}
@@ -289,22 +305,37 @@ $X=G(\mu_X,\sigma_X^2)$, $Y=G(\mu_Y,\sigma_Y^2)$, $Z=X+Y$: $Z=G(\mu_X+\mu_Y,\sig
 \item Convolution
 \begin{align*}
 %\invers{(2\pi\sigma_x\sigma_y)}
-&f_Z(z)=\intsinf{}f_Y(z-x)f_X(x)\,dx\propto\intsinf{}\Exp{[\ldots]},\ \zeta=x-\mu_x,\ a=z-(\mu_x+\mu_y):\\ &[\ldots=-\frac{1}{2}[\{\frac{\sigma_x^2+\sigma_y^2}{\sigma_x\sigma_y}\zeta^2-\frac{2a}{\sigma_y^2}\zeta+\frac{\sigma_x^2a}{\sigma_y^2(\sigma_x^2+\sigma_y^2)}\}+\{\frac{a^2}{\sigma_y^2}-\frac{\sigma_x^2a^2}{\sigma_y^2(\sigma_x^2+\sigma_y^2)}\}]]
+&f_Z(z)=\intsinf{}f_Y(z-x)f_X(x)\,dx\propto\intsinf{}\Exp{[\ldots]},\ \zeta=x-\mu_x,\ a=z-(\mu_x+\mu_y):\\
+&[\ldots]=-\frac{1}{2}[\{\frac{\sigma_x^2+\sigma_y^2}{\sigma_x\sigma_y}\zeta^2-\frac{2a}{\sigma_y^2}\zeta+\frac{\sigma_x^2a}{\sigma_y^2(\sigma_x^2+\sigma_y^2)}\}+\{\frac{a^2}{\sigma_y^2}-\frac{\sigma_x^2a^2}{\sigma_y^2(\sigma_x^2+\sigma_y^2)}\}]
 \end{align*}
 %\[f_Z(z)=\intsinf{}\frac{1}{2\pi\sigma_Z\frac{\sigma_X\sigma_Y}{\sigma_Z}}\exp{-\frac{x^2-2x\frac{\sigma_X^2(z-\mu_Y)+\sigma_Y^2\mu_X}{\sigma_Z^2}+\frac{\sigma_X^2(z^2+\mu_Y^2-2z\mu_Y)+\sigma_Y^2\mu_X^2}{\sigma_Z^2}}{2(\frac{\sigma_X\sigma_Y}{\sigma_Z})^2}}\,dx\]
 \item Convolution T. : $f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}[\FT{[f_X]}\FT{[f_Y]}]$
 \[=\invers{\FT{}}[\exp{-i\omega(\mu_X+\mu_Y)}\exp{-\frac{(\sigma_X^2+\sigma_Y^2)\omega^2}{2}}]\]
-\item[(*)] Geometrical: $F(z)=\int_{x+y\leq z}f(x)g(y)\,dxdy$ and after rotation
-\[F(z)=\int_{x'\leq c(z)}f(x')g(y')\,dx'dy'\]
-$c(z)$ is the distance of $x+y=z$ from origin $c=\sqrt{(\frac{z}{2})^2+(\frac{z}{2})^2}$: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, ie $Z=X+Y=N(0,2)$
+\item[(*)] Geometrical: $F(z)=\int_{x+y\leq z}f(x)g(y)\,dxdy$, $f,g\in G(0,1)$,and after rotation
+\[F(z)=\int_{x'\leq c(z)}f(x')g(y')\,dx'dy'\ c=\sqrt{(\frac{z}{2})^2+(\frac{z}{2})^2}\]
+$c(z)$ is the distance of $x+y=z$ from origin: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, ie $Z=X+Y=N(0,2)$; $aX+bY$: $c=\frac{z}{\sqrt{a^2+b^2}}$, $Z\in G(0,a^2+b^2)$.
 \end{itemize}
 \end{frame}
 
-\begin{wordonframe}{\keyword{Sum m iid RV exponentially}}
-$\iidrv$ with exponential pdf, $Y=\iidrv$:
+\begin{wordonframe}{Gaussiana da convoluzione gaussiane}
+    $a=x+y-\mu_X-\mu_Y$, $\zeta=x-\mu_X$:
+    \begin{align*}
+        &[\ldots]=-\frac{1}{2}[\frac{\zeta^2}{\sigma_X^2}+\frac{(a-\zeta)^2}{\sigma_Y^2}]=\frac{1}{2}[\frac{\sigma_X^2+\sigma_Y^2}{\sigma_X^2\sigma_Y^2}-\frac{2a}{\sigma_Y^2}\zeta+\frac{a^2}{\sigma_Y^2}]\\
+        &-\frac{1}{2}[\{\frac{\sigma_X^2+\sigma_Y^2}{\sigma_X^2\sigma_Y^2}\zeta^2-\frac{2a}{\sigma_Y^2}\zeta+\frac{\sigma_X^2a^2}{\sigma_Y^2(\sigma_X^2+\sigma_Y^2)}\}+\{\frac{a^2}{\sigma_Y^2}-\frac{\sigma_X^2a^2}{\sigma_Y^2(\sigma_X^2+\sigma_Y^2)}\}]\\
+        &-\frac{1}{2}[\{\invers{(\frac{\sigma_X^2\sigma_Y^2}{\sigma_X^2+\sigma_Y^2})}(\zeta-\frac{\sigma_Xa}{\sigma_X^2+\sigma_Y^2})^2\}+\{\frac{a^2}{\sigma_X^2+\sigma_Y^2}\}]
+    \end{align*}
+    integrando:
+    \begin{align*}
+        &\invers{(2\pi\sigma_X\sigma_Y)}\Exp{[-\frac{a^2}{2(\sigma_X^2+\sigma_Y^2)}]}\sqrt{\frac{2\pi\sigma_X^2\sigma_Y^2}{\sigma_X^2+\sigma_Y^2}}\\
+        &\frac{1}{\sqrt{2\pi(\sigma_X^2+\sigma_Y^2)}}\Exp{-\frac{(x+y-(\mu_X+\mu_Y))^2}{2(\sigma_X^2+\sigma_Y^2)}}
+    \end{align*}
+\end{wordonframe}
+
+\begin{wordonframe}{\keyword{Sum N iid RV exponentially}}
+    $\iidrv$ with exponential pdf, $Y=\iidrv{X}{+}$:
 \begin{align*}
-&f_Y(y)=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_1)f_2(x_2)\ldots f_m(x_m)\,dx_2\ldots\,dx_m\\
-&=\intsinf{}\ldots\intsinf f_2(y-x_n-\ldots-x_2)f_1(x_2)\ldots f_m(x_m)\,dx_1\,dx_3\ldots\,dx_m=\ldots\\
+&f_Y(y)=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_1)f_2(x_2)\ldots f_m(x_m)\,dx_2\ldots\,dx_N\\
+&=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_2)f_2(x_2)\ldots f_m(x_m)dx_2\ldots\dx_N=\ldots\\
 &\int_a^bf_Y(y)\,dy=\prob{(a\leq Y\leq b)}\\
 &=\prob{(-\infty\leq X_1\leq+\infty\cap\ldots\cap a-x_{n-1}-\ldots-x_1\leq x_n\leq b-x_{n-1}-\ldots-x_1)}\\
 &=\intsinf{}\ldots\int_{a-x_{m-1}-\ldots-x_1}^{b-x_{m-1}-\ldots-x_1}f_1(x_1)\ldots f_n(x_n)\,dx_1\ldots\,dx_n,\ x_n\to y-x_{n-1}-\ldots-x_1\\
@@ -339,7 +370,7 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 			\PDy{y_1}{x_1}(=1)&\PDy{y_1}{x_2}(=1)\\
 			\PDy{y_2}{x_1}(=0)&\PDy{y_2}{x_2}(=1)\\
 			\end{pmatrix}\\
-			&\prob{(z,z_2)}=\frac{\prob_x{(z-z_2)}\prob_y{z_2}}{|\det{J}|}\\
+            &\prob{(z,z_2)}=\frac{\prob_x{(z-z_2)}\prob_y{(z_2)}}{|\det{J}|}\\
 			&\prob{(z)}=\left\{\begin{array}{c}
 			\int_0^z\,dy\ (z<1)\\
 			\int_{z-1}^1\ (z>1)\\
@@ -381,10 +412,10 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 \begin{wordonframe}{Rapporto di due RV $U([0,1])$}
 	\begin{columns}[t]
 		\begin{column}{0.5\textwidth}
-			\begin{align*}
+			\begin{align*} 
 			&S=\frac{x}{y},\ \E{[S]}=\frac{\mu_x}{\mu_y}=1\\
 			&\var{(S)}=\frac{2}{3}\\
-			&((\frac{\mu_x}{\mu_y})^2[\frac{\var{(x,x)}}{\mu_x^2}+\frac{\var_{xy}}{\mu_y^2}-\frac{2\cov_{xy}}{\mu_x\mu_y}])
+            &((\frac{\mu_x}{\mu_y})^2[\frac{\var{(x,x)}}{\mu_x^2}+\frac{\var{(y,y}}{\mu_y^2}-\frac{2\cov_{xy}}{\mu_x\mu_y}])
 			\end{align*}
 			
 			\noindent\rule{.9\textwidth}{0.1pt}\noindent
@@ -408,7 +439,7 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 		\begin{column}{0.4\textwidth}
 			\begin{align*}
 			&z=\frac{x}{y},\ z_2=y\\
-			&\prob{(z,z_2)}=\frac{\prob_x{(zz_2)}\prob_y{z_2}}{|1/z_2|}\\
+            &\prob{(z,z_2)}=\frac{\prob_x{(zz_2)}\prob_y{(z_2)}}{|1/z_2|}\\
 			&\prob{(z)}=\int\prob_x{(xy)}\prob_y{(y)}|y|\,dy\\
 			&\prob{(z)}=\left\{\begin{matrix}\int_0^1y\,dy\ (z\leq1)\\\int_0^{1/z}y\,dy=\frac{1}{2z^2}\ (z\geq1)\\0\ (z<0)\end{matrix}\right.
 			\end{align*}
@@ -422,7 +453,7 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 		\begin{column}{0.5\textwidth}
 			\begin{align*}
 			&x=G{(0,1)},\ y=G{(0,1)},\ z=\frac{x}{y}\\
-			&\prob{(z)}=\frac{1}{2\pi}\intsinf{}dy\,\exp{-\frac{(zy)^2}{2}}|y|\\
+            &\prob{(z)}=\frac{1}{2\pi}\intsinf{}dy\,\exp{-\frac{(zy)^2}{2}}\exp{-\frac{y^2}{2}}|y|\\
 			&=\frac{1}{\pi}\intzi{}\,dy\exp{-\frac{y^2}{2}(1+z^2)}
 			\end{align*}
 		\end{column}
@@ -435,7 +466,7 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 	\end{columns}
 	$\prob{(z)}$ \'e proporzionale a Cauchy:
 	\begin{align*}
-	&\E{(z^2n)}=\infty\\
+        &\E{(z^{2n})}=\infty\\
 	&\E{(z^{2n+1})}=Ind
 	\end{align*}
 	\begin{block}{\keyword{Somma di Cauchy}: $S=x+y$}
@@ -548,6 +579,15 @@ $\iidrv$ with exponential pdf, $Y=\iidrv$:
 		\end{block}
 	\end{column}
 \end{columns}
+\end{frame}
+
+\begin{frame}{Propriet\'a dei momenti}
+    \begin{align*}
+        &\cov(m_i,m_j)=\E{[\frac{\sum_kx_k^i}{N}\frac{\sum_mx_m^j}{N}]}-\E{[\frac{\sum_kx_k^i}{N}]}\E{[\frac{\sum_mx_m^j}{N}]}\\
+        &=\frac{1}{N^2}\sum_{k,m}x_k^ix_m^j-\frac{1}{N^2}\E{[x_k^i]}\E{[x_m^j]}\\
+        &=\frac{1}{N^2}\E{[\sum_kx_k^{i+j}]}+\frac{1}{N^2}\E{[\sum_{k\neq m}x_k^ix_m^j]}-\mu_i'\mu_j'\\
+        &=\frac{\mu_{i+j}'}{N}+\frac{N^2-N}{N}\E{[x_k^i]}\E{[x_m^j]}-\mu_i'\mu_j'=\frac{\mu_{i+j}'-\mu_i'\mu_j'}{N}
+    \end{align*}
 \end{frame}
 
 \begin{wordonframe}{FGM pdf uniforme}
@@ -778,13 +818,13 @@ Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$ (Probability con
 &\var{[S_N]}=\E{[(\sum(X_i-\mu))^2]}
 %&\var{(S_N)}=\sum(\PDy{x_i}{S_N})^2\sigma_i^2
 \end{align*}
-\item Cambio RV: $Y_i=\sqrt{\frac{1}{\sigma^2}}(\overline{X}_i-\mu)$, $\E{[Y_i]}=0$, $\var{Y_i]}=1$
+\item Cambio RV: $Y_i=\sqrt{\frac{1}{\sigma^2}}(X_i-\mu)$, $\E{[Y_i]}=0$, $\var{[Y_i]}=1$
 \begin{columns}[T]
 \begin{column}{0.4\textwidth}
 \begin{align*}
 &\phi(t)=\phi_{\sum\frac{Y_i}{\sqrt{N}}}(t)\\
 &=[\phi_{Y_1}(\frac{t}{\sigma\sqrt{N}})]^N\\
-&=(1-\frac{t^2}{\sqrt{n}}+o(\frac{t^2}{N}))^N
+&=(1-\frac{t^2}{2N}+o(\frac{t^2}{N}))^N
 \end{align*}
 	\end{column}
 	\begin{column}{0.7\textwidth}
@@ -799,7 +839,7 @@ Chebyshev ineq: $\prob{(|X-\mu|\geq k\sigma)}\leq\frac{1}{k^2}$ (Probability con
 %\text{Per T Levy la pdf \'e:}\\
 &\frac{1}{2\pi}\int\exp{-\frac{t^2}{2}}\exp{-itx}d\,t=\frac{1}{2\pi}\int\exp{(t+ix)^2-\frac{x^2}{2}}\,dt=\frac{\exp{-\frac{x^2}{2}}}{\sqrt{2\pi}}
 \end{align*}
-\item Per Paul-L\'evy $\frac{\sum Y_i}{\sqrt{N}}=\overline{X}-\mu$ \'e asintoticamente normale
+\item Per Paul-L\'evy $\frac{\sqrt{n}}{\sigma}(\overline{X}-\mu)$ \'e asintoticamente normale
 \end{itemize}
 \end{frame}
 
@@ -855,9 +895,9 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 
 \begin{wordonframe}{Combinazioni e permutazioni}
 \begin{itemize}
-\item $n!$: permutazioni - modi distinti di prendere n oggetti - se $m<n$ identici si hanno $\frac{n!}{m!}$ modi
-\item Permutazioni senza ripetizioni - Arrengements of n objects taken k at a time: $P_{nk}=\frac{n!}{(n-k)!}$.
-\item Combinazioni senza ripetizioni (non conta l'ordine) $C_{nk}=\frac{n!}{k!(n-k)!}$
+    \item Disposizioni semplici: insieme ordinato di N oggetti presi k alla volta e ogni elemento compare 1 volta: $D_{nk}=N(N-1)\ldots(N-k+t)=\frac{N!}{(N-k)!}$
+    \item $D_{NN}=n!$: permutazioni - modi distinti di prendere n oggetti - se $m<n$ identici si hanno $\frac{n!}{m!}$ modi
+\item Disposizioni senza ripetizione - Combinazioni (non conta l'ordine) $C_{nk}=\frac{n!}{k!(n-k)!}$
 \end{itemize}
 \end{wordonframe}
 
@@ -878,8 +918,8 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 			Moments:
 			\begin{align*}
 			&\mu_0'=1\\
-			&\mu_1'=\mu\ \mu=0\\
-			&\mu_2'=\mu^2+\sigma^2\ \mu_2=\sigma^2\\
+            &\mu_1'=\mu,\ \mu=0\\
+            &\mu_2'=\mu^2+\sigma^2,\ \mu_2=\sigma^2\\
 			&\mu_3'=\mu(\mu^2+3\sigma^2)\ \mu_3=0
 			\end{align*}
 			Unbiased estimators:
@@ -894,10 +934,10 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 
 \begin{frame}{Error function $\erf$}
     \begin{itemize}
-        \item Error function: $\erf{(x)}=\frac{2}{\sqrt{\pi}}\sum_{n=0}^{\infty}\int_0^x\exp{-t^2}\,dt$
+        \item Error function : $\erf{(x)}=\frac{2}{\sqrt{\pi}}\int_0^x\exp{-t^2}\,dt$
             \begin{align*}
                 &\erf{(x)}=\frac{2}{\sqrt{\pi}}\sum_{n=0}^{\infty}\frac{(-1)^nx^{2n+1}}{n!(2n+1)}=\frac{2}{\sqrt{\pi}}(z^2-\frac{2}{3}z^4+\ldots)\\
-                &\erf{(x)}\approx\frac{1}{\sqrt{\pi}}\exp{-x^2}\sum{n=0}^{\infty}\frac{(2x)^{2n+1}}{(2n+1)!!}=\frac{2}{\sqrt{\pi}}\exp{-x^2}(x+\frac{2x^3}{1*3}+\ldots)\tag{$x\ll1$}\\
+                &\erf{(x)}\approx\frac{1}{\sqrt{\pi}}\exp{-x^2}\sum_{n=0}^{\infty}\frac{(2x)^{2n+1}}{(2n+1)!!}=\frac{2}{\sqrt{\pi}}\exp{-x^2}(x+\frac{2x^3}{1*3}+\ldots)\tag{$x\ll1$}\\
                 &\erf{(x)}=\frac{2}{\sqrt{\pi}}[\intzi{\exp{-t^2}}dt-\int_z^{\infty}\exp{-t^2}dt]=1-\frac{\exp{-x^2}}{2x}+\frac{1}{4}\int_x^{\infty}\frac{1}{t^3}d(\exp{-t^2})\tag{$x\gg1$}\\
                 &=1-\frac{\exp{-x^2}}{\sqrt{\pi}}\sum_{n=0}^{\infty}\frac{(-)^n(2n-1)!!}{2^n}x^{-(2n-1)}
             \end{align*}
@@ -949,7 +989,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 	\end{align*}
 	\end{column}
 	\end{columns}
-\[\phi(t)=\E{[\exp{itx}]}=\E{[\exp{itx}I_{\{X=0\}}]}+\E{[\exp{itx}I_{\{X=0\}}]}=q+p\exp{it}\]
+\[\phi(t)=\E{[\exp{itx}]}=\E{[\exp{itx}I_{\{X=0\}}]}+\E{[\exp{itx}I_{\{X=1\}}]}=q+p\exp{it}\]
 \end{block}
 \begin{block}{Distribuzione binomiale: k eventi con probabilit\'a p in sequenza di n estrazioni. Somma n variabili Bernoulli.}
 \begin{align*}
@@ -958,7 +998,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \begin{align*}
 &\E{[k]}=\sum_kk\frac{N!}{k!(N-k)!}p^k(1-p)\expy{N-k}=Np,\ \var{[k]}=Np(1-p)\\
 &\mu'_q=\sum_k^nk^q\binom{n}{k}p^k(1-p)^{n-k}\\
-&\phi_X(t)=\E{[\exp{itX}]}=\sum_k\exp{itk}\binom{n}{k}p^k(1-p)^{n-k}=\phi_B^n(t)
+&\phi_X(t)=\E{[\exp{itX}]}=\sum_k\exp{itk}\binom{n}{k}p^k(1-p)^{n-k}=\phi_B^n(t)=(q+p\exp{it})^n
 \end{align*}
 \end{block}
 \end{frame}
@@ -975,11 +1015,11 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \end{align*}
 \end{frame}
 
-\begin{frame}{Multinomiale: N trials, each trials gives one success between k categories}
+\begin{frame}{Multinomiale: N trials, each trials gives one success between m categories}
 	\begin{align*}
-	&f(x_1,\ldots,x_k;n,p_1,\ldots,p_k)=\frac{N!}{x_1!\ldots x_k!}p_1\expy{x_1}\ldots p_k\expy{x_k}:\ \sum x_i=N\\
-	&\E{[X_i]}=Np_i\ \var{[X_i]}=Np_i(1-p_i)\\
-    &CF: (\sum_{j=1}^kp_j\exp{it_j})^N\\
+	&f(k_1,\ldots,k_m;n,p_1,\ldots,p_m)=\frac{N!}{k_1!\ldots k_m!}p_1\expy{k_1}\ldots p_m\expy{k_m}:\ \sum k_i=N\\
+	&\E{[k_i]}=Np_i\ \var{[k_i]}=Np_i(1-p_i)\\
+    &CF: (\sum_{j=1}^mp_j\exp{it_j})^N\\
     &\cov{(k_i,k_j)}=-Np_ip_j
 \end{align*}
 \end{frame}
@@ -1084,15 +1124,30 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)
 \end{frame}
 
 \begin{frame}{Esponenziale, iperesponenziale, Erlang}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
 \begin{align*}
 &p(t;\lambda)=\lambda\exp{-\lambda t}\\
 &p(t;\xi)=\frac{1}{\xi}\exp{-\frac{t}{\xi}}\\
-&\phi_e(t)=\frac{1}{1-it\xi}
+&F(t)=1-\exp{-\lambda t}\\
+&\E{(T)}=\frac{1}{\lambda}\\
+&\var{(T)}=\frac{1}{\lambda^2}
+\end{align*}            
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{align*}
+&\phi_T(t)=\frac{1}{1-it\xi}\\
+&=\frac{\lambda}{\lambda-it}\\
 &M_e(t)=\lambda\intzi{}\exp{-(\lambda-t)x}\,dx=\frac{\lambda}{\lambda-t}
-\end{align*}
-La \keyword{pdf del tempo fra due eventi di una pdf poissoniana \'e esponenziale}: 
-Hyperexponential:
-Erlang
+            \end{align*}
+        \end{column}
+    \end{columns}
+    
+    La \keyword{pdf del tempo fra due eventi di una pdf poissoniana \'e esponenziale} (:Hyperexponential:Erlang). Exponential and geometric (Prob. number of Bernoulli trials to get one succ.) are only memoryless pdf:
+    \begin{align*}
+        &\prob{(T>s+t|T>s)}=\frac{\prob{(T>s+t\cap T>s)}}{\prob{(T>s)}}=\frac{\prob{(T>s+t)}}{\prob{(T>s)}}\\
+        &\frac{\exp{-\lambda(s+t)}}{\exp{-\lambda s}}=\exp{-\lambda t}=\prob{(T>t)}
+    \end{align*}
 \end{frame}
 
 \begin{frame}{Uniforme}
@@ -1114,6 +1169,21 @@ Erlang
 		&f(Y;m)=n\frac{x^{n-1}}{m^n}
 		\end{align*}
 	\end{block}
+\end{column}
+\end{columns}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&p(x)=\frac{1}{m}\ 0<x<m\ (\int_0^mp(x)d\,x=1)\\
+&\E{[\exp{tx}]}=\int_0^m\frac{\exp{tx}}{m}d\,x=\frac{\exp{mt}-1}{mt}\\
+&=\frac{1}{m}[m+\frac{m^2t}{2}+\frac{m^3t^2}{6}+\frac{m^4t^3}{4!}+\ldots]
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\mu'_2=\frac{m^2}{3}=\sigma^2+\mu^2\\
+&\sigma^2=\mu_2'-(\frac{m^2}{2})^2=\frac{m^2}{12}
+\end{align*}
 \end{column}
 \end{columns}
 \end{frame}

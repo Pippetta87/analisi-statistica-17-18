@@ -45,7 +45,7 @@ Choose hypothesis with maximum a posteriori probability: $\prob{(H_i|Y=y)}$
 Verifico validit\'a di ipotesi $H_0$ risp. a $H_1$ nella misura in cui la pdf di RV X $P_{\theta}$ che appartiene a una classe di pdf $\mathcal{P}=\{P_{\theta}, \theta\in\Omega\}$: le due ipotesi identificano classi mutualmente esclusive di pdf rel a 2 regioni dello spazio dei parametri con $\Omega=\Omega_H\cup\Omega_K$ (se il parametro \'e noto sappiamo con certezza se vera/falsa). Se indico $d_0/d_1$ la decisione di accettare/rifiutare assegno ogni $x\in X$ a regioni complementari $S_0/S_1$ regione di accettanza/critica.
 \end{block}
 \begin{block}{Partizione di X in \keyword{regione di accettanza/critica}}
-Scelgo la staristica del test: la pdf della statistica determina la regione critica sullo spazio campionario $\vec{X}$: la regione critica \'e fissata da livello significativit\'a $\alpha$ ($\prob{(H_1|H_0)}$: scarto $H_0$ quando \'e vera)
+Scelgo la statistica del test: la pdf della statistica determina la regione critica sullo spazio campionario $\vec{X}$: la regione critica \'e fissata da livello significativit\'a $\alpha$ ($\prob{(H_1|H_0)}$: scarto $H_0$ quando \'e vera)
 Test function $\psi(X)$ stands for prob. with wich null hypothesis is rejected when $X=x$ is observed, power $Q(\theta)=\E_{\theta}[\psi(X)]$.
 %Fissato $\cl=1-\alpha$ impongo la condizione
 %P_{\theta}[\delta(X)=d_1]=
@@ -239,7 +239,7 @@ Applico NP a $H_0$ vs $H_1$:
 &\ln{L(\vec{X},\theta_1)}-\ln{L(\vec{X},\theta_0)}\gtrless c_{\alpha} \Rightarrow \PDy{\theta}{\ln{L}}\gtrless q_{\alpha}\\
 &\E{[\PDy{\theta}{\ln{L}}|_{\theta_0}]}=0,\ \E{[(\PDy{\theta}{\ln{L}})^2]}=NI
 \end{align*}
-score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{?1-\alpha}\sqrt{NI}$ (prob. rifiutare $H_0$ vera \'e $\alpha$).
+score \'e asintoticamente normale Test: $\PDy{\theta}{\ln{L}}|_{\theta_0}\gtrless\lambda_{1-\alpha}\sqrt{NI}$ (prob. rifiutare $H_0$ vera \'e $\alpha$).
 \end{frame}
 
 \begin{frame}{Likelihood ratio test (LRT)}\frameintoc\linkdest{LRT}
@@ -319,7 +319,7 @@ Maximum likelihood estimators:
 &H_0: \hat{\sigma}^2=\frac{1}{N}\sum_iX_i^2\\
 &\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_iX_i/N)\expy{N/2}}\\
 &H_1: \hat{\mu}=\exv{X},\ S^2=\frac{1}{N}\sum^N(X_i-\exv{X})^2\\
-&\max_{\sigma^2}L(0,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_i(X_i-\exv{X})^2/N)\expy{N/2}}\\
+&\max_{\sigma^2,\mu}L(\mu,\sigma)=\frac{\exp{-N/2}}{(2\pi)\expy{N/2}(\sum_i(X_i-\exv{X})^2/N)\expy{N/2}}\\
 \end{align*}
 	\end{column}
 \end{columns}
@@ -361,7 +361,7 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 
 \begin{frame}{Sketch's proof Wilks theorem}
 	\begin{itemize}
-		\item MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\ln{L}}{\theta}](\hat{\theta}-\theta)^2}}$.
+		\item MLE: asymptotically MVB $\PDy{\theta}{\ln{L}}=-\E{[\PtwoDy{\theta}{\ln{L}}]}(\hat{\theta}_{MLE}-\theta)$, cio\'e $L\propto\Exp{\frac{1}{2}\E{[\PtwoDy{\theta}{\ln{L}}](\hat{\theta}-\theta)^2}}$.
 		\begin{align*}
 		&\PDy{\vec{\theta}}{\ln{L}}=(\hat{\theta}-\theta)^T\invers{V},\ \invers{V}_{ij}=-\E{[\PtwoMDy{\theta_i}{\theta_j}{\ln{L}}]}\\
 		&L\propto\Exp{-\frac{1}{2}(\hat{\theta}-\vec{\theta})^T\invers{V}(\hat{\theta}-\vec{\theta})}
@@ -381,7 +381,7 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 \subsection{Student's t-test}
 
 \begin{frame}{t statistics}
-$\exv{x}=\frac{1}{N}\sum_iX_i=\hat{\mu}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\exv{x}$ normally distributed around $\mu$, $y=\frac{\exv{x}-\mu}{\sigma(\exv{x})}=\sqrt{N}\frac{\exv{x}-\mu}{\sigma(x)/\sqrt{N}}$ standard normal G. The ''corrected'' sample variance $S_x=\frac{1}{N-1}\sum_i^N(X_i-\mu{x})^2$ is distrib. indep. of $\exv{X}$: $(N-1)S^2/\sigma^2$ distrib as $\chi^2_{N-1}$.
+$\exv{x}=\frac{1}{N}\sum_iX_i=\hat{\mu}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\exv{x}$ normally distributed around $\mu$, $y=\frac{\exv{x}-\mu}{\sigma(\exv{x})}=\frac{\exv{x}-\mu}{\sigma(x)/\sqrt{N}}$ standard normal G. The ''corrected'' sample variance $S_x=\frac{1}{N-1}\sum_i^N(X_i-\mu{x})^2$ is distrib. indep. of $\exv{X}$: $(N-1)S^2/\sigma^2$ distrib as $\chi^2_{N-1}$.
 %$\gets\frac{1}{N(N-1)}\sum_i^N(X_i-\exv{x})^2
 %$(N-1)s_x^2=fs_x^2$ follow $\chi^2$ with $f=N-1$ dof and we define
 \begin{align*}
@@ -619,7 +619,7 @@ $H_0: p_i=\pi_i$ vs $K: p_i\neq\pi_i$.
 &Q_N=\sum_i^{N}\frac{(Y_i-N\pi_i)^2}{N\pi_i}=\frac{1}{N}\sum^{N}\frac{n_i^2}{\pi_i}-N\tag{asintot. $\chi^2(N-1)$}\\
 &\sum_i\frac{(n_i-NP_i(\theta))^2}{Np_i}\tag{Pearson $\chi^2$}
 \end{align*}
-$c_{N-1,1-\alpha}$ is $1-\alpha$-quantile di $\chi^2(k-1)$: test di livello $\alpha$ rifiuta $H_0$ se $Q_N>c_{N-1,1-\alpha}$.
+$c_{N-1,1-\alpha}$ is $1-\alpha$-quantile di $\chi^2(N-1)$: test di livello $\alpha$ rifiuta $H_0$ se $Q_N>c_{N-1,1-\alpha}$.
 \end{frame}
 
 \begin{frame}{Pearson' $\chi^2$ for Poisson and Gaussian data}
@@ -698,7 +698,7 @@ Sia $d_{1-\alpha}$ il $(1-\alpha)$-quantile di $D$ per ogni $F$ continua: KS-tes
 \begin{columns}[T]
 \begin{column}{0.7\textwidth}
 \begin{align*}
-&P(D_N=\max|S_N(X)-F_0(X)|>d_{\alpha})=1-\alpha\\
+&P(D_N=\max|S_N(X)-F_0(X)|<d_{1-\alpha})=1-\alpha\\
 &\Rightarrow P(S_N(X)-d_{\alpha}\leq F(X)\leq S_N(X)+d_{\alpha})=1-\alpha
 \end{align*}
 \end{column}

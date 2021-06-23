@@ -950,7 +950,7 @@ Indipendenza dei due lanci: non sono indipendenti, $\prob{(1|1)}\neq\prob{(1)}$;
 \begin{frame}{Stime intervallari su numero facce freq./Bayes.}
 \begin{itemize}
 \item Limiti Bayesiani al $\cred=90\%$ avendo 1 al primo lancio. Posterior ordering: $\prob{(D_i|1=\frac{1}{i\sum_j^61/j})}$ decrescente con $i$ e si hanno limiti superiori - $4\leq i\leq12$
-\item Limiti frequentisti al $\cl=90\%$ sul numero di facce - \keyword{Scelta algoritmo ordinamento per costruzione banda di Neyman}: prob. ottenere n dal lancio di qualunque dado $\prob{(n|D_i)}=\frac{1}{i},\ n\leq i$ - per limiti superiori si sceglie ord. decrescente in osservabile n ($n=1\Rightarrow i\leq10$ al $\cl=90\%$)
+\item Limiti frequentisti al $\cl=90\%$ sul numero di facce - \keyword{Scelta algoritmo ordinamento per costruzione banda di Neyman}: prob. ottenere n dal lancio di qualunque dado $\prob{(n|D_i)}=\frac{1}{i},\ n\leq i$ - \keyword{limite superiori - ord. decrescente} in osservabile n ($n=1\Rightarrow i\leq10$ al $\cl=90\%$)
 \begin{figure}
 	\centering
 	\includegraphics[angle=90,origin=c, width=0.99\textwidth,keepaspectratio]{figures/compiti/201805Neymandecreasing}
@@ -960,7 +960,7 @@ Indipendenza dei due lanci: non sono indipendenti, $\prob{(1|1)}\neq\prob{(1)}$;
 \end{frame}
 
 \begin{frame}{Banda di Neyman con LR ordering a l\'a FC}
-Ordinamento in base al Rapporto di Likelihood $O(D_i,n)=\lr(n)=\frac{\prob{(n;D_i)}}{\sup_{D_i'}\prob{(n;D_i')}}$: tabella 2 mostra a sinistra banda di confidenza e a destra i valori di LR.
+    \keyword{Likelihood ratio ordering} $O(D_i,n)=\lr(n)=\frac{\prob{(n;D_i)}}{\sup_{D_i'}\prob{(n;D_i')}}$: tabella 2 mostra a sinistra banda di confidenza e a destra i valori di LR.
 \begin{figure}
 	\centering
 	\includegraphics[angle=90,origin=c, width=0.99\textwidth,keepaspectratio]{figures/compiti/201805NeymanLR}
@@ -1294,46 +1294,45 @@ Momenti di ordine $>0$ non esistono: $\var{[\lambda]}=\infty$.
 \end{frame}
 
 \begin{frame}{Limiti di confidenza su numero eventi annuali: p-ordering, limite inferiore, LR-ratio di $\lambda$}
-Stima intervallare di $\lambda=\frac{1}{\tau}$ e $\prob{(t;\lambda)}=\lambda\exp{-\lambda t}$: pdf \'e monotona decrescente in t quindi p-ordering equivale a $o(t)=-t$, $t\leq t_{max}(\lambda)$
-\begin{align*}
+    Stima intervallare di $\lambda=\frac{1}{\tau}$ e $\prob{(t;\lambda)}=\lambda\exp{-\lambda t}$: pdf \'e monotona decrescente in t quindi \keyword{CI basato su p-ordering} equivale a $o(t)=-t$, $t\leq t_{max}(\lambda)$
+\begin{align*} 
 &\int_0^{t_{max}}\lambda\exp{-\lambda t}\,dt=\cl{}:\ t_{max}(\lambda)=-\frac{\log{(1-\cl{})}}{\lambda}
 \end{align*}
 $t_{max}(\lambda)$ decrescente in $\lambda$, da $t<t_{max}(\lambda)$ si vede che la banda di confidenza \'e della forma $t<t_{max}(\lambda)$ porta a limite $\lambda\leq\lambda_{max}$ (limite superiore); l'inversione porta a $\lambda_{max}=-\frac{\log{(1-\cl{})}}{t_m}$.
-Ma limite inferiore a un fenomeno nuovo! $o(t)=t$:
-\begin{equation*}
+Ma limite inferiore a un fenomeno nuovo! \keyword{CI per limite inferior e $o(t)=t$}:
+\begin{equation *}
 \int_{t_{min}}^{\infty}\lambda\exp{-\lambda t}\,dt=\cl{}\Rightarrow t_{min}(\lambda)=-\frac{\log{(\cl{})}}{\lambda}
 \end{equation*}
-banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$. 
-
-LR-ordering:
-\begin{equation*}
+banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$.
+\keyword{CI con LR-ordering}:
+\begin{equation* }
 \lr{}=\frac{\prob{(t;\lambda)}}{\sup_{\lambda}\prob{(t;\lambda)}}=\lambda t\exp{-\lambda t}
 \end{equation*}
 fissato $\lambda$ ha singolo massimo in t e monotona da ambo i lati: usando $o(t)=\lr{(t)}$ ottengo intervallo $[t_{min},t_{max}]$.
 \end{frame}
 
 \begin{frame}{Limiti di credibilit\'a (Bayesiani)}
-Prior impropria: in mancanza di una scala definita utilizzo prior uniforme in $[0,\infty]$ (non normalizabile). Devo normalizare la posterior:
+\keyword{Prior impropria}: in mancanza di una scala definita utilizzo prior uniforme in $[0,\infty]$ (non normalizabile). Devo normalizare la posterior:
 \begin{align*}
 &\pi(\lambda|t_m)\propto \lambda\exp{-t_m\lambda}=L_{t_m}(\lambda)\\
 &\pi(\lambda|t_m)=t_m^2\lambda\exp{-t_m\lambda}
-\end{align*}
+\end{align*} 
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
-Limite bayesiano inferiore
-\begin{equation*}
+        \keyword{CI - Limite bayesiano inferiore}
+\begin{equation*} 
 \int_{\lambda_{min}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\cl{}
 \end{equation*}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-Limite bayesiano bilaterale simmetrico:
+        \keyword{CI - Limite bayesiano bilaterale simmetrico}:
 \begin{align*}
 &\int_0^{\lambda_{min}}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}\\
 &\int_{\lambda_{max}}^{\infty}t_m^2\lambda\exp{-t_m\lambda}\,d\lambda=\frac{1-\cl}{2}
 \end{align*}
 \end{column}
 \end{columns}
-Limite bayesiano utilizzando posterior ordering:
+\keyword{CI - Limite bayesiano con posterior ordering}:
 \begin{align*}
 &\exp{-t_m\lambda_{min}}(t_m\lambda_{min}+1)-\exp{-t_m\lambda_{max}}(t_m\lambda_{max}+1)=\cl\\
 &\lambda_{min}\exp{-t_m\lambda_{min}}-\lambda_{max}\exp{-t_m\lambda_{max}}=0
@@ -1372,12 +1371,12 @@ Ignorando fattori dipendenti solo dai dati
 Le likelihood equations per determinare stimatore $\hat{\alpha}$:
 \begin{align*}
 &\PDy{N_0}{\log{L(N_0,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0\\
-&\PDy{\alpha}{\log{L(N_o,\alpha)}}=\sum_{i=1}^5(\PDy{N_0}{\mu_i}[\frac{n_i-\mu_i}{\mu_i}])=0
+&\PDy{\alpha}{\log{L(N_o,\alpha)}}=0
 \end{align*}
 i conteggi hanno pdf Poisson centrata attorno al valore atteso determinato da numero atomi radioattivi al momento della misure, il rate di decadimento, la durata della misura e l'efficienza del rivelatore; $N_0$ \'e un nuissance parameter.
 \end{frame}
 
-\begin{frame}{Stmatori usando momenti da sequenza temporale discreta}
+\begin{frame}{Stimatori usando momenti da sequenza temporale discreta}
 Risolvere seconda equazione equivale a risolvere quinto grado che \'e fattibile in generale con metodi numerici; dato che ho da determinare 2 parametri considero solo 2 misure - prima e l'ultima - quindi si ha il sistema $n_1=\mu_1$ e $n_5=\mu_5$ per la varianza considero la propagazione della varianza (su $n_1$, $n_5$).
 Adesso considero la distribuzione delle misure come sequenza temporale discreta e applico il metodo dei momenti per estrarre stima contaminazione ($t_i=i-1=0,\ldots,4$):
 \[P(t_i;\alpha)\propto[(1-\alpha)\lambda\exp{-\lambda t_i}+\alpha\lambda'\exp{-\lambda't_i}]\]
@@ -1388,11 +1387,9 @@ Q normalizzazione, i momenti di ordine zero e uno:
 \end{align*}
 si ricavano i 2 parametri uguagliando i valori attesi e osservati:
 \begin{align*}
-&\E{[\mu_0]}=\sum_i^5n_i\\
-&\E{[\mu_1]}=\sum_i^5(i-1)n_i
+&\E{[\mu_0]}=\sum_i^5n_i\quad\E{[\mu_1]}=\sum_i^5(i-1)n_i
 \end{align*}
 \end{frame}
-
 \section{Math tools}
 
 \begin{frame}{algebra basic}

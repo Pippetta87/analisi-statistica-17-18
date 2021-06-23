@@ -318,8 +318,8 @@ Trasformazione di variabile
 \subsection{Statistiche sufficienti: T di Darmois}\linkdest{darmoissuff}
 
 \begin{frame}{Teorema di Darmois}\frameintoc
-\begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente}
-Esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: pdf appartiene alla \keyword{famiglia esponenziale} e supporto non dipende dal parametro.
+\begin{block}{Teorema di Darmois: condizione necessaria e sufficiente per esistenza statistica sufficiente ($p(X,\theta)$ non-compact support)}
+Per distribuzione a supporto non compatto esiste S tale che $\dim{(S)}<\dim{(X)}$ iff: pdf appartiene alla \keyword{famiglia esponenziale} e supporto non dipende dal parametro.
 \begin{equation*}
 p(x|\theta)=\Exp{[\sum_i^n\alpha_i(x)a_i(\theta)+\beta(x)+\gamma(\theta)}
 \end{equation*}
@@ -545,6 +545,80 @@ Perdita informazione
 \end{itemize}
 \end{frame}
 
+\begin{frame}{Likelihood for binned data}
+%N fissato
+%\begin{align*}
+%&\prob{(\vec{k},\theta)}=\frac{N!}{\prod_ik_i!}\prod_i{\underbrace{\prob{(i)}}_{\int_{S_i}\prob{(x|\theta)}\,dx}}\mkern-20mu^{k_i}\\
+%&\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
+%&\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
+%\end{align*}
+\begin{block}{Multinomial model of data: numero totale eventi fissato}
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&\vec{n}=(n_1,\ldots,n_N)\tag{Statistica}\\
+&n_T=\sum^Nn_i\\
+&\vec{\nu}=(\nu_1,\ldots,\nu_N),\ \nu_T=\sum^N\nu_i\\
+&\nu_i(\theta)=\nu_T\int_{bin_i}f(x;\theta)\,dx
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+%&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
+%&\ln{L(\theta)}=\sum^Nn_i\ln{\nu_i(\theta)}
+&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
+&\ln{L(\theta)}=\sum^Nn_i\ln{p_i(\theta)}-\sum^N\ln{n_i!}+\ln{N_T!}\\
+&\TDof{\theta}\sum_i^Nn_i\ln{p_i(\hat{\theta})}=0\tag{MLE}
+\end{align*}
+\end{column}
+\end{columns}
+\begin{align*}
+&p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
+&\ln{L}\to\ln{N_T!}+N_T\ln{\Delta}+\sum_j\ln{p(x_j,\theta)}\tag{piccoli bin}
+\end{align*}
+\end{block}
+\end{frame}
+
+\begin{frame}{\keyword{Extended likelihood}: Caso N non fissato.}
+La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson - N fa parte delle osservabili, se i $k_i$ sono indipendenti la joint pdf \'e prodotto di Poisson:
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\begin{align*} 
+&p(\{k_i\};\theta)=\prod_i\frac{\exp{-\mu_i(\theta)}\mu_i(\theta)^{k_i}}{k_i!}\\
+&\mu_i(\theta)=\E{[k_i(\theta)]}=\mu p_i(\theta)\\
+&\mu=\E{[\sum_ik_i]}=\E{[N]}\\
+&\PDy{\theta}{\mu}=0\Rightarrow\hat{\mu}=N
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+	\begin{align*} 
+	&\ln{L}=\sum_ik_i\ln{\mu_i(\theta)}-\sum\mu_i(\theta)-\sum\ln{k_i!}\\
+	&=\sum k_i\ln{p_i(\theta)}+\sum k_i\ln{\mu}-\mu-\sum\ln{k_i!}\\
+	&=\sum k_i\ln{p_i(\theta)}-\sum\ln{k_i!}+(N\ln{\mu}-\mu)
+	\end{align*}
+\end{column}
+\end{columns}
+%\begin{align*}
+%&\mu_i=\mu_TP_i(\theta)\\	&\prob{(k_i;\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
+%&\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\	&-\mu_TP_i-\bcancel{\log{k!}}\\
+%&\left\{\begin{matrix}\mkern-240mu\PDy{\theta_i}{\log{L}}=0\\\PDy{\mu_T}{\log{L}}=0\ (:L(\bcancel{\mu_T}),\mu_T(\bcancel{\theta_i}) \Rightarrow\ \mu_T=N)\\\end{matrix}\right.
+%\end{align*}
+$\Delta x$ such that 0/1 event per bin: Poisson statistics say that $P_0(x)=\exp{-\Delta xP(x)}$, $P_1(x)=\Delta xP(x)\exp{-\Delta xP(x)}$; in limit $\Delta x\to dx$:
+\begin{align*}
+&L=\prod_{bin_i: 1}\Delta xP(x_i)\prod_j\exp{-\Delta xP(x_j)}\to\prod_iP(x_i)d^Nx\exp{-\mathcal{N}}\Rightarrow\ln{L}=\sum\ln{P(x_i)}-\mathcal{N}(\theta)
+\end{align*}
+oppure: $L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))$
+\end{frame}
+
+\begin{frame}{Risoluzione di un ''fit di likelihood''}\frameintoc
+MLE applicato numericamente: \keyword{fit di likelihood} - Nel limite asintotico si pu\'o contare su CR, se I \'e lineare: $\var{\theta}=\invers{(NI_1)}$; spesso I \'e difficile da calcolare e si ricorre a
+\begin{align*}
+&NI_1=-N\E{[\PtwoDy{\theta}{\log{L}}]}=-N\PtwoDof{\theta}\log{L}\\
+&NI_1\gets-N\PtwoDof{\theta}\frac{\sum_i\log{p(x_i;\theta)}}{N}\to-\PtwoDy{\theta}{\log{L_T(\hat{\theta})}}\tag{LLN}
+\end{align*}
+Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j})}=\invers{[\frac{\partial^2\log{L(\hat{\theta})}}{\partial\theta_i\partial\theta_j}]}$
+\end{frame}
+
 \section{Stimatori puntuali}\linkdest{poestim}
 
 \subsection{Caratteristiche stimatori puntuali e esempi}
@@ -620,7 +694,6 @@ Most used methods making use of LLN:
         Stimatori Impliciti
     \end{column}
 \end{columns}
-<++>
 \end{frame}
 
 \subsection{Metodo dei momenti}
@@ -729,79 +802,6 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \cite{barlow1990extended}
 \end{frame}
 
-\begin{frame}{Likelihood for binned data}
-%N fissato
-%\begin{align*}
-%&\prob{(\vec{k},\theta)}=\frac{N!}{\prod_ik_i!}\prod_i{\underbrace{\prob{(i)}}_{\int_{S_i}\prob{(x|\theta)}\,dx}}\mkern-20mu^{k_i}\\
-%&\max{[\sum_i k_i\log{[\prob{(x;\theta)}\Delta]}]}\\
-%&\to\max{[\sum_i \log{[\prob{(n_i;\theta)}]}]}
-%\end{align*}
-\begin{block}{Multinomial model of data: numero totale eventi fissato}
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\vec{n}=(n_1,\ldots,n_N)\tag{Statistica}\\
-&n_T=\sum^Nn_i\\
-&\vec{\nu}=(\nu_1,\ldots,\nu_N),\ \nu_T=\sum^N\nu_i\\
-&\nu_i(\theta)=\nu_T\int_{bin_i}f(x;\theta)\,dx
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-%&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
-%&\ln{L(\theta)}=\sum^Nn_i\ln{\nu_i(\theta)}
-&f(\vec{n},\theta)=\frac{n_T!}{n_1!\ldots n_N!}(\frac{\nu_1}{n_T})^{n_1}\ldots(\frac{\nu_N}{n_T})^{n_N}\\
-&\ln{L(\theta)}=\sum^Nn_i\ln{p_i(\theta)}-\sum^N\ln{n_i!}+\ln{N_T!}\\
-&\TDof{\theta}\sum_i^Nn_i\ln{p_i(\hat{\theta})}=0\tag{MLE}
-\end{align*}
-\end{column}
-\end{columns}
-\begin{align*}
-&p_i(\theta)\to\Delta P(x,\theta)\tag{Limite}\\
-&\ln{L}\to\ln{N_T!}+N_T\ln{\Delta}+\sum_j\ln{p(x_j,\theta)}\tag{piccoli bin}
-\end{align*}
-\end{block}
-\end{frame}
-
-\begin{frame}{\keyword{Extended likelihood}: Caso N non fissato.}
-La normalizzazione \'e data dal numero di eventi attesi $\mathcal{N}(\theta)$: gli eventi osservati N fluctuates as Poisson - N fa parte delle osservabili, se i $k_i$ sono indipendenti la joint pdf \'e prodotto di Poisson:
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*} 
-&p(\{k_i\};\theta)=\prod_i\frac{\exp{-\mu_i(\theta)}\mu_i(\theta)^{k_i}}{k_i!}\\
-&\mu_i(\theta)=\E{[k_i(\theta)]}=\mu p_i(\theta)\\
-&\mu=\E{[\sum_ik_i]}=\E{[N]}\\
-&\PDy{\theta}{\mu}=0\Rightarrow\hat{\mu}=N
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-	\begin{align*} 
-	&\ln{L}=\sum_ik_i\ln{\mu_i(\theta)}-\sum\mu_i(\theta)-\sum\ln{k_i!}\\
-	&=\sum k_i\ln{p_i(\theta)}+\sum k_i\ln{\mu}-\mu-\sum\ln{k_i!}\\
-	&=\sum k_i\ln{p_i(\theta)}-\sum\ln{k_i!}+(N\ln{\mu}-\mu)
-	\end{align*}
-\end{column}
-\end{columns}
-%\begin{align*}
-%&\mu_i=\mu_TP_i(\theta)\\	&\prob{(k_i;\theta)}=\frac{\prod_i\exp{-\mu_TP_i}(\mu_TP_i)^{k_i}}{k_i!}\\
-%&\log{L}=\sum_ik_i\log{P_i(\theta)}+k_i\log{\mu_T}\\	&-\mu_TP_i-\bcancel{\log{k!}}\\
-%&\left\{\begin{matrix}\mkern-240mu\PDy{\theta_i}{\log{L}}=0\\\PDy{\mu_T}{\log{L}}=0\ (:L(\bcancel{\mu_T}),\mu_T(\bcancel{\theta_i}) \Rightarrow\ \mu_T=N)\\\end{matrix}\right.
-%\end{align*}
-$\Delta x$ such that 0/1 event per bin: Poisson statistics say that $P_0(x)=\exp{-\Delta xP(x)}$, $P_1(x)=\Delta xP(x)\exp{-\Delta xP(x)}$; in limit $\Delta x\to dx$:
-\begin{align*}
-&L=\prod_{bin_i: 1}\Delta xP(x_i)\prod_j\exp{-\Delta xP(x_j)}\to\prod_iP(x_i)d^Nx\exp{-\mathcal{N}}\Rightarrow\ln{L}=\sum\ln{P(x_i)}-\mathcal{N}(\theta)
-\end{align*}
-oppure: $L=\prod_iP(x_i)\frac{\exp{-\mathcal{N}}}{N!}\ (P(x)=\mathcal{N}p(x))$
-\end{frame}
-
-\begin{frame}{Risoluzione di un ''fit di likelihood''}\frameintoc
-MLE applicato numericamente: \keyword{fit di likelihood} - Nel limite asintotico si pu\'o contare su CR, se I \'e lineare: $\var{\theta}=\invers{(NI_1)}$; spesso I \'e difficile da calcolare e si ricorre a
-\begin{align*}
-&NI_1=-N\E{[\PtwoDy{\theta}{\log{L}}]}=-N\PtwoDof{\theta}\log{L}\\
-&NI_1\gets-N\PtwoDof{\theta}\frac{\sum_i\log{p(x_i;\theta)}}{N}\to-\PtwoDy{\theta}{\log{L_T(\hat{\theta})}}\tag{LLN}
-\end{align*}
-Risoluzione asintotica si pu\'o stimare con $\cov{(\hat{\theta_i},\hat{\theta_j})}=\invers{[\frac{\partial^2\log{L(\hat{\theta})}}{\partial\theta_i\partial\theta_j}]}$
-\end{frame}
 
 %Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
 
@@ -1060,7 +1060,7 @@ above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gauss
 	\includegraphics[width=0.9\textwidth,keepaspectratio]{figures/james/estimators/estimatorvar}
 	\label{fig:estimatorvar}
 \end{figure}
-contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$ - expansion of $\chi^2(\theta)$ around $\hat{theta}$ $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$ (relazione approssimata per funzioni non lineari dei parametri - N gaussiane con media ignota e varianza nota).
+contours in parameter space whose tangents are $\hat{\theta}_i\pm\hat{\sigma}_i$ - expansion of $\chi^2(\theta)$ around $\hat{\theta}$ $\chi^2(\vec{\theta})=\chi^2(\hat{\theta})+1$ (relazione approssimata per funzioni non lineari dei parametri - N gaussiane con media ignota e varianza nota).
 \end{frame}
 
 \begin{frame}{Esempi di LS estimators}
@@ -1210,7 +1210,7 @@ Otherwise, (or non gaussian estimators, physical boundary for parameters) one ha
 \begin{frame}{}
 \begin{block}{\keyword{Credibility (della posterior)}}
 	\begin{align*}
-	&\cred{(x)}=\int_{\mu\in\inf(x)}\Pi(\mu|x)\,d\mu=\int_{\mu\inf(x)}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}
+        &\cred{(x)}=\int_{f(\vec{x};\vec{\theta})>c(\vec{\theta})}\Pi(\mu|x)\,d\mu=\int_{\ldots}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}
 	\end{align*}
 \end{block}
 	\begin{picture}(100,130)
