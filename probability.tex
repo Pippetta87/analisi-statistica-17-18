@@ -153,6 +153,22 @@ $\{X_n\},\{Y_n\}$ sequence of scalar/vector RV: $\{X_n\}\xrightarrow{D}X,\{Y_n\}
 	\end{align*}
 \end{frame}
 
+\begin{frame}{Inequalities}
+    \begin{itemize}
+        \item $C_r$-inequalitiy $\E{[X+Y]}\leq C_r\E{[X^r]}+c_r\E{[Y^r]}$, $c_r=\lbt{1:\ 0<r\leq1}{2^{r-1}:\ r\geq1}$.
+        \item Holder: $\E{[XY]}\leq(\E{|X|^r})^{\frac{1}{r}}(\E{[|Y|^s]})^{\frac{1}{s}}$ where $\frac{1}{r}+\frac{1}{s}=1$.
+        \item CS: $(\E{[XY]})^2\leq\E{[X^2]}\E{[Y^2]}$
+        \item Lyapunov: $(\E{[X^r]})^{\frac{1}{r}}$ cresci con $r\geq0$
+        \item Minkowski: $r\geq1$, $(\E{[(X+Y)^r]})^{\frac{1}{r}}\leq(\E{[X^r]})^{\frac{1}{r}}+(\E{[Y^r]})^{\frac{1}{r}}$
+        \item Markov: $\prob{(|X|\geq\epsilon)}\leq\frac{\E{[X^r]}}{\epsilon^r}$
+        \item Chebyschev: $\prob{(|X-\mu|\geq\epsilon)}\leq \frac{\var{[X]}}{\epsilon^2}$
+        \item Jensen: g convex on $(a,b)$:
+            \begin{align*}
+                &\prob{(x\in(a,b))}=1,\ \E{[X]}<\infty:\\
+                &g(\E{[X]})\leq\E{[g(X)]}
+            \end{align*}
+    \end{itemize}
+\end{frame}
 \subsection{Sample: biases}
 
 \begin{frame}[allowframebreaks]{Selection Biases}
@@ -274,7 +290,7 @@ pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$, $z=g(x,y)$:
 		\begin{column}{0.7\textwidth}
 			\begin{align*}
 			&f(z)d\,z=\int_{d\,S}g(x)h(y)d\,xd\,y\\
-			&=\intsinf{}g(x)d\,x\int_{\frac{z}{|x|}}^{\frac{z+d\,s}{|x|}}h(y)d\,y\\
+			&=\intsinf{}g(x)d\,x\int_{\frac{z}{|x|}}^{\frac{z+d\,z}{|x|}}h(y)d\,y\\
 			&f(z)=\intsinf{}g(\frac{z}{y})h(y)\frac{d\,y}{|y|}
 			\end{align*}
 		\end{column}
@@ -300,9 +316,9 @@ pdf di x \'e $g(x)$ e pdf di y \'e $h(y)$, $z=g(x,y)$:
 \begin{frame}{Sum of two Gaussian}
 $X=G(\mu_X,\sigma_X^2)$, $Y=G(\mu_Y,\sigma_Y^2)$, $Z=X+Y$: $Z=G(\mu_X+\mu_Y,\sigma_X^2+\sigma_Y^2)$
 \begin{itemize}
-\item C. function: $\phi_{X+Y}(t)=\E{[\exp{it(X+Y)}]}$
+\item C. function: $\phi_{X+Y}(t)=\E{[\exp{it(X+Y)} ]}$
 \[\phi_{X+Y}(t)=\phi_X(t)\phi_Y(t)=\exp{it\mu_X-\frac{\sigma_X^2t^2}{2}}\exp{it\mu_Y-\frac{\sigma_Y^2t^2}{2}}\]
-\item Convolution
+\item Convolution 
 \begin{align*}
 %\invers{(2\pi\sigma_x\sigma_y)}
 &f_Z(z)=\intsinf{}f_Y(z-x)f_X(x)\,dx\propto\intsinf{}\Exp{[\ldots]},\ \zeta=x-\mu_x,\ a=z-(\mu_x+\mu_y):\\
@@ -335,7 +351,7 @@ $c(z)$ is the distance of $x+y=z$ from origin: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, 
     $\iidrv$ with exponential pdf, $Y=\iidrv{X}{+}$:
 \begin{align*}
 &f_Y(y)=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_1)f_2(x_2)\ldots f_m(x_m)\,dx_2\ldots\,dx_N\\
-&=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_2)f_2(x_2)\ldots f_m(x_m)dx_2\ldots\dx_N=\ldots\\
+&=\intsinf{}\ldots\intsinf f_1(y-x_n-\ldots-x_2)f_2(x_2)\ldots f_m(x_m)dx_2\ldots\ dx_N=\ldots\\
 &\int_a^bf_Y(y)\,dy=\prob{(a\leq Y\leq b)}\\
 &=\prob{(-\infty\leq X_1\leq+\infty\cap\ldots\cap a-x_{n-1}-\ldots-x_1\leq x_n\leq b-x_{n-1}-\ldots-x_1)}\\
 &=\intsinf{}\ldots\int_{a-x_{m-1}-\ldots-x_1}^{b-x_{m-1}-\ldots-x_1}f_1(x_1)\ldots f_n(x_n)\,dx_1\ldots\,dx_n,\ x_n\to y-x_{n-1}-\ldots-x_1\\
@@ -566,7 +582,7 @@ $c(z)$ is the distance of $x+y=z$ from origin: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, 
 	\begin{column}{0.5\textwidth}
 		\begin{align*}
 		&\PDyn{t}{M_X}{n}|_{t=0}=\E{[x^n]}=\mu_n'\\
-		&\PDyn{(it)}{\phi_X}{n}|_{t=0}=(-i)^n\E{[x^n]}\\
+		&\PDyn{(it)}{\phi_X}{n}|_{t=0}=\E{[x^n]}\\
 		&\phi_X(t)=\E{[\sum_r\frac{(itX)^r}{r!}]}\\
 		&=\sum_r\frac{(it)^r}{r!}\E{[X^r]}=\sum_r\frac{(it)^r}{r!}\mu_r'
 		\end{align*}
@@ -583,10 +599,10 @@ $c(z)$ is the distance of $x+y=z$ from origin: $F(z)=\Phi(\frac{z}{\sqrt{2}})$, 
 
 \begin{frame}{Propriet\'a dei momenti}
     \begin{align*}
-        &\cov(m_i,m_j)=\E{[\frac{\sum_kx_k^i}{N}\frac{\sum_mx_m^j}{N}]}-\E{[\frac{\sum_kx_k^i}{N}]}\E{[\frac{\sum_mx_m^j}{N}]}\\
-        &=\frac{1}{N^2}\sum_{k,m}x_k^ix_m^j-\frac{1}{N^2}\E{[x_k^i]}\E{[x_m^j]}\\
+    &\cov(m_i,m_j)=\E{[(m_i-\E{[m_i])(m_j-\E{[m_j]})})]}\\
+    &=\E{[\frac{\sum_kx_k^i}{N}\frac{\sum_mx_m^j}{N}]}-\E{[\frac{\sum_kx_k^i}{N}]}\E{[\frac{\sum_mx_m^j}{N}]}=\frac{1}{N^2}\E{[\sum_{k,m}x_k^ix_m^j]}-\frac{1}{N^2}\E{[\sum_kx_k^i]}\E{[\sum_mx_m^j]}\\
         &=\frac{1}{N^2}\E{[\sum_kx_k^{i+j}]}+\frac{1}{N^2}\E{[\sum_{k\neq m}x_k^ix_m^j]}-\mu_i'\mu_j'\\
-        &=\frac{\mu_{i+j}'}{N}+\frac{N^2-N}{N}\E{[x_k^i]}\E{[x_m^j]}-\mu_i'\mu_j'=\frac{\mu_{i+j}'-\mu_i'\mu_j'}{N}
+        &=\frac{\mu_{i+j}'}{N}+\underbrace{(N^2-N)}_{\sum\to}\frac{1}{N^2}\E{[x_k^i]}\E{[x_m^j]}-\mu_i'\mu_j'=\frac{\mu_{i+j}'-\mu_i'\mu_j'}{N}
     \end{align*}
 \end{frame}
 
@@ -655,140 +671,34 @@ Per gaussiana: $\phi_{\overline{X}}(t)=\exp{-\frac{t^2}{4}}$, $\sigma^2\to\frac{
 \begin{wordonframe}{Funzioni caratteristiche}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
-Gaussiana: $\phi_X(t)=\exp{\mu it-\frac{\sigma^2t^2}{2}}$
-	\end{column}
-	\begin{column}{0.5\textwidth}
-Poissoniana: $\Phi_X(t)=\exp{\lambda(\exp{it}-1)}$
-	\end{column}
-\end{columns}
-\end{wordonframe}
-
-\section{Math tools}\linkdest{math}
-
-\begin{wordonframe}{Binomials coeff.}\frameintoc
-	\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}\\
-&\sum_{j=0}^n\binom{n}{j}\binom{m}{k-j}=\binom{n+m}{k}
-\end{align*}
-\end{column}
-	\end{columns}
-\end{wordonframe}
-
-\begin{wordonframe}{Propriet\'a Trasformata di Fourier}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-f(x)\FT{}\begin{matrix}
-\hat{f}(\omega)=\frac{1}{\sqrt{2\pi}}\intsinf\,f(x)\exp{-i\omega x}\,dx\\
-\hat{f}(\nu)=\intsinf\,f(x)\exp{-i\nu x}\,dx\\
-\end{matrix}
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{align*}
-&a*f(x)+bg(x)\FT{}a\hat{f}(\nu)+b\hat{g}(\nu)\\
-&h(x)=\exp{2\pi ix\nu_0}f(x)\FT{}\hat{f}(\nu-\nu_0)
-\end{align*}
-\end{column}
-\end{columns}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-Scalar: \[f(ax)\FT{}\frac{1}{|a|}\hat{f}(\frac{\omega}{a}) \]
-Translations:
-\[f(x-a)\FT{}\exp{-ia\nu}\hat{f}(\nu)f(x)\exp{iax}\]
-\[\hat{f}(\xi-\frac{a}{2\pi}) \hat{f}(\nu-a)\]
-Derivates:
-\[\frac{d^n\,f(x)}{dx^n}\FT{}(i\omega)^n\hat{f}(\omega)\]
-\[x^nf(x)\FT{}i^n\frac{d^n\hat{f}(\omega)}{d\omega^n}\]
-\end{column}
-\begin{column}{0.5\textwidth}
-Inverse: \[\hat{a} f(-\omega) 2\pi f(-\nu)\]
-Convoluzione e prodotto:
-\begin{align*}
-&(f*g)(x)\FT{}\sqrt{2\pi}\hat{f}(\omega)\hat{g}(\omega)\\
-&\hat{f}(\nu)\hat{g}(\nu)\\
-&f(x)g(x)\FT{}\frac{1}{\sqrt{2\pi}}(\hat{f}*\hat{g})(\omega)\\
-&\FT{}\frac{1}{2\pi}(\hat{f}*\hat{g})(\nu)\\
-&f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}{[\FT{[f_X]}\FT{[f_Y]}]}
-\end{align*}
-
-\end{column}
-\end{columns}
-\end{wordonframe}
-
-\begin{wordonframe}{Trasformata di Fourier notevoli}
-\begin{align*}
-& 1 & &\sqrt{2\pi}\delta(\omega) & &2\pi\delta(\nu)\\
-& \delta(x) & &(2\pi)^{-\frac{1}{2}} & &1\\
-& \exp{iax} & &\sqrt{2\pi}\delta(\omega-a) & &2\pi\delta(\nu-a)\\
-& x^n & &i^n\sqrt{2\pi}\delta^{(n)}(\omega) & &2\pi i^n\delta^{(n)}(\nu)\\
-& \frac{1}{x^n} & &-i\sqrt{\frac{\pi}{2}}\frac{(-i\omega)^{n-1}}{(n-1)!}\sgn{(\omega)} & &-i\pi\frac{(-i\nu)^{n-1}}{(n-1)!}\sgn{(\nu)}\\
-& |x|^{\alpha} & &\frac{-2}{\sqrt{2\pi}}\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\omega|^{\alpha+1}} & &-2\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\nu|^{\alpha+1}}\\
-& \frac{1}{\sqrt{|x|}} & &{|\omega|}^{-\frac{1}{2}} & &\sqrt{2\pi}\nu^{-\frac{1}{2}}\\
-& \sgn{x} & &\sqrt{\frac{2}{\pi}}\frac{1}{i\omega} & &\frac{2}{i\nu}\\
-& \rect{(ax)} & &\frac{1}{\sqrt{2\pi a^2}}\sinc{(\frac{\omega}{2\pi a})} & &\frac{1}{|a|}\sinc{(\frac{\nu}{2\pi a})}\sinc{(ax)}\\
-\end{align*}
-
-\end{wordonframe}
-
-\begin{wordonframe}{Trasformata di Fourier notevoli II}
-
-\begin{align*}
-&\sinc{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\rect{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\rect{(\frac{\nu}{2\pi a})}\\
-&\sinc^2{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\tri{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\tri{(\frac{\nu}{2\pi a})}\\
-&\tri{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\sinc^2{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\sinc^2{(\frac{\nu}{2\pi a})}\\
-&\exp{-\alpha x^2} & \frac{1}{\sqrt{2\alpha}}\exp{-\frac{\omega^2}{4\alpha}} & \sqrt{\frac{\pi}{\alpha}}\exp{-\frac{\nu^2}{4\alpha}}\\
-&\exp{-a|x|} & \sqrt{\frac{2}{\pi}}\frac{a}{a^2+\omega^2} & \frac{2a}{a^2+\nu^2}\exp{-\frac{a^2x^2}{2}}\\
-&\exp{-\frac{a^2x^2}{2}}H_n(ax) & \frac{(-i)^n}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\omega}{a}) & \frac{(-i)^n\sqrt{2\pi}}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\nu}{a})\\
-&\exp{-a|x|} & \frac{2a}{x^2+a^2}
-\end{align*}
-\end{wordonframe}
-
-\begin{frame}{Integrali}\frameintoc
-\begin{columns}[T]
-\begin{column}{0.5\textwidth}
-\keyword{Integrazione su $C$}:
-\begin{align*}
-&\oint_{\gamma}f(z)\,dz=2\pi i\sum I(\gamma,a_k)Res(f,a_k)\\
-&\Res{(f, a_k)}=\frac{1}{(n-1)!}\lim_{z\to a_k}\TxDof{z}{n-1}[(z-a_k)^nf(z)]\\
-&\Res{(f(z),\infty)}=-\Res{(\frac{1}{z^2}f(\frac{1}{z}),0)}\\
-&(\lim_{|z|\to0}f(z)=0\Rightarrow\Res{(f,\infty)}=-\lim_{|z|\to\infty}zf(z))
-\end{align*}
-\end{column}
-\begin{column}{0.5\textwidth}
-	contenu...
-\end{column}
-\end{columns}
-\end{frame}
-
-\begin{frame}{Identities}
-	\begin{columns}[T]
-	\begin{column}{0.5\textwidth}
         \begin{itemize}
-            \item \keyword{Stirling's approximation}: $n!=\sqrt{2\pi n}(\frac{n}{e})^n$
+            \item Gaussiana: $\phi_X(t)=\exp{\mu it-\frac{\sigma^2t^2}{2}}$
+            \item Unif.: $\lbt{\frac{\exp{itb}-\exp{ita}}{it(b-a)}}{1\ t=0}$
+            \item Esponenziale: $\frac{\lambda}{\lambda-it}$, $\frac{1}{1-i\xi t}$
+            \item $\chi^2$: $(1-2it)^{-\frac{k}{2}}$
         \end{itemize}
 	\end{column}
 	\begin{column}{0.5\textwidth}
-	\keyword{Variance symmetric formula}
-	\begin{align*} 
-	&\frac{1}{n-1}\sum_i^n(X_i-\exv{X}_n)^2=\frac{1}{n-1}(\sum_i^nX_i^2-n\exv{X}_n^2)\\
-	&=\frac{1}{n-1}\sum_i^nX_i^2-\frac{1}{n(n-1)}(n\exv{X}_n)^2\\
-	&=\frac{1}{n(n-1)}\frac{2n\sum_i^nX_i^2}{2}-\frac{1}{n(n-1)}\sum_{i,j}X_iX_j\\
-	&=\frac{1}{n(n-1)}\sum_{i,j}^n\frac{X_i^2+X_j^2-2X_iX_j}{2}\\
-	&=\frac{1}{n(n-1)}\sum_{i\neq j}\frac{(X_i-X_j)^2}{2}
-	\end{align*}
+        \begin{itemize}
+            \item Bernulli: $q+p\exp{it}$
+            \item Bino: $(q+p\exp{it})^N$
+            \item Poissoniana: $\Phi_X(t)=\exp{\lambda(\exp{it}-1)}$
+        \end{itemize}
 	\end{column}
-	\end{columns}
-\end{frame}
+\end{columns}
+\end{wordonframe}
 
 \section{Legge grandi numeri - Teorema limite centrale}\linkdest{lln}
+
+\begin{frame}{Media/varianza della media aritmetica}
+    $\iidrv$ con $\sigma$ finita:
+    \begin{align*}
+        &S^2=\frac{1}{N}\sum_i(X_i-\bar{X})^2\\
+        &\sum_i(X_i-\mu)^2=\sum[(X_i-\bar{X})+(\bar{X}-\mu)]=\sum_i^N(X_i-\bar{X})^2+N(\bar{X}-\mu)^2\\
+        &\E{[S^2]}=\E{[\frac{1}{N}(X_i-\mu)^2-(\bar{X}-\mu)^2]}=\frac{N-1}{N}\sigma^2\\
+        &\E{[\frac{N}{N-1}S^2]}=\sigma^2
+    \end{align*}
+\end{frame}
 
 \begin{frame}{Legge grandi numeri: sample mean converges to expected value}
 $X_1,\ldots,X_n$ iid RV (RV campionata n volte): $\E{X_i}=\mu$, finite variance: $\var{X_i}=\sigma^2$ allora \[\prob{(|\overline{X}_n-\mu|>\epsilon)}\leq\frac{\sigma^2}{n\epsilon^2}\]
@@ -893,7 +803,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 
 \section{Important pdfs}\linkdest{pdfs}
 
-\begin{wordonframe}{Combinazioni e permutazioni}
+\begin{wordonframe}{\keyword{Combinazioni e permutazioni}}
 \begin{itemize}
     \item Disposizioni semplici: insieme ordinato di N oggetti presi k alla volta e ogni elemento compare 1 volta: $D_{nk}=N(N-1)\ldots(N-k+t)=\frac{N!}{(N-k)!}$
     \item $D_{NN}=n!$: permutazioni - modi distinti di prendere n oggetti - se $m<n$ identici si hanno $\frac{n!}{m!}$ modi
@@ -901,13 +811,13 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \end{itemize}
 \end{wordonframe}
 
-\begin{frame}{Gaussian}
+\begin{frame}{\keyword{Gaussian}}
 	\begin{columns}[T]
 		\begin{column}{0.5\textwidth}
 			\begin{align*}
 			&\prob{[x]}=f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp{-\frac{(x-\mu)^2}{2\sigma^2}}\\
 			&\E{[(\sigma Z+\mu)^n]}=\sum_{i=0}^n\binom{n}{i}\sigma^i\E{[Z^i]}\mu^{n-i}\\
-			&=\sum_{i=0}^{\lfloor n/2\rfloor}\binom{n}{2j}(2j-1)!!\sigma^{2j}\mu^{n-2j}\\
+			&=\sum_{j=0}^{\lfloor n/2\rfloor}\binom{n}{2j}(2j-1)!!\sigma^{2j}\mu^{n-2j}\\
 			&F(x)=\frac{1}{2}[1+\erf([\frac{x-\mu}{\sqrt{2}\sigma}])
 			\end{align*}
 		\end{column}
@@ -922,17 +832,12 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
             &\mu_2'=\mu^2+\sigma^2,\ \mu_2=\sigma^2\\
 			&\mu_3'=\mu(\mu^2+3\sigma^2)\ \mu_3=0
 			\end{align*}
-			Unbiased estimators:
-			\begin{align*}
-			&\hat{\sigma}^2=\frac{N}{N-1}s^2\\
-			&\frac{N}{N-1}\frac{1}{N}\sum(x_i-\overline{x})^2
-			\end{align*}
 		\end{column}
 	\end{columns}
-	\todo{Somma N gaussiane?}
+    Somma di $G(\mu_i,\sigma_i^2)$ \'e $G(\sum\mu_i,\sum\sigma_i^2)$, rapporto di 2 RV $G(0,1)$ ha distribuzione proporzionale a cauchy.
 \end{frame}
 
-\begin{frame}{Error function $\erf$}
+\begin{frame}{\keyword{Error function $\erf$}}
     \begin{itemize}
         \item Error function : $\erf{(x)}=\frac{2}{\sqrt{\pi}}\int_0^x\exp{-t^2}\,dt$
             \begin{align*}
@@ -946,7 +851,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
     \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,allowframebreaks]{Independence of sample mean/variance iff RV iid Gaussian}
+\begin{frame}[fragile,allowframebreaks]{Gaussian characterization: Independence of sample mean/variance}
 	$\iidrv$: joint pdf $f(\iidrv)=\prod_i^nf(x_i)$.
 	\begin{align*}
 	&\ln{(\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2))}\\
@@ -959,15 +864,19 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 	%newframe
 	\begin{align*}
 	&S_n^2=\frac{1}{n(n-1)}\sum_{i\neq j}\frac{(X_i-X_j)^2}{2}=\frac{1}{n(n-1)}((n-1)\sum_i^nX_i^2-\sum_{i\neq j}X_iX_j)\\
-	&\phi_{\exv{X}_n}(t_1)=\prod_i^n\int\exp{it_1x_i/n}f(x_i)\,dx_i=[\phi_X(\frac{t_1}{n})]^n\\
+    &\phi_{\exv{X}_n}(t_1)=\prod_i^n\int\exp{it_1x_i/n}f(x_i)\,dx_i=[\phi_X(\frac{t_1}{n})]^n,\ \phi_{S_N^2}(t_2)=\prod_i^n\int\exp{it_2S_N^2}f(x_i)\,dx_i\\
 	&\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(t_1,t_2)}|_{t_2=0}=\int iS_n^2\prod_i^n\exp{it_1x_i/n}f(x_i)\,dx_i\\
-	&=i[\phi_X(\frac{t_1}{n})]^{n-2}[\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x_i/n}f(x)\,dx-(\int x^2\exp{it_1x_i/n}f(x)\,dx)^2]\\
+	&=i[\phi_X(\frac{t_1}{n})]^{n-2}[\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x_i/n}f(x)\,dx-(\int x\exp{it_1x_i/n}f(x)\,dx)^2]\\
 	&\PDy{t_2}{\phi_{S_n^2}(t_1,t_2)}|_{t_2=0}=\PDy{t_2}{\phi_{(\exv{X}_n,S_n^2)}(0,t_2)}|_{t_2=0}=i\sigma^2\\
-	&\frac{\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x/n}f(x)\,dx-(\int x^2\exp{it_1x/n}f(x)\,dx)^2}{[\phi_X(\frac{t_1}{n})]^2}=\sigma^2\tag{ConIndep}\\
-	&\frac{-\phi(u)\PtwoDy{y}{\phi}(u)+(\PDy{u}{\phi})^2}{\phi(u)^2}=\sigma^2
-	\end{align*}
+	&\frac{\phi_X(\frac{t_1}{n})\int x^2\exp{it_1x/n}f(x)\,dx-(\int x\exp{it_1x/n}f(x)\,dx)^2}{[\phi_X(\frac{t_1}{n})]^2}=\sigma^2\tag{ConIndep}\\
+	&\frac{-\phi(u)\PtwoDy{u}{\phi}(u)+(\PDy{u}{\phi})^2}{\phi(u)^2}=\sigma^2
+	\end{align*}%
 	%newframe
-	\begin{align*}
+\end{frame}
+
+\begin{frame}{Independence of sample mean/variance: the solution is a gaussian}
+    \begin{align*}
+        &\frac{-\phi(u)\PtwoDy{u}{\phi}(u)+(\PDy{u}{\phi})^2}{\phi(u)^2}=\sigma^2\tag{ConIndep}\\
 	&(u=\frac{t_1}{n},\ \PDy{u}{\phi_x}=\int ix\exp{iux}f(x)\,dx)\\
 	&(\psi(u)=\ln{\phi(u)},\ \phi(u)=\E{[\exp{iuX}]},\ \PDy{u}{\psi}=\frac{1}{\phi(u)}\PDy{u}{\phi(u)},\ \PtwoDy{u}{\psi}=\frac{1}{\phi}\PtwoDy{u}{\phi}-\frac{1}{\phi^2}(\PDy{u}{\phi})^2)\\
 	&\PtwoDy{u}{\psi}=-\sigma^2,\ \psi(0)=0,\ \psi'(0)=i\E{[X]}=i\mu:\\
@@ -975,7 +884,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 	\end{align*}
 \end{frame}
 
-\begin{frame}{Bernoulli, binomiale}
+\begin{frame}{\keyword{Bernoulli, binomiale}}
 \begin{block}{Bernoulli: 2 possibili outcomes}
 	\begin{columns}[T]
 	\begin{column}{0.6\textwidth}
@@ -1003,6 +912,24 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \end{block}
 \end{frame}
 
+\begin{frame}{\keyword{Geometric distro}}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Geometric: number of bernoulli trials until first success $P_X(x)=p(1-p)^{x-1}$, $\E{[X]}=\frac{1}{p}$, $\sigma_X=\frac{1-p}{p^2}$
+                \item Modified geometric: number of trials until first faillure
+                \item Pascal-k (negative binomials): number trials until kth success - $\prob_{X(n-1)}{(k-1)}=\binom{n-1}(k-1)p^{k-1}(1-p)^{n-k}$, $\E{[X_k]}=\frac{k}{p}$, $\sigma_{X_k}=\frac{k(1-p)}{p^2}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item Hypergeometric: $K_n$ is number of type A object in sample of size n drawn at time where we have N objects of which $N_1$ are of type A - $P_{K_n}(k)=\frac{\binom{N_1}{k}\binom{N-N_1}{n-k}}{\binom{N}{n}}$,$\E{[K_n]}=\frac{nN_1}{N}=np$, $\sigma_{K_n}^2=\frac{nN_1(N-N_1)(N-n)}{N^2(N-1)}=\frac{np(1-p)(N-n)}{N-1}$. If we sample and replace the object x, number of type A object, has pdf: binomial $\prob{(x)}=\binom{n}{x}(\frac{N_1}{N})^x(\frac{N-N_1}{N})^{n-x}$ - if we sample without replacement outcomes are no longer independent
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    <++>
+\end{frame}
+
 \begin{frame}{\keyword{Mean/Var of Bino}}
 \begin{align*}
 &\E{[k]}=\sum_{k=0}^Nk\binom{N}{k}p^k(1-p)^{n-k}=\sum_{k=0}^Nk\frac{N!}{k!(N-k)!}p^k(1-p)^{n-k}\\
@@ -1015,13 +942,21 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
 \end{align*}
 \end{frame}
 
-\begin{frame}{Multinomiale: N trials, each trials gives one success between m categories}
+\begin{frame}{\keyword{Multinomiale e binomiale negativa}}
+\begin{block}{Multinomiale: N trials, each trials gives one success between m categories}
 	\begin{align*}
 	&f(k_1,\ldots,k_m;n,p_1,\ldots,p_m)=\frac{N!}{k_1!\ldots k_m!}p_1\expy{k_1}\ldots p_m\expy{k_m}:\ \sum k_i=N\\
 	&\E{[k_i]}=Np_i\ \var{[k_i]}=Np_i(1-p_i)\\
     &CF: (\sum_{j=1}^mp_j\exp{it_j})^N\\
     &\cov{(k_i,k_j)}=-Np_ip_j
 \end{align*}
+\end{block}
+\begin{block}{Binomiale negativa: numero di successi prima di r insuccessi}
+    \begin{align*}
+        &\binom{k+r-1}{k}(1-p)^rp^k\\
+        &\E{[k]}=\frac{pr}{1-p},\ \var{[k]}=\frac{pr}{(1-p)^2}
+    \end{align*}
+\end{block}
 \end{frame}
 
 \begin{wordonframe}{Derivazione pdf Bernoulli}
@@ -1087,7 +1022,7 @@ fattore binomiale che tiene conto delle permutazioni di n elementi e del fatto c
 \end{align*}
 \end{wordonframe}
 
-\begin{frame}{Poissoniane!}
+\begin{frame}{\keyword{Poissoniane!}}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 \keyword{Poissoniana come limite piccoli p binomiale}
@@ -1123,7 +1058,7 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)
     
 \end{frame}
 
-\begin{frame}{Esponenziale, iperesponenziale, Erlang}
+\begin{frame}{\keyword{Esponenziale, iperesponenziale, Erlang}}
     \begin{columns}[T]
         \begin{column}{0.5\textwidth}
 \begin{align*}
@@ -1136,8 +1071,7 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)
         \end{column}
         \begin{column}{0.5\textwidth}
             \begin{align*}
-&\phi_T(t)=\frac{1}{1-it\xi}\\
-&=\frac{\lambda}{\lambda-it}\\
+&\phi_T(t)=\frac{1}{1-it\xi}=\frac{\lambda}{\lambda-it}\\
 &M_e(t)=\lambda\intzi{}\exp{-(\lambda-t)x}\,dx=\frac{\lambda}{\lambda-t}
             \end{align*}
         \end{column}
@@ -1150,7 +1084,7 @@ $X=\sum_k^nU_k$ dove $U_i\in U(0,1)$: $f_X(x;n)=\frac{1}{2(n-1)!}\sum_{k=0}^n(-)
     \end{align*}
 \end{frame}
 
-\begin{frame}{Uniforme}
+\begin{frame}{\keyword{Uniforme}}
 \begin{columns}[T]
 	\begin{column}{0.5\textwidth}
 	\begin{align*}
@@ -1201,11 +1135,11 @@ $\{x_1,\ldots,x_n\}$ iid from $U(a,b)$: $x_{(k)}\to\frac{x_{(k)}-a}{b-a}$ make t
 \end{frame}
 
 \begin{frame}{Student's t}
-$Y\sim\chi^2_n$, $Z\sim N(0,1)$:
+    $Y=(N-1)\frac{S^2}{\sigma^2}=\nu \frac{S^2}{\sigma^2}\sim\chi^2_{\nu}$, $Z=\frac{\bar{X}-\mu}{\frac{\sigma}{\sqrt{N}}}\sim N(0,1)$:
 \begin{align*}
-&X=\frac{Z}{\sqrt{\frac{Y}{n}}}\\
-&f(t_n=x)=\frac{\Gamma(\frac{n+1}{2})}{\sqrt{n\pi}\Gamma(\frac{n}{2})}(1+\frac{x^2}{n})^{-\frac{n+1}{2}}\\
-&\E{[X]}=0: n>1, \var{[X]}=\frac{n}{n-2}: n>2, \infty: 1<n\leq2
+&X=\frac{Z}{\sqrt{\frac{Y}{\nu}}},\ S_N^2=\frac{1}{N-1}\sum_i^N(X_i-\bar{X})^2\\
+&f(t_{\nu}=x)=\frac{\Gamma(\frac{\nu+1}{2})}{\sqrt{\nu\pi}\Gamma(\frac{\nu}{2})}(1+\frac{x^2}{\nu})^{-\frac{\nu+1}{2}}\\
+&\E{[X]}=0: \nu>1, \var{[X]}=\frac{\nu}{\nu-2}: \nu>2, \infty: 1<\nu\leq2
 \end{align*}
 \end{frame}
 
@@ -1264,7 +1198,10 @@ Funzione caratteristica: $y=\frac{(x_i-\mu_i)}{\sigma_i}$, $z=y^2$
 		\begin{align*}
 		&\E{(\chi^2_{\nu})}=\nu\\
 		&\var{[\chi_{\nu}^2]}=2\nu\\
-		&\E{(\chi^{2,NC}_{\nu})}=\nu+\lambda
+		&\E{(\chi^{2,NC}_{\nu})}=\nu+\lambda\\
+        &\chi^2(N,\Delta=\sum\mu_i^2)\approx f(Y)\\
+        &Y=\beta x^2_{(M)}\tag{same mean and var of $\chi^2_{NC}$}\\
+        &\beta=1+\frac{\Delta}{N+\Delta},\ M=N+\frac{\Delta^2}{N+2\Delta}
 		\end{align*}
 	\end{column}
 \end{columns}
@@ -1285,7 +1222,43 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
     \end{itemize}
 \end{frame}
 
-\section{come lo utilizzo}
+\section{come lo utilizzo - Handling real-life distro}
+
+\begin{frame}{Applicability of normal distro}
+    \begin{itemize}
+        \item Sum of many independent observations: momentum measure of pi-meson emerging from target in high energy beam - pi coming from whatever reaction don't have gaussian distro and total momentum spectrum of pi from all reaction neither - taking mean value of momentum for N consecutive pi give upon repeatesd observation a normal distro for large N
+        \item Normally-distributed measurements with same mean but different variance: measurement in bubble chamber of mass of narrow resonance/stable particles, if mass determination from one event is supposed gaussian with width $\Delta M$ then over-all experimental mass spectrum will be gaussian only if all events have same $\Delta M$
+i    \end{itemize}
+\end{frame}
+
+\begin{frame}{Truncation and detection efficiency}
+    \begin{block}{one measures between A and B}
+         \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{align*}
+                &f(X)\,dX\to\frac{f(X)\,dX}{F(B)-F(A)}
+            \end{align*}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+            \item Cauchy:
+            \begin{align*}
+             &\g(X)=\frac{f(X)}{\int_{-A}^A}\frac{1}{\pi}\frac{1}{1+X^2}\\
+             &=\frac{1}{2\arctan{A}}\frac{1}{1+X^2}\\
+             &\E{[X]}=0\\
+             &V{[X]}=\frac{1}{2\arctan{A}}\int_{-A}^A \frac{X^2}{1+X^2}\,dX\\
+             &=\frac{A}{\arctan{A}}-1
+            \end{align*}
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \end{block}
+    \begin{block}{Detection efficiency}
+        \begin{align*}
+            &g(X)=\frac{\int_{\Omega_Y}f(X)\prob{(Y|X)}e(X,Y)\,dY}{\int_{\Omega_X}\int_{\Omega_Y}f(X)\prob{(Y|X)}e(X,Y)\,dY}   
+        \end{align*}
+    \end{block}
+\end{frame}
 
 \begin{frame}[allowframebreaks,fragile]{Distribuzione mediana per estrazioni da cauchy}
 	Per estrazioni con pdf di Cauchy:
@@ -1315,7 +1288,11 @@ Approssimazione di Fisher: $\prob{(\sqrt{2\chi^2})}\approx N(\sqrt{2\nu-1},1)$
 			\end{align*}
 		\end{column}
 		\begin{column}{0.5\textwidth}
-			z ha pdf binomiale w $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4n}$: utilizzando espansione di $y$ trovo espressione asintotica $\var{\hat{m}_1}=\frac{1}{4n^2}f^2(m_1)$, per $p\neq\frac{1}{2}$ $\var{(m_{\%})}=\frac{p(1-p)}{nf^2(\hat{m_{\%}})}$
+			z ha pdf binomiale $\var{(y)}=\frac{np(1-p)}{n^2}\xrightarrow{p=1/2}\frac{1}{4n}$: utilizzando espansione di $y$ trovo espressione asintotica:
+            \begin{align*}
+                &\var{\hat{m}_1}=\frac{1}{4n^2}f^2(m_1)\\
+                &\var{(m_{\%})}=\frac{p(1-p)}{nf^2(\hat{m_{\%}})}\tag{$p\neq\frac{1}{2}$}
+            \end{align*}
 		\end{column}
 	\end{columns}
 	\keyword{Ex: Pdf di irwin-hall \'e asintoticamente gaussiana?}-Pdf uniforme centrata in $x_0$ e larga $\Delta$: trovare pdf di moda, mediana e midrange.

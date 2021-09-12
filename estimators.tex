@@ -775,7 +775,6 @@ Differenzio la statistica $K_N=\frac{1}{N}\PDof{\theta}\sum_i^Ng(X_i,\theta)=\xi
 &\lim_{N\to\infty}\frac{1}{N}\sum_i^N\ln{f(X_i,\hat{\theta}_N')}=\E{[\ln{f(X_i,\lim_{N\to\infty}\hat{\theta}_N')}]}\tag{$\hat{\theta}_N'$ non-C sols.}\\
 &<\E{[\ln{f(X,\theta_0)}]}=\lim_{N\to\infty}\frac{1}{N}\sum_i^N\ln{f(X_i,\hat{\theta}_N)}
 \end{align*}
-
 \end{wordonframe}
 
 \begin{frame}[allowframebreaks]{Propriet\'a MLE}
@@ -801,9 +800,49 @@ Per pdf esponenziale\[f(x;\theta)=\exp{\alpha(x)a(\theta)+\beta(x)+c(\theta)}\] 
 \end{block}
 \cite{barlow1990extended}
 \end{frame}
-
-
 %Fit resolution of histogram (??): $A=\sum_i\frac{1}{P_i}(\PDy{\theta}{P_i})^2$
+
+\begin{frame}{Proof asymptotic normality of $\hat{\theta}_{MLE}$}
+            Likelihood equation $U(\hat{(\theta)}=0$, score function $U(\theta_0)=\sum_i^N\PDy{\theta}{\log{f(X_i;\theta_0)}}$, $\E{(U(\theta_0))}=0$, $\var{[U(\theta_0)]}=I(\theta_0)=Ni_1(\theta_0)$, $\invers{N}j(\theta_0)=\invers{N}(-\sum_i^N\PtwoDy{\theta}{\log{f(X_i;\theta_0)}})\xrightarrow{P}I(\theta_0)$
+            \begin{align*}
+                &0=U(\hat{\theta})=U(\theta_0)+(\hat{\theta}-\theta_0)\PtwoDy{\theta}{\log{L(\theta_0)}}+\frac{1}{2}(\hat{\theta}-\theta_0)^2\PxDy{\theta}{3}{\log{L(\theta^*)}}\\
+                &N^{\frac{1}{2}}(\hat{\theta}-\theta_0)=\invers{(\invers{N}j(\theta_0))}N^{-\frac{1}{2}}U(\theta_0)+\invers{(\invers{N}j(\theta_0))}R^*\\
+                &\toind\invers{I_1(\theta_0)}N(0,I_1(\theta_0))+\underbrace{O_p(\invers{N})O_p(N)N^{-\frac{1}{2}}O_p(1)}_{O_p(N^{-\frac{1}{2}})}\toind{}N(0,\invers{I_1(\theta_0)})
+            \end{align*}
+        It remains to proof $R^*=O_p(1)$, bounded in probability; when $N^{\frac{1}{2}}(\hat{\theta}-\theta_0)\toind{}N(0,\invers{I_1(\theta_0)})$ we have $(\hat{\theta}-\theta_0)^2=O_p(\invers{N})$ and we hope that $R^*=O_p(\invers{N})O_p(N)=O_p(1)$ (third der. is sum of N terms).
+\end{frame}
+
+\begin{frame}{Proof $R^*$ bound in probability}
+    \begin{itemize}
+        \item Exists consistent solution $\hat{\theta}$ of score equation $U(\hat{\theta})=0$
+        \item Use ULLN on bounded neighbourhood of $\theta_0$ to proof $R^*=O_p(1)$.
+    \end{itemize}
+    $\hat{\theta}$ consistent for $\theta_0$, $g(x;\theta)=\PxDy{\theta}{3}{\log{f(x;\theta)}}$ ($x\in\chi\subset R^p$: measurable, $\theta\in\Theta\subset R^d$: continuous), $\Delta$ open neighbourhood of $\theta_0$:
+    \begin{align*}
+        &\sup_{\theta\in\Delta}|G(x;\theta)|\leq h(x),\ \E{[h(x)]}<\infty\\
+        &g_1(\theta)=\invers{N}\sum_i^Ng(X_i;\theta),\ \tau(\theta)=\int_{\chi}g(x;\theta)dF(x)\\
+        &\invers{N}\PxDy{\theta}{3}{l}(\theta^*)=\tau(\theta^*)+[g_1(\theta^*)-\tau(\theta^*)]:\\
+        &|\invers{N}\PxDy{\theta}{3}{l}(\theta^*)|<|\tau(\theta^*)|+\sup_{\theta\in\Delta}|g_1(\theta^*)-\tau(\theta^*)|
+    \end{align*}
+    First term tend to $\tau(\theta_0)$ (consistency), second term is $o_p(1)$ bu ULLN, hence $\invers{N}\PxDy{\theta}{3}{l}=O_p(1)$.
+\end{frame}
+
+\begin{frame}{Uniform law of large numbers: ULLN}
+    Suppose $\Delta\subset\Theta$ bounded open set:
+    \begin{align*}
+        &\sup_{\theta\in\Delta}|g(x;\theta|\leq h(x),\ \int_{x\in\chi}h(x)\,dF(x)<\infty\\
+            &\tau(\theta)=\int_{x\in\chi}:\ \sup_{\theta\in\Delta}|\invers{N}\sum_i^Ng(X_i,\theta)-\tau(\theta)|\toinp{0},\ N\to\infty
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Another proof of asymptotic normality of $\sqrt{N}(\hat{\theta}-\theta_0)$}
+    \begin{align*}
+        &0\approx l'(\theta_0)+(\hat{\theta}-\theta_0)l''(\theta_0)\ \Rightarrow\ \sqrt{N}(\hat{\theta}-\theta_0)\approx-\sqrt{N}\frac{l'(\theta_0)}{l''(\theta_0)}=\frac{\frac{1}{\sqrt{N}}l'(\theta_0)}{\frac{1}{N}l''(\theta_0)}\\
+        &\frac{1}{N}l''(\theta_0)=\frac{1}{N}\sum_i^N\PtwoDof{\theta}[\log{f(X_i;\theta)}]_{\theta_0}\toinp{\E{[z'(X;\theta_0)]}}=-I(\theta_0)\tag{LLN}\\
+        &\frac{1}{\sqrt{N}}l'(\theta_0)=\frac{1}{\sqrt{N}}\sum_i^N\PDof{\theta}[\log{f(X_i;\theta)}]_{\theta_0}=\frac{1}{\sqrt{N}}\sum_i^Nz(X_i;\theta_0)\toind{}N(0,I(\theta_0))\\
+        &\Rightarrow \sqrt{N}(\hat{\theta}_N-\theta_0)\to\frac{1}{I(\theta_0)}N(0,I(\theta_0))=I(0,\invers{I}(\theta_0))
+    \end{align*}
+\end{frame}
 
 \subsection{EML and ML: unknown signal + known background}
 
@@ -1207,12 +1246,10 @@ Otherwise, (or non gaussian estimators, physical boundary for parameters) one ha
 \end{block}
 \end{frame}
 
-\begin{frame}{}
-\begin{block}{\keyword{Credibility (della posterior)}}
+\begin{frame}{\keyword{Credibility (della posterior)}}
 	\begin{align*}
         &\cred{(x)}=\int_{f(\vec{x};\vec{\theta})>c(\vec{\theta})}\Pi(\mu|x)\,d\mu=\int_{\ldots}\frac{\prob{(x|\mu)}\prob{(\mu)}}{\int\,d\mu}\,d\mu>\cl{}
 	\end{align*}
-\end{block}
 	\begin{picture}(100,130)
 	\put(20,20){
 		\begin{tikzpicture}[scale=0.4]
@@ -1280,7 +1317,19 @@ Otherwise, (or non gaussian estimators, physical boundary for parameters) one ha
 
 \begin{wordonframe}{Workout funzione di coverage}
 \keyword{Coverage in frequentist approach}: \'e propriet\'a del metodo not of any particular interval.
-Graphical Methods for Evaluating and ComparingConfidence-Interval Procedures
+\begin{columns}[T]
+    \begin{column}{0.5\textwidth}
+        \begin{align*}
+            &\cred{(x)}=\int_{\mu\in f(x)}\prob{(\mu|x)}\,d\mu\\
+            &=\int_{\mu\in f(x)}\frac{p(x|\mu)\prob{(\mu)}}{p(x)}\,d\mu
+        \end{align*}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+        \begin{align*}
+            &\coverage{(\mu)}=\int_{f(x)\ni\mu}p(x|\mu)\,dx
+        \end{align*}
+    \end{column}
+\end{columns}
 \end{wordonframe}
 
 \begin{frame}{Feldman-Cousins unified approach}\frameintoc
@@ -1390,8 +1439,93 @@ N>1:\ m\in[1,\frac{1}{\sqrt[N-1]{1-\cl}}]x_M (B)\\
 \end{align*}
 \keyword{Ex: Credibility LR-ordering $U$}
 \end{frame}
-
 %% banda di confidenza per distribuzione uniforme
+
+\begin{frame}{CI for gaussian distributed estimators}
+    \begin{columns}[T]
+        \begin{column}{0.65\textwidth}
+      \begin{align*}
+        &G(\hat{\theta};\theta,\sigma_{\hat{\theta}})=\int_{-\infty}^{\hat{\theta}}\frac{1}{\sqrt{2\pi\sigma^2_{\hat{\theta}}}}\exp{-\frac{(\hat{\theta}'-\theta)^2}{2\sigma^2_{\hat{\theta}}}}\,d\hat{\theta}'\\
+        &\alpha=1-G(\hat{\theta};a,\sigma_{\hat{\theta}})=1-\Phi(\frac{\theta_{obs}-a}{\sigma_{\hat{\theta}}})\tag{Right Wing}\\
+        &\beta=G(\hat{\theta};b,\sigma_{\hat{\theta}})=\Phi(\frac{\theta_{obs}-b}{\sigma_{\hat{\theta}}})\tag{Left Wing}\\
+\end{align*}
+        \end{column}
+        \begin{column}{0.35\textwidth} 
+\begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip, keepaspectratio,width=0.99\textwidth]{figures/cowan/estimators/gaussamplingpdf}\label{fig:gaussamplingpdf}\end{figure}
+        \end{column}
+    \end{columns}
+    
+    \begin{align*}
+        &\Rightarrow a=\hat{\theta}_{obs}-\sigma_{\hat{\theta}}\invers{\Phi}(1-\alpha)\tag{scorro centro gaussiana a to left until area on right of obs is $\alpha$}\\
+        &\Rightarrow b=\hat{\theta}_{obs}+\sigma_{\hat{\theta}}\invers{\Phi}(1-\beta)\tag{scorro centro gaussiana b to right until area on left of obs is $\beta$}
+\end{align*}
+\end{frame}
+
+\begin{frame}{CI for mean $\nu$ of poissonian}
+    \begin{align*}
+        &\alpha=\prob{(\hat{\nu}\geq\nu_{obs};a)}=\sum_{n_{obs}}^{\infty}f(n;a)=1-\sum_{n=0}^{n_{obs}-1}\frac{a^n}{n!}\exp{-a}\\
+        &\beta=\prob{(\hat{\nu}\geq\nu_{obs};b)}=\sum_{n=0}^{n_{obs}}\frac{b^n}{n!}\exp{-b}\\
+        &\Rightarrow a=\frac{1}{2}\invers{F_{\chi^2}}(\alpha;n_d=2(n_{obs}))\\
+        &\Rightarrow b=\frac{1}{2}\invers{F_{\chi^2}}(1-\beta;n_d=2(n_{obs}))
+    \end{align*}
+    Case $n_{obs}=0$: $\beta=\sum_{n=0}^0 \frac{b^n\exp{-b}}{n!}=\exp{-b}$ - Upper limit at CI $1-\beta=0.95$ is $b=-\log{0.05}\approx3$.
+\end{frame}
+
+    \begin{frame}{\keyword{Relation between Pois cumulant and $\chi^2$}}
+        \begin{align*}
+            &\sum_{n=0}^{n_{obs}}\frac{\nu^n}{n!}\exp{-\nu}=\int_{2\nu}^{\infty}f_{\chi^2}(z;n_d=2(n_{obs}+1))\,dz=1-F_{\chi^2}(2\nu;n_d=2(n_{obs}+1))\\
+            &F(r)=\sum_{k=0}^r \frac{\nu^k\exp{-\nu}}{k!}=1-P(r+1,\nu),\ (F(r)=F(r-1)\frac{\nu}{r}, F(0)=\exp{-\nu})\\
+            &P(a,x)=\frac{\gamma(a,x)}{\Gamma(a)}=\frac{1}{\Gamma(a)}\int_0^{x}\exp{-t}t^{a-1}\,dt\\
+            &\gamma(a,x)=\exp{-x}x^a\sum_{n=0}^{\infty}\frac{\Gamma(a)x^n}{\Gamma(a+1+n)},\ a>0\tag{incomplete gamma}\\
+            &\int_{\nu}^{\infty}\frac{t^x\exp{-t}\,dt}{\Gamma(x+1)}=\frac{\nu^x\exp{-\nu}}{x!}+\prob{(\Gamma(x,1)>\nu)}=\frac{\nu^x\exp{-\nu}}{x!}+\frac{\nu^{x-1}\exp{-\nu}}{(x-1)!}+\prob{(\Gamma(x-1,1)>\nu)}=\ldots\\
+            %&P(n\geq r)=1-\prob{(n\leq r-1)}=1-\frac{\gamma(a=\nu,x)}{\Gamma(a=\nu)}=\frac{\Gamma(r)-\gamma(r,\nu)}{\Gamma(r)}\\
+            %&=\frac{1}{\Gamma(r)}(\intzi{}t^{r-1}\exp{-t}\,dt-\int_{\lambda}^{\infty}t^{w-1}\exp{-t}\,dt)=\frac{1}{\Gamma(r)}\int_0^{\nu}t^{r-1}\exp{-t}\,dt=\prob{(Y\leq\nu)},\ Y\sim\Gamma(r,1)
+        &f(x=\chi^2)=\frac{\exp{-\frac{x}{2}}x^{\frac{\nu}{2}-1}}{2^{\frac{\nu}{2}}\Gamma(\frac{\nu}{2})}\\
+        &F(x)=\frac{\gamma(\frac{\nu}{2},\frac{x}{2})}{\Gamma(\frac{\nu}{2})}=P(\frac{\nu}{2},\frac{x}{2})=1-\int_{\frac{x}{2}}^{\infty}\frac{\exp{-t}t^{\frac{\nu}{2}-1}}{\Gamma(\frac{\nu}{2})}\,dt
+        \end{align*}
+    \end{frame}
+
+    \begin{frame}{CI using $\chi^2$ or $L\approx\exp{-\frac{\chi^2}{2}}$}
+        In case of non gaussian estimator CI can be determined via approximate tech. Large sample limit:
+        \begin{align*}
+            &g(\hat{\theta};\theta)=\frac{1}{\sqrt{2\pi\sigma_{\hat{\theta}}^2}}\exp{-\frac{(\hat{\theta}-\theta)^2}{2\sigma_{\hat{\theta}}^2}}\\
+            &L(\theta)=L_{max}\exp{-\frac{(\theta-\hat{\theta})^2}{2\sigma_{\hat{\theta}}^2}}\tag{centered about $\hat{\theta}$}\\
+            &\var{\hat{\theta}}=\frac{1}{\E{[-\PtwoDy{\theta}{\ln{L}}]}}\tag{$\var{\hat{\theta}}$ equal FWHM of $L(\theta)$}\\
+            &\Rightarrow\ln{L(\hat{\theta}\pm\hat{\sigma}_{\hat{\theta}})}=\ln{L_{max}}-\frac{1}{2},\ \ln{L(\hat{\theta}\pm N\hat{\sigma}_{\hat{\theta}})}=\ln{L_{max}}-\frac{N^2}{2}
+        \end{align*}
+        \begin{columns}[T]
+            \begin{column}{0.3\textwidth}
+                \begin{align*}
+                    &\log{L(\hat{\theta}^{+d}_{-c})}\\
+                    &=\log{L_{max}}-\frac{N^2}{2}\\
+                    &N=\invers{\Phi(1-\frac{\gamma}{2})},\ \cl{}=1-\gamma
+                \end{align*}
+            \end{column}
+            \begin{column}{0.7\textwidth}
+                \begin{figure}[!ht]\includegraphics[trim={0cm 0cm 0 0},clip,keepaspectratio,width=0.8\textwidth]{figures/cowan/estimators/CIapproxlargesample}\label{fig:CIapproxlargesample}\end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}{Limits near physical boundaries}
+        $\hat{\theta}=X-Y$, ie $\hat{mJ^2}=E^2-p^2$: measurement error in $E^2,p^2$ can result in negative $\hat{m}^2$ - upper limit at $\cl{}=1-\beta=0.95$, $(-\infty,\hat{\theta}_{up}$: $5\%$ of time $\hat{\theta}_{up}$ should be zero if $\theta=0$, and should be reported with error since average wil converge as long as unbiased. Solutions:
+            \begin{itemize}
+                \item Increse $\cl{}$: upper limits smaller then intrinsic resolutionof experiment.
+                \item $\theta_{up}=\max{(\hat{\theta}_{obs},0)}+\sigma_{\hat{\theta}}\invers{\Phi}(1-\beta)$: interval no longer cover with prob $1-\beta$.
+                \item Bayesian interp.: $\prob{(\theta|x)}=\frac{L(x;\theta)\Pi(\theta)}{\int\,d\theta'}$ - choice of prior (Jeffrey's prior $\Pi(\theta)=\lbt{0:\ \theta\leq0}{\frac{1}{\theta}:\ \theta>0}$)
+            \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Upper limits on Poisson's mean with background}
+        $n=n_s+n_b$: $f(n;\nu_s,\nu_b)=\frac{(\nu_s+\nu_b)^n}{n!}\exp{-(\nu_s+\nu_b)}$, MLE: $\hat{\nu}_s=n-\nu_b$, $\nu_b$ known:
+        \begin{align*}
+            &\alpha=\prob{(\hat{\nu}_s\geq\hat{\nu}_s^{obs};\nu_s^{lo})}=\sum_{n\geq n_{obs}}(\nu_s^{lo}+\nu_b)^n\exp{-(\nu_s^{lo}+\nu_b)}:\ \nu_s^{lo}=\nu_s^{lo}(\nu_b=0)-\nu_b\\
+        &\beta=\prob{(\hat{\nu}_s\leq\hat{\nu}_s^{obs};\nu_s^{up})}=\sum_{n\geq n_{obs}}(\nu_s^{up}+\nu_b)^n\exp{-(\nu_s^{up}+\nu_b)}:\ \nu_s^{up}=\nu_s^{up}(\nu_b=0)-\nu_b\\
+        \end{align*}
+        Measure of prop. $X$: $f(x;\nu_s,\nu_b)=\frac{\nu_sf_s(x)+\nu_bf_b(x)}{\nu_s+\nu_b}$.
+
+        Extended likelihood: $L(\nu_s)=\frac{(\nu_s+\nu_n)^n}{n!}\exp{-(\nu_s+\nu_b)}\prod_{i=1}^n \frac{\nu_sf_s(x_i)+\nu_bf_b(x_i)}{\nu_s+\nu_b}$.
+    \end{frame}
 
 \subsection{Pivotal quantities}\linkdest{pivot}
 

@@ -722,6 +722,10 @@ above coincides with CR-bound for inverse covariance matrix when $y_i$ are Gauss
 
 \section{Stima intervallare}
 
+\begin{frame}{Coverage}
+    Probabilit\'a che intervallo contenga vero valore del parametro.
+\end{frame}
+
 \begin{frame}{Bayesian credibility Interval}
 \begin{block}{Credibility (della posterior)}
 	\begin{align*}
@@ -879,6 +883,8 @@ Rejects null hypothesis at level $\alpha$ if $\sqrt{N}D_N>K_{\alpha}$ dove $K_{\
 %currentsection,hideallsubsections,subsubsectionstyle=hide
 \tableofcontents[currentsection,sectionstyle=show/hide,subsectionstyle=show/show/hide]
 \end{frame}
+
+\subsection{}<++>
 
 \subsection{Probabilit\'a occorrenza crescente nel tempo: $R(t)=\alpha t+\beta t^2$ (30/11/2020)}
 
@@ -1099,7 +1105,7 @@ Pdf asintotica statistica, soglia regione critica e power per $\alpha=0.1$.
 \end{frame}
 
 \begin{frame}{Stimatori, confidence/credible interval per parametro m di pdf uniforme da misura della mediana(16/07/18)}
-\begin{columns}[T]\begin{column}{0.5\textwidth}
+\begin{columns}[T]\begin{column}{0.55\textwidth}
 x RV $U(0,m)$; $2k+1=3$ misura la mediana $x_2=3.4$
 \begin{block}{MLE estimator, bias, incertezza statistica}
 \begin{align*}
@@ -1114,7 +1120,7 @@ x RV $U(0,m)$; $2k+1=3$ misura la mediana $x_2=3.4$
 \end{align*}
 Le varianze sono funzione del valore di m: le stimo usando $\hat{m}$
 \end{block}
-\end{column}\begin{column}{0.5\textwidth}
+\end{column}\begin{column}{0.45\textwidth}
 Likelihood pdf uniforme: \begin{equation*}L_x(m)=\left\{\begin{array}{c}
 0\ m<x\\
 1/m\ m\geq x\\
@@ -1300,12 +1306,12 @@ Momenti di ordine $>0$ non esistono: $\var{[\lambda]}=\infty$.
 \end{align*}
 $t_{max}(\lambda)$ decrescente in $\lambda$, da $t<t_{max}(\lambda)$ si vede che la banda di confidenza \'e della forma $t<t_{max}(\lambda)$ porta a limite $\lambda\leq\lambda_{max}$ (limite superiore); l'inversione porta a $\lambda_{max}=-\frac{\log{(1-\cl{})}}{t_m}$.
 Ma limite inferiore a un fenomeno nuovo! \keyword{CI per limite inferior e $o(t)=t$}:
-\begin{equation *}
+\begin{equation*}
 \int_{t_{min}}^{\infty}\lambda\exp{-\lambda t}\,dt=\cl{}\Rightarrow t_{min}(\lambda)=-\frac{\log{(\cl{})}}{\lambda}
 \end{equation*}
 banda della forma $t\geq t_{min}(\lambda)$ porta, essendo $t_{min}(\lambda)$ decrescente il $\lambda$, a limite inferiore $\lambda\geq\lambda_{min}=-\frac{\log{(\cl{})}}{t_m}$.
 \keyword{CI con LR-ordering}:
-\begin{equation* }
+\begin{equation*}
 \lr{}=\frac{\prob{(t;\lambda)}}{\sup_{\lambda}\prob{(t;\lambda)}}=\lambda t\exp{-\lambda t}
 \end{equation*}
 fissato $\lambda$ ha singolo massimo in t e monotona da ambo i lati: usando $o(t)=\lr{(t)}$ ottengo intervallo $[t_{min},t_{max}]$.
@@ -1390,27 +1396,175 @@ si ricavano i 2 parametri uguagliando i valori attesi e osservati:
 &\E{[\mu_0]}=\sum_i^5n_i\quad\E{[\mu_1]}=\sum_i^5(i-1)n_i
 \end{align*}
 \end{frame}
-\section{Math tools}
 
-\begin{frame}{algebra basic}
+\section{Math tools}\linkdest{mathtools}
+
+\begin{wordonframe}{Binomials coeff.}\frameintoc
+	\begin{columns}[T]
+\begin{column}{0.4\textwidth}
 \begin{align*}
-&4a(ax^2+bx+c)=0\\
-&4a^2x^2+4abx+4ac+b^2-b^2=0\\
-&(2ax+b)^2=b^2-4ac
+&(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^{n-k}b^k\\
+&\binom{n}{k}k=n\binom{n-1}{k-1}\\
+&\binom{n}{m}\binom{m}{k}=\binom{n}{k}\binom{n-k}{m-k}\tag{subsubSet}
 \end{align*}
-%McLAurin expansion
-%
-\end{frame}
-
-\begin{wordonframe}{Espansioni di Taylor}
-	\begin{align*}
-	&\phi(t)=1+it\mu-\frac{\sigma^2t^2}{2}+o(t^2)\\
-	&\log{(1+x)}\approx x-\frac{x^2}{2}+o(x^2)
-	\end{align*}
+\end{column}
+\begin{column}{0.6\textwidth}
+\begin{align*}
+&\binom{n}{k}=\binom{n-1}{k}+\binom{n-1}{k-1}\\
+&\sum_{j=0}^n\binom{n}{j}\binom{m}{k-j}=\binom{n+m}{k}\\
+&\sum_{k=0}^n\binom{n}{k}=2^n\tag{row-sum}\\
+&\sum_{r=0}^n\binom{r}{c}=\binom{n+1}{c+1}\tag{column-sum}\\
+&\sum_{k=0}^n\binom{r+k}{k}=\binom{r+n+1}{n}\tag{SE-Diagonal}\\
+&\sum_{k=0}^n\binom{n-k}{m-k}=\binom{n+1}{m}\tag{NW-Diagonal}\\
+&\sum_{k=0}^n\binom{n-k}{k}=f_{n+1}\tag{Fib-NE-Diag}
+\end{align*}
+\end{column}
+	\end{columns}
 \end{wordonframe}
 
-\begin{frame}{Integrals}
-%\begin{columns}[T]\begin{column}{0.5\textwidth}\end{column}\begin{column}{0.5\textwidth}\end{column}\end{columns}
+\begin{wordonframe}{Propriet\'a Trasformata di Fourier}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+f(x)\FT{}\begin{matrix}
+\hat{f}(\omega)=\frac{1}{\sqrt{2\pi}}\intsinf\,f(x)\exp{-i\omega x}\,dx\\
+\hat{f}(\nu)=\intsinf\,f(x)\exp{-i\nu x}\,dx\\
+\end{matrix}
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+\begin{align*}
+&a*f(x)+bg(x)\FT{}a\hat{f}(\nu)+b\hat{g}(\nu)\\
+&h(x)=\exp{2\pi ix\nu_0}f(x)\FT{}\hat{f}(\nu-\nu_0)
+\end{align*}
+\end{column}
+\end{columns}
+\begin{columns}
+\begin{column}{0.5\textwidth}
+Scalar: \[f(ax)\FT{}\frac{1}{|a|}\hat{f}(\frac{\omega}{a}) \]
+Translations:
+\[f(x-a)\FT{}\exp{-ia\nu}\hat{f}(\nu)f(x)\exp{iax}\]
+\[\hat{f}(\xi-\frac{a}{2\pi}) \hat{f}(\nu-a)\]
+Derivates:
+\[\frac{d^n\,f(x)}{dx^n}\FT{}(i\omega)^n\hat{f}(\omega)\]
+\[x^nf(x)\FT{}i^n\frac{d^n\hat{f}(\omega)}{d\omega^n}\]
+\end{column}
+\begin{column}{0.5\textwidth}
+Inverse: \[\hat{a} f(-\omega) 2\pi f(-\nu)\]
+Convoluzione e prodotto:
+\begin{align*}
+&(f*g)(x)\FT{}\sqrt{2\pi}\hat{f}(\omega)\hat{g}(\omega)\\
+&\hat{f}(\nu)\hat{g}(\nu)\\
+&f(x)g(x)\FT{}\frac{1}{\sqrt{2\pi}}(\hat{f}*\hat{g})(\omega)\\
+&\FT{}\frac{1}{2\pi}(\hat{f}*\hat{g})(\nu)\\
+&f_Z(z)=(f_X*f_Y)(z)=\invers{\FT{}}{[\FT{[f_X]}\FT{[f_Y]}]}
+\end{align*}
+
+\end{column}
+\end{columns}
+\end{wordonframe}
+
+\begin{wordonframe}{Trasformata di Fourier notevoli}
+\begin{align*}
+& 1 & &\sqrt{2\pi}\delta(\omega) & &2\pi\delta(\nu)\\
+& \delta(x) & &(2\pi)^{-\frac{1}{2}} & &1\\
+& \exp{iax} & &\sqrt{2\pi}\delta(\omega-a) & &2\pi\delta(\nu-a)\\
+& x^n & &i^n\sqrt{2\pi}\delta^{(n)}(\omega) & &2\pi i^n\delta^{(n)}(\nu)\\
+& \frac{1}{x^n} & &-i\sqrt{\frac{\pi}{2}}\frac{(-i\omega)^{n-1}}{(n-1)!}\sgn{(\omega)} & &-i\pi\frac{(-i\nu)^{n-1}}{(n-1)!}\sgn{(\nu)}\\
+& |x|^{\alpha} & &\frac{-2}{\sqrt{2\pi}}\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\omega|^{\alpha+1}} & &-2\frac{\sin{(\frac{\pi\alpha}{2})}\Gamma(\alpha+1)}{|\nu|^{\alpha+1}}\\
+& \frac{1}{\sqrt{|x|}} & &{|\omega|}^{-\frac{1}{2}} & &\sqrt{2\pi}\nu^{-\frac{1}{2}}\\
+& \sgn{x} & &\sqrt{\frac{2}{\pi}}\frac{1}{i\omega} & &\frac{2}{i\nu}\\
+& \rect{(ax)} & &\frac{1}{\sqrt{2\pi a^2}}\sinc{(\frac{\omega}{2\pi a})} & &\frac{1}{|a|}\sinc{(\frac{\nu}{2\pi a})}\sinc{(ax)}\\
+\end{align*}
+
+\end{wordonframe}
+
+\begin{wordonframe}{Trasformata di Fourier notevoli II}
+
+\begin{align*}
+&\sinc{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\rect{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\rect{(\frac{\nu}{2\pi a})}\\
+&\sinc^2{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\tri{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\tri{(\frac{\nu}{2\pi a})}\\
+&\tri{(ax)} & \frac{1}{\sqrt{2\pi a^2}}\sinc^2{(\frac{\omega}{2\pi a})} &  \frac{1}{|a|}\sinc^2{(\frac{\nu}{2\pi a})}\\
+&\exp{-\alpha x^2} & \frac{1}{\sqrt{2\alpha}}\exp{-\frac{\omega^2}{4\alpha}} & \sqrt{\frac{\pi}{\alpha}}\exp{-\frac{\nu^2}{4\alpha}}\\
+&\exp{-a|x|} & \sqrt{\frac{2}{\pi}}\frac{a}{a^2+\omega^2} & \frac{2a}{a^2+\nu^2}\exp{-\frac{a^2x^2}{2}}\\
+&\exp{-\frac{a^2x^2}{2}}H_n(ax) & \frac{(-i)^n}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\omega}{a}) & \frac{(-i)^n\sqrt{2\pi}}{a}\exp{-\frac{\omega^2}{2a^2}}H_n(\frac{\nu}{a})\\
+&\exp{-a|x|} & \frac{2a}{x^2+a^2}
+\end{align*}
+\end{wordonframe}
+
+\begin{frame}{Integrali}\frameintoc
+\begin{columns}[T]
+\begin{column}{0.5\textwidth}
+\keyword{Integrazione su $C$}:
+\begin{align*}
+&\oint_{\gamma}f(z)\,dz=2\pi i\sum I(\gamma,a_k)Res(f,a_k)\\
+&\Res{(f, a_k)}=\frac{1}{(n-1)!}\lim_{z\to a_k}\TxDof{z}{n-1}[(z-a_k)^nf(z)]\\
+&\Res{(f(z),\infty)}=-\Res{(\frac{1}{z^2}f(\frac{1}{z}),0)}\\
+&(\lim_{|z|\to0}f(z)=0\Rightarrow\Res{(f,\infty)}=-\lim_{|z|\to\infty}zf(z))
+\end{align*}
+\end{column}
+\begin{column}{0.5\textwidth}
+	contenu...
+\end{column}
+\end{columns}
 \end{frame}
 
+\begin{frame}{Identities}
+	\begin{columns}[T]
+	\begin{column}{0.5\textwidth}
+        \begin{itemize}
+            \item \keyword{Stirling's approximation}: $n!=\sqrt{2\pi n}(\frac{n}{e})^n$
+        \end{itemize}
+	\end{column}
+	\begin{column}{0.5\textwidth}
+	\keyword{Variance symmetric formula}
+	\begin{align*} 
+	&\frac{1}{n-1}\sum_i^n(X_i-\exv{X}_n)^2=\frac{1}{n-1}(\sum_i^nX_i^2-n\exv{X}_n^2)\\
+	&=\frac{1}{n-1}\sum_i^nX_i^2-\frac{1}{n(n-1)}(n\exv{X}_n)^2\\
+	&=\frac{1}{n(n-1)}\frac{2n\sum_i^nX_i^2}{2}-\frac{1}{n(n-1)}\sum_{i,j}X_iX_j\\
+	&=\frac{1}{n(n-1)}\sum_{i,j}^n\frac{X_i^2+X_j^2-2X_iX_j}{2}\\
+	&=\frac{1}{n(n-1)}\sum_{i\neq j}\frac{(X_i-X_j)^2}{2}
+	\end{align*}
+	\end{column}
+	\end{columns}
+\end{frame}
+
+\begin{frame}{Summs}
+    \begin{columns}[T]
+        \begin{column}{0.5\textwidth}
+            \begin{align*}
+                &\sum_{k=0}^{N-1}r^k=\frac{1-r^N}{1-r}\\
+                &\sum_{k=1}^Nr^{k-1}=r^0+\ldots+r^{N-1}\\
+                &(1-r)\sum_{k=1}^Nr^{k-1}=(1-r)(1+\ldots+r^{N-1})\\
+                &=1+\ldots+r^{N-1}-r^1-\ldots-r^N\\
+                &1-r^N\\
+                &\sum_{k=0}^{N}r^{2k}=\frac{1-r^{2N+2}}{1-r^2},\ \sum_{k=0}^{N}r^{2k+1}=R\frac{1-r^{2N+2}}{1-r^2}
+            \end{align*}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            
+        \end{column}
+    \end{columns}
+    
+\end{frame}
+
+\begin{frame}{Bessel functions}
+    \begin{align*}
+        &z^2\TtwoDy{z}{w}+z\TDy{z}{w}+(z^2-\nu^2)w=0\tag{Bessel eq. order $\nu$}\\
+        &w(z)=\sum_{r=0}^{\infty}a_rz^{\alpha+r}=AJ_{\nu}(z)+BJ_{-\nu}(z)=AJ_{\nu}(z)+BY_{\nu}(z)=AH_{\nu}^{(1)}+BH_{\nu}^{(2)}\\
+        &J_{\nu}(z)=\sum_{r=0}^{\infty}\frac{(-)^r(z/2)^{\nu+2r}}{r!\Gamma(\nu+r+1)}\tag{$2\nu\notin-\mathds{N}$}\\
+        &J_{-\nu}(z)=\sum_{r=0}^{\infty}\frac{(-)^r(z/2)^{-\nu+2r}}{r!\Gamma(-\nu+r+1)}\tag{$2\nu\notin\mathds{N}$}\\
+        &Y_{\nu}(z)=\lim_{\alpha\to\nu}\frac{\cos{(\alpha\pi)}J_{\alpha}(z)-J_{-\alpha}(z)}{\sin{(\alpha\pi)}}\tag{Bessel II kind order $\nu$}\\
+        &H_{\nu}^{(1/2)}(z)=J_{\nu}(z)\pm iY_{\nu}(z)\tag{Hankel(Bessel of III kind)}\\
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Modified Bessel functions}
+    \begin{align*}
+        &z^2\TtwoDy{z}{w}+z\TDy{z}{w}-(z^2+\nu^2)w=0\tag{$z\to iz$: modified Bessel eq. order $\nu$}\\
+        &I_{\nu}(z)=\sum_{r=0}^{\infty}\frac{(z/2)^{\nu+2r}}{r!\Gamma(\nu+r+1)}\propto J_{\nu}(iz)\\
+        &K_{\nu}(z)=\frac{\pi}{2}\lim_{\alpha\to\nu}\frac{I_{-\alpha}(z)-I_{\alpha}(z)}{\sin{(\alpha\pi)}}\tag{modified Hankel(mod Bessel of III kind)}\\
+        &w(z)=AI_{\nu}(z)+BK_{\nu}(z)
+    \end{align*}
+\end{frame}
 \end{document}
