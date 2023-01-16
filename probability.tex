@@ -918,7 +918,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
             \begin{itemize}
                 \item Geometric: number of bernoulli trials until first success $P_X(x)=p(1-p)^{x-1}$, $\E{[X]}=\frac{1}{p}$, $\sigma_X=\frac{1-p}{p^2}$
                 \item Modified geometric: number of trials until first faillure
-                \item Pascal-k (negative binomials): number trials until kth success - $\prob_{X(n-1)}{(k-1)}=\binom{n-1}(k-1)p^{k-1}(1-p)^{n-k}$, $\E{[X_k]}=\frac{k}{p}$, $\sigma_{X_k}=\frac{k(1-p)}{p^2}$
+                \item Pascal-k (negative binomials): number trials until kth success - $\prob_{X(n-1)}{(k-1)}=\binom{n-1}{(k-1)}p^{k-1}(1-p)^{n-k}$, $\E{[X_k]}=\frac{k}{p}$, $\sigma_{X_k}=\frac{k(1-p)}{p^2}$
             \end{itemize}
         \end{column}
         \begin{column}{0.5\textwidth}
@@ -926,8 +926,7 @@ $N(\mu,\sigma)$: $\frac{f'}{f}=-\frac{x-\mu}{\sigma}$, $k=np+c\sqrt{npq}$
                 \item Hypergeometric: $K_n$ is number of type A object in sample of size n drawn at time where we have N objects of which $N_1$ are of type A - $P_{K_n}(k)=\frac{\binom{N_1}{k}\binom{N-N_1}{n-k}}{\binom{N}{n}}$,$\E{[K_n]}=\frac{nN_1}{N}=np$, $\sigma_{K_n}^2=\frac{nN_1(N-N_1)(N-n)}{N^2(N-1)}=\frac{np(1-p)(N-n)}{N-1}$. If we sample and replace the object x, number of type A object, has pdf: binomial $\prob{(x)}=\binom{n}{x}(\frac{N_1}{N})^x(\frac{N-N_1}{N})^{n-x}$ - if we sample without replacement outcomes are no longer independent
             \end{itemize}
         \end{column}
-    \end{columns}
-    <++>
+    \end{columns} 
 \end{frame}
 
 \begin{frame}{\keyword{Mean/Var of Bino}}

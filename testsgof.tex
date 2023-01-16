@@ -416,7 +416,7 @@ Si ritrova la statistica $\sum_i^N(X_i-\exv{X})^2/\exv{X}$ (asintotic. come $\ch
 \subsection{Student's t-test}
 
 \begin{frame}{t statistics}
-$\exv{x}=\frac{1}{N}\sum_iX_i=\hat{\mu}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\exv{x}$ normally distributed around $\mu$, $y=\frac{\exv{x}-\mu}{\sigma(\exv{x})}=\frac{\exv{x}-\mu}{\sigma(x)/\sqrt{N}}$ standard normal G. The ''corrected'' sample variance $S_x=\frac{1}{N-1}\sum_i^N(X_i-\mu{x})^2$ is distrib. indep. of $\exv{X}$: $(N-1)S^2/\sigma^2$ distrib as $\chi^2_{N-1}$.
+$\exv{x}=\frac{1}{N}\sum_iX_i=\hat{\mu}$ sample mean of N measures from iid $G(\mu,\sigma^2)$: $\sigma^2(\overline{x})=\frac{\sigma^2}{N}$ and $\exv{x}$ normally distributed around $\mu$, $y=\frac{\exv{x}-\mu}{\sigma(\exv{x})}=\frac{\exv{x}-\mu}{\sigma(x)/\sqrt{N}}$ standard normal G. The ''corrected'' sample variance $S_x^2=\frac{1}{N-1}\sum_i^N(X_i-\mu_x)^2$ is distrib. indep. of $\exv{X}$: $(N-1)S^2/\sigma^2$ distrib as $\chi^2_{N-1}$.
 %$\gets\frac{1}{N(N-1)}\sum_i^N(X_i-\exv{x})^2
 %$(N-1)s_x^2=fs_x^2$ follow $\chi^2$ with $f=N-1$ dof and we define
 \begin{align*}
