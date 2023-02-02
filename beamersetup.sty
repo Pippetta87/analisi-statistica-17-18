@@ -1,5 +1,5 @@
 \ProvidesPackage{beamersetup}
-\renewcommand\addcontentsline[3]{\addtocontents{#1}{\protect\contentsline{#2}{#3}}}
+%\renewcommand\addcontentsline[3]{\addtocontents{#1}{\protect\contentsline{#2}{#3}}}
 % There are many different themes available for Beamer. A comprehensive
 % list with examples is given here:
 % http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
@@ -126,7 +126,12 @@ Bib to learn}
 }
 
 \makeatletter%%see https://tex.stackexchange.com/questions/411987/how-to-fix-hypertargets-directing-links-to-the-line-after-the-target-it-looks-l
- \newcommand{\linkdest}[1]{\Hy@raisedlink{\hypertarget{#1}{}}}
+%\newcommand{\linkdest}[2][][]{\show\phantomsection\phantomsection\Hy@raisedlink{\hypertarget{#1}{#2}}\label{sec:#1}}
+\newcommand{\linkdest}[2][\@empty]{%
+\Hy@raisedlink{\protect\hypertarget{#2}{#1}}
+%\phantomsection\label{#2}
+}
+%\newcommand{\linkdest}{dsd}
 \makeatother
 
 \AtBeginSection{
