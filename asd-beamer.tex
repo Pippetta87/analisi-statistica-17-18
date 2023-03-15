@@ -4,51 +4,6 @@
 
 \documentclass[t,10pt,xcolor={usenames},fleqn]{beamer}
 
-\makeatletter
-\protected\def\Hy@toclinkstart{\hyper@linkstart{link}{\Hy@tocdestname}}
-\protected\def\Hy@toclinkend{\hyper@linkend}
-\def\contentsline#1#2#3#4{%
-  \begingroup
-    \Hy@safe@activestrue
-  \edef\x{\endgroup
-    \def\noexpand\Hy@tocdestname{#4}%
-  }\x
-  \ifx\Hy@tocdestname\ltx@empty
-    \csname l@#1\endcsname{#2}{#3}%
-  \else
-    \ifcase\Hy@linktoc % none
-      \csname l@#1\endcsname{#2}{#3}%
-    \or % section
-      \csname l@#1\endcsname{%
-        \Hy@toclinkstart{#2}\Hy@toclinkend
-      }{#3}%
-    \or % page
-      \def\Hy@temp{#3}%
-      \ifx\Hy@temp\ltx@empty
-        \csname l@#1\endcsname{#2}{#3}%
-      \else
-        \csname l@#1\endcsname{{#2}}{%
-          \Hy@toclinkstart{#3}\Hy@toclinkend
-        }%
-      \fi
-    \else % all
-      \def\Hy@temp{#3}%
-      \ifx\Hy@temp\ltx@empty
-        \csname l@#1\endcsname{%
-          \Hy@toclinkstart{#2}\Hy@toclinkend
-        }{}%
-      \else
-        \csname l@#1\endcsname{%
-          \Hy@toclinkstart{#2}\Hy@toclinkend
-        }{%
-          \Hy@toclinkstart{#3}\Hy@toclinkend
-        }%
-      \fi
-    \fi
-  \fi
-}
-\makeatother
-
 %%%Usefull link
 %tikz-equations:
 %http://www.wekaleamstudios.co.uk/posts/creating-a-presentation-with-latex-beamer-equations-and-tikz/
@@ -105,6 +60,53 @@
     \printfield{url}}
     {}}
 
+%%define \mycontentsline
+\makeatletter
+\protected\def\Hy@toclinkstart{\hyper@linkstart{link}{\Hy@tocdestname}}
+\protected\def\Hy@toclinkend{\hyper@linkend}
+\def\mycontentsline#1#2#3#4{%
+  \begingroup
+    \Hy@safe@activestrue
+  \edef\x{\endgroup
+    \def\noexpand\Hy@tocdestname{#4}%
+  }\x
+  \ifx\Hy@tocdestname\ltx@empty
+    \csname l@#1\endcsname{#2}{#3}%
+  \else
+    \ifcase\Hy@linktoc % none
+      \csname l@#1\endcsname{#2}{#3}%
+    \or % section
+      \csname l@#1\endcsname{%
+        \Hy@toclinkstart{#2}\Hy@toclinkend
+      }{#3}%
+    \or % page
+      \def\Hy@temp{#3}%
+      \ifx\Hy@temp\ltx@empty
+        \csname l@#1\endcsname{#2}{#3}%
+      \else
+        \csname l@#1\endcsname{{#2}}{%
+          \Hy@toclinkstart{#3}\Hy@toclinkend
+        }%
+      \fi
+    \else % all
+      \def\Hy@temp{#3}%
+      \ifx\Hy@temp\ltx@empty
+        \csname l@#1\endcsname{%
+          \Hy@toclinkstart{#2}\Hy@toclinkend
+        }{}%
+      \else
+        \csname l@#1\endcsname{%
+          \Hy@toclinkstart{#2}\Hy@toclinkend
+        }{%
+          \Hy@toclinkstart{#3}\Hy@toclinkend
+        }%
+      \fi
+    \fi
+  \fi
+}
+\makeatother
+%%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Funzioni generali
 \usepackage{functions}
 %http://tex.stackexchange.com/questions/246/when-should-i-use-input-vs-include
@@ -139,7 +141,6 @@
 
 \begin{frame}[allowframebreaks,fragile]{TOC}
 \tableofcontents[onlyparts]
-\listofframes
 \end{frame}
 % Section and subsections will appear in the presentation overview
 % and table of contents.

@@ -126,9 +126,11 @@ Bib to learn}
 }
 
 \makeatletter%%see https://tex.stackexchange.com/questions/411987/how-to-fix-hypertargets-directing-links-to-the-line-after-the-target-it-looks-l
-%\newcommand{\linkdest}[2][][]{\show\phantomsection\phantomsection\Hy@raisedlink{\hypertarget{#1}{#2}}\label{sec:#1}}
-\newcommand{\linkdest}[2][\@empty]{%
-\Hy@raisedlink{\protect\hypertarget{#2}{#1}}
+%\newcommand{\linkdest}[2][][]{\phantomsection\Hy@raisedlink{\hypertarget{#1}{#2}}\label{sec:#1}}
+\newcommand{\linkdest}[2][\protect\@empty]{%
+%\protect\Hy@raisedlink{%1
+\protect\hypertarget{#2}{#1}
+%}%1
 %\phantomsection\label{#2}
 }
 %\newcommand{\linkdest}{dsd}
@@ -153,7 +155,11 @@ Bib to learn}
 \begin{frame}[allowframebreaks]
 \partpage \tableofcontents[]
 \end{frame}
+\begin{frame}{LOF}
+    \listofframes
+\end{frame}
 \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+
 }
 %% number, shortname, page.
 \providecommand\beamer@partintoc[3]{%

@@ -88,7 +88,7 @@
 %\addtocounter{keywordkey}{1}
 \noindent{%
 \phantomsection% comment out if hyperref is not used
-\linkdest{#1}{\color{keyword}{#2}}%
+\linkdest[#1]{\color{keyword}{#2}}%
 }%
 \addtocontents{keylist-\thekeywordsectionlist}{\protect\mycontentsline{subsubsection}{#2}{}{#1}}
 %\addcontentsline{keylist-\protect\thekeywordsectionlist}{subsection}{\protect\textbullet\hyperlink{#1}{#2}}%
@@ -102,10 +102,10 @@
 %\addtocontents=\long macro:
 %#1#2->\protected@write \@auxout {\let \label \@gobble \let \index \@gobble \let \glossary \@gobble \blx@contentssafe@citecommands }{\string \@writefile {#1}{#2}}
 \newcommand\todo[2][todo-\thetodokey]{%todo
-	%\addtocounter{todokey}{1}
+	\addtocounter{todokey}{1}
 	\noindent{%
 	\phantomsection% comment out if hyperref is not used
-	\linkdest{\color{todo}{#2}}{#1}%
+	\linkdest[\protect\color{todo}{#2}]{#1}%
 	}%
     \addtocontents{todo-\thetodosectionlist}{\protect\mycontentsline{subsubsection}{\parbox{0.4\textwidth}{#2}}{}{#1}}
 %\addcontentsline{todo-\protect\thetodosectionlist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}\protect\hspace{1mm}}%
@@ -114,7 +114,7 @@
 	\addtocounter{mustkey}{1}
 	\noindent{%
 	\phantomsection% comment out if hyperref is not used
-	\linkdest{\color{must}{#2}}{#1}%
+	\linkdest[\color{must}{#2}]{#1}%
 	}%
 	\addtocontents{must-\thekeywordsectionlist}{\protect\mycontentsline{subsubsection}{#2}{}{#1}}
     %\addcontentsline{must-\protect\themustsectionlist}{subsubsection}{\protect\textbullet\protect\hyperlink{#1}{#2}}%
@@ -131,12 +131,17 @@
 	\@starttocorig{must-\themustsectionlist}
 }
 %%frameintoc
-\newcommand{\listofframes}{
-\@starttoc{lbf}
+%\newcommand{\listofframes}{
+%\@starttoc{lbf}
+%}
+\newcommand{\lbfbasic}{%listofframes
+	\@starttocorig{lbf-\thepart}
 }
+\newcommand\listofframesname{List of frames}
+\newcommand\listofframes{%
+	\listofframesname\phantomsection: \lbfbasic}
 \makeatother
 
-\newcommand\listofframesname{List of frames}
 \newcommand\listtodosname{TODO}%listoftodo
 \newcommand\listoftodos{%
 	\addtocounter{todosectionlist}{1}
@@ -147,12 +152,12 @@
 	\listmustsname\phantomsection: \listofmustsbasic}
 \newcommand\listkeywordsname{KEYWORDS}%List of keywords
 \newcommand\listofkeywords{%
-\subsubsection{\listkeywordsname}\listofkeywordsbasic}
+\listkeywordsname\listofkeywordsbasic}
 %%frameintoc
 \newcommand\frameintoc{%
-    \linkdest{frametarget-\insertframenumber}
+    \linkdest{frametarget-\protect\insertframenumber}
 %\addcontentsline{lbf}{section}{\protect\makebox[2em][l]{\protect\hyperlink{frametarget-\insertframenumber}{\insertframenumber}\hfill}\hyperlink{frametarget-\insertframenumber}{\protect\insertframetitle}\par}%
-    %\addtocontents{lbf}{\protect\mycontentsline{section}{\makebox[2em][l]{\hyperlink{frametarget-\insertframenumber}{\insertframenumber}\hfill{}}\hyperlink{frametarget-\insertframenumber}{\insertframetitle}\par}{}{frametarget-\insertframenumber}}
+    \addtocontents{lbf}{0\protect\mycontentsline{section}{2\makebox[2em][l]{\protect\hyperlink{frametarget-\insertframenumber}{\insertframenumber}\hfill{}}\hyperlink{frametarget-\insertframenumber}{\insertframetitle}\par{}}{}{frametarget-\insertframenumber}}
     %\addtocontents{lbf}{\protect\mycontentsline{section}{\hyperlink{frametarget-\insertframenumber}{\insertframenumber}\hfill{}\hyperlink{frametarget-\insertframenumber}{\insertframetitle}\par}{}{frametarget-\insertframenumber}}
 }
 
