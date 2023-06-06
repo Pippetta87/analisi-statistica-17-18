@@ -127,10 +127,11 @@ Bib to learn}
 
 \makeatletter%%see https://tex.stackexchange.com/questions/411987/how-to-fix-hypertargets-directing-links-to-the-line-after-the-target-it-looks-l
 %\newcommand{\linkdest}[2][][]{\phantomsection\Hy@raisedlink{\hypertarget{#1}{#2}}\label{sec:#1}}
-\newcommand{\linkdest}[2][\protect\@empty]{%
-%\protect\Hy@raisedlink{%1
-\protect\hypertarget{#2}{#1}
-%}%1
+\newcommand{\linkdest}[2][\@empty]{%
+    \hypertarget{\@empty}{#1}
+\Hy@raisedlink{%1
+\hypertarget{#2}{}
+}%1
 %\phantomsection\label{#2}
 }
 %\newcommand{\linkdest}{dsd}
