@@ -153,14 +153,14 @@ Bib to learn}
 
 \makeatletter
 \AtBeginPart{%
+    \addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
+    %\addtocontents{parttoc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
 \begin{frame}[allowframebreaks]
 \partpage \tableofcontents[]
 \end{frame}
-\begin{frame}{LOF}
+\begin{frame}{ListOfFrames}
     \listofframes
 \end{frame}
-\addtocontents{toc}{\protect\beamer@partintoc{\the\c@part}{\beamer@partnameshort}{\the\c@page}}%
-
 }
 %% number, shortname, page.
 \providecommand\beamer@partintoc[3]{%

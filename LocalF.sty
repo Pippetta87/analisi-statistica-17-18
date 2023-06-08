@@ -144,7 +144,8 @@
 
 \newcommand\listofframesname{List of frames}
 \newcommand\listofframes{%
-	\listofframesname\phantomsection: \lbfbasic}
+	%\listofframesname\phantomsection:%
+\lbfbasic}
 \newcommand\listtodosname{TODO}%listoftodo
 \newcommand\listoftodos{%
 	\addtocounter{todosectionlist}{1}
@@ -167,11 +168,14 @@
 \newcommand\frameintoc{%frameintoc
 	\noindent{%
 	\phantomsection% comment out if hyperref is not used
-	\linkdest{frametarget-\protect\insertframenumber}%
+	\linkdest{frametarget-\insertframenumber}%
 	}%
-    \addtocontents{lbf}{\protect\mycontentsline{subsubsection}{\parbox{0.48\textwidth}{\protect$\bullet$ #2}}{}{#1}}
+    \addtocontents{lbf-\thepart}{\protect\mycontentsline{subsubsection}{\parbox{0.48\textwidth}{\protect$\bullet$\insertframetitle(\insertframenumber)}}{}{frametarget-\insertframenumber}%
+        }        
+%\addtocontents{lbf}{0\protect\mycontentsline{section}{2\makebox[2em][l]{\protect\hyperlink{frametarget-\insertframenumber}{\insertframenumber}\hfill{}}\hyperlink{frametarget-\insertframenumber}{\insertframetitle}\par{}}{}{frametarget-\insertframenumber}}
+
 %\addcontentsline{todo-\protect\thetodosectionlist}{subsubsection}{\textbullet\protect\hyperlink{#1}{#2}\protect\hspace{1mm}}%
-}
+    }
 
 % \IfFileExists{key-\thecherrysublist}{false-branch}
 
